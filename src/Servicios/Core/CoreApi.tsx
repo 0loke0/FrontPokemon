@@ -1,4 +1,4 @@
-export const ConsumirApi = (
+export const ConsumirApi = async (
   url: string,
   tipo: "Get" | "Put" | "Delete" | "Post",
   mensajeError: string,
@@ -12,7 +12,7 @@ export const ConsumirApi = (
     },
   };
 
-  return fetch(url, TipoFetch)
+  return await fetch(url, TipoFetch)
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.statusText);

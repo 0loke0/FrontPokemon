@@ -1,36 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { GetTipos, SetTipos, DeleteTipo } from "../Servicios/ServicioTipo";
-import Info from "../paginas/SeccionPokemones";
-import { Button } from "react-bootstrap";
+import {
+  getTipos,
+  setTipos,
+  deleteTipo,
+  updateTipo,
+} from "../Servicios/ServicioTipo";
+
+import Button from "react-bootstrap/Button";
 
 interface ITipos {
   IdTipo: number;
   NombreTipo: string;
 }
+
 const DEFAULTTIPO = { IdTipo: 0, NombreTipo: "" };
+
 function PaginaPokemones() {
   const [tipos, settipos] = useState<ITipos[]>([DEFAULTTIPO]);
-  const [formulario, setformulario] = useState<ITipos>(DEFAULTTIPO);
+  const [inputDelete, setinputDelete] = useState<string>("");
+
   useEffect(() => {
-    GetTipos().then((x) => settipos(x));
+    getTipos().then((x) => settipos(x));
   }, []);
 
-  const agregar = () => {
-    SetTipos(formulario);
+  const refrescarInformacion = () => {
+    getTipos().then((x) => settipos(x));
+    console.log("generoConsulta");
   };
+
+  const agregar = () => {
+    setTipos({ IdTipo: 0, NombreTipo: "TIPOs" });
+    refrescarInformacion();
+    console.log("termino");
+  };
+
   const quitar = () => {
-    DeleteTipo({ IdTipo: 70, NombreTipo: "nuevoTipoDesdeApi" });
+    deleteTipo(parseInt(inputDelete));
+    refrescarInformacion();
+  };
+
+  const actualizar = () => {
+    updateTipo(parseInt(inputDelete), { IdTipo: 0, NombreTipo: "" });
+    refrescarInformacion();
   };
 
   return (
     <>
-      <p>sadawdas</p>
-      <Info info={"uwu"} />
-      <Button variant='primary' onClick={agregar}>
+      {/* <Info info={"uwu"} /> */}
+      <Button variant='outline-primary' onClick={agregar}>
         Agregar
       </Button>
-      <Button variant='primary' onClick={quitar}>
-        quitar
+      <input
+        type='text'
+        value={inputDelete}
+        onChange={(event) => setinputDelete(event.target.value)}
+      />
+      <Button variant='outline-danger' onClick={quitar}>
+        Quitar
+      </Button>
+      <Button variant='outline-success' onClick={actualizar}>
+        Actualizar
       </Button>
       <table>
         <thead>
