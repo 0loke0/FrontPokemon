@@ -1,7 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 // import { PaginaPokemones } from "./paginas/PaginaPokemones";
-import Adsad from "./paginas/adsad";
+
+import PaginaPokemones from "./paginas/PaginaPokemones";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           Edit <code>src/weewew.js</code> and save to reload.
         </p>
         ifo
-        <Adsad />
+        <PaginaPokemones />
         <a
           className='App-link'
           href='https://reactjs.org'
