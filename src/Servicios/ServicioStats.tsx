@@ -19,7 +19,7 @@ export const buscarStat = async (idPokemon: number) => {
 export const guardarStat = async (stat: IStats) => {
   var url = "http://localhost:63107/api/Stats/GuardarStats";
   const ERROR = "Se ha generado un error al Agregar los stats de pokemon";
-  return await ConsumirApi(url, "Post", ERROR, stat).then((data) => {
+  return await ConsumirApi(url, "Put", ERROR, stat).then((data) => {
     return data;
   });
 };

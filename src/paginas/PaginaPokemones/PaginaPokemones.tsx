@@ -43,7 +43,7 @@ function PaginaPokemones() {
   const agregar = (nombrePokemon: string) => {
     AgregarPokemon(nombrePokemon);
     actualizarPagina();
-  };
+  };  
 
   const actualizar = () => {
     ActualizarPokemon({ Id: 0, Nombre: "" });
