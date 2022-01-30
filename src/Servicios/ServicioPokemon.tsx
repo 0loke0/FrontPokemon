@@ -8,7 +8,6 @@ export const ObtenerPokemones = async () => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
   const ERROR = "Se ha generado un error al consultar los Pokemones";
   return await ConsumirApi(url, "Get", ERROR).then((data) => {
-    console.log("sdawda", data);
     return data;
   });
 };

@@ -7,20 +7,23 @@ import { AgregarPokemon } from "../../../Servicios/ServicioPokemon";
 
 interface IPropAgregar {
   actualizarPagina: any;
+  agregar: (input: string) => any;
 }
 
-export const Agregar: FC<IPropAgregar> = ({ actualizarPagina }) => {
+export const Agregar: FC<IPropAgregar> = ({ actualizarPagina, agregar }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const [input, setinput] = useState<string>("");
 
-  const agregar = () => {
-    AgregarPokemon(input);
+  const agregarNuevo = () => {
+    agregar(input);
     handleClose();
     actualizarPagina();
   };
+
   const actualizarInput = (e: any) => {
     setinput(e.target.value);
   };
@@ -60,7 +63,7 @@ export const Agregar: FC<IPropAgregar> = ({ actualizarPagina }) => {
           <Button variant='secondary' onClick={handleClose}>
             Cerrar
           </Button>
-          <Button variant='primary' onClick={agregar}>
+          <Button variant='primary' onClick={agregarNuevo}>
             Guardar
           </Button>
         </Modal.Footer>
