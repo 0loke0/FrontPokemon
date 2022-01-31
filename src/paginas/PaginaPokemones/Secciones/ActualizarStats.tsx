@@ -53,7 +53,6 @@ export const ActualizarStats: FC<IPropActualizarStats> = ({
         ejecutarFuncion={handleShow}
         nombre='Stats'
       />
-      {console.log(stats.IdPokemon)}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Actualizar Stats</Modal.Title>

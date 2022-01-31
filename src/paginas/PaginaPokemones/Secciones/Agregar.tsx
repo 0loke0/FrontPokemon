@@ -4,7 +4,7 @@ import { Col, Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import { AgregarPokemon } from "../../../Servicios/ServicioPokemon";
-
+import { Alerta } from "../../../Componentes/Alerta";
 interface IPropAgregar {
   actualizarPagina: any;
   agregar: (input: string) => any;

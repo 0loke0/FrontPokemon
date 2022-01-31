@@ -3,6 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
 import { IPokemon } from "../../../Interface/Pokemones";
 import { EliminarPokemon } from "../../../Servicios/ServicioPokemon";
+import { Alerta } from "../../../Componentes/Alerta";
 interface IPropPokemonEliminar {
   pokemonAEliminar: IPokemon;
   actualizarPagina: any;
