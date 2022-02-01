@@ -1,10 +1,11 @@
 import React, { FC, useRef, useState } from "react";
 import Popover from "react-bootstrap/Popover";
-import Button from "react-bootstrap/Button";
 import Overlay from "react-bootstrap/Overlay";
 import { IPokemon } from "../../../Interface/Pokemones";
 import { ActualizarStats } from "./ActualizarStats";
 import { ActualizarTipo } from "./ActualizarTipo";
+import Boton from "../../../Componentes/Boton";
+
 interface IPropActualizar {
   pokemonAActualizar: IPokemon;
 }
@@ -32,7 +33,10 @@ export const Actualizar: FC<IPropActualizar> = ({ pokemonAActualizar }) => {
 
   return (
     <div ref={ref}>
-      <Button onClick={handleClick}>Actualizar</Button>
+      <Boton
+        variant='outline-primary'
+        ejecutarFuncion={handleClick}
+        nombre='Actualizar'></Boton>
 
       <Overlay
         show={show}
@@ -51,8 +55,11 @@ export const Actualizar: FC<IPropActualizar> = ({ pokemonAActualizar }) => {
               estadoActual={estadoActual}
               pokemonAActualizar={pokemonAActualizar}
             />
+            <Boton
+              variant='outline-success'
+              ejecutarFuncion={handleClick}
+              nombre='Pokemon'></Boton>
             <ActualizarTipo />
-            <p>Habilidades</p>
           </Popover.Body>
         </Popover>
       </Overlay>

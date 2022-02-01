@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IStats } from "../../Interface/Pokemones";
-import {
-  actualizarStat,
-  borrarStat,
-  obtenerStats,
-  guardarStat,
-} from "../../Servicios/ServicioStats";
+import { obtenerStats } from "../../Servicios/ServicioStats";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
 const DEFAULTSTATS: IStats = {

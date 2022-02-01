@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
+import {
+  agregarPokemon,
+  eliminarPokemon,
+  obtenerPokemones,
+} from "../../Servicios/ServicioPokemon";
+
+import { Alerta } from "../../Componentes/Alerta";
 import { IPokemon } from "../../Interface/Pokemones";
 import { Agregar } from "./Secciones/Agregar";
 import { Tabla } from "./Secciones/Tabla";
-import {
-  ActualizarPokemon,
-  AgregarPokemon,
-  EliminarPokemon,
-  ObtenerPokemones,
-} from "../../Servicios/ServicioPokemon";
-import { Table } from "react-bootstrap";
-import { Actualizar } from "./Secciones/Actualizar";
-import { Eliminar } from "./Secciones/Eliminar";
-
-const Sth = styled.th`
-  text-align: center;
-`;
-const Std = styled.td`
-  text-align: center;
-`;
 
 const SGenenarlPaginaPokemon = styled.div`
   margin: 3% 10% 3% 10%;
@@ -28,27 +20,44 @@ const SGenenarlPaginaPokemon = styled.div`
   border-radius: 20px;
   padding: 2%;
 `;
+const STitulo = styled.p`
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+`;
 const DEFAULTPOKEMON: IPokemon = { Id: 0, Nombre: "" };
 
 function PaginaPokemones() {
   const [pokemon, setpokemon] = useState<IPokemon[]>([DEFAULTPOKEMON]);
   useEffect(() => {
-    ObtenerPokemones().then((x) => setpokemon(x));
+    obtenerPokemones().then((x) => setpokemon(x));
   }, []);
 
-  const actualizarPagina = async () => {
-    await ObtenerPokemones().then((x) => setpokemon(x));
+  const actualizarPagina = () => {
+    obtenerPokemones().then((x) => setpokemon(x));
   };
 
-  const agregar = (input: string) => {
-    AgregarPokemon(input);
+  const agregarNuevoPokemon = (nombrePokemon: string) => {
+    console.log("nombre pokemon", nombrePokemon);
+    agregarPokemon(nombrePokemon).finally(() => actualizarPagina());
+  };
+
+  const eliminarPokemonRegistrado = (idPokemon: number) => {
+    eliminarPokemon(idPokemon).then((data) => {
+      Alerta("success", "Completado", data);
+    });
+    // .finally(() => actualizarPagina());
   };
 
   return (
     <SGenenarlPaginaPokemon>
-      <h2>Pokemones</h2>
-      <Agregar actualizarPagina={actualizarPagina} agregar={agregar} />
-      <Tabla pokemon={pokemon} actualizarPagina={actualizarPagina} />
+      <STitulo>Pokémones</STitulo>
+      <Agregar
+        actualizarPagina={actualizarPagina}
+        agregarPokemon={agregarNuevoPokemon}
+      />
+      <Tabla pokemon={pokemon} eliminarPokemon={eliminarPokemonRegistrado} />
     </SGenenarlPaginaPokemon>
   );
 }

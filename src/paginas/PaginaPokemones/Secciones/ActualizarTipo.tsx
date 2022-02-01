@@ -1,9 +1,8 @@
 import React, { FC, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
-import { Col, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
-import { AgregarPokemon } from "../../../Servicios/ServicioPokemon";
 
 interface IPropActualizarStats {}
 
@@ -13,11 +12,6 @@ export const ActualizarTipo: FC<IPropActualizarStats> = ({}) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [input, setinput] = useState<string>("");
-
-  const Stats = () => {
-    AgregarPokemon(input);
-    handleClose();
-  };
 
   const funcionGenerica = () => {};
   const actualizarInput = (e: any) => {

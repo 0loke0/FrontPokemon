@@ -27,7 +27,7 @@ export const ActualizarStats: FC<IPropActualizarStats> = ({
 
   useEffect(() => {
     buscarStat(pokemonAActualizar.Id).then((x) => setstats(x));
-  }, []);
+  }, [pokemonAActualizar]);
 
   const handleClose = () => {
     estadoActual(false);
@@ -59,12 +59,6 @@ export const ActualizarStats: FC<IPropActualizarStats> = ({
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Check
-              type='switch'
-              id='custom-switch'
-              label='Caracteristicas Aleatorias'
-              className='mt-1 mb-2'
-            />
             <Form.Label>Ataque</Form.Label>
             <Form.Control
               type='text'

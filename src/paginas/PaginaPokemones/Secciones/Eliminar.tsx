@@ -2,24 +2,28 @@ import React, { useState, FC } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
 import { IPokemon } from "../../../Interface/Pokemones";
-import { EliminarPokemon } from "../../../Servicios/ServicioPokemon";
-import { Alerta } from "../../../Componentes/Alerta";
+import styled from "styled-components";
 interface IPropPokemonEliminar {
   pokemonAEliminar: IPokemon;
-  actualizarPagina: any;
+  eliminarPokemon: any;
 }
 
+const STexto = styled.p`
+  text-align: center;
+`;
+const SNegrita = styled.p`
+  font-weight: 900;
+`;
 export const Eliminar: FC<IPropPokemonEliminar> = ({
   pokemonAEliminar,
-  actualizarPagina,
+  eliminarPokemon,
 }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const Borrar = () => {
-    EliminarPokemon(pokemonAEliminar.Id);
-    actualizarPagina();
+  const borrarPokemon = () => {
+    eliminarPokemon(pokemonAEliminar.Id);
     handleClose();
   };
   return (
@@ -33,16 +37,17 @@ export const Eliminar: FC<IPropPokemonEliminar> = ({
           <Modal.Title>Eliminar</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            Se borrara el Pokemon: "{pokemonAEliminar.Nombre}". Esta seguro que
-            lo desea eliminar?
-          </p>
+          <STexto>
+            Se borrara el Pokemon
+            <SNegrita>{pokemonAEliminar.Nombre}</SNegrita>
+          </STexto>
+          <STexto>¿Esta seguro que lo desea eliminar?</STexto>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
-            Cerrar
+            Cancelar
           </Button>
-          <Button variant='danger' onClick={Borrar}>
+          <Button variant='danger' onClick={borrarPokemon}>
             Eliminar
           </Button>
         </Modal.Footer>

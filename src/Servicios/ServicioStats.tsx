@@ -1,5 +1,6 @@
 import { ConsumirApi } from "./Core/CoreApi";
 import { IStats } from "./../Interface/Pokemones";
+import { Alerta } from "../Componentes/Alerta";
 
 export const obtenerStats = async () => {
   var url = "http://localhost:63107/api/Stats/ObtenerStats";
@@ -32,6 +33,9 @@ export const borrarStat = (idPokemon: number) => {
 export const actualizarStat = (stat: IStats) => {
   var url = `http://localhost:63107/api/Stats/ActualizarStats`;
   return ConsumirApi(url, "Put", stat).then((data) => {
-    return data;
+    if (typeof data == "string") {
+      Alerta("success", "Completado", data);
+    }
+    return data ? data : null;
   });
 };

@@ -5,33 +5,28 @@ interface IPokemon {
   Nombre: string;
 }
 
-export const ObtenerPokemones = async () => {
+export const obtenerPokemones = async () => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
   return await ConsumirApi(url, "Get").then((data) => {
-    console.log("infroamcion", data);
-
     return data;
   });
 };
 
-export const EliminarPokemon = async (idPokemon: number) => {
+export const eliminarPokemon = async (idPokemon: number): Promise<string> => {
   const url = `http://localhost:63107/api/Pokemones/EliminarPokemon?idPokemon=${idPokemon}`;
   return await ConsumirApi(url, "Delete").then((data) => {
-    if (typeof data == "string") {
-      Alerta("success", "Completado", data);
-    }
-    return data ? data : null;
+    return data;
   });
 };
 
-export const AgregarPokemon = async (nombrePokemon: string) => {
+export const agregarPokemon = async (nombrePokemon: string) => {
   const url = `http://localhost:63107/api/Pokemones/GuardarPokemon?nombrePokemon=${nombrePokemon}`;
   return await ConsumirApi(url, "Post").then((data) => {
     return data ? data : null;
   });
 };
 
-export const ActualizarPokemon = async (pokemon: IPokemon) => {
+export const actualizarPokemon = async (pokemon: IPokemon) => {
   const url = "http://localhost:63107/api/Pokemones/ActualizarPokemon";
   return await ConsumirApi(url, "Get", pokemon).then((data) => {
     return data;

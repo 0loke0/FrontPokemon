@@ -11,30 +11,33 @@ const Sth = styled.th`
 const Std = styled.td`
   text-align: center;
 `;
-const SSinInformacion = styled.div`
+const SContenedorSinInformacion = styled.div`
   position: relative;
   left: 50%;
-  transform: translateX(-50%);
+  width: 300px;
+  height: 30px;
+  transform: translate(-50%, 0);
+  border: 2px solid #bec8e7;
+  border-radius: 10px;
 `;
 
-const SContenedorTabla = styled.div`
-  background-color: blue;
+const SContenidoSinInformacion = styled.p`
+  text-align: center;
 `;
 
 interface IPropTabla {
   pokemon: IPokemon[];
-  actualizarPagina: any;
+  eliminarPokemon: any;
 }
 
-export const Tabla: FC<IPropTabla> = ({ pokemon, actualizarPagina }) => {
+export const Tabla: FC<IPropTabla> = ({ pokemon, eliminarPokemon }) => {
   return (
-    <SContenedorTabla>
-      {pokemon ? (
+    <>
+      {pokemon?.length > 0 ? (
         <Table bordered={false} hover={true} variant='light'>
           <thead>
             <tr>
-              <Sth>ID</Sth>
-              <Sth>Tipos</Sth>
+              <Sth>Nombre</Sth>
               <Sth>Eliminar</Sth>
               <Sth>Actualizar</Sth>
             </tr>
@@ -42,12 +45,11 @@ export const Tabla: FC<IPropTabla> = ({ pokemon, actualizarPagina }) => {
           <tbody>
             {pokemon?.map((x) => (
               <tr key={x.Id}>
-                <Std>{x.Id}</Std>
                 <Std>{x.Nombre}</Std>
                 <Std>
                   <Eliminar
                     pokemonAEliminar={x}
-                    actualizarPagina={actualizarPagina}
+                    eliminarPokemon={eliminarPokemon}
                   />
                 </Std>
                 <td>
@@ -58,8 +60,10 @@ export const Tabla: FC<IPropTabla> = ({ pokemon, actualizarPagina }) => {
           </tbody>
         </Table>
       ) : (
-        <SSinInformacion>sin info</SSinInformacion>
+        <SContenedorSinInformacion>
+          <SContenidoSinInformacion>Sin Informacion</SContenidoSinInformacion>
+        </SContenedorSinInformacion>
       )}
-    </SContenedorTabla>
+    </>
   );
 };
