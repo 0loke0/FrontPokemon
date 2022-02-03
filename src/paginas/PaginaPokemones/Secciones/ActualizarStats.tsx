@@ -117,7 +117,7 @@ export const ActualizarStats: FC<IPropActualizarStats> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
-            Cerrar
+            Cancelar
           </Button>
           <Button variant='primary' onClick={guardarStats}>
             Guardar

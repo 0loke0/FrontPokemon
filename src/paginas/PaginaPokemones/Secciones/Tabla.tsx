@@ -45,7 +45,9 @@ export const Tabla: FC<IPropTabla> = ({ pokemon, eliminarPokemon }) => {
           <tbody>
             {pokemon?.map((x) => (
               <tr key={x.Id}>
-                <Std>{x.Nombre}</Std>
+                <Std>
+                  {x.Id}: {x.Nombre}
+                </Std>
                 <Std>
                   <Eliminar
                     pokemonAEliminar={x}

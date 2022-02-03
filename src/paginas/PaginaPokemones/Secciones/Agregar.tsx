@@ -3,10 +3,25 @@ import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
+import styled from "styled-components";
 interface IPropAgregar {
   actualizarPagina: any;
   agregarPokemon: (input: string) => any;
 }
+const Sinput = styled.input`
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 5px;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  border: 0.5px solid #c9e7ff;
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px #a0bad3;
+  }
+`;
 
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
@@ -43,8 +58,17 @@ export const Agregar: FC<IPropAgregar> = ({
         <Modal.Body>
           <Form>
             <Form.Label>Nombre</Form.Label>
+
             <Form.Control
               type='text'
+              placeholder='Ingrese Nombre'
+              value={nombrePokemon}
+              onChange={actualizarNombrePokemon}
+            />
+
+            <Sinput
+              type='text'
+              required
               placeholder='Ingrese Nombre'
               value={nombrePokemon}
               onChange={actualizarNombrePokemon}
@@ -53,7 +77,7 @@ export const Agregar: FC<IPropAgregar> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
-            Cerrar
+            Cancelar
           </Button>
           <Button variant='primary' onClick={agregarNuevoPokemon}>
             Guardar

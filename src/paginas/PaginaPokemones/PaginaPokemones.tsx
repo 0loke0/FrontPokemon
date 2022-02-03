@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { CardPokemon } from "../PaginaPokemones/Secciones/CardPokemon";
 import {
   agregarPokemon,
   eliminarPokemon,
@@ -44,10 +44,11 @@ function PaginaPokemones() {
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {
-    eliminarPokemon(idPokemon).then((data) => {
-      Alerta("success", "Completado", data);
-    });
-    // .finally(() => actualizarPagina());
+    eliminarPokemon(idPokemon)
+      .then((data) => {
+        Alerta("success", "Completado", data);
+      })
+      .finally(() => actualizarPagina());
   };
 
   return (
@@ -57,7 +58,8 @@ function PaginaPokemones() {
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
       />
-      <Tabla pokemon={pokemon} eliminarPokemon={eliminarPokemonRegistrado} />
+      {/* <Tabla pokemon={pokemon} eliminarPokemon={eliminarPokemonRegistrado} /> */}
+      <CardPokemon pokemon={pokemon} />
     </SGenenarlPaginaPokemon>
   );
 }
