@@ -1,29 +1,29 @@
 import { ConsumirApi } from "./Core/CoreApi";
 
-export const getTipos = () => {
-  var url = "http://localhost:63107/api/PruebasPoke/InformacionDePruebas2";
-  return ConsumirApi(url, "Get").then((data) => {
+export const obtenerTipos = async () => {
+  var url = "http://localhost:63107/api/Tipos/ListaTipos";
+  return await ConsumirApi(url, "Get").then((data) => {
     return data;
   });
 };
 
-export const setTipos = async (formulario: any) => {
-  var url = "http://localhost:63107/api/PruebasPoke/AgregarTipo";
-  return await ConsumirApi(url, "Put", formulario).then((data) => {
+export const guardarTipos = async (nombre: string) => {
+  var url = `http://localhost:63107/api/Tipos/AgregarTipo?nombreTipo=${nombre}`;
+  return await ConsumirApi(url, "Put").then((data) => {
     return data;
   });
 };
 
-export const deleteTipo = (IdTipo: number) => {
-  var url = `http://localhost:63107/api/PruebasPoke/EliminarTipo?IdTipo=${IdTipo}`;
+export const borrarTipo = (idTipo: number) => {
+  var url = `http://localhost:63107/api/PruebasPoke/EliminarTipo?IdTipo=${idTipo}`;
   return ConsumirApi(url, "Delete").then((data) => {
     return data;
   });
 };
 
-export const updateTipo = (IdTipo: number, formulario: any) => {
-  var url = `http://localhost:63107/api/PruebasPoke/ActualizarTipo?IdTipo=${IdTipo}`;
-  return ConsumirApi(url, "Put", formulario).then((data) => {
+export const actualizarTipo = (tipo: any) => {
+  var url = `http://localhost:63107/api/Tipos/ActualizarTipo`;
+  return ConsumirApi(url, "Put", tipo).then((data) => {
     return data;
   });
 };

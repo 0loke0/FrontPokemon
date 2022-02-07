@@ -1,5 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { buscarStat } from "../../../Servicios/ServicioStats";
+import { obtenerTipos } from "../../../Servicios/ServicioTipo";
 import { IPokemon, IStats } from "../../../Interface/Pokemones";
 
 import Col from "react-bootstrap/Col";
@@ -33,17 +34,11 @@ const StyledCard = styled(Card)`
 
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
   const [stat, setstat] = useState<IStats>();
-  const [stylo, setstylo] = useState(false);
   useEffect(() => {
     buscarStat(pokemon.Id).then((x) => setstat(x));
+    obtenerTipos().then((x) => console.log(x));
   }, []);
 
-  const activarRespaldo = () => {
-    setstylo(true);
-  };
-  const desActivarRespaldo = () => {
-    setstylo(false);
-  };
   return (
     <Col>
       <StyledCard>
