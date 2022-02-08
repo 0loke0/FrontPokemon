@@ -3,349 +3,147 @@ import styled, { keyframes } from "styled-components";
 import LogoDian from "../../Multimedia/LogoDian.png";
 import LogoRE from "../../Multimedia/LogoRE.jpg";
 
-const animacionLogoRe = keyframes`
-  0% { filter: grayscale(0%); }
- 20% { filter: grayscale(0%); }
- 40% { filter: grayscale(0%); } 
- 50% { filter: grayscale(100%); } 
- 60% { filter: grayscale(100%); }    
- 80% { filter: grayscale(100%); } 
-`;
-const animacionLogoDian = keyframes`
-  0% { filter: grayscale(100%); }
- 20% { filter: grayscale(100%); }
- 40% { filter: grayscale(100%); }
- 50% { filter: grayscale(0%); } 
- 60% { filter: grayscale(0%); }    
- 80% { filter: grayscale(0%); } 
-`;
-const animacionCirculo1 = keyframes`
-    0% { box-shadow: 
-    100px 100px 0px #1a6a9d, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-    }
+//Cambia el tamaño
+const multiplicadorTamaño: number = 30;
+//Tiempo de para ciclo de animacion
+const segundosAnimacion: number = 2;
+//Color del punto que da efecto de movimiento
+const colorMovimiento: string = `#1a6a9d`;
+//Color del punto estatico para señalar el recorrido
+const colorEstatico: string = `#bab9be`;
+
+const tamañoAncho = () => {
+  let width = (1600 * multiplicadorTamaño) / 100;
+  return `${width}px`;
+};
+
+const tamañoAlto = () => {
+  let height = (400 * multiplicadorTamaño) / 100;
+  return `${height}px`;
+};
+
+const escalar = (pixeles: number) => {
+  let valorEscalado = (pixeles * multiplicadorTamaño) / 100;
+  return valorEscalado;
+};
+
+const circulo1: string = `${escalar(100)}px ${escalar(100)}px ${escalar(0)}px`;
+const circulo2: string = `${escalar(250)}px ${escalar(100)}px ${escalar(0)}px`;
+const circulo3: string = `${escalar(400)}px ${escalar(100)}px ${escalar(0)}px`;
+const circulo4: string = `${escalar(550)}px ${escalar(100)}px ${escalar(0)}px`;
+const circulo5: string = `${escalar(700)}px ${escalar(100)}px ${escalar(0)}px`;
+
+const animacionCirculo = keyframes`
+      0% { box-shadow: 
+      ${circulo1}  ${colorMovimiento}, 
+      ${circulo2}  ${colorEstatico}, 
+      ${circulo3}  ${colorEstatico}, 
+      ${circulo4}  ${colorEstatico}, 
+      ${circulo5}  ${colorEstatico};
+      }
     10% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #1a6a9d, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico}, 
+      ${circulo2} ${colorMovimiento}, 
+      ${circulo3} ${colorEstatico}, 
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorEstatico} ;
      }
     20% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #1a6a9d,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorMovimiento}, 
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorEstatico} ;
      }
     30% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #1a6a9d,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorMovimiento}, 
+      ${circulo5} ${colorEstatico} ;
      }
     40% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #1a6a9d;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorMovimiento};
      }
      50% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #1a6a9d;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2}  ${colorEstatico} , 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorMovimiento};
      }
      60% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #1a6a9d,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorMovimiento}, 
+      ${circulo5} ${colorEstatico} ;
      }
      70% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #1a6a9d,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorMovimiento}, 
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorEstatico} ;
      }
      80% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #1a6a9d, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
+      ${circulo1} ${colorEstatico} , 
+      ${circulo2} ${colorMovimiento}, 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorEstatico} ;
+     }
+     90% { box-shadow: 
+      ${circulo1} ${colorMovimiento}, 
+      ${circulo2} ${colorEstatico} , 
+      ${circulo3} ${colorEstatico} ,
+      ${circulo4} ${colorEstatico} ,
+      ${circulo5} ${colorEstatico} ;
      }
     
 `;
-
-const animacionCirculo2 = keyframes`
-    0% { box-shadow: 
-    100px 100px 0px #1a6a9d, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-    }
-    20% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #1a6a9d, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-    40% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #1a6a9d,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-    60% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #1a6a9d,
-    700px 100px 0px #bab9be;
-     }
-     80% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #1a6a9d;
-     }
-     }
-    
-`;
-
-const animacionCirculo3 = keyframes`
-    0% { box-shadow: 
-    100px 50px 0px #1a6a9d, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-    }
-    10% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 50px 0px #1a6a9d, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-    20% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 50px 0px #1a6a9d,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-    30% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 50px 0px #1a6a9d,
-    700px 100px 0px #bab9be;
-     }
-    40% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 50px 0px #1a6a9d;
-     }
-     50% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 50px 0px #1a6a9d;
-     }
-     60% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 100px 0px #bab9be,
-    550px 50px 0px #1a6a9d,
-    700px 100px 0px #bab9be;
-     }
-     70% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 100px 0px #bab9be, 
-    400px 50px 0px #1a6a9d,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-     80% { box-shadow: 
-    100px 100px 0px #bab9be, 
-    250px 50px 0px #1a6a9d, 
-    400px 100px 0px #bab9be,
-    550px 100px 0px #bab9be,
-    700px 100px 0px #bab9be;
-     }
-    
-`;
-
-const SContenedorLogoRE1 = styled.img`
+const SContenedorLogoRE = styled.img`
   position: absolute;
-  top: 0px;
-  left: 10px;
-  height: 400px;
-  width: 400px;
-  filter: grayscale(0%);
-  animation-name: ${animacionLogoRe};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
+  height: 100%;
+  width: 25%;
 `;
-const SContenedorLogoDian1 = styled.img`
+const SContenedorLogoDian = styled.img`
   position: absolute;
-  height: 400px;
-  width: 400px;
-  left: 1200px;
-  top: 0px;
-  filter: grayscale(0%);
-  animation-name: ${animacionLogoDian};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
+  height: 100%;
+  width: 25%;
+  left: 75%;
 `;
-const SContenedorLogoRE2 = styled.img`
+const SCirculos = styled.div`
   position: absolute;
-  top: 600px;
-  left: 10px;
-  height: 400px;
-  width: 400px;
-  filter: grayscale(0%);
-  animation-name: ${animacionLogoRe};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-`;
-const SContenedorLogoDian2 = styled.img`
-  position: absolute;
-  height: 400px;
-  width: 400px;
-  left: 1200px;
-  top: 600px;
-  filter: grayscale(0%);
-  animation-name: ${animacionLogoDian};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-`;
-
-const SContenedorLogoRE3 = styled.img`
-  position: absolute;
-  top: 1200px;
-  left: 10px;
-  height: 400px;
-  width: 400px;
-  filter: grayscale(0%);
-`;
-const SContenedorLogoDian3 = styled.img`
-  position: absolute;
-  height: 400px;
-  width: 400px;
-  left: 1200px;
-  top: 1200px;
-  filter: grayscale(0%);
-`;
-
-const SContenedorLogoRE4 = styled.img`
-  position: absolute;
-  top: 1800px;
-  left: 10px;
-  height: 400px;
-  width: 400px;
-  filter: grayscale(0%);
-`;
-const SContenedorLogoDian4 = styled.img`
-  position: absolute;
-  height: 400px;
-  width: 400px;
-  left: 1200px;
-  top: 1800px;
-  filter: grayscale(0%);
-`;
-
-const SCirculos1 = styled.div`
-  position: absolute;
-  top: 50px;
-  left: 350px;
-  height: 100px;
-  width: 100px;
+  top: 12.5%;
+  left: 22.5%;
+  height: 25%;
+  width: 6.25%;
   border-radius: 50%;
-  box-shadow: 100px 100px 0px #1a6a9d, 250px 100px 0px #bab9be,
-    400px 100px 0px #bab9be, 550px 100px 0px #bab9be, 700px 100px 0px #bab9be;
-  animation-name: ${animacionCirculo1};
-  animation-duration: 3s;
+  box-shadow: ${circulo1} ${colorMovimiento}, ${circulo2} ${colorEstatico},
+    ${circulo3} ${colorEstatico}, ${circulo4} ${colorEstatico},
+    ${circulo5} ${colorEstatico};
+  animation-name: ${animacionCirculo};
+  animation-duration: ${segundosAnimacion}s;
   animation-iteration-count: infinite;
 `;
 
-const SCirculos2 = styled.div`
+const Scontenedor = styled.div`
   position: absolute;
-  top: 650px;
-  left: 350px;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  box-shadow: 100px 100px 0px #1a6a9d, 250px 100px 0px #bab9be,
-    400px 100px 0px #bab9be, 550px 100px 0px #bab9be, 700px 100px 0px #bab9be;
-  animation-name: ${animacionCirculo1};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-`;
-
-const SCirculos3 = styled.div`
-  position: absolute;
-  top: 1250px;
-  left: 350px;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  box-shadow: 100px 100px 0px #1a6a9d, 250px 100px 0px #bab9be,
-    400px 100px 0px #bab9be, 550px 100px 0px #bab9be, 700px 100px 0px #bab9be;
-  animation-name: ${animacionCirculo2};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-`;
-
-const SCirculos4 = styled.div`
-  position: absolute;
-  top: 1850px;
-  left: 350px;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  box-shadow: 100px 50px 0px #1a6a9d, 250px 100px 0px #bab9be,
-    400px 100px 0px #bab9be, 550px 100px 0px #bab9be, 700px 100px 0px #bab9be;
-  animation-name: ${animacionCirculo3};
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
+  width: ${tamañoAncho};
+  height: ${tamañoAlto};
 `;
 const LoadingDian = () => {
   return (
-    <>
-      <SContenedorLogoRE1 src={LogoRE} alt='Logo' />
-      <SContenedorLogoDian1 src={LogoDian} alt='Logo' />
-      <SCirculos1 />
-
-      <SContenedorLogoRE2 src={LogoRE} alt='Logo' />
-      <SContenedorLogoDian2 src={LogoDian} alt='Logo' />
-      <SCirculos2 />
-
-      <SContenedorLogoRE3 src={LogoRE} alt='Logo' />
-      <SContenedorLogoDian3 src={LogoDian} alt='Logo' />
-      <SCirculos3 />
-
-      <SContenedorLogoRE4 src={LogoRE} alt='Logo' />
-      <SContenedorLogoDian4 src={LogoDian} alt='Logo' />
-      <SCirculos4 />
-    </>
+    <Scontenedor>
+      <SContenedorLogoRE src={LogoRE} alt='Logo' />
+      <SContenedorLogoDian src={LogoDian} alt='Logo' />
+      <SCirculos />
+    </Scontenedor>
   );
 };
 
