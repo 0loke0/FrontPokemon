@@ -1,9 +1,13 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
+import { obtenerTipos } from "../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
+import { ITipos } from "../../../Interface/Pokemones";
+import { DropList } from "../../../Componentes/DropList";
+
 interface IPropAgregar {
   actualizarPagina: any;
   agregarPokemon: (input: string) => any;
@@ -23,16 +27,26 @@ const Sinput = styled.input`
   }
 `;
 
+const DEFAULTTIPOS: ITipos = {
+  IdTipo: 0,
+  NombreTipo: "",
+};
+
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
-  const [show, setShow] = useState(false);
+  const [nombrePokemon, setnombrePokemon] = useState<string>("");
+  const [tipos, settipos] = useState<ITipos[]>([]);
+  const [tipoSelectionado, settipoSelectionado] = useState<string>("");
 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [nombrePokemon, setnombrePokemon] = useState<string>("");
+  useEffect(() => {
+    obtenerTipos().then((x) => settipos(x));
+  }, []);
 
   const agregarNuevoPokemon = () => {
     agregarPokemon(nombrePokemon);
@@ -42,6 +56,9 @@ export const Agregar: FC<IPropAgregar> = ({
 
   const actualizarNombrePokemon = (e: any) => {
     setnombrePokemon(e.target.value);
+  };
+  const recogerEventoTipo = (x: any) => {
+    settipoSelectionado(x.NombreTipo);
   };
   return (
     <>
@@ -59,13 +76,6 @@ export const Agregar: FC<IPropAgregar> = ({
           <Form>
             <Form.Label>Nombre</Form.Label>
 
-            <Form.Control
-              type='text'
-              placeholder='Ingrese Nombre'
-              value={nombrePokemon}
-              onChange={actualizarNombrePokemon}
-            />
-
             <Sinput
               type='text'
               required
@@ -73,6 +83,11 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nombrePokemon}
               onChange={actualizarNombrePokemon}
             />
+            <DropList
+              lista={tipos}
+              recogerSeleccion={recogerEventoTipo}
+              valorActual={tipoSelectionado}
+              valorAListar='NombreTipo'></DropList>
           </Form>
         </Modal.Body>
         <Modal.Footer>

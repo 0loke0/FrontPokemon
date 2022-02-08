@@ -9,7 +9,7 @@ interface IPropBoton {
   ejecutarFuncion: any;
 }
 const BontonPersonalizado = styled(Button)`
-  margin: 2px;
+  margin: 5px 0px;
 `;
 
 const Boton: FC<IPropBoton> = ({ nombre, variant, ejecutarFuncion }) => {

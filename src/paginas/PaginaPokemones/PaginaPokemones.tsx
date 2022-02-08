@@ -39,7 +39,6 @@ function PaginaPokemones() {
   };
 
   const agregarNuevoPokemon = (nombrePokemon: string) => {
-    console.log("nombre pokemon", nombrePokemon);
     agregarPokemon(nombrePokemon).finally(() => actualizarPagina());
   };
 
@@ -58,7 +57,6 @@ function PaginaPokemones() {
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
       />
-      {/* <Tabla pokemon={pokemon} eliminarPokemon={eliminarPokemonRegistrado} /> */}
       <CardPokemon pokemon={pokemon} />
     </SGenenarlPaginaPokemon>
   );

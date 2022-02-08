@@ -12,3 +12,8 @@ export interface IStats {
   Velocidad: number;
   Vida: number;
 }
+
+export interface ITipos {
+  IdTipo: number;
+  NombreTipo: string;
+}

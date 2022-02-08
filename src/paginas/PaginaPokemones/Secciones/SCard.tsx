@@ -31,12 +31,12 @@ const StyledCard = styled(Card)`
     transform: rotateY(180deg);
   }
 `;
-
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
   const [stat, setstat] = useState<IStats>();
+
   useEffect(() => {
     buscarStat(pokemon.Id).then((x) => setstat(x));
-    obtenerTipos().then((x) => console.log(x));
+    obtenerTipos().then((x) => x);
   }, []);
 
   return (
