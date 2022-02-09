@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import LogoDian from "../../Multimedia/LogoDian.png";
-import LogoRE from "../../Multimedia/LogoRE.jpg";
+// import LogoDian from "../../Multimedia/LogoDian.png";
+// import LogoRE from "../../Multimedia/LogoRE.jpg";
 
 const animacionLogoRe = keyframes`
   0% { filter: grayscale(0%); }
@@ -339,9 +339,9 @@ const LoadingDian2 = () => {
       <SContenedorLogoDian2 src={LogoDian} alt='Logo' />
       <SCirculos2 /> */}
 
-      <SContenedorLogoRE3 src={LogoRE} alt='Logo' />
+      {/* <SContenedorLogoRE3 src={LogoRE} alt='Logo' />
       <SContenedorLogoDian3 src={LogoDian} alt='Logo' />
-      <SCirculos3 />
+      <SCirculos3 /> */}
 
       {/* <SContenedorLogoRE4 src={LogoRE} alt='Logo' />
       <SContenedorLogoDian4 src={LogoDian} alt='Logo' />
