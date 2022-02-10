@@ -12,10 +12,11 @@ import { keyframes } from "styled-components";
 interface IPropSCard {
   pokemon: IPokemon;
 }
-
-const breatheAnimation = keyframes`
-    
-`;
+interface IRelacionTipoPokemon {
+  Id: number;
+  Nombre: string;
+  NombreTipo: string;
+}
 
 const StyledCard = styled(Card)`
   padding: 5px;
@@ -24,22 +25,15 @@ const StyledCard = styled(Card)`
   box-shadow: 5px 5px 10px #7d7d7d;
   transition: all 0.3s ease 0s;
   transform: translateX(180g);
-
-  &:hover {
-    animation-name: ${breatheAnimation};
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    transform: rotateY(180deg);
-  }
 `;
+
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
   const [stat, setstat] = useState<IStats>();
+  const [tipo, settipo] = useState<IRelacionTipoPokemon[]>([]);
 
   useEffect(() => {
     buscarStat(pokemon.Id).then((x) => setstat(x));
-    obtenerRelacionTipoPokemon(pokemon.Id).then((x) =>
-      console.log(pokemon.Id, x)
-    );
+    obtenerRelacionTipoPokemon(pokemon.Id).then((x) => settipo(x));
   }, []);
 
   return (
@@ -53,6 +47,9 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
           <Card.Text>Defensa Especial: {stat?.EspecialDefensa}</Card.Text>
           <Card.Text>Velocidad: {stat?.Velocidad}</Card.Text>
           <Card.Text>Vida: {stat?.Vida}</Card.Text>
+          {tipo?.map((x) => (
+            <p>{x.NombreTipo}</p>
+          ))}
         </Card.Body>
       </StyledCard>
     </Col>
