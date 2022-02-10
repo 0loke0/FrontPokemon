@@ -1,4 +1,5 @@
 import { ConsumirApi } from "./Core/CoreApi";
+import { INuevoPokemon } from "../Interface/Pokemones";
 import { Alerta } from "../Componentes/Alerta";
 interface IPokemon {
   Id: number;
@@ -19,9 +20,9 @@ export const eliminarPokemon = async (idPokemon: number): Promise<string> => {
   });
 };
 
-export const agregarPokemon = async (nombrePokemon: string) => {
-  const url = `http://localhost:63107/api/Pokemones/GuardarPokemon?nombrePokemon=${nombrePokemon}`;
-  return await ConsumirApi(url, "Post").then((data) => {
+export const agregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
+  const url = `http://localhost:63107/api/Pokemones/GuardarPokemon`;
+  return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
     return data ? data : null;
   });
 };

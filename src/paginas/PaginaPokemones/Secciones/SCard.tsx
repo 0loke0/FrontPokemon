@@ -2,6 +2,7 @@ import React, { useEffect, useState, FC } from "react";
 import { buscarStat } from "../../../Servicios/ServicioStats";
 import { obtenerTipos } from "../../../Servicios/ServicioTipo";
 import { IPokemon, IStats } from "../../../Interface/Pokemones";
+import { obtenerRelacionTipoPokemon } from "../../../Servicios/ServicioDirectorioTipo";
 
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -36,7 +37,9 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
 
   useEffect(() => {
     buscarStat(pokemon.Id).then((x) => setstat(x));
-    obtenerTipos().then((x) => x);
+    obtenerRelacionTipoPokemon(pokemon.Id).then((x) =>
+      console.log(pokemon.Id, x)
+    );
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import {
   eliminarPokemon,
   obtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
+import { INuevoPokemon } from "../../Interface/Pokemones";
 
 import { Alerta } from "../../Componentes/Alerta";
 import { IPokemon } from "../../Interface/Pokemones";
@@ -18,7 +19,7 @@ const SGenenarlPaginaPokemon = styled.div`
   box-shadow: 0px 0px 15px black;
   background-color: #fff7f7;
   border-radius: 20px;
-  padding: 2%;
+  padding: 3%;
 `;
 const STitulo = styled.p`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -26,10 +27,9 @@ const STitulo = styled.p`
   font-size: 30px;
   line-height: 1;
 `;
-const DEFAULTPOKEMON: IPokemon = { Id: 0, Nombre: "" };
 
 function PaginaPokemones() {
-  const [pokemon, setpokemon] = useState<IPokemon[]>([DEFAULTPOKEMON]);
+  const [pokemon, setpokemon] = useState<IPokemon[]>([]);
   useEffect(() => {
     obtenerPokemones().then((x) => setpokemon(x));
   }, []);
@@ -38,7 +38,8 @@ function PaginaPokemones() {
     obtenerPokemones().then((x) => setpokemon(x));
   };
 
-  const agregarNuevoPokemon = (nombrePokemon: string) => {
+  const agregarNuevoPokemon = (nombrePokemon: INuevoPokemon) => {
+    console.log(nombrePokemon);
     agregarPokemon(nombrePokemon).finally(() => actualizarPagina());
   };
 

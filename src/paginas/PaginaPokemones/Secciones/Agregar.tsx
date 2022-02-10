@@ -5,12 +5,12 @@ import { Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
-import { ITipos } from "../../../Interface/Pokemones";
+import { ITipos, INuevoPokemon } from "../../../Interface/Pokemones";
 import { DropList } from "../../../Componentes/DropList";
 
 interface IPropAgregar {
   actualizarPagina: any;
-  agregarPokemon: (input: string) => any;
+  agregarPokemon: (input: INuevoPokemon) => any;
 }
 const Sinput = styled.input`
   font-size: 18px;
@@ -31,12 +31,17 @@ const DEFAULTTIPOS: ITipos = {
   IdTipo: 0,
   NombreTipo: "",
 };
+const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
+  NombrePokemon: "",
+  IdTipo: 0,
+};
 
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
-  const [nombrePokemon, setnombrePokemon] = useState<string>("");
+  const [nuevoPokemon, setnuevoPokemon] =
+    useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [tipoSelectionado, settipoSelectionado] = useState<string>("");
 
@@ -47,17 +52,17 @@ export const Agregar: FC<IPropAgregar> = ({
   useEffect(() => {
     obtenerTipos().then((x) => settipos(x));
   }, []);
-
   const agregarNuevoPokemon = () => {
-    agregarPokemon(nombrePokemon);
+    agregarPokemon(nuevoPokemon);
     handleClose();
     actualizarPagina();
   };
 
   const actualizarNombrePokemon = (e: any) => {
-    setnombrePokemon(e.target.value);
+    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
-  const recogerEventoTipo = (x: any) => {
+  const recogerEventoTipo = (x: ITipos) => {
+    setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
     settipoSelectionado(x.NombreTipo);
   };
   return (
@@ -80,7 +85,7 @@ export const Agregar: FC<IPropAgregar> = ({
               type='text'
               required
               placeholder='Ingrese Nombre'
-              value={nombrePokemon}
+              value={nuevoPokemon.NombrePokemon}
               onChange={actualizarNombrePokemon}
             />
             <DropList

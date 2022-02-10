@@ -17,3 +17,8 @@ export interface ITipos {
   IdTipo: number;
   NombreTipo: string;
 }
+
+export interface INuevoPokemon {
+  NombrePokemon: string;
+  IdTipo: number;
+}
