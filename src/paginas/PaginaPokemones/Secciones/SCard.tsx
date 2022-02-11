@@ -23,8 +23,7 @@ const StyledCard = styled(Card)`
   border-radius: 10px;
   border: 2px solid #9dccfa;
   box-shadow: 5px 5px 10px #7d7d7d;
-  transition: all 0.3s ease 0s;
-  transform: translateX(180g);
+  
 `;
 
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {

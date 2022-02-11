@@ -53,7 +53,7 @@ function PaginaPokemones() {
 
   return (
     <SGenenarlPaginaPokemon>
-      <STitulo>Pokémones</STitulo>
+      {/* <STitulo>Pokémones</STitulo> */}
       <Agregar
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}

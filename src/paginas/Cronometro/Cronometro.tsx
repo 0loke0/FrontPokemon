@@ -74,20 +74,28 @@ const Otro = styled.svg`
   }
 `;
 const StyledSpinner = styled.svg`
-  /* animation: rotate 60s linear infinite; */
   margin: 0px 0 0 -0px;
   width: 100px;
   height: 100px;
-  /* transform: rotate(270deg); */
 
   transform: rotate(270deg);
   & .path {
     stroke: #38becf;
     stroke-width: 2px;
     stroke-linecap: round;
-    stroke-dasharray: 125;
-    stroke-dashoffset: 10;
-    animation: dash 10s linear infinite;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: alternativaRotacion 20s linear alternate infinite;
+    /* animation: dash 3s linear infinite; */
+  }
+
+  @keyframes alternativaRotacion {
+    0% {
+      stroke-dashoffset: 820;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
   }
 
   @keyframes rotate {
@@ -95,15 +103,17 @@ const StyledSpinner = styled.svg`
       transform: rotate(360deg);
     }
   }
+
   @keyframes dash {
+    0% {
+      stroke-dasharray: 125;
+    }
     50% {
       stroke-dasharray: 0;
-      stroke-dashoffset: 0;
     }
 
     100% {
       stroke-dasharray: 125;
-      stroke-dashoffset: 0;
     }
   }
 `;
