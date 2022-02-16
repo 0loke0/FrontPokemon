@@ -70,16 +70,105 @@ const SDivTitulo = styled.div`
   font-size: x-large;
 `;
 const SDivIdentificador = styled.div`
+  top: 2%;
+  left: 2%;
   border-radius: 50%;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  background: #9dccfa;
+  color: #ffffff;
 `;
 
-const SCol = styled(Col)`
+const SCol1 = styled(Col)`
   margin: 1% 4%;
   width: 20%;
-  height: 40px;
+  height: 50px;
   text-align: center;
   border: 1px solid #29c5f1;
-  border-radius: 10%;
+  border-radius: 10% 10% 50px 10%;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+const SCol2 = styled(Col)`
+  margin: 1% 4%;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #29c5f1;
+  border-radius: 10% 10% 10% 50px;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+const SCol3 = styled(Col)`
+  margin: 1% 4%;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #29c5f1;
+  border-radius: 10% 50px 50px 10%;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+const SCol4 = styled(Col)`
+  margin: 1% 4%;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #29c5f1;
+  border-radius: 50px 10% 10% 50px;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+const SCol5 = styled(Col)`
+  margin: 1% 4%;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #29c5f1;
+  border-radius: 10% 50px 10% 10%;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+const SCol6 = styled(Col)`
+  margin: 1% 4%;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #29c5f1;
+  border-radius: 50px 10% 10% 10%;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;
+
+const SRow = styled(Row)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
 `;
 const SContenedorImagen = styled.div`
   position: relative;
@@ -140,33 +229,34 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
     <Col>
       <StyledCard>
         <Card.Body>
-          <>
-            <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
-            <SContenedorImagen>
-              {tipo[0] && (
-                <SContenedorTipo1 tipo={tipo[0].IdTipo}>
-                  {tipo[0].NombreTipo}
-                </SContenedorTipo1>
-              )}
-              {tipo[1] && (
-                <SContenedorTipo2 tipo={tipo[1].IdTipo}>
-                  {tipo[1].NombreTipo}
-                </SContenedorTipo2>
-              )}
-            </SContenedorImagen>
-            <Row>
-              <SCol>Ataque: {stat?.Ataque}</SCol>
-              <SCol>Defensa: {stat?.Defensa}</SCol>
-            </Row>
-            <Row>
-              <SCol>Atk. Especial: {stat?.EspecialAtaque}</SCol>
-              <SCol>Def. Especial: {stat?.EspecialDefensa}</SCol>
-            </Row>
-            <Row>
-              <SCol>Velocidad: {stat?.Velocidad}</SCol>
-              <SCol>Vida: {stat?.Vida}</SCol>
-            </Row>
-          </>
+          <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
+          <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
+          <SContenedorImagen>
+            {tipo[0] && (
+              <SContenedorTipo1 tipo={tipo[0].IdTipo}>
+                {tipo[0].NombreTipo}
+              </SContenedorTipo1>
+            )}
+            {tipo[1] && (
+              <SContenedorTipo2 tipo={tipo[1].IdTipo}>
+                {tipo[1].NombreTipo}
+              </SContenedorTipo2>
+            )}
+          </SContenedorImagen>
+
+          <SRow>
+            <SCol1>Ataque: {stat?.Ataque}</SCol1>
+            <SCol2>Defensa: {stat?.Defensa}</SCol2>
+          </SRow>
+          <SRow>
+            <SCol3>Atk. Especial: {stat?.EspecialAtaque}</SCol3>
+            <SCol4>Def. Especial: {stat?.EspecialDefensa}</SCol4>
+          </SRow>
+          <SRow>
+            <SCol5>Velocidad: {stat?.Velocidad}</SCol5>
+            <SCol6>Vida: {stat?.Vida}</SCol6>
+          </SRow>
+
           {/* <Card.Title>{pokemon.Nombre}</Card.Title>
           <Card.Text>Id: {stat?.IdPokemon}</Card.Text>
           <Card.Text>Defensa: {stat?.Defensa}</Card.Text>
