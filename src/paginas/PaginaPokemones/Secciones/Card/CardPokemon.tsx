@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import { IPokemon } from "../../../Interface/Pokemones";
-import { buscarStat } from "../../../Servicios/ServicioStats";
+import { IPokemon } from "../../../../Interface/Pokemones";
+import { buscarStat } from "../../../../Servicios/ServicioStats";
 import { SCard } from "./SCard";
 
 interface IPropCardPokemon {

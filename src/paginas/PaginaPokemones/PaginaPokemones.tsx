@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { CardPokemon } from "../PaginaPokemones/Secciones/CardPokemon";
+import { CardPokemon } from "./Secciones/Card/CardPokemon";
 import {
   agregarPokemon,
   eliminarPokemon,
