@@ -91,11 +91,6 @@ const SCol1 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 10% 10% 50px 10%;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
 `;
 const SCol2 = styled(Col)`
   margin: 1% 4%;
@@ -104,11 +99,7 @@ const SCol2 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 10% 10% 10% 50px;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: white;
 `;
 const SCol3 = styled(Col)`
   margin: 1% 4%;
@@ -117,11 +108,7 @@ const SCol3 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 10% 50px 50px 10%;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: white;
 `;
 const SCol4 = styled(Col)`
   margin: 1% 4%;
@@ -130,11 +117,7 @@ const SCol4 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 50px 10% 10% 50px;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: white;
 `;
 const SCol5 = styled(Col)`
   margin: 1% 4%;
@@ -143,11 +126,7 @@ const SCol5 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 10% 50px 10% 10%;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: white;
 `;
 const SCol6 = styled(Col)`
   margin: 1% 4%;
@@ -156,11 +135,7 @@ const SCol6 = styled(Col)`
   text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 50px 10% 10% 10%;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-color: white;
 `;
 
 const SRow = styled(Row)`
@@ -169,6 +144,7 @@ const SRow = styled(Row)`
   align-items: center;
   justify-content: center;
   margin-top: 5px;
+  margin: 1% 0% 0% 0%;
 `;
 const SContenedorImagen = styled.div`
   position: relative;
