@@ -93,6 +93,9 @@ export const Agregar: FC<IPropAgregar> = ({
               recogerSeleccion={recogerEventoTipo}
               valorActual={tipoSelectionado}
               valorAListar='NombreTipo'></DropList>
+
+            <Form.Label>Imagen</Form.Label>
+            <Form.Control type='file' onChange={actualizarNombrePokemon} />
           </Form>
         </Modal.Body>
         <Modal.Footer>

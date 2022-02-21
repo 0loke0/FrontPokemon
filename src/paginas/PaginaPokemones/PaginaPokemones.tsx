@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { CardPokemon } from "./Secciones/Card/CardPokemon";
+import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import {
   agregarPokemon,
   eliminarPokemon,
@@ -58,7 +58,7 @@ function PaginaPokemones() {
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
       />
-      <CardPokemon pokemon={pokemon} />
+      <ContenedorCards pokemon={pokemon} />
     </SGenenarlPaginaPokemon>
   );
 }

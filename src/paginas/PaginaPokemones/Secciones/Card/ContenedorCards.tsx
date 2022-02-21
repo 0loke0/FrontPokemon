@@ -40,7 +40,7 @@ const PAGINACIONDEFAULT = {
   ubicacionEnPagina: "",
 };
 
-export const CardPokemon: FC<IPropCardPokemon> = ({ pokemon }) => {
+export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
 
   const retroceder = () => {
