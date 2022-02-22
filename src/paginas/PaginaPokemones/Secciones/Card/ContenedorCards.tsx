@@ -99,19 +99,19 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
         <Sdiv>
           <SDivContenedor>
             <Boton
-              variant='outline-success'
+              variant='outline-primary'
               ejecutarFuncion={retroceder}
-              nombre='Anterior'
+              nombre='<'
             />
             <Boton
-              variant='outline-success'
+              variant='outline-primary'
               ejecutarFuncion={regresarInicio}
               nombre='Inicio'
             />
             <Boton
-              variant='outline-success'
+              variant='outline-primary'
               ejecutarFuncion={avanzar}
-              nombre='Siguiente'
+              nombre='>'
             />
           </SDivContenedor>
         </Sdiv>

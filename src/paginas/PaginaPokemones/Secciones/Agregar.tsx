@@ -14,7 +14,7 @@ interface IPropAgregar {
 }
 const Sinput = styled.input`
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 2px;
   padding: 5px;
   display: block;
   width: 100%;
@@ -27,10 +27,6 @@ const Sinput = styled.input`
   }
 `;
 
-const DEFAULTTIPOS: ITipos = {
-  IdTipo: 0,
-  NombreTipo: "",
-};
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
   NombrePokemon: "",
   IdTipo: 0,
@@ -52,6 +48,7 @@ export const Agregar: FC<IPropAgregar> = ({
   useEffect(() => {
     obtenerTipos().then((x) => settipos(x));
   }, []);
+
   const agregarNuevoPokemon = () => {
     agregarPokemon(nuevoPokemon);
     handleClose();
@@ -64,6 +61,9 @@ export const Agregar: FC<IPropAgregar> = ({
   const recogerEventoTipo = (x: ITipos) => {
     setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
     settipoSelectionado(x.NombreTipo);
+  };
+  const recogerImagen = (e: any) => {
+    console.log(e.target.value);
   };
   return (
     <>
@@ -80,7 +80,6 @@ export const Agregar: FC<IPropAgregar> = ({
         <Modal.Body>
           <Form>
             <Form.Label>Nombre</Form.Label>
-
             <Sinput
               type='text'
               required
@@ -95,7 +94,7 @@ export const Agregar: FC<IPropAgregar> = ({
               valorAListar='NombreTipo'></DropList>
 
             <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={actualizarNombrePokemon} />
+            <Form.Control type='file' onChange={recogerImagen} />
           </Form>
         </Modal.Body>
         <Modal.Footer>

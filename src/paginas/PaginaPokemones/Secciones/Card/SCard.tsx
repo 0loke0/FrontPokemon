@@ -20,7 +20,7 @@ import {
   SDivTitulo,
   SRow,
   StyledCard,
-} from "./StylosPokemon";
+} from "./StylosCardsPokemon";
 
 interface IPropSCard {
   pokemon: IPokemon;
