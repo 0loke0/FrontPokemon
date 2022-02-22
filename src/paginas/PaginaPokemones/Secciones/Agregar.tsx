@@ -5,16 +5,16 @@ import { Modal } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
-import { ITipos } from "../../../Interface/Pokemones";
+import { ITipos, INuevoPokemon } from "../../../Interface/Pokemones";
 import { DropList } from "../../../Componentes/DropList";
 
 interface IPropAgregar {
   actualizarPagina: any;
-  agregarPokemon: (input: string) => any;
+  agregarPokemon: (input: INuevoPokemon) => any;
 }
 const Sinput = styled.input`
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 2px;
   padding: 5px;
   display: block;
   width: 100%;
@@ -27,16 +27,17 @@ const Sinput = styled.input`
   }
 `;
 
-const DEFAULTTIPOS: ITipos = {
+const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
+  NombrePokemon: "",
   IdTipo: 0,
-  NombreTipo: "",
 };
 
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
-  const [nombrePokemon, setnombrePokemon] = useState<string>("");
+  const [nuevoPokemon, setnuevoPokemon] =
+    useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [tipoSelectionado, settipoSelectionado] = useState<string>("");
 
@@ -49,16 +50,20 @@ export const Agregar: FC<IPropAgregar> = ({
   }, []);
 
   const agregarNuevoPokemon = () => {
-    agregarPokemon(nombrePokemon);
+    agregarPokemon(nuevoPokemon);
     handleClose();
     actualizarPagina();
   };
 
   const actualizarNombrePokemon = (e: any) => {
-    setnombrePokemon(e.target.value);
+    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
-  const recogerEventoTipo = (x: any) => {
+  const recogerEventoTipo = (x: ITipos) => {
+    setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
     settipoSelectionado(x.NombreTipo);
+  };
+  const recogerImagen = (e: any) => {
+    console.log(e.target.value);
   };
   return (
     <>
@@ -75,12 +80,11 @@ export const Agregar: FC<IPropAgregar> = ({
         <Modal.Body>
           <Form>
             <Form.Label>Nombre</Form.Label>
-
             <Sinput
               type='text'
               required
               placeholder='Ingrese Nombre'
-              value={nombrePokemon}
+              value={nuevoPokemon.NombrePokemon}
               onChange={actualizarNombrePokemon}
             />
             <DropList
@@ -88,6 +92,9 @@ export const Agregar: FC<IPropAgregar> = ({
               recogerSeleccion={recogerEventoTipo}
               valorActual={tipoSelectionado}
               valorAListar='NombreTipo'></DropList>
+
+            <Form.Label>Imagen</Form.Label>
+            <Form.Control type='file' onChange={recogerImagen} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
