@@ -39,7 +39,8 @@ export const Agregar: FC<IPropAgregar> = ({
   const [nuevoPokemon, setnuevoPokemon] =
     useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
-  const [tipoSelectionado, settipoSelectionado] = useState<string>("");
+  const [tipoSelectionado1, settipoSelectionado1] = useState<string>("");
+  const [tipoSelectionado2, settipoSelectionado2] = useState<string>("");
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -58,10 +59,17 @@ export const Agregar: FC<IPropAgregar> = ({
   const actualizarNombrePokemon = (e: any) => {
     setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
-  const recogerEventoTipo = (x: ITipos) => {
+
+  const recogerEventoTipo1 = (x: ITipos) => {
     setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
-    settipoSelectionado(x.NombreTipo);
+    settipoSelectionado1(x.NombreTipo);
   };
+
+  const recogerEventoTipo2 = (x: ITipos) => {
+    setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
+    settipoSelectionado2(x.NombreTipo);
+  };
+
   const recogerImagen = (e: any) => {
     console.log(e.target.value);
   };
@@ -87,11 +95,18 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nuevoPokemon.NombrePokemon}
               onChange={actualizarNombrePokemon}
             />
-            <DropList
-              lista={tipos}
-              recogerSeleccion={recogerEventoTipo}
-              valorActual={tipoSelectionado}
-              valorAListar='NombreTipo'></DropList>
+            <div>
+              <DropList
+                lista={tipos}
+                recogerSeleccion={recogerEventoTipo1}
+                valorActual={tipoSelectionado1}
+                valorAListar='NombreTipo'></DropList>
+              <DropList
+                lista={tipos}
+                recogerSeleccion={recogerEventoTipo2}
+                valorActual={tipoSelectionado2}
+                valorAListar='NombreTipo'></DropList>
+            </div>
 
             <Form.Label>Imagen</Form.Label>
             <Form.Control type='file' onChange={recogerImagen} />

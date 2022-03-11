@@ -1,20 +1,20 @@
-interface Imagen {
+interface IImagen {
   ArchivoImagen: string;
   Nombre: string;
   RutaImagen: string;
 }
 
-interface Movimientos {
+interface IMovimientos {
   NombreMovimiento: string;
   Valor: number;
 }
 
-interface Pokemon {
+interface IPokemon {
   Id: number;
   Nombre: string;
 }
 
-interface Pokemon {
+interface IStats {
   Ataque: number;
   Defensa: number;
   EspecialAtaque: number;
@@ -23,7 +23,15 @@ interface Pokemon {
   Vida: number;
 }
 
-export interface IPokemonDetalladoCard {
-  Imagen: Imagen;
-  tipos: string[];
+interface ITipos {
+  IdTipo: number;
+  NombreTipo: string;
+}
+
+export interface IPokemonDetallado {
+  Pokemon: IPokemon;
+  Imagen: IImagen;
+  Tipos: ITipos[];
+  Movimientos: IMovimientos[];
+  Stats: IStats;
 }

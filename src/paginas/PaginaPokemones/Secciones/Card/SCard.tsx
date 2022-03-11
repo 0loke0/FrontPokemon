@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
 import {
+  SImg,
   SCol1,
   SCol2,
   SCol3,
@@ -20,10 +21,12 @@ import {
   SDivTitulo,
   SRow,
   StyledCard,
+  SDivTipos,
 } from "./StylosCardsPokemon";
+import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
 interface IPropSCard {
-  pokemon: IPokemon;
+  pokemon: IPokemonDetallado;
 }
 interface IRelacionTipoPokemon {
   Id: number;
@@ -34,45 +37,53 @@ interface IRelacionTipoPokemon {
 
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
   const [stat, setstat] = useState<IStats>();
-  const [tipo, settipo] = useState<IRelacionTipoPokemon[]>([]);
+  // const [tipo, settipo] = useState<IRelacionTipoPokemon[]>([]);
 
   useEffect(() => {
-    buscarStat(pokemon.Id).then((x) => setstat(x));
-    obtenerRelacionTipoPokemon(pokemon.Id).then((x) => settipo(x));
+    // buscarStat(pokemon.Id).then((x) => setstat(x));
+    // obtenerRelacionTipoPokemon(pokemon.Id).then((x) => settipo(x));
   }, []);
 
   return (
     <Col>
-      {/* <StyledCard>
+      <StyledCard>
         <Card.Body>
-          <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
-          <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
+          <SDivIdentificador>{pokemon.Pokemon.Id}</SDivIdentificador>
+          <SDivTitulo>{pokemon.Pokemon.Nombre}</SDivTitulo>
+
           <SContenedorImagen>
-            {tipo[0] && (
-              <SContenedorTipo1 tipo={tipo[0].IdTipo}>
-                {tipo[0].NombreTipo}
-              </SContenedorTipo1>
-            )}
-            {tipo[1] && (
-              <SContenedorTipo2 tipo={tipo[1].IdTipo}>
-                {tipo[1].NombreTipo}
-              </SContenedorTipo2>
+            {pokemon.Imagen && (
+              <SImg
+                src={`data:image/jpeg;base64,${pokemon.Imagen.ArchivoImagen}`}
+              />
             )}
           </SContenedorImagen>
+          <SDivTipos>
+            {pokemon.Tipos[0] && (
+              <SContenedorTipo1 tipo={pokemon.Tipos[0].IdTipo}>
+                {pokemon.Tipos[0].NombreTipo}
+              </SContenedorTipo1>
+            )}
+            {pokemon.Tipos[1] && (
+              <SContenedorTipo2 tipo={pokemon.Tipos[1].IdTipo}>
+                {pokemon.Tipos[1].NombreTipo}
+              </SContenedorTipo2>
+            )}
+          </SDivTipos>
           <SRow>
-            <SCol1>Ataque: {stat?.Ataque}</SCol1>
-            <SCol2>Def. Especial: {stat?.EspecialDefensa}</SCol2>
+            <SCol1>Ataque: {pokemon.Stats.Ataque}</SCol1>
+            <SCol2>Def. Especial: {pokemon.Stats.EspecialDefensa}</SCol2>
           </SRow>
           <SRow>
-            <SCol3>Defensa: {stat?.Defensa}</SCol3>
-            <SCol4>Atk. Especial: {stat?.EspecialAtaque}</SCol4>
+            <SCol3>Defensa: {pokemon.Stats.Defensa}</SCol3>
+            <SCol4>Atk. Especial: {pokemon.Stats.EspecialAtaque}</SCol4>
           </SRow>
           <SRow>
-            <SCol5>Vida: {stat?.Vida}</SCol5>
-            <SCol6>Velocidad: {stat?.Velocidad}</SCol6>
+            <SCol5>Vida: {pokemon.Stats.Vida}</SCol5>
+            <SCol6>Velocidad: {pokemon.Stats.Velocidad}</SCol6>
           </SRow>
         </Card.Body>
-      </StyledCard> */}
+      </StyledCard>
     </Col>
   );
 };

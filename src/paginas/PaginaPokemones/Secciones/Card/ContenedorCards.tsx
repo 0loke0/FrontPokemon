@@ -5,6 +5,7 @@ import Boton from "../../../../Componentes/Boton";
 import { IPokemon } from "../../../../Interface/Pokemones";
 import { obtenerPokemones } from "../../../../Servicios/ServicioPokemon";
 import { SCard } from "./SCard";
+import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
 interface IPropCardPokemon {
   pokemon: IPokemon[];
@@ -35,6 +36,7 @@ const SContenidoSinInformacion = styled.p`
 `;
 
 const LIMITEPORPAGINA = 3;
+
 const PAGINACIONDEFAULT = {
   inicioPagina: 0,
   finPagina: LIMITEPORPAGINA,
@@ -43,8 +45,11 @@ const PAGINACIONDEFAULT = {
 
 export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
+  const [PokemonDetallado, setPokemonDetallado] =
+    useState<IPokemonDetallado[]>();
+
   useEffect(() => {
-    obtenerPokemones().then((x) => console.log("contenedore de cards ", x));
+    obtenerPokemones().then((x) => setPokemonDetallado(x));
   }, []);
 
   const retroceder = () => {
@@ -86,8 +91,8 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   return (
     <>
       <Row xs={1} md={3} className='g-4'>
-        {pokemon ? (
-          pokemon.map((data, index) => {
+        {PokemonDetallado ? (
+          PokemonDetallado.map((data, index) => {
             if (
               index >= paginacion.inicioPagina &&
               index < paginacion.finPagina

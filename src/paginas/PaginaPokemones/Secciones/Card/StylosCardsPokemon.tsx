@@ -131,6 +131,7 @@ export const SRow = styled(Row)`
   margin: 1% 0% 0% 0%;
 `;
 export const SContenedorImagen = styled.div`
+  margin-top: 5%;
   position: relative;
   top: 0%;
   left: 50%;
@@ -144,6 +145,7 @@ export const SContenedorImagen = styled.div`
 
 export const SContenedorTipo1 = styled.div<{ tipo: number }>`
   position: relative;
+  top: -102%;
   width: 30%;
   height: 15%;
   background-color: ${({ tipo }) => {
@@ -157,6 +159,7 @@ export const SContenedorTipo1 = styled.div<{ tipo: number }>`
 `;
 export const SContenedorTipo2 = styled.div<{ tipo: number }>`
   position: relative;
+  top: -102%;
   width: 30%;
   height: 15%;
   background-color: ${({ tipo }) => {
@@ -176,4 +179,18 @@ export const StyledCard = styled(Card)`
   box-shadow: 5px 5px 10px #7d7d7d;
   background-color: #ffdee9;
   background-image: linear-gradient(0deg, #d3fcff 0%, #feffff 100%);
+`;
+
+export const SImg = styled.img`
+  position: relative;
+  width: 100%;
+  height: 195px;
+  border-radius: 5%;
+`;
+
+export const SDivTipos = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 13%;
+  padding: 10px;
 `;
