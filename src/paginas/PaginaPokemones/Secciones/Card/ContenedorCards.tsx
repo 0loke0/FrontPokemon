@@ -1,8 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import styled from "styled-components";
 import Boton from "../../../../Componentes/Boton";
 import { IPokemon } from "../../../../Interface/Pokemones";
+import { obtenerPokemones } from "../../../../Servicios/ServicioPokemon";
 import { SCard } from "./SCard";
 
 interface IPropCardPokemon {
@@ -42,6 +43,9 @@ const PAGINACIONDEFAULT = {
 
 export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
+  useEffect(() => {
+    obtenerPokemones().then((x) => console.log("contenedore de cards ", x));
+  }, []);
 
   const retroceder = () => {
     if (paginacion.inicioPagina > 0) {
@@ -78,6 +82,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   const regresarInicio = () => {
     setPaginacion(PAGINACIONDEFAULT);
   };
+
   return (
     <>
       <Row xs={1} md={3} className='g-4'>

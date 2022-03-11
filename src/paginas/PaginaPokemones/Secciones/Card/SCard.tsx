@@ -43,7 +43,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
 
   return (
     <Col>
-      <StyledCard>
+      {/* <StyledCard>
         <Card.Body>
           <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
@@ -72,7 +72,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
             <SCol6>Velocidad: {stat?.Velocidad}</SCol6>
           </SRow>
         </Card.Body>
-      </StyledCard>
+      </StyledCard> */}
     </Col>
   );
 };
