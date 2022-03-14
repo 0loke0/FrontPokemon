@@ -37,12 +37,6 @@ interface IRelacionTipoPokemon {
 
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
   const [stat, setstat] = useState<IStats>();
-  // const [tipo, settipo] = useState<IRelacionTipoPokemon[]>([]);
-
-  useEffect(() => {
-    // buscarStat(pokemon.Id).then((x) => setstat(x));
-    // obtenerRelacionTipoPokemon(pokemon.Id).then((x) => settipo(x));
-  }, []);
 
   return (
     <Col>

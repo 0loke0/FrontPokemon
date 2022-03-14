@@ -192,5 +192,5 @@ export const SDivTipos = styled.div`
   position: absolute;
   width: 100%;
   top: 13%;
-  padding: 10px;
+  padding: 4%;
 `;

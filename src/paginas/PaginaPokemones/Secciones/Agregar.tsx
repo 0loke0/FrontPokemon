@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { obtenerTipos } from "../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
-import { Modal } from "react-bootstrap";
+import { Col, Container, Modal, Row } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
@@ -95,19 +95,26 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nuevoPokemon.NombrePokemon}
               onChange={actualizarNombrePokemon}
             />
-            <div>
-              <DropList
-                lista={tipos}
-                recogerSeleccion={recogerEventoTipo1}
-                valorActual={tipoSelectionado1}
-                valorAListar='NombreTipo'></DropList>
-              <DropList
-                lista={tipos}
-                recogerSeleccion={recogerEventoTipo2}
-                valorActual={tipoSelectionado2}
-                valorAListar='NombreTipo'></DropList>
-            </div>
-
+            <Container>
+              <Row>
+                <Col>
+                  <DropList
+                    lista={tipos}
+                    recogerSeleccion={recogerEventoTipo1}
+                    valorActual={tipoSelectionado1}
+                    valorAListar='NombreTipo'
+                  />
+                </Col>
+                <Col>
+                  <DropList
+                    lista={tipos}
+                    recogerSeleccion={recogerEventoTipo2}
+                    valorActual={tipoSelectionado2}
+                    valorAListar='NombreTipo'
+                  />
+                </Col>
+              </Row>
+            </Container>
             <Form.Label>Imagen</Form.Label>
             <Form.Control type='file' onChange={recogerImagen} />
           </Form>
