@@ -27,7 +27,7 @@ export const agregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   });
 };
 
-export const actualizarPokemon = async (pokemon: IPokemon) => {
+export const ActualizarPokemon = async (pokemon: IPokemon) => {
   const url = "http://localhost:63107/api/Pokemones/ActualizarPokemon";
   return await ConsumirApi(url, "Get", pokemon).then((data) => {
     return data;
