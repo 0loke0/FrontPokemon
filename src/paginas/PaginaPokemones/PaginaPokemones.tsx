@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import {
-  agregarPokemon,
+  AgregarPokemon,
   eliminarPokemon,
-  obtenerPokemones,
+  ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
 import { INuevoPokemon } from "../../Interface/Pokemones";
 
@@ -31,16 +31,16 @@ const STitulo = styled.p`
 function PaginaPokemones() {
   const [pokemon, setpokemon] = useState<IPokemon[]>([]);
   useEffect(() => {
-    obtenerPokemones().then((x) => setpokemon(x));
+    ObtenerPokemones().then((x) => setpokemon(x));
   }, []);
 
   const actualizarPagina = () => {
-    obtenerPokemones().then((x) => setpokemon(x));
+    ObtenerPokemones().then((x) => setpokemon(x));
   };
 
   const agregarNuevoPokemon = (nombrePokemon: INuevoPokemon) => {
     console.log(nombrePokemon);
-    agregarPokemon(nombrePokemon).finally(() => actualizarPagina());
+    AgregarPokemon(nombrePokemon).finally(() => actualizarPagina());
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {

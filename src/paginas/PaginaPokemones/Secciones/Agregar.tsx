@@ -1,12 +1,17 @@
 import React, { FC, useState, useEffect } from "react";
-import { obtenerTipos } from "../../../Servicios/ServicioTipo";
+import { ObtenerTipos } from "../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
 import { Col, Container, Modal, Row } from "react-bootstrap";
 import Boton from "../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
-import { ITipos, INuevoPokemon } from "../../../Interface/Pokemones";
+import {
+  ITipos,
+  INuevoPokemon,
+  IMovimiento,
+} from "../../../Interface/Pokemones";
 import { DropList } from "../../../Componentes/DropList";
+import { ObtenerMovimientos } from "../../../Servicios/ServicioMovimientos";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -29,7 +34,9 @@ const Sinput = styled.input`
 
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
   NombrePokemon: "",
-  IdTipo: 0,
+  IdsTipo: [0, 0],
+  IdsMovimiento: [0, 0],
+  Imagen: { Nombre: "", ArchivoImagen: "" },
 };
 
 export const Agregar: FC<IPropAgregar> = ({
@@ -38,17 +45,45 @@ export const Agregar: FC<IPropAgregar> = ({
 }) => {
   const [nuevoPokemon, setnuevoPokemon] =
     useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
+
+  const [nombrePokemon, setnombrePokemon] = useState<string>("");
   const [tipos, settipos] = useState<ITipos[]>([]);
-  const [tipoSelectionado1, settipoSelectionado1] = useState<string>("");
-  const [tipoSelectionado2, settipoSelectionado2] = useState<string>("");
+  const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
+  const [tipoSelectionado1, settipoSelectionado1] = useState<ITipos>();
+  const [tipoSelectionado2, settipoSelectionado2] = useState<ITipos>();
+  const [movimientoSelectionado1, setMovimientoSelectionado1] =
+    useState<IMovimiento>();
+  const [movimientoSelectionado2, setMovimientoSelectionado2] =
+    useState<IMovimiento>();
+  const [imagen, setimagen] = useState();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    obtenerTipos().then((x) => settipos(x));
+    ObtenerTipos().then((x) => settipos(x));
+    ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
+
+  const construirNuevoPokemon = () => {
+    setnuevoPokemon({
+      NombrePokemon: nombrePokemon,
+      IdsTipo: [
+        tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : 0,
+        tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : 0,
+      ],
+      IdsMovimiento: [
+        movimientoSelectionado1?.IdMovimiento
+          ? movimientoSelectionado1.IdMovimiento
+          : 0,
+        movimientoSelectionado2?.IdMovimiento
+          ? movimientoSelectionado2.IdMovimiento
+          : 0,
+      ],
+      Imagen: { Nombre: "ufi", ArchivoImagen: "" },
+    });
+  };
 
   const agregarNuevoPokemon = () => {
     agregarPokemon(nuevoPokemon);
@@ -57,22 +92,35 @@ export const Agregar: FC<IPropAgregar> = ({
   };
 
   const actualizarNombrePokemon = (e: any) => {
-    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
+    setnombrePokemon(e.target.value);
   };
 
   const recogerEventoTipo1 = (x: ITipos) => {
-    setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
-    settipoSelectionado1(x.NombreTipo);
+    settipoSelectionado1(x);
   };
 
   const recogerEventoTipo2 = (x: ITipos) => {
-    setnuevoPokemon({ ...nuevoPokemon, IdTipo: x.IdTipo });
-    settipoSelectionado2(x.NombreTipo);
+    settipoSelectionado2(x);
+  };
+
+  const recogerEventoMovimiento1 = (x: IMovimiento) => {
+    setMovimientoSelectionado1(x);
+  };
+
+  const recogerEventoMovimiento2 = (x: IMovimiento) => {
+    setMovimientoSelectionado2(x);
   };
 
   const recogerImagen = (e: any) => {
-    console.log(e.target.value);
+    console.log("esto deberia ser la imagen ", e.target.value);
+    construirNuevoPokemon();
+    console.log("files", e.target.files[0]);
+
+    console.log("====================================");
+    console.log(nuevoPokemon);
+    console.log("====================================");
   };
+
   return (
     <>
       <Boton
@@ -92,7 +140,7 @@ export const Agregar: FC<IPropAgregar> = ({
               type='text'
               required
               placeholder='Ingrese Nombre'
-              value={nuevoPokemon.NombrePokemon}
+              value={nombrePokemon}
               onChange={actualizarNombrePokemon}
             />
             <Container>
@@ -101,7 +149,9 @@ export const Agregar: FC<IPropAgregar> = ({
                   <DropList
                     lista={tipos}
                     recogerSeleccion={recogerEventoTipo1}
-                    valorActual={tipoSelectionado1}
+                    valorActual={
+                      tipoSelectionado1 ? tipoSelectionado1.NombreTipo : "Tipo"
+                    }
                     valorAListar='NombreTipo'
                   />
                 </Col>
@@ -109,8 +159,39 @@ export const Agregar: FC<IPropAgregar> = ({
                   <DropList
                     lista={tipos}
                     recogerSeleccion={recogerEventoTipo2}
-                    valorActual={tipoSelectionado2}
+                    valorActual={
+                      tipoSelectionado2 ? tipoSelectionado2.NombreTipo : "Tipo"
+                    }
                     valorAListar='NombreTipo'
+                  />
+                </Col>
+              </Row>
+            </Container>
+
+            <Container>
+              <Row>
+                <Col>
+                  <DropList
+                    lista={movimientos}
+                    recogerSeleccion={recogerEventoMovimiento1}
+                    valorActual={
+                      movimientoSelectionado1
+                        ? movimientoSelectionado1.NombreMovimiento
+                        : "Movimiento"
+                    }
+                    valorAListar='NombreMovimiento'
+                  />
+                </Col>
+                <Col>
+                  <DropList
+                    lista={movimientos}
+                    recogerSeleccion={recogerEventoMovimiento2}
+                    valorActual={
+                      movimientoSelectionado2
+                        ? movimientoSelectionado2.NombreMovimiento
+                        : "Movimiento"
+                    }
+                    valorAListar='NombreMovimiento'
                   />
                 </Col>
               </Row>

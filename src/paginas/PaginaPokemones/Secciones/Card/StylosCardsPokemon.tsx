@@ -143,6 +143,7 @@ export const SContenedorImagen = styled.div`
   transform: translate(-50%, 0%);
 `;
 
+//re factorizar
 export const SContenedorTipo1 = styled.div<{ tipo: number }>`
   position: relative;
   top: -102%;

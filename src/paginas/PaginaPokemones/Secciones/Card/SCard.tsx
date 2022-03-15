@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { buscarStat } from "../../../../Servicios/ServicioStats";
-import { obtenerTipos } from "../../../../Servicios/ServicioTipo";
+import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 import { IPokemon, IStats } from "../../../../Interface/Pokemones";
 import { obtenerRelacionTipoPokemon } from "../../../../Servicios/ServicioDirectorioTipo";
 import Card from "react-bootstrap/Card";

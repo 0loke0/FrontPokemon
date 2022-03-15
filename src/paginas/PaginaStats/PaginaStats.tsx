@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IStats } from "../../Interface/Pokemones";
-import { obtenerStats } from "../../Servicios/ServicioStats";
+import { ObtenerStats } from "../../Servicios/ServicioStats";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
 const DEFAULTSTATS: IStats = {
@@ -30,7 +30,7 @@ const SGenenarlPaginaPokemon = styled.div`
 const PaginaStats = () => {
   const [stats, setstats] = useState<IStats[]>([DEFAULTSTATS]);
   useEffect(() => {
-    obtenerStats().then((x) => setstats(x));
+    ObtenerStats().then((x) => setstats(x));
   }, []);
 
   return (

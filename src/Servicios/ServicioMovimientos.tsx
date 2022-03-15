@@ -1,7 +1,7 @@
 import { ConsumirApi } from "./Core/CoreApi";
 
-export const ObtenerPokemones = async () => {
-  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
+export const ObtenerMovimientos = async () => {
+  const url = "http://localhost:63107/api/Movimiento/ListaMovimientos";
   return await ConsumirApi(url, "Get").then((data) => {
     return data;
   });

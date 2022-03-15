@@ -18,7 +18,20 @@ export interface ITipos {
   NombreTipo: string;
 }
 
+export interface IImagen {
+  Nombre: string;
+  ArchivoImagen: string;
+}
+
 export interface INuevoPokemon {
   NombrePokemon: string;
-  IdTipo: number;
+  IdsTipo: number[];
+  IdsMovimiento: number[];
+  Imagen: IImagen;
+}
+
+export interface IMovimiento {
+  IdMovimiento: number;
+  NombreMovimiento: string;
+  Valor: number;
 }

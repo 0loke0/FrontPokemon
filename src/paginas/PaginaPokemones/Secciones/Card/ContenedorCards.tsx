@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import styled from "styled-components";
 import Boton from "../../../../Componentes/Boton";
 import { IPokemon } from "../../../../Interface/Pokemones";
-import { obtenerPokemones } from "../../../../Servicios/ServicioPokemon";
+import { ObtenerPokemones } from "../../../../Servicios/ServicioPokemon";
 import { SCard } from "./SCard";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
@@ -49,7 +49,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
     useState<IPokemonDetallado[]>();
 
   useEffect(() => {
-    obtenerPokemones().then((x) => setPokemonDetallado(x));
+    ObtenerPokemones().then((x) => setPokemonDetallado(x));
   }, []);
 
   const retroceder = () => {

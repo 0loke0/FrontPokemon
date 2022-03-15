@@ -6,7 +6,7 @@ interface IPokemon {
   Nombre: string;
 }
 
-export const obtenerPokemones = async () => {
+export const ObtenerPokemones = async () => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
   return await ConsumirApi(url, "Get").then((data) => {
     return data;
@@ -20,7 +20,7 @@ export const eliminarPokemon = async (idPokemon: number): Promise<string> => {
   });
 };
 
-export const agregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
+export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   const url = `http://localhost:63107/api/Pokemones/GuardarPokemon`;
   return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
     return data ? data : null;
