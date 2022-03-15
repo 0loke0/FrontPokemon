@@ -21,7 +21,7 @@ export const eliminarPokemon = async (idPokemon: number): Promise<string> => {
 };
 
 export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
-  const url = `http://localhost:63107/api/Pokemones/GuardarPokemon`;
+  const url = `http://localhost:63107/api/Pokemones/GuardarNuevoPokemon`;
   return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
     return data ? data : null;
   });

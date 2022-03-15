@@ -9,6 +9,7 @@ import {
   ITipos,
   INuevoPokemon,
   IMovimiento,
+  IImagen,
 } from "../../../Interface/Pokemones";
 import { DropList } from "../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../Servicios/ServicioMovimientos";
@@ -55,7 +56,7 @@ export const Agregar: FC<IPropAgregar> = ({
     useState<IMovimiento>();
   const [movimientoSelectionado2, setMovimientoSelectionado2] =
     useState<IMovimiento>();
-  const [imagen, setimagen] = useState();
+  const [imagen, setimagen] = useState<IImagen>();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -81,11 +82,18 @@ export const Agregar: FC<IPropAgregar> = ({
           ? movimientoSelectionado2.IdMovimiento
           : 0,
       ],
-      Imagen: { Nombre: "ufi", ArchivoImagen: "" },
+      Imagen: {
+        Nombre: imagen?.Nombre ? imagen.Nombre : "",
+        ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
+      },
     });
   };
 
   const agregarNuevoPokemon = () => {
+    construirNuevoPokemon();
+    console.log("====================================");
+    console.log(nuevoPokemon);
+    console.log("====================================");
     agregarPokemon(nuevoPokemon);
     handleClose();
     actualizarPagina();
@@ -111,14 +119,29 @@ export const Agregar: FC<IPropAgregar> = ({
     setMovimientoSelectionado2(x);
   };
 
-  const recogerImagen = (e: any) => {
-    console.log("esto deberia ser la imagen ", e.target.value);
-    construirNuevoPokemon();
-    console.log("files", e.target.files[0]);
+  const convertBase64 = (file: any) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
-    console.log("====================================");
-    console.log(nuevoPokemon);
-    console.log("====================================");
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const tomarImagen = (e: any) => {
+    const file = e.target.files[0];
+    convertBase64(file).then((x) =>
+      setimagen({
+        Nombre: file.name,
+        ArchivoImagen: typeof x === "string" ? x : "",
+      })
+    );
   };
 
   return (
@@ -197,7 +220,7 @@ export const Agregar: FC<IPropAgregar> = ({
               </Row>
             </Container>
             <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={recogerImagen} />
+            <Form.Control type='file' onChange={tomarImagen} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
