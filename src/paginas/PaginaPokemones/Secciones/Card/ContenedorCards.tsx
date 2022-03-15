@@ -90,6 +90,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
 
   return (
     <>
+      {console.log(PokemonDetallado)}
       <Row xs={1} md={3} className='g-4'>
         {PokemonDetallado ? (
           PokemonDetallado.map((data, index) => {
