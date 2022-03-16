@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import {
   AgregarPokemon,
-  eliminarPokemon,
+  // eliminarPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
 import { INuevoPokemon } from "../../Interface/Pokemones";
@@ -21,6 +21,7 @@ const SGenenarlPaginaPokemon = styled.div`
   border-radius: 20px;
   padding: 3%;
 `;
+
 const STitulo = styled.p`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -39,16 +40,15 @@ function PaginaPokemones() {
   };
 
   const agregarNuevoPokemon = (nombrePokemon: INuevoPokemon) => {
-    console.log(nombrePokemon);
     AgregarPokemon(nombrePokemon).finally(() => actualizarPagina());
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {
-    eliminarPokemon(idPokemon)
-      .then((data) => {
-        Alerta("success", "Completado", data);
-      })
-      .finally(() => actualizarPagina());
+    // eliminarPokemon(idPokemon)
+    //   .then((data) => {
+    //     Alerta("success", "Completado", data);
+    //   })
+    //   .finally(() => actualizarPagina());
   };
 
   return (

@@ -36,8 +36,6 @@ interface IRelacionTipoPokemon {
 }
 
 export const SCard: FC<IPropSCard> = ({ pokemon }) => {
-  const [stat, setstat] = useState<IStats>();
-
   return (
     <Col>
       <StyledCard>
@@ -46,11 +44,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
           <SDivTitulo>{pokemon.Pokemon.Nombre}</SDivTitulo>
 
           <SContenedorImagen>
-            {pokemon.Imagen && (
-              <SImg
-                src={`data:image/jpeg;base64,${pokemon.Imagen.ArchivoImagen}`}
-              />
-            )}
+            {pokemon.Imagen && <SImg src={pokemon.Imagen.ArchivoImagen} />}
           </SContenedorImagen>
           <SDivTipos>
             {pokemon.Tipos[0] && (

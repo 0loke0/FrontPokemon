@@ -47,7 +47,7 @@ export const Agregar: FC<IPropAgregar> = ({
   const [nuevoPokemon, setnuevoPokemon] =
     useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
 
-  const [nombrePokemon, setnombrePokemon] = useState<string>("");
+  const [nombrePokemon, setnombrePokemon] = useState<string>();
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
   const [tipoSelectionado1, settipoSelectionado1] = useState<ITipos>();
@@ -68,8 +68,8 @@ export const Agregar: FC<IPropAgregar> = ({
   }, []);
 
   const construirNuevoPokemon = () => {
-    setnuevoPokemon({
-      NombrePokemon: nombrePokemon,
+    var a: INuevoPokemon = {
+      NombrePokemon: nombrePokemon ? nombrePokemon : "",
       IdsTipo: [
         tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : 0,
         tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : 0,
@@ -86,21 +86,19 @@ export const Agregar: FC<IPropAgregar> = ({
         Nombre: imagen?.Nombre ? imagen.Nombre : "",
         ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
       },
-    });
+    };
+    setnuevoPokemon(a);
   };
 
   const agregarNuevoPokemon = () => {
-    construirNuevoPokemon();
-    console.log("====================================");
-    console.log(nuevoPokemon);
-    console.log("====================================");
-    agregarPokemon(nuevoPokemon);
+    construirNuevoPokemon;
     handleClose();
     actualizarPagina();
   };
 
   const actualizarNombrePokemon = (e: any) => {
     setnombrePokemon(e.target.value);
+    // setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
 
   const recogerEventoTipo1 = (x: ITipos) => {
@@ -221,6 +219,11 @@ export const Agregar: FC<IPropAgregar> = ({
             </Container>
             <Form.Label>Imagen</Form.Label>
             <Form.Control type='file' onChange={tomarImagen} />
+            {imagen?.ArchivoImagen ? (
+              <img src={imagen.ArchivoImagen} height='200px' />
+            ) : (
+              <></>
+            )}
           </Form>
         </Modal.Body>
         <Modal.Footer>

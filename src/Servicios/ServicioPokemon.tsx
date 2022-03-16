@@ -13,13 +13,6 @@ export const ObtenerPokemones = async () => {
   });
 };
 
-export const eliminarPokemon = async (idPokemon: number): Promise<string> => {
-  const url = `http://localhost:63107/api/Pokemones/EliminarPokemon?idPokemon=${idPokemon}`;
-  return await ConsumirApi(url, "Delete").then((data) => {
-    return data;
-  });
-};
-
 export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   const url = `http://localhost:63107/api/Pokemones/GuardarNuevoPokemon`;
   return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
