@@ -36,11 +36,13 @@ function PaginaPokemones() {
   }, []);
 
   const actualizarPagina = () => {
+    console.log("deveria de actualizar");
+
     ObtenerPokemones().then((x) => setpokemon(x));
   };
 
-  const agregarNuevoPokemon = (nombrePokemon: INuevoPokemon) => {
-    AgregarPokemon(nombrePokemon).finally(() => actualizarPagina());
+  const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
+    AgregarPokemon(nuevoPokemon).finally(() => actualizarPagina());
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {

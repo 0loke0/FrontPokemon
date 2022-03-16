@@ -67,31 +67,28 @@ export const Agregar: FC<IPropAgregar> = ({
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
 
-  const construirNuevoPokemon = () => {
-    var a: INuevoPokemon = {
-      NombrePokemon: nombrePokemon ? nombrePokemon : "",
-      IdsTipo: [
-        tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : 0,
-        tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : 0,
-      ],
-      IdsMovimiento: [
-        movimientoSelectionado1?.IdMovimiento
-          ? movimientoSelectionado1.IdMovimiento
-          : 0,
-        movimientoSelectionado2?.IdMovimiento
-          ? movimientoSelectionado2.IdMovimiento
-          : 0,
-      ],
-      Imagen: {
-        Nombre: imagen?.Nombre ? imagen.Nombre : "",
-        ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
-      },
-    };
-    setnuevoPokemon(a);
+  const construirNuevoPokemon = {
+    NombrePokemon: nombrePokemon ? nombrePokemon : "",
+    IdsTipo: [
+      tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : 0,
+      tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : 0,
+    ],
+    IdsMovimiento: [
+      movimientoSelectionado1?.IdMovimiento
+        ? movimientoSelectionado1.IdMovimiento
+        : 0,
+      movimientoSelectionado2?.IdMovimiento
+        ? movimientoSelectionado2.IdMovimiento
+        : 0,
+    ],
+    Imagen: {
+      Nombre: imagen?.Nombre ? imagen.Nombre : "",
+      ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
+    },
   };
 
-  const agregarNuevoPokemon = () => {
-    construirNuevoPokemon;
+  const agregarNuevoPokemon = async () => {
+    await agregarPokemon(construirNuevoPokemon);
     handleClose();
     actualizarPagina();
   };
