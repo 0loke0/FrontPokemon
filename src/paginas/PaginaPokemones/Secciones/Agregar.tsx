@@ -34,9 +34,9 @@ const Sinput = styled.input`
 `;
 
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
-  NombrePokemon: "nombre default",
-  IdsTipo: [1],
-  IdsMovimiento: [2, 3],
+  NombrePokemon: "",
+  IdsTipo: [],
+  IdsMovimiento: [],
   Imagen: { Nombre: "s", ArchivoImagen: "sss" },
 };
 
@@ -147,7 +147,6 @@ export const Agregar: FC<IPropAgregar> = ({
 
   return (
     <>
-      {console.log("infro", nuevoPokemon)}
       <Boton
         variant='outline-success'
         ejecutarFuncion={handleShow}

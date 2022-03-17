@@ -8,7 +8,7 @@ import { SCard } from "./SCard";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
 interface IPropCardPokemon {
-  pokemon: IPokemon[];
+  PokemonDetallado: IPokemonDetallado[];
 }
 const SContenedorSinInformacion = styled.div`
   position: relative;
@@ -43,14 +43,15 @@ const PAGINACIONDEFAULT = {
   ubicacionEnPagina: "",
 };
 
-export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
+export const ContenedorCards: FC<IPropCardPokemon> = ({ PokemonDetallado }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
-  const [PokemonDetallado, setPokemonDetallado] =
-    useState<IPokemonDetallado[]>();
+  const [PokemonDetallados, setPokemonDetallados] = useState<
+    IPokemonDetallado[]
+  >([]);
 
   useEffect(() => {
-    ObtenerPokemones().then((x) => setPokemonDetallado(x));
-  }, []);
+    setPokemonDetallados(PokemonDetallado);
+  }, [PokemonDetallado]);
 
   const retroceder = () => {
     if (paginacion.inicioPagina > 0) {
@@ -69,7 +70,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   };
 
   const avanzar = () => {
-    if (paginacion.finPagina < pokemon.length) {
+    if (paginacion.finPagina < PokemonDetallados.length) {
       setPaginacion({
         ...paginacion,
         inicioPagina: paginacion.inicioPagina + LIMITEPORPAGINA,
@@ -91,8 +92,8 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
   return (
     <>
       <Row xs={1} md={3} className='g-4'>
-        {PokemonDetallado ? (
-          PokemonDetallado.map((data, index) => {
+        {PokemonDetallados ? (
+          PokemonDetallados.map((data, index) => {
             if (
               index >= paginacion.inicioPagina &&
               index < paginacion.finPagina
@@ -105,7 +106,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ pokemon }) => {
           </SContenedorSinInformacion>
         )}
       </Row>
-      {pokemon && (
+      {PokemonDetallados && (
         <Sdiv>
           <SDivContenedor>
             <Boton

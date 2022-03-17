@@ -12,6 +12,7 @@ import { Alerta } from "../../Componentes/Alerta";
 import { IPokemon } from "../../Interface/Pokemones";
 import { Agregar } from "./Secciones/Agregar";
 import { Tabla } from "./Secciones/Tabla";
+import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
 
 const SGenenarlPaginaPokemon = styled.div`
   margin: 3% 8% 3% 8%;
@@ -30,18 +31,20 @@ const STitulo = styled.p`
 `;
 
 function PaginaPokemones() {
-  const [pokemon, setpokemon] = useState<IPokemon[]>([]);
+  const [PokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
+    []
+  );
   useEffect(() => {
-    ObtenerPokemones().then((x) => setpokemon(x));
+    ObtenerPokemones().then((x) => setPokemonDetallado(x));
   }, []);
 
   const actualizarPagina = () => {
-    ObtenerPokemones().then((x) => setpokemon(x));
+    ObtenerPokemones().then((x) => setPokemonDetallado(x));
   };
 
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
-      .then((x) => Alerta("success", "Error", x))
+      .then((x) => Alerta("success", "Guardado", x))
       .then(() => actualizarPagina());
   };
 
@@ -56,12 +59,12 @@ function PaginaPokemones() {
   return (
     <SGenenarlPaginaPokemon>
       <STitulo>Pokémones</STitulo>
-      {console.log(pokemon)}
+
       <Agregar
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
       />
-      <ContenedorCards pokemon={pokemon} />
+      <ContenedorCards PokemonDetallado={PokemonDetallado} />
     </SGenenarlPaginaPokemon>
   );
 }
