@@ -31,8 +31,8 @@ export interface IMovimiento {
 
 export interface INuevoPokemon {
   NombrePokemon: string;
-  IdsTipo: number[];
-  IdsMovimiento: number[];
+  IdsTipo: (number | undefined)[];
+  IdsMovimiento: (number | undefined)[];
   Imagen: IImagen;
 }
 

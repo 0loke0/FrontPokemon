@@ -34,10 +34,10 @@ const Sinput = styled.input`
 `;
 
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
-  NombrePokemon: "",
-  IdsTipo: [0, 0],
-  IdsMovimiento: [0, 0],
-  Imagen: { Nombre: "", ArchivoImagen: "" },
+  NombrePokemon: "nombre default",
+  IdsTipo: [1],
+  IdsMovimiento: [2, 3],
+  Imagen: { Nombre: "s", ArchivoImagen: "sss" },
 };
 
 export const Agregar: FC<IPropAgregar> = ({
@@ -70,16 +70,16 @@ export const Agregar: FC<IPropAgregar> = ({
   const construirNuevoPokemon = {
     NombrePokemon: nombrePokemon ? nombrePokemon : "",
     IdsTipo: [
-      tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : 0,
-      tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : 0,
+      tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : undefined,
+      tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : undefined,
     ],
     IdsMovimiento: [
       movimientoSelectionado1?.IdMovimiento
         ? movimientoSelectionado1.IdMovimiento
-        : 0,
+        : undefined,
       movimientoSelectionado2?.IdMovimiento
         ? movimientoSelectionado2.IdMovimiento
-        : 0,
+        : undefined,
     ],
     Imagen: {
       Nombre: imagen?.Nombre ? imagen.Nombre : "",
@@ -101,6 +101,10 @@ export const Agregar: FC<IPropAgregar> = ({
   };
 
   const recogerEventoTipo1 = (x: ITipos) => {
+    var temp = { ...nuevoPokemon };
+
+    console.log("longitud ", temp.IdsTipo.length);
+
     settipoSelectionado1(x);
   };
 
@@ -143,6 +147,7 @@ export const Agregar: FC<IPropAgregar> = ({
 
   return (
     <>
+      {console.log("infro", nuevoPokemon)}
       <Boton
         variant='outline-success'
         ejecutarFuncion={handleShow}
@@ -175,6 +180,7 @@ export const Agregar: FC<IPropAgregar> = ({
                     valorAListar='NombreTipo'
                   />
                 </Col>
+                {}
                 <Col>
                   <DropList
                     lista={tipos}
