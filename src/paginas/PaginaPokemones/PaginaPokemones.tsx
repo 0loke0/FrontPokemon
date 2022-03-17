@@ -16,7 +16,7 @@ import { Tabla } from "./Secciones/Tabla";
 const SGenenarlPaginaPokemon = styled.div`
   margin: 3% 8% 3% 8%;
   border: 1px solid blue;
-  box-shadow: 0px 0px 15px black;
+  box-shadow: 0px 0px 3px black;
   background-color: #fff7f7;
   border-radius: 20px;
   padding: 3%;
@@ -36,8 +36,6 @@ function PaginaPokemones() {
   }, []);
 
   const actualizarPagina = () => {
-    console.log("deveria de actualizar");
-
     ObtenerPokemones().then((x) => setpokemon(x));
   };
 

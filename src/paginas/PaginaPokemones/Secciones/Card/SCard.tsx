@@ -40,11 +40,11 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
     <Col>
       <StyledCard>
         <Card.Body>
-          <SDivIdentificador>{pokemon.Pokemon.Id}</SDivIdentificador>
-          <SDivTitulo>{pokemon.Pokemon.Nombre}</SDivTitulo>
+          <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
+          <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
 
           <SContenedorImagen>
-            {pokemon.Imagen && <SImg src={pokemon.Imagen.ArchivoImagen} />}
+            {pokemon.ArchivoImagen && <SImg src={pokemon.ArchivoImagen} />}
           </SContenedorImagen>
           <SDivTipos>
             {pokemon.Tipos[0] && (
@@ -59,16 +59,16 @@ export const SCard: FC<IPropSCard> = ({ pokemon }) => {
             )}
           </SDivTipos>
           <SRow>
-            <SCol1>Ataque: {pokemon.Stats.Ataque}</SCol1>
-            <SCol2>Def. Especial: {pokemon.Stats.EspecialDefensa}</SCol2>
+            <SCol1>Ataque: {pokemon.Ataque}</SCol1>
+            <SCol2>Def. Especial: {pokemon.EspecialDefensa}</SCol2>
           </SRow>
           <SRow>
-            <SCol3>Defensa: {pokemon.Stats.Defensa}</SCol3>
-            <SCol4>Atk. Especial: {pokemon.Stats.EspecialAtaque}</SCol4>
+            <SCol3>Defensa: {pokemon.Defensa}</SCol3>
+            <SCol4>Atk. Especial: {pokemon.EspecialAtaque}</SCol4>
           </SRow>
           <SRow>
-            <SCol5>Vida: {pokemon.Stats.Vida}</SCol5>
-            <SCol6>Velocidad: {pokemon.Stats.Velocidad}</SCol6>
+            <SCol5>Vida: {pokemon.Vida}</SCol5>
+            <SCol6>Velocidad: {pokemon.Velocidad}</SCol6>
           </SRow>
         </Card.Body>
       </StyledCard>
