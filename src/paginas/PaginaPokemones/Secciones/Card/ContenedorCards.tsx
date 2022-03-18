@@ -50,6 +50,9 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
   const [pagina, setpagina] = useState<number>(0);
+  const [PokemonDetallados, setPokemonDetallados] = useState<
+    IPokemonDetallado[]
+  >([]);
 
   useEffect(() => {
     setPokemonDetallados(PokemonDetallado);
@@ -105,8 +108,8 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
     <>
       {informacionPaginacion()}
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
-        {PokemonDetallados ? (
-          PokemonDetallados.map((data, index) => {
+        {PokemonDetallado ? (
+          PokemonDetallado.map((data, index) => {
             if (
               index >= paginacion.inicioPagina &&
               index < paginacion.finPagina
