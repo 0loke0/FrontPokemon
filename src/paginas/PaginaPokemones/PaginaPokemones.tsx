@@ -34,15 +34,14 @@ const infoPaginacion: IPaginacion = {
   CantidadRegistros: 3,
 };
 function PaginaPokemones() {
-  const [PokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
+  const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
-  useEffect(() => {
-    ObtenerPokemones(infoPaginacion).then((x) => {
-      console.log(infoPaginacion);
-      setPokemonDetallado(x);
-    });
-  }, []);
+  // useEffect(() => {
+  //   ObtenerPokemones(infoPaginacion).then((x) => {
+  //     setPokemonDetallado(x);
+  //   });
+  // }, []);
 
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
@@ -75,7 +74,7 @@ function PaginaPokemones() {
         agregarPokemon={agregarNuevoPokemon}
       />
       <ContenedorCards
-        PokemonDetallado={PokemonDetallado}
+        PokemonDetallado={pokemonDetallado}
         TomarInformaiconPaginacion={tomarInformaiconPaginacion}
       />
     </SGenenarlPaginaPokemon>

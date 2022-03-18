@@ -50,13 +50,13 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
   const [pagina, setpagina] = useState<number>(0);
-  const [PokemonDetallados, setPokemonDetallados] = useState<
-    IPokemonDetallado[]
-  >([]);
+  // const [PokemonDetallados, setPokemonDetallados] = useState<
+  //   IPokemonDetallado[]
+  // >([]);
 
-  useEffect(() => {
-    setPokemonDetallados(PokemonDetallado);
-  }, [PokemonDetallado]);
+  // useEffect(() => {
+  //   setPokemonDetallados(PokemonDetallado);
+  // }, [PokemonDetallado]);
 
   const retroceder = () => {
     setpagina(pagina - 1);
@@ -110,11 +110,11 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
         {PokemonDetallado ? (
           PokemonDetallado.map((data, index) => {
-            if (
-              index >= paginacion.inicioPagina &&
-              index < paginacion.finPagina
-            )
-              return <SCard pokemon={data} />;
+            // if (
+            //   index >= paginacion.inicioPagina &&
+            //   index < paginacion.finPagina
+            // )
+            return <SCard pokemon={data} />;
           })
         ) : (
           <SContenedorSinInformacion>
@@ -122,7 +122,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
           </SContenedorSinInformacion>
         )}
       </Row>
-      {PokemonDetallados && (
+      {PokemonDetallado && (
         <Sdiv>
           <SDivContenedor>
             <Boton
