@@ -37,11 +37,11 @@ function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
-  // useEffect(() => {
-  //   ObtenerPokemones(infoPaginacion).then((x) => {
-  //     setPokemonDetallado(x);
-  //   });
-  // }, []);
+  useEffect(() => {
+    ObtenerPokemones(infoPaginacion).then((x) => {
+      setPokemonDetallado(x);
+    });
+  }, []);
 
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));

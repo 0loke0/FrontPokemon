@@ -59,7 +59,10 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
   // }, [PokemonDetallado]);
 
   const retroceder = () => {
-    setpagina(pagina - 1);
+    if (pagina > 0) {
+      setpagina(pagina - 1);
+      informacionPaginacion();
+    }
     // if (paginacion.inicioPagina > 0) {
     //   setPaginacion({
     //     ...paginacion,
@@ -77,6 +80,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 
   const avanzar = () => {
     setpagina(pagina + 1);
+    informacionPaginacion();
     // if (paginacion.finPagina < PokemonDetallados.length) {
     //   setPaginacion({
     //     ...paginacion,
@@ -94,6 +98,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 
   const regresarInicio = () => {
     setpagina(0);
+    informacionPaginacion();
     // setPaginacion(PAGINACIONDEFAULT);
   };
 
@@ -106,7 +111,6 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 
   return (
     <>
-      {informacionPaginacion()}
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
         {PokemonDetallado ? (
           PokemonDetallado.map((data, index) => {
