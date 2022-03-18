@@ -38,12 +38,10 @@ function PaginaPokemones() {
     []
   );
   useEffect(() => {
-    console.log("efe");
     ObtenerPokemones(infoPaginacion).then((x) => {
       console.log(infoPaginacion);
       setPokemonDetallado(x);
     });
-    console.log("efe2");
   }, []);
 
   const actualizarPagina = () => {

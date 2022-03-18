@@ -50,9 +50,6 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
 }) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
   const [pagina, setpagina] = useState<number>(0);
-  const [PokemonDetallados, setPokemonDetallados] = useState<
-    IPokemonDetallado[]
-  >([]);
 
   useEffect(() => {
     setPokemonDetallados(PokemonDetallado);
@@ -96,7 +93,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
     setpagina(0);
     // setPaginacion(PAGINACIONDEFAULT);
   };
-  
+
   const informacionPaginacion = () => {
     TomarInformaiconPaginacion({
       Indice: pagina,
