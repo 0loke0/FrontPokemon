@@ -137,7 +137,7 @@ export const SContenedorImagen = styled.div`
   left: 50%;
   width: 95%;
   height: 200px;
-  background-color: #001100;
+  background-color: #ddedf4;
   border-radius: 5%;
   border: 3px Solid black;
   transform: translate(-50%, 0%);

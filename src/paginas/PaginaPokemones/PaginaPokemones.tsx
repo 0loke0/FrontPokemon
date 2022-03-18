@@ -29,19 +29,20 @@ const STitulo = styled.p`
   font-size: 30px;
   line-height: 1;
 `;
-const infoPaginacion: IPaginacion = {
-  Indice: 0,
-  CantidadRegistros: 3,
-};
+
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
+  const [infoPaginacion, setinfoPaginacion] = useState({
+    Indice: 0,
+    CantidadRegistros: 3,
+  });
   useEffect(() => {
     ObtenerPokemones(infoPaginacion).then((x) => {
       setPokemonDetallado(x);
     });
-  }, []);
+  }, [infoPaginacion]);
 
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
@@ -53,16 +54,16 @@ function PaginaPokemones() {
       .then(() => actualizarPagina());
   };
 
+  const tomarInformaiconPaginacion = (infoPaginacion: IPaginacion) => {
+    setinfoPaginacion(infoPaginacion);
+  };
+
   const eliminarPokemonRegistrado = (idPokemon: number) => {
     // eliminarPokemon(idPokemon)
     //   .then((data) => {
     //     Alerta("success", "Completado", data);
     //   })
     //   .finally(() => actualizarPagina());
-  };
-
-  const tomarInformaiconPaginacion = (infoPaginacion: IPaginacion) => {
-    ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
   };
 
   return (

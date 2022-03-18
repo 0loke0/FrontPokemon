@@ -38,68 +38,28 @@ const SContenidoSinInformacion = styled.p`
 
 const LIMITEPORPAGINA = 3;
 
-const PAGINACIONDEFAULT = {
-  inicioPagina: 0,
-  finPagina: LIMITEPORPAGINA,
-  ubicacionEnPagina: "",
-};
-
 export const ContenedorCards: FC<IPropCardPokemon> = ({
   PokemonDetallado,
   TomarInformaiconPaginacion,
 }) => {
-  const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
   const [pagina, setpagina] = useState<number>(0);
-  // const [PokemonDetallados, setPokemonDetallados] = useState<
-  //   IPokemonDetallado[]
-  // >([]);
 
-  // useEffect(() => {
-  //   setPokemonDetallados(PokemonDetallado);
-  // }, [PokemonDetallado]);
+  useEffect(() => {
+    informacionPaginacion();
+  }, [pagina]);
 
   const retroceder = () => {
     if (pagina > 0) {
       setpagina(pagina - 1);
-      informacionPaginacion();
     }
-    // if (paginacion.inicioPagina > 0) {
-    //   setPaginacion({
-    //     ...paginacion,
-    //     inicioPagina: paginacion.inicioPagina - LIMITEPORPAGINA,
-    //     finPagina: paginacion.finPagina - LIMITEPORPAGINA,
-    //     ubicacionEnPagina: "entremedio",
-    //   });
-    // } else {
-    //   setPaginacion({
-    //     ...paginacion,
-    //     ubicacionEnPagina: "inicio",
-    //   });
-    // }
   };
 
   const avanzar = () => {
     setpagina(pagina + 1);
-    informacionPaginacion();
-    // if (paginacion.finPagina < PokemonDetallados.length) {
-    //   setPaginacion({
-    //     ...paginacion,
-    //     inicioPagina: paginacion.inicioPagina + LIMITEPORPAGINA,
-    //     finPagina: paginacion.finPagina + LIMITEPORPAGINA,
-    //     ubicacionEnPagina: "entremedio",
-    //   });
-    // } else {
-    //   setPaginacion({
-    //     ...paginacion,
-    //     ubicacionEnPagina: "final",
-    //   });
-    // }
   };
 
   const regresarInicio = () => {
     setpagina(0);
-    informacionPaginacion();
-    // setPaginacion(PAGINACIONDEFAULT);
   };
 
   const informacionPaginacion = () => {
@@ -113,13 +73,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
     <>
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
         {PokemonDetallado ? (
-          PokemonDetallado.map((data, index) => {
-            // if (
-            //   index >= paginacion.inicioPagina &&
-            //   index < paginacion.finPagina
-            // )
-            return <SCard pokemon={data} />;
-          })
+          PokemonDetallado.map((data, index) => <SCard pokemon={data} />)
         ) : (
           <SContenedorSinInformacion>
             <SContenidoSinInformacion>Sin Informacion</SContenidoSinInformacion>
