@@ -9,6 +9,7 @@ import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
 interface IPropCardPokemon {
   PokemonDetallado: IPokemonDetallado[];
+  TomarInformaiconPaginacion: any;
 }
 const SContenedorSinInformacion = styled.div`
   position: relative;
@@ -43,8 +44,12 @@ const PAGINACIONDEFAULT = {
   ubicacionEnPagina: "",
 };
 
-export const ContenedorCards: FC<IPropCardPokemon> = ({ PokemonDetallado }) => {
+export const ContenedorCards: FC<IPropCardPokemon> = ({
+  PokemonDetallado,
+  TomarInformaiconPaginacion,
+}) => {
   const [paginacion, setPaginacion] = useState(PAGINACIONDEFAULT);
+  const [pagina, setpagina] = useState<number>(0);
   const [PokemonDetallados, setPokemonDetallados] = useState<
     IPokemonDetallado[]
   >([]);
@@ -54,44 +59,55 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({ PokemonDetallado }) => {
   }, [PokemonDetallado]);
 
   const retroceder = () => {
-    if (paginacion.inicioPagina > 0) {
-      setPaginacion({
-        ...paginacion,
-        inicioPagina: paginacion.inicioPagina - LIMITEPORPAGINA,
-        finPagina: paginacion.finPagina - LIMITEPORPAGINA,
-        ubicacionEnPagina: "entremedio",
-      });
-    } else {
-      setPaginacion({
-        ...paginacion,
-        ubicacionEnPagina: "inicio",
-      });
-    }
+    setpagina(pagina - 1);
+    // if (paginacion.inicioPagina > 0) {
+    //   setPaginacion({
+    //     ...paginacion,
+    //     inicioPagina: paginacion.inicioPagina - LIMITEPORPAGINA,
+    //     finPagina: paginacion.finPagina - LIMITEPORPAGINA,
+    //     ubicacionEnPagina: "entremedio",
+    //   });
+    // } else {
+    //   setPaginacion({
+    //     ...paginacion,
+    //     ubicacionEnPagina: "inicio",
+    //   });
+    // }
   };
 
   const avanzar = () => {
-    if (paginacion.finPagina < PokemonDetallados.length) {
-      setPaginacion({
-        ...paginacion,
-        inicioPagina: paginacion.inicioPagina + LIMITEPORPAGINA,
-        finPagina: paginacion.finPagina + LIMITEPORPAGINA,
-        ubicacionEnPagina: "entremedio",
-      });
-    } else {
-      setPaginacion({
-        ...paginacion,
-        ubicacionEnPagina: "final",
-      });
-    }
+    setpagina(pagina + 1);
+    // if (paginacion.finPagina < PokemonDetallados.length) {
+    //   setPaginacion({
+    //     ...paginacion,
+    //     inicioPagina: paginacion.inicioPagina + LIMITEPORPAGINA,
+    //     finPagina: paginacion.finPagina + LIMITEPORPAGINA,
+    //     ubicacionEnPagina: "entremedio",
+    //   });
+    // } else {
+    //   setPaginacion({
+    //     ...paginacion,
+    //     ubicacionEnPagina: "final",
+    //   });
+    // }
   };
 
   const regresarInicio = () => {
-    setPaginacion(PAGINACIONDEFAULT);
+    setpagina(0);
+    // setPaginacion(PAGINACIONDEFAULT);
+  };
+  
+  const informacionPaginacion = () => {
+    TomarInformaiconPaginacion({
+      Indice: pagina,
+      CantidadRegistros: LIMITEPORPAGINA,
+    });
   };
 
   return (
     <>
-      <Row xs={1} md={3} className='g-4'>
+      {informacionPaginacion()}
+      <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
         {PokemonDetallados ? (
           PokemonDetallados.map((data, index) => {
             if (

@@ -1,14 +1,14 @@
 import { ConsumirApi } from "./Core/CoreApi";
-import { INuevoPokemon } from "../Interface/Pokemones";
+import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
 import { Alerta } from "../Componentes/Alerta";
 interface IPokemon {
   Id: number;
   Nombre: string;
 }
 
-export const ObtenerPokemones = async () => {
+export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
-  return await ConsumirApi(url, "Get").then((data) => {
+  return await ConsumirApi(url, "Post", infoPaginacion).then((data) => {
     return data;
   });
 };

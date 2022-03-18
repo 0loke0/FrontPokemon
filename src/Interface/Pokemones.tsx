@@ -36,6 +36,11 @@ export interface INuevoPokemon {
   Imagen: IImagen;
 }
 
+export interface IPaginacion {
+  Indice: number;
+  CantidadRegistros: number;
+}
+
 // public int Id { get; set; }
 //         public string Nombre { get; set; }
 //         public int Ataque { get; set; }

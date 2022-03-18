@@ -6,7 +6,7 @@ import {
   // eliminarPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
-import { INuevoPokemon } from "../../Interface/Pokemones";
+import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 
 import { Alerta } from "../../Componentes/Alerta";
 import { IPokemon } from "../../Interface/Pokemones";
@@ -29,17 +29,25 @@ const STitulo = styled.p`
   font-size: 30px;
   line-height: 1;
 `;
-
+const infoPaginacion: IPaginacion = {
+  Indice: 0,
+  CantidadRegistros: 3,
+};
 function PaginaPokemones() {
   const [PokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
   useEffect(() => {
-    ObtenerPokemones().then((x) => setPokemonDetallado(x));
+    console.log("efe");
+    ObtenerPokemones(infoPaginacion).then((x) => {
+      console.log(infoPaginacion);
+      setPokemonDetallado(x);
+    });
+    console.log("efe2");
   }, []);
 
   const actualizarPagina = () => {
-    ObtenerPokemones().then((x) => setPokemonDetallado(x));
+    ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
   };
 
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
@@ -56,6 +64,10 @@ function PaginaPokemones() {
     //   .finally(() => actualizarPagina());
   };
 
+  const tomarInformaiconPaginacion = (infoPaginacion: IPaginacion) => {
+    ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
+  };
+
   return (
     <SGenenarlPaginaPokemon>
       <STitulo>Pokémones</STitulo>
@@ -64,7 +76,10 @@ function PaginaPokemones() {
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
       />
-      <ContenedorCards PokemonDetallado={PokemonDetallado} />
+      <ContenedorCards
+        PokemonDetallado={PokemonDetallado}
+        TomarInformaiconPaginacion={tomarInformaiconPaginacion}
+      />
     </SGenenarlPaginaPokemon>
   );
 }
