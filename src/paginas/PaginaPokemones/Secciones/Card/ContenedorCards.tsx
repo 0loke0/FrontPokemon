@@ -3,13 +3,18 @@ import Row from "react-bootstrap/Row";
 import styled from "styled-components";
 import Boton from "../../../../Componentes/Boton";
 import { IPokemon } from "../../../../Interface/Pokemones";
-import { ObtenerPokemones } from "../../../../Servicios/ServicioPokemon";
+import {
+  ObtenerCantidadRegistrosPokemon,
+  ObtenerPokemones,
+} from "../../../../Servicios/ServicioPokemon";
 import { SCard } from "./SCard";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 
 interface IPropCardPokemon {
   PokemonDetallado: IPokemonDetallado[];
   TomarInformaiconPaginacion: any;
+  eliminarPokemon: any;
+  cantidadRegistros: number;
 }
 const SContenedorSinInformacion = styled.div`
   position: relative;
@@ -41,6 +46,8 @@ const LIMITEPORPAGINA = 3;
 export const ContenedorCards: FC<IPropCardPokemon> = ({
   PokemonDetallado,
   TomarInformaiconPaginacion,
+  eliminarPokemon,
+  cantidadRegistros,
 }) => {
   const [pagina, setpagina] = useState<number>(0);
 
@@ -55,7 +62,8 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
   };
 
   const avanzar = () => {
-    setpagina(pagina + 1);
+    if (cantidadRegistros > (pagina + 1) * LIMITEPORPAGINA)
+      setpagina(pagina + 1);
   };
 
   const regresarInicio = () => {
@@ -73,7 +81,9 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
     <>
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
         {PokemonDetallado ? (
-          PokemonDetallado.map((data, index) => <SCard pokemon={data} />)
+          PokemonDetallado.map((data, index) => (
+            <SCard pokemon={data} eliminarPokemon={eliminarPokemon} />
+          ))
         ) : (
           <SContenedorSinInformacion>
             <SContenidoSinInformacion>Sin Informacion</SContenidoSinInformacion>

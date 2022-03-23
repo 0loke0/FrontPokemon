@@ -31,12 +31,12 @@ interface ITipos {
 export interface IPokemonDetallado {
   Id: string;
   Nombre: string;
-  Ataque: string;
-  Defensa: string;
-  EspecialAtaque: string;
-  EspecialDefensa: string;
-  Velocidad: string;
-  Vida: string;
+  Ataque: number;
+  Defensa: number;
+  EspecialAtaque: number;
+  EspecialDefensa: number;
+  Velocidad: number;
+  Vida: number;
   NombreImagen: string;
   ArchivoImagen: string;
   RutaImagen: string;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import {
   AgregarPokemon,
+  EliminarPokemon,
+  ObtenerCantidadRegistrosPokemon,
   // eliminarPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
@@ -34,6 +36,8 @@ function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
+  const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
+
   const [infoPaginacion, setinfoPaginacion] = useState({
     Indice: 0,
     CantidadRegistros: 3,
@@ -42,6 +46,9 @@ function PaginaPokemones() {
     ObtenerPokemones(infoPaginacion).then((x) => {
       setPokemonDetallado(x);
     });
+    ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
+      setcantidadRegistros(cantidadRegistros)
+    );
   }, [infoPaginacion]);
 
   const actualizarPagina = () => {
@@ -51,7 +58,12 @@ function PaginaPokemones() {
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
       .then((x) => Alerta("success", "Guardado", x))
-      .then(() => actualizarPagina());
+      .then(() => actualizarPagina())
+      .then(() =>
+        ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
+          setcantidadRegistros(cantidadRegistros)
+        )
+      );
   };
 
   const tomarInformaiconPaginacion = (infoPaginacion: IPaginacion) => {
@@ -59,11 +71,13 @@ function PaginaPokemones() {
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {
-    // eliminarPokemon(idPokemon)
-    //   .then((data) => {
-    //     Alerta("success", "Completado", data);
-    //   })
-    //   .finally(() => actualizarPagina());
+    console.log("se esta intentado borrar el elemento con id ", idPokemon);
+
+    EliminarPokemon(idPokemon)
+      .then((data) => {
+        Alerta("success", "Completado", data);
+      })
+      .then(() => actualizarPagina());
   };
 
   return (
@@ -77,6 +91,8 @@ function PaginaPokemones() {
       <ContenedorCards
         PokemonDetallado={pokemonDetallado}
         TomarInformaiconPaginacion={tomarInformaiconPaginacion}
+        eliminarPokemon={eliminarPokemonRegistrado}
+        cantidadRegistros={cantidadRegistros}
       />
     </SGenenarlPaginaPokemon>
   );

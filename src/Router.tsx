@@ -5,6 +5,7 @@ import PaginaStats from "./paginas/PaginaStats/PaginaStats";
 import LoadingDian from "./paginas/LoadingDian/LoadingDian";
 import Cronometro from "./paginas/Cronometro/Cronometro";
 import CardGeneralizado from "./paginas/PruebasCards/CardGeneralizado";
+import { MarcaDeAgua } from "./paginas/MarcaDeAgua/MarcaDeAgua";
 export const Rutas = () => {
   return (
     <Router>
@@ -23,6 +24,9 @@ export const Rutas = () => {
         </Route>
         <Route path='/CardPruebas'>
           <CardGeneralizado />
+        </Route>
+        <Route path='/MarcaDeAgua'>
+          <MarcaDeAgua />
         </Route>
       </Switch>
     </Router>

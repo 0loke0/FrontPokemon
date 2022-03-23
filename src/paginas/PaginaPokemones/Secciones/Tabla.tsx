@@ -49,10 +49,10 @@ export const Tabla: FC<IPropTabla> = ({ pokemon, eliminarPokemon }) => {
                   {x.Id}: {x.Nombre}
                 </Std>
                 <Std>
-                  <Eliminar
+                  {/* <Eliminar
                     pokemonAEliminar={x}
                     eliminarPokemon={eliminarPokemon}
-                  />
+                  /> */}
                 </Std>
                 <td>
                   <Actualizar pokemonAActualizar={x} />

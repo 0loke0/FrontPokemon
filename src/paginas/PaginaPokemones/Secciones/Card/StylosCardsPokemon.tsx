@@ -67,58 +67,13 @@ export const SDivIdentificador = styled.div`
   color: #ffffff;
 `;
 
-export const SCol1 = styled(Col)`
+export const SCol = styled(Col)`
   margin: 1% 4%;
   width: 20%;
   height: 50px;
   text-align: center;
   border: 1px solid #29c5f1;
-  border-radius: 10% 10% 50px 10%;
-  background-color: white;
-`;
-export const SCol2 = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #29c5f1;
-  border-radius: 10% 10% 10% 50px;
-  background-color: white;
-`;
-export const SCol3 = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #29c5f1;
-  border-radius: 10% 50px 50px 10%;
-  background-color: white;
-`;
-export const SCol4 = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #29c5f1;
-  border-radius: 50px 10% 10% 50px;
-  background-color: white;
-`;
-export const SCol5 = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #29c5f1;
-  border-radius: 10% 50px 10% 10%;
-  background-color: white;
-`;
-export const SCol6 = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #29c5f1;
-  border-radius: 50px 10% 10% 10%;
+  border-radius: 10% 10% 10% 10%;
   background-color: white;
 `;
 
@@ -143,8 +98,7 @@ export const SContenedorImagen = styled.div`
   transform: translate(-50%, 0%);
 `;
 
-//re factorizar
-export const SContenedorTipo1 = styled.div<{ tipo: number }>`
+export const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
   position: relative;
   top: -102%;
   width: 30%;
@@ -154,32 +108,44 @@ export const SContenedorTipo1 = styled.div<{ tipo: number }>`
   }};
   border-radius: 50px;
   border: 1px Solid black;
-  transform: translate(-25%, -50%);
-  text-align: center;
-  color: #ffffff;
-`;
-export const SContenedorTipo2 = styled.div<{ tipo: number }>`
-  position: relative;
-  top: -102%;
-  width: 30%;
-  height: 15%;
-  background-color: ${({ tipo }) => {
-    return coloresTipos(tipo);
+  transform: ${({ posicion }) => {
+    switch (posicion) {
+      case "Primaria":
+        return `translate(-25%, -50%)`;
+      case "Secundaria":
+        return `translate(80%, -150%)`;
+      default:
+        return `translate(0%, 0%)`;
+    }
   }};
-  border-radius: 50px;
-  border: 1px Solid black;
-  transform: translate(80%, -150%);
   text-align: center;
   color: #ffffff;
 `;
 
-export const StyledCard = styled(Card)`
+export const StyledCard = styled(Card)<{ rareza: string }>`
   padding: 5px;
   border-radius: 10px;
   border: 4px solid #9dccfa;
   box-shadow: 5px 5px 10px #7d7d7d;
   background-color: #ffdee9;
-  background-image: linear-gradient(0deg, #d3fcff 0%, #feffff 100%);
+  background-image: ${({ rareza }) => {
+    switch (rareza) {
+      case "Comun":
+        return `linear-gradient(0deg, #474747 0%, #afafaf 100%);`;
+      case "Poco comun":
+        return `linear-gradient(0deg, #2f3663 0%, #3e54c9 100%);`;
+      case "Rara":
+        return `linear-gradient(0deg, #402c63 0%, #6a3cc7 100%);`;
+      case "Epica":
+        return `linear-gradient(0deg, #5a2562 0%, #a627b3 100%);`;
+      case "Epica Singular":
+        return `linear-gradient(0deg, #5d2f2e 0%, #b43e40 100%);`;
+      case "Legendaria":
+        return `linear-gradient(0deg, #5f5817 0%, #c4a909 100%);`;
+      default:
+        return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
+    }
+  }};
 `;
 
 export const SImg = styled.img`
@@ -192,6 +158,4 @@ export const SImg = styled.img`
 export const SDivTipos = styled.div`
   position: absolute;
   width: 100%;
-  top: 13%;
-  padding: 4%;
 `;

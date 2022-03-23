@@ -26,3 +26,18 @@ export const ActualizarPokemon = async (pokemon: IPokemon) => {
     return data;
   });
 };
+
+export const EliminarPokemon = async (idPokemon: number) => {
+  const url = `http://localhost:63107/api/Pokemones/EliminarPokemon?idPokemon=${idPokemon}`;
+
+  return await ConsumirApi(url, "Delete").then((data) => {
+    return data;
+  });
+};
+
+export const ObtenerCantidadRegistrosPokemon = async () => {
+  const url = `http://localhost:63107/api/Pokemones/ObtenerCantidadRegistrosPokemon`;
+  return await ConsumirApi(url, "Get").then((data) => {
+    return data;
+  });
+};
