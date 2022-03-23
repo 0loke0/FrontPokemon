@@ -12,14 +12,14 @@ const SContenedorImagen = styled.div`
 `;
 
 const SContenedorMarca1 = styled.div`
-  position: relative;
+  position: absolute;
   background-color: transparent;
   border-radius: 50%;
   height: 600px;
   width: 600px;
   border: 20px solid #f7f8f8;
-  left: 70%;
-  top: 5%;
+  left: 40%;
+  top: 10%;
 `;
 
 const SContenedorMarca1A = styled.div`
@@ -42,7 +42,7 @@ const SContenedorMarca2 = styled.div`
   width: 1000px;
   border: 35px solid #f7f8f8;
   left: -8%;
-  top: 20%;
+  top: 50%;
 `;
 
 const SContenedorMarca2A = styled.div`

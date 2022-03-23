@@ -40,6 +40,7 @@ export interface IPokemonDetallado {
   NombreImagen: string;
   ArchivoImagen: string;
   RutaImagen: string;
+  Rareza: string;
   Tipos: ITipos[];
   Movimientos: IMovimientos[];
 }

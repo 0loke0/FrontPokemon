@@ -29,45 +29,19 @@ interface IRelacionTipoPokemon {
 }
 
 export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
-  const logartimoDeterminarRareza = (x: number) => {
-    return 300 * Math.log10(x);
-  };
-
-  const determinarRareza = () => {
-    const sumatoriaCaracteristicas =
-      pokemon.Ataque +
-      pokemon.Defensa +
-      pokemon.EspecialAtaque +
-      pokemon.EspecialDefensa +
-      pokemon.Velocidad +
-      pokemon.Vida;
-
-    if (sumatoriaCaracteristicas < 100) {
-      return "Comun";
-    }
-    if (sumatoriaCaracteristicas < 200) {
-      return "Poco comun";
-    }
-    if (sumatoriaCaracteristicas < 300) {
-      return "Rara";
-    }
-    if (sumatoriaCaracteristicas < 400) {
-      return "Epica";
-    }
-    if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 6) * 5)) {
-      return "Epica Singular";
-    }
-    if (sumatoriaCaracteristicas > logartimoDeterminarRareza((100 / 6) * 5)) {
-      return "Legendaria";
-    }
-  };
-
+  var sumatoriaCaracteristicas =
+    pokemon.Ataque +
+    pokemon.Defensa +
+    pokemon.EspecialAtaque +
+    pokemon.EspecialDefensa +
+    pokemon.Velocidad +
+    pokemon.Vida;
   return (
     <Col>
-      {console.log("rereza", logartimoDeterminarRareza((100 / 6) * 4))}
-      <StyledCard rareza={determinarRareza()}>
+      <StyledCard rareza={pokemon.Rareza}>
         <Card.Body>
           <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
+          <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
           <Eliminar
             eliminarPokemon={eliminarPokemon}
