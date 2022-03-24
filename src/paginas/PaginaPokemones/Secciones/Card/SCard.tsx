@@ -41,7 +41,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
       <StyledCard rareza={pokemon.Rareza}>
         <Card.Body>
           <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
-          <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
+          <SDivTitulo>{sumatoriaCaracteristicas}</SDivTitulo>
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
           <Eliminar
             eliminarPokemon={eliminarPokemon}

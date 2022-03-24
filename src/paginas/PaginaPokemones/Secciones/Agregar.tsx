@@ -88,8 +88,6 @@ export const Agregar: FC<IPropAgregar> = ({
   };
 
   const agregarNuevoPokemon = async () => {
-    console.log(construirNuevoPokemon);
-
     await agregarPokemon(construirNuevoPokemon);
     handleClose();
     actualizarPagina();
