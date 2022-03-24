@@ -5,15 +5,12 @@ import {
   AgregarPokemon,
   EliminarPokemon,
   ObtenerCantidadRegistrosPokemon,
-  // eliminarPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
 import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 
 import { Alerta } from "../../Componentes/Alerta";
-import { IPokemon } from "../../Interface/Pokemones";
-import { Agregar } from "./Secciones/Agregar";
-import { Tabla } from "./Secciones/Tabla";
+import { Agregar } from "./Secciones/Agregar/Agregar";
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
 
 const SGenenarlPaginaPokemon = styled.div`

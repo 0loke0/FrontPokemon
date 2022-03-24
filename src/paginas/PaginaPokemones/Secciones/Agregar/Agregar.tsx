@@ -1,37 +1,29 @@
 import React, { FC, useState, useEffect } from "react";
-import { ObtenerTipos } from "../../../Servicios/ServicioTipo";
+import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
 import { Col, Container, Modal, Row } from "react-bootstrap";
-import Boton from "../../../Componentes/Boton";
+import Boton from "../../../../Componentes/Boton";
 import { Form } from "react-bootstrap";
-import styled from "styled-components";
 import {
   ITipos,
   INuevoPokemon,
   IMovimiento,
   IImagen,
-} from "../../../Interface/Pokemones";
-import { DropList } from "../../../Componentes/DropList";
-import { ObtenerMovimientos } from "../../../Servicios/ServicioMovimientos";
+} from "../../../../Interface/Pokemones";
+import {
+  Sinput,
+  SDivFormLabel,
+  SDivCentrador,
+  SDivSolicitudImagen,
+  SImg,
+} from "./StyledAgregar";
+import { DropList } from "../../../../Componentes/DropList";
+import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 
 interface IPropAgregar {
   actualizarPagina: any;
   agregarPokemon: (input: INuevoPokemon) => any;
 }
-const Sinput = styled.input`
-  font-size: 18px;
-  margin-top: 2px;
-  padding: 5px;
-  display: block;
-  width: 100%;
-  border-radius: 5px;
-  border: 0.5px solid #c9e7ff;
-  &:focus {
-    outline: none;
-    border: none;
-    box-shadow: 0px 0px 5px #a0bad3;
-  }
-`;
 
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
   NombrePokemon: "",
@@ -157,75 +149,78 @@ export const Agregar: FC<IPropAgregar> = ({
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Label>Nombre</Form.Label>
-            <Sinput
-              type='text'
-              required
-              placeholder='Ingrese Nombre'
-              value={nombrePokemon}
-              onChange={actualizarNombrePokemon}
-            />
-            <Container>
-              <Row>
-                <Col>
-                  <DropList
-                    lista={tipos}
-                    recogerSeleccion={recogerEventoTipo1}
-                    valorActual={
-                      tipoSelectionado1 ? tipoSelectionado1.NombreTipo : "Tipo"
-                    }
-                    valorAListar='NombreTipo'
-                  />
-                </Col>
-                {}
-                <Col>
-                  <DropList
-                    lista={tipos}
-                    recogerSeleccion={recogerEventoTipo2}
-                    valorActual={
-                      tipoSelectionado2 ? tipoSelectionado2.NombreTipo : "Tipo"
-                    }
-                    valorAListar='NombreTipo'
-                  />
-                </Col>
-              </Row>
-            </Container>
+            <SDivFormLabel>
+              <Form.Label>Nombre</Form.Label>
+              <Sinput
+                type='text'
+                required
+                placeholder='Ingrese Nombre'
+                value={nombrePokemon}
+                onChange={actualizarNombrePokemon}
+              />
+            </SDivFormLabel>
 
             <Container>
               <Row>
                 <Col>
-                  <DropList
-                    lista={movimientos}
-                    recogerSeleccion={recogerEventoMovimiento1}
-                    valorActual={
-                      movimientoSelectionado1
-                        ? movimientoSelectionado1.NombreMovimiento
-                        : "Movimiento"
-                    }
-                    valorAListar='NombreMovimiento'
-                  />
+                  <SDivCentrador ubicacion={"Izquierda"}>
+                    <DropList
+                      lista={tipos}
+                      recogerSeleccion={recogerEventoTipo1}
+                      valorActual={
+                        tipoSelectionado1
+                          ? tipoSelectionado1.NombreTipo
+                          : "Tipo"
+                      }
+                      valorAListar='NombreTipo'
+                    />
+                    <DropList
+                      lista={movimientos}
+                      recogerSeleccion={recogerEventoMovimiento1}
+                      valorActual={
+                        movimientoSelectionado1
+                          ? movimientoSelectionado1.NombreMovimiento
+                          : "Movimiento"
+                      }
+                      valorAListar='NombreMovimiento'
+                    />
+                  </SDivCentrador>
                 </Col>
                 <Col>
-                  <DropList
-                    lista={movimientos}
-                    recogerSeleccion={recogerEventoMovimiento2}
-                    valorActual={
-                      movimientoSelectionado2
-                        ? movimientoSelectionado2.NombreMovimiento
-                        : "Movimiento"
-                    }
-                    valorAListar='NombreMovimiento'
-                  />
+                  <SDivCentrador ubicacion={"Derecha"}>
+                    <DropList
+                      lista={tipos}
+                      recogerSeleccion={recogerEventoTipo2}
+                      valorActual={
+                        tipoSelectionado2
+                          ? tipoSelectionado2.NombreTipo
+                          : "Tipo"
+                      }
+                      valorAListar='NombreTipo'
+                    />
+                    <DropList
+                      lista={movimientos}
+                      recogerSeleccion={recogerEventoMovimiento2}
+                      valorActual={
+                        movimientoSelectionado2
+                          ? movimientoSelectionado2.NombreMovimiento
+                          : "Movimiento"
+                      }
+                      valorAListar='NombreMovimiento'
+                    />
+                  </SDivCentrador>
                 </Col>
               </Row>
             </Container>
-            <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={tomarImagen} />
-            {imagen?.ArchivoImagen ? (
-              <img src={imagen.ArchivoImagen} height='200px' />
-            ) : (
-              <></>
-            )}
+            <SDivSolicitudImagen>
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control type='file' onChange={tomarImagen} />
+              {imagen?.ArchivoImagen ? (
+                <SImg src={imagen.ArchivoImagen} height='200px' />
+              ) : (
+                <></>
+              )}
+            </SDivSolicitudImagen>
           </Form>
         </Modal.Body>
         <Modal.Footer>
