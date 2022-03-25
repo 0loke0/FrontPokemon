@@ -29,19 +29,11 @@ interface IRelacionTipoPokemon {
 }
 
 export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
-  var sumatoriaCaracteristicas =
-    pokemon.Ataque +
-    pokemon.Defensa +
-    pokemon.EspecialAtaque +
-    pokemon.EspecialDefensa +
-    pokemon.Velocidad +
-    pokemon.Vida;
   return (
     <Col>
       <StyledCard rareza={pokemon.Rareza}>
         <Card.Body>
           <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
-          <SDivTitulo>{sumatoriaCaracteristicas}</SDivTitulo>
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
           <Eliminar
             eliminarPokemon={eliminarPokemon}

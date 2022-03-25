@@ -28,6 +28,8 @@ export const ConsumirApi = async (
       return response;
     })
     .catch((error) => {
+      Alerta("error", "Error", error);
       console.error("Se genero un error", error);
+      return null;
     });
 };

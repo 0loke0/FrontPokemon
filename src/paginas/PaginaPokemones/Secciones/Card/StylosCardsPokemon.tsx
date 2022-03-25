@@ -48,8 +48,8 @@ let coloresTipos = (idTipo: number) => {
 };
 
 export const SDivTitulo = styled.div`
-  text-align: right;
-  margin: 2%;
+  text-align: left;
+  margin: 2% 0% 0% 10%;
   font-family: monospace;
   font-size: x-large;
 `;

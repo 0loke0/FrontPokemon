@@ -16,6 +16,11 @@ export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
 export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   const url = `http://localhost:63107/api/Pokemones/GuardarNuevoPokemon`;
   return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
+    console.log(
+      "infromaciopn de lo que esta retonando en agregar pokemon",
+      data
+    );
+
     return data ? data : null;
   });
 };

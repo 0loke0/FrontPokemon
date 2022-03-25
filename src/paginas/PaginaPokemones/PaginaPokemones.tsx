@@ -54,7 +54,7 @@ function PaginaPokemones() {
 
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
-      .then((x) => Alerta("success", "Guardado", x))
+      .then((x) => x && Alerta("success", "Guardado", x))
       .then(() => actualizarPagina())
       .then(() =>
         ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
