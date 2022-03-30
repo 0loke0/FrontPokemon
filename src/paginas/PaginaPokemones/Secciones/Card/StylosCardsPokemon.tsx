@@ -68,13 +68,11 @@ export const SDivIdentificador = styled.div`
 `;
 
 export const SCol = styled(Col)`
-  margin: 1% 4%;
-  width: 20%;
+  margin: 0% 15%;
   height: 50px;
-  text-align: center;
   border: 1px solid #29c5f1;
   border-radius: 10% 10% 10% 10%;
-  background-color: white;
+  background-color: #9dccfa;
 `;
 
 export const SRow = styled(Row)`
@@ -85,14 +83,16 @@ export const SRow = styled(Row)`
   margin-top: 5px;
   margin: 1% 0% 0% 0%;
 `;
-export const SContenedorImagen = styled.div`
+export const SContenedorImagen = styled.div<{ colorFondo: string }>`
   margin-top: 5%;
   position: relative;
   top: 0%;
   left: 50%;
   width: 95%;
   height: 200px;
-  background-color: #ddedf4;
+  background-color: ${({ colorFondo }) => {
+    return colorFondo;
+  }};
   border-radius: 5%;
   border: 3px Solid black;
   transform: translate(-50%, 0%);
@@ -153,6 +153,31 @@ export const SImg = styled.img`
   width: 100%;
   height: 195px;
   border-radius: 5%;
+`;
+
+export const SDiv = styled.div`
+  position: relative;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+`;
+
+export const SImgCaracteristicas = styled.img`
+  position: relative;
+  width: 40px;
+  height: 40px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const SPCarateristicas = styled.p`
+  position: absolute;
+  left: 50%;
+  top: 23%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+  text-align: center;
 `;
 
 export const SDivTipos = styled.div`

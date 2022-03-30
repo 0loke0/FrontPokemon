@@ -1,10 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Eliminar } from "../Eliminar";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
+import Vida from "../../../../Multimedia/Pokemon/Card/Vida.png";
+import Velocidad from "../../../../Multimedia/Pokemon/Card/Velocidad.png";
+import Espada from "../../../../Multimedia/Pokemon/Card/Espada.png";
+import EscudoEspadas from "../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
+import Escudo from "../../../../Multimedia/Pokemon/Card/Escudo.png";
+import DualEspadas from "../../../../Multimedia/Pokemon/Card/DualEspadas.png";
+
 import {
   SImg,
+  SImgCaracteristicas,
   SCol,
   SContenedorImagen,
   SContenedorTipo,
@@ -13,9 +21,11 @@ import {
   SRow,
   StyledCard,
   SDivTipos,
+  SPCarateristicas,
+  SDiv,
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
-import { normalize } from "path/win32";
+import Vibrant from "node-vibrant";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
@@ -29,6 +39,18 @@ interface IRelacionTipoPokemon {
 }
 
 export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
+  const [colorFondo, setcolorFondo] = useState<string>("predeterminado");
+  useEffect(() => {
+    determinarColorDominante();
+  }, [pokemon]);
+
+  let determinarColorDominante = () => {
+    Vibrant.from(pokemon.ArchivoImagen)
+      .getPalette()
+      .then((palette) =>
+        setcolorFondo(palette.Vibrant?.hex ? palette.Vibrant?.hex : "")
+      );
+  };
   return (
     <Col>
       <StyledCard rareza={pokemon.Rareza}>
@@ -38,7 +60,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
           <Eliminar
             eliminarPokemon={eliminarPokemon}
             pokemonAEliminar={pokemon}></Eliminar>
-          <SContenedorImagen>
+          <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>
               {pokemon.Tipos[0] && (
                 <SContenedorTipo
@@ -59,16 +81,46 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
           </SContenedorImagen>
 
           <SRow>
-            <SCol>Ataque: {pokemon.Ataque}</SCol>
-            <SCol>Def. Especial: {pokemon.EspecialDefensa}</SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={Espada} />
+                <SPCarateristicas>{pokemon.Ataque}</SPCarateristicas>
+              </SDiv>
+            </SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={EscudoEspadas} />
+                <SPCarateristicas>{pokemon.EspecialDefensa}</SPCarateristicas>
+              </SDiv>
+            </SCol>
           </SRow>
           <SRow>
-            <SCol>Defensa: {pokemon.Defensa}</SCol>
-            <SCol>Atk. Especial: {pokemon.EspecialAtaque}</SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={Escudo} />
+                <SPCarateristicas>{pokemon.Defensa}</SPCarateristicas>
+              </SDiv>
+            </SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={DualEspadas} />
+                <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
+              </SDiv>
+            </SCol>
           </SRow>
           <SRow>
-            <SCol>Vida: {pokemon.Vida}</SCol>
-            <SCol>Velocidad: {pokemon.Velocidad}</SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={Vida} />
+                <SPCarateristicas>{pokemon.Vida}</SPCarateristicas>
+              </SDiv>
+            </SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={Velocidad} />
+                <SPCarateristicas>{pokemon.Velocidad}</SPCarateristicas>
+              </SDiv>
+            </SCol>
           </SRow>
         </Card.Body>
       </StyledCard>
