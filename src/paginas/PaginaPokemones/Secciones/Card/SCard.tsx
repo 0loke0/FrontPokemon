@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Eliminar } from "../Eliminar";
+import { Eliminar } from "../Eliminar/Eliminar";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
@@ -26,6 +26,7 @@ import {
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import Vibrant from "node-vibrant";
+import { Editar } from "../Editar/Editar";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
@@ -59,7 +60,9 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
           <Eliminar
             eliminarPokemon={eliminarPokemon}
-            pokemonAEliminar={pokemon}></Eliminar>
+            pokemonAEliminar={pokemon}
+          />
+          <Editar pokemonAActualizar={pokemon}></Editar>
           <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>
               {pokemon.Tipos[0] && (
@@ -89,8 +92,8 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             </SCol>
             <SCol>
               <SDiv>
-                <SImgCaracteristicas src={EscudoEspadas} />
-                <SPCarateristicas>{pokemon.EspecialDefensa}</SPCarateristicas>
+                <SImgCaracteristicas src={DualEspadas} />
+                <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
               </SDiv>
             </SCol>
           </SRow>
@@ -103,8 +106,8 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             </SCol>
             <SCol>
               <SDiv>
-                <SImgCaracteristicas src={DualEspadas} />
-                <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
+                <SImgCaracteristicas src={EscudoEspadas} />
+                <SPCarateristicas>{pokemon.EspecialDefensa}</SPCarateristicas>
               </SDiv>
             </SCol>
           </SRow>

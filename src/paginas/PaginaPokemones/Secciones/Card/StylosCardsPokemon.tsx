@@ -150,6 +150,7 @@ export const StyledCard = styled(Card)<{ rareza: string }>`
 
 export const SImg = styled.img`
   position: relative;
+  z-index: -1;
   width: 100%;
   height: 195px;
   border-radius: 5%;

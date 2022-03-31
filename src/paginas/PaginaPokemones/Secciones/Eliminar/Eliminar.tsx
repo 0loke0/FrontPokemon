@@ -1,9 +1,9 @@
 import React, { useState, FC } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
-import PokeDelete from "../../../Multimedia/Pokemon/Eliminar/PokeDelete.png";
+import PokeDelete from "../../../../Multimedia/Pokemon/Eliminar/PokeDelete.png";
 import styled from "styled-components";
-import { IPokemonDetallado } from "../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 interface IPropPokemonEliminar {
   pokemonAEliminar: IPokemonDetallado;
   eliminarPokemon: any;
