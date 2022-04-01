@@ -1,12 +1,13 @@
 import React, { useState, FC } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Modal } from "react-bootstrap";
-import PokeDelete from "../../../../Multimedia/Pokemon/Eliminar/PokeDelete.png";
+import PokeDelete from "../../../../../../Multimedia/Pokemon/Eliminar/PokeDelete.png";
 import styled from "styled-components";
-import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../../../Interface/PokemonDetallado";
 interface IPropPokemonEliminar {
   pokemonAEliminar: IPokemonDetallado;
   eliminarPokemon: any;
+  cerrarVenta: any;
 }
 
 const STexto = styled.p`
@@ -18,7 +19,7 @@ const SNegrita = styled.p`
 
 const SButton = styled.button`
   background-color: transparent;
-  position: absolute;
+  position: relative;
   height: 40px;
   width: 40px;
   border: 1px solid transparent;
@@ -38,6 +39,7 @@ const SImg = styled.img`
 export const Eliminar: FC<IPropPokemonEliminar> = ({
   pokemonAEliminar,
   eliminarPokemon,
+  cerrarVenta,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -48,12 +50,17 @@ export const Eliminar: FC<IPropPokemonEliminar> = ({
     handleClose();
   };
 
+  const cerrarVentanas = () => {
+    handleClose();
+    cerrarVenta();
+  };
+
   return (
     <>
       <SButton onClick={handleShow}>
         <SImg src={PokeDelete} alt='Delete' />
       </SButton>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={cerrarVentanas}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar</Modal.Title>
         </Modal.Header>

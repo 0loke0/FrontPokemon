@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Table from "react-bootstrap/Table";
 // import { Eliminar } from "../Eliminar/Eliminar";
-import { Editar } from "./Editar/Editar";
+import { Editar } from "./Card/OpcionesCards/Editar/Editar";
 import styled from "styled-components";
 import { IPokemon } from "../../../Interface/Pokemones";
 

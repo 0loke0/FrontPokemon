@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Eliminar } from "../Eliminar/Eliminar";
+import { Eliminar } from "./OpcionesCards/Eliminar/Eliminar";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
@@ -26,7 +26,8 @@ import {
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import Vibrant from "node-vibrant";
-import { Editar } from "../Editar/Editar";
+import { Editar } from "./OpcionesCards/Editar/Editar";
+import { OpcionesCardPokemon } from "./OpcionesCards/OpcionesCardPokemon";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
@@ -58,11 +59,11 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
         <Card.Body>
           <SDivIdentificador>{pokemon.Id}</SDivIdentificador>
           <SDivTitulo>{pokemon.Nombre}</SDivTitulo>
-          <Eliminar
+          <OpcionesCardPokemon
+            pokemon={pokemon}
             eliminarPokemon={eliminarPokemon}
-            pokemonAEliminar={pokemon}
+            editarPokemon={() => {}}
           />
-          <Editar pokemonAActualizar={pokemon}></Editar>
           <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>
               {pokemon.Tipos[0] && (

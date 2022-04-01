@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import styled from "styled-components";
 
 interface IProrDropList {
   lista: any[];
@@ -8,7 +9,11 @@ interface IProrDropList {
   recogerSeleccion: any;
   valorAListar: string;
 }
-
+export const SDropdownButton = styled.div`
+  overflow-y: scroll;
+  overflow-x: auto;
+  height: 142px;
+`;
 export const DropList: FC<IProrDropList> = ({
   lista,
   valorActual,
@@ -19,15 +24,18 @@ export const DropList: FC<IProrDropList> = ({
     <DropdownButton
       id='dropdown-basic-button'
       title={valorActual ? valorActual : "Tipo"}
-      variant={valorActual ? "primary" : "outline-primary"}>
-      {lista?.map((x) => (
-        <Dropdown.Item
-          onClick={() => {
-            recogerSeleccion(x);
-          }}>
-          {x[valorAListar]}
-        </Dropdown.Item>
-      ))}
+      variant={valorActual ? "primary" : "outline-primary"}
+      size='sm'>
+      <SDropdownButton>
+        {lista?.map((x) => (
+          <Dropdown.Item
+            onClick={() => {
+              recogerSeleccion(x);
+            }}>
+            {x[valorAListar]}
+          </Dropdown.Item>
+        ))}
+      </SDropdownButton>
     </DropdownButton>
   );
 };

@@ -2,18 +2,19 @@ import React, { FC, useRef, useState } from "react";
 import Popover from "react-bootstrap/Popover";
 import Overlay from "react-bootstrap/Overlay";
 
-import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../../../Interface/PokemonDetallado";
 import styled from "styled-components";
-import Edicion from "../../../../Multimedia/Pokemon/Editar/Edicion.png";
+import Edicion from "../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
 import { Button, Modal } from "react-bootstrap";
 
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
+  cerrarVenta: any;
 }
 
 const SButton = styled.button`
   background-color: transparent;
-  position: absolute;
+  position: relative;
   height: 40px;
   width: 40px;
   border: 1px solid transparent;
@@ -31,13 +32,20 @@ const SImg = styled.img`
   transform: translate(-50%, -50%);
 `;
 
-export const Editar: FC<IPropActualizar> = ({ pokemonAActualizar }) => {
+export const Editar: FC<IPropActualizar> = ({
+  pokemonAActualizar,
+  cerrarVenta,
+}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const EditarPokemon = () => {};
+  const cerrarVentanas = () => {
+    handleClose();
+    cerrarVenta();
+  };
 
   return (
     <>
@@ -45,7 +53,7 @@ export const Editar: FC<IPropActualizar> = ({ pokemonAActualizar }) => {
         <SImg src={Edicion} alt='Delete' />
       </SButton>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={cerrarVentanas}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar</Modal.Title>
         </Modal.Header>
