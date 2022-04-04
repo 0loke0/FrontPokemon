@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
 import { Col, Container, Modal, Row } from "react-bootstrap";
-import Boton from "../../../../Componentes/Boton";
+
 import { Form } from "react-bootstrap";
 import {
   ITipos,
@@ -16,9 +16,12 @@ import {
   SDivCentrador,
   SDivSolicitudImagen,
   SImg,
+  SImgBoton,
+  SButton,
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
+import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Agregar.png";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -137,11 +140,9 @@ export const Agregar: FC<IPropAgregar> = ({
 
   return (
     <>
-      <Boton
-        variant='outline-success'
-        ejecutarFuncion={handleShow}
-        nombre='Agregar'
-      />
+      <SButton onClick={handleShow}>
+        <SImgBoton src={AgregarIcono} alt='Delete' />
+      </SButton>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

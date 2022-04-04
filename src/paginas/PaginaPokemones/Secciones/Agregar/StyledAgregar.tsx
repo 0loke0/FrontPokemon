@@ -51,3 +51,22 @@ export const SImg = styled.img`
   border: 2px solid #d1d1d1;
   border-radius: 4%;
 `;
+
+export const SButton = styled.button`
+  background-color: transparent;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  border: 1px solid transparent;
+  left: 1%;
+  margin-bottom: 1%;
+`;
+
+export const SImgBoton = styled.img`
+  position: relative;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

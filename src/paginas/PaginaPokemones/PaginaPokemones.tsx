@@ -12,6 +12,7 @@ import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 import { Alerta } from "../../Componentes/Alerta";
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
+import { Texto } from "../../Componentes/Texto";
 
 const SGenenarlPaginaPokemon = styled.div`
   margin: 3% 8% 3% 8%;
@@ -80,7 +81,7 @@ function PaginaPokemones() {
   return (
     <SGenenarlPaginaPokemon>
       <STitulo>Pokémones</STitulo>
-
+      <Texto texto='cantidadRegistros'></Texto>
       <Agregar
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
