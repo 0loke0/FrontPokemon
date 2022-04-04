@@ -7,12 +7,13 @@ const STexto = styled.div<{ size: number }>`
     return size && `font-size:${size}px`;
   }};
   font-weight: 400;
-  position: absolute;
+  position: relative;
   width: 100%;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   border-radius: 0;
+  font-family: Indie Flower;
 `;
 
 interface IPropText {

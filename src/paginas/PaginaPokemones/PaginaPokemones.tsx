@@ -12,23 +12,14 @@ import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 import { Alerta } from "../../Componentes/Alerta";
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
-import { Texto } from "../../Componentes/Texto";
 
-const SGenenarlPaginaPokemon = styled.div`
-  margin: 3% 8% 3% 8%;
-  border: 1px solid blue;
-  box-shadow: 0px 0px 3px black;
-  background-color: #fff7f7;
-  border-radius: 20px;
-  padding: 3%;
-`;
-
-const STitulo = styled.p`
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: 30px;
-  line-height: 1;
-`;
+import {
+  SDivCantidadRegistros,
+  SDivCortina,
+  SGenenarlPaginaPokemon,
+  SRegistros,
+  STitulo,
+} from "./StylosPaginaPokemones";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
@@ -80,8 +71,12 @@ function PaginaPokemones() {
 
   return (
     <SGenenarlPaginaPokemon>
-      <STitulo>Pokémones</STitulo>
-      <Texto texto='cantidadRegistros'></Texto>
+      <SDivCantidadRegistros>
+        <SDivCortina />
+        <SRegistros>Pokemones {cantidadRegistros}</SRegistros>
+      </SDivCantidadRegistros>
+      <STitulo>Pokémones </STitulo>
+
       <Agregar
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}
