@@ -1,10 +1,20 @@
 import { Col, Form } from "react-bootstrap";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { DropList } from "../../../../Componentes/DropList";
 
 interface IProps {
-  ubicacion: string;
+  ubicacion?: string;
+  seleccion?: boolean;
 }
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const Sinput = styled.input`
   font-size: 18px;
@@ -66,7 +76,14 @@ export const SImgBoton = styled.img`
   position: relative;
   height: 60px;
   width: 60px;
+  top: 0%;
+  left: 0%;
+  animation: ${rotate} ${(p: IProps) => p.seleccion && ` 2s linear infinite`};
+`;
+export const SImgSuma = styled.img`
+  position: absolute;
+  height: 40px;
+  width: 40px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 `;

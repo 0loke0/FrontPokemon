@@ -18,10 +18,12 @@ import {
   SImg,
   SImgBoton,
   SButton,
+  SImgSuma,
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
-import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Agregar.png";
+import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/PokeBola.png";
+import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -141,7 +143,8 @@ export const Agregar: FC<IPropAgregar> = ({
   return (
     <>
       <SButton onClick={handleShow}>
-        <SImgBoton src={AgregarIcono} alt='Delete' />
+        <SImgBoton seleccion={show} src={AgregarIcono} alt='pokebola' />
+        <SImgSuma src={Suma} alt='suma' />
       </SButton>
 
       <Modal show={show} onHide={handleClose}>
