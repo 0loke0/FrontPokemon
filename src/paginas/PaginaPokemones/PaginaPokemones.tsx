@@ -12,14 +12,8 @@ import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 import { Alerta } from "../../Componentes/Alerta";
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
-
-import {
-  SDivCantidadRegistros,
-  SDivCortina,
-  SGenenarlPaginaPokemon,
-  SRegistros,
-  STitulo,
-} from "./StylosPaginaPokemones";
+import { SGenenarlPaginaPokemon, STitulo } from "./StylosPaginaPokemones";
+import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
@@ -71,12 +65,8 @@ function PaginaPokemones() {
 
   return (
     <SGenenarlPaginaPokemon>
-      <SDivCantidadRegistros>
-        <SDivCortina />
-        <SRegistros>Pokemones {cantidadRegistros}</SRegistros>
-      </SDivCantidadRegistros>
       <STitulo>Pokémones </STitulo>
-
+      <ContadorPokemon cantidadRegistros={cantidadRegistros}></ContadorPokemon>
       <Agregar
         actualizarPagina={actualizarPagina}
         agregarPokemon={agregarNuevoPokemon}

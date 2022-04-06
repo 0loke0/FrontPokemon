@@ -1,24 +1,4 @@
 import styled from "styled-components";
-import Background from "../../Multimedia/Pokemon/PaginaPokemon/Background.png";
-
-export const SGenenarlPaginaPokemon = styled.div`
-  margin-top: 2%;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-  height: 100%;
-  width: 90%;
-  border: 1px solid blue;
-  box-shadow: 0px 0px 3px black;
-  background-image: url(${Background});
-  border-radius: 20px;
-  padding: 40px;
-`;
-
-export const STitulo = styled.p`
-  font-family: Poiret One;
-  font-size: 40px;
-`;
 
 export const SDivCantidadRegistros = styled.div`
   position: absolute;
@@ -45,6 +25,11 @@ export const SDivCortina = styled.div`
   &:focus {
     transition: 1s;
   }
+`;
+
+export const SImg = styled.img`
+  height: 200px;
+  width: 200px;
 `;
 
 export const SRegistros = styled.div`

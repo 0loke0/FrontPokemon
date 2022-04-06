@@ -78,7 +78,10 @@ export const SImgBoton = styled.img`
   width: 60px;
   top: 0%;
   left: 0%;
-  animation: ${rotate} ${(p: IProps) => p.seleccion && ` 2s linear infinite`};
+  animation: ${rotate} ${(p: IProps) => p.seleccion && ` 10s linear infinite`};
+  &:hover {
+    animation: 10s linear infinite;
+  }
 `;
 export const SImgSuma = styled.img`
   position: absolute;
