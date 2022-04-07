@@ -12,7 +12,11 @@ import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 import { Alerta } from "../../Componentes/Alerta";
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
-import { SGenenarlPaginaPokemon, STitulo } from "./StylosPaginaPokemones";
+import {
+  SGenenarlPaginaPokemon,
+  SPaginaPokemones,
+  STitulo,
+} from "./StylosPaginaPokemones";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 
 function PaginaPokemones() {
@@ -64,20 +68,23 @@ function PaginaPokemones() {
   };
 
   return (
-    <SGenenarlPaginaPokemon>
-      <STitulo>Pokémones </STitulo>
-      <ContadorPokemon cantidadRegistros={cantidadRegistros}></ContadorPokemon>
-      <Agregar
-        actualizarPagina={actualizarPagina}
-        agregarPokemon={agregarNuevoPokemon}
-      />
-      <ContenedorCards
-        PokemonDetallado={pokemonDetallado}
-        TomarInformaiconPaginacion={tomarInformaiconPaginacion}
-        eliminarPokemon={eliminarPokemonRegistrado}
-        cantidadRegistros={cantidadRegistros}
-      />
-    </SGenenarlPaginaPokemon>
+    <SPaginaPokemones>
+      <SGenenarlPaginaPokemon>
+        <STitulo>Pokémones </STitulo>
+        <ContadorPokemon
+          cantidadRegistros={cantidadRegistros}></ContadorPokemon>
+        <Agregar
+          actualizarPagina={actualizarPagina}
+          agregarPokemon={agregarNuevoPokemon}
+        />
+        <ContenedorCards
+          PokemonDetallado={pokemonDetallado}
+          TomarInformaiconPaginacion={tomarInformaiconPaginacion}
+          eliminarPokemon={eliminarPokemonRegistrado}
+          cantidadRegistros={cantidadRegistros}
+        />
+      </SGenenarlPaginaPokemon>
+    </SPaginaPokemones>
   );
 }
 

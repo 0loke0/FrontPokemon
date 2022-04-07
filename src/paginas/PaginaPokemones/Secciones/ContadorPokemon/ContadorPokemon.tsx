@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import {
   SDivCantidadRegistros,
   SDivCortina,
-  SImg,
+  SImgPikachu,
   SRegistros,
+  SImgPikachuManos,
 } from "./StylosContadorPokemon";
 import Pikachu from "../../../../Multimedia/Pokemon/ContadorPokemon/Pikachu.png";
-
+import ManosPikachu from "../../../../Multimedia/Pokemon/ContadorPokemon/ManosPikachu.png";
 interface IPropContadorPokemon {
   cantidadRegistros: number;
 }
@@ -15,9 +16,10 @@ export const ContadorPokemon: FC<IPropContadorPokemon> = ({
 }) => {
   return (
     <SDivCantidadRegistros>
-      <SImg src={Pikachu} alt='Logo' />
+      <SImgPikachu src={Pikachu} alt='Pikachu' />
       <SDivCortina />
-      <SRegistros>Pokemones {cantidadRegistros}</SRegistros>
+      <SRegistros>{cantidadRegistros}</SRegistros>
+      <SImgPikachuManos src={ManosPikachu} alt='ManosPikachu' />
     </SDivCantidadRegistros>
   );
 };

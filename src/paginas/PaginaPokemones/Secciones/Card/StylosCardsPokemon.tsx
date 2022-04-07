@@ -154,6 +154,8 @@ export const SImg = styled.img`
   width: 100%;
   height: 195px;
   border-radius: 5%;
+
+  object-fit: contain;
 `;
 
 export const SDiv = styled.div`

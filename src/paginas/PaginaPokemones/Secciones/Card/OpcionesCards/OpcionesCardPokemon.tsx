@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import { Button, Overlay, Popover } from "react-bootstrap";
 import styled from "styled-components";
 import { IPokemonDetallado } from "../../../../../Interface/PokemonDetallado";
-import Opciones from "../../../../../Multimedia/Pokemon/OpcionesCard/Opciones.png";
+import Opciones from "../../../../../Multimedia/Pokemon/OpcionesCard/TuercaPoke.png";
 
 import { Editar } from "../OpcionesCards/Editar/Editar";
 import { Eliminar } from "../OpcionesCards/Eliminar/Eliminar";
@@ -33,6 +33,9 @@ const SImg = styled.img`
 
 const SOverlay = styled(Overlay)`
   z-index: -1;
+`;
+const SPopoverBody = styled(Popover.Body)`
+  text-align: center;
 `;
 
 export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
@@ -67,7 +70,7 @@ export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
         rootClose={true}>
         <Popover id='popover-contained'>
           <Popover.Header as='h3'>Opciones</Popover.Header>
-          <Popover.Body>
+          <SPopoverBody>
             <Editar
               pokemonAActualizar={pokemon}
               cerrarVenta={cerrarVenta}></Editar>
@@ -75,7 +78,7 @@ export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
               eliminarPokemon={eliminarPokemon}
               pokemonAEliminar={pokemon}
               cerrarVenta={cerrarVenta}></Eliminar>
-          </Popover.Body>
+          </SPopoverBody>
         </Popover>
       </SOverlay>
     </div>

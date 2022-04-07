@@ -33,6 +33,8 @@ const SDivContenedor = styled.div`
 `;
 
 const Sdiv = styled.div`
+  position: relative;
+  bottom: -10%;
   margin: 5px;
   padding: 5px;
 `;

@@ -24,8 +24,6 @@ const SButton = styled.button`
   width: 40px;
   border: 1px solid transparent;
   border-radius: 0%;
-  top: 1%;
-  right: 1%;
 `;
 
 const SImg = styled.img`

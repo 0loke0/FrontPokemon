@@ -8,11 +8,14 @@ interface IProps {
 }
 
 const rotate = keyframes`
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: rotate(60deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 `;
 
@@ -68,7 +71,7 @@ export const SButton = styled.button`
   height: 60px;
   width: 60px;
   border: 1px solid transparent;
-  left: 1%;
+  left: -0.5%;
   margin-bottom: 1%;
 `;
 
@@ -78,7 +81,7 @@ export const SImgBoton = styled.img`
   width: 60px;
   top: 0%;
   left: 0%;
-  animation: ${rotate} ${(p: IProps) => p.seleccion && ` 10s linear infinite`};
+  animation: ${rotate} ${(p: IProps) => p.seleccion && ` 0.5s linear `};
   &:hover {
     animation: 10s linear infinite;
   }
