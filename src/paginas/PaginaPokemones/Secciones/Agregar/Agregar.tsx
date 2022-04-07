@@ -19,6 +19,7 @@ import {
   SImgBoton,
   SButton,
   SImgSuma,
+  SModal,
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";

@@ -61,7 +61,7 @@ export const Editar: FC<IPropActualizar> = ({
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant='secondary' onClick={cerrarVentanas}>
             Cancelar
           </Button>
           <Button variant='danger' onClick={EditarPokemon}>

@@ -70,7 +70,7 @@ export const Eliminar: FC<IPropPokemonEliminar> = ({
           <STexto>¿Esta seguro que lo desea eliminar?</STexto>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant='secondary' onClick={cerrarVentanas}>
             Cancelar
           </Button>
           <Button variant='danger' onClick={borrarPokemon}>

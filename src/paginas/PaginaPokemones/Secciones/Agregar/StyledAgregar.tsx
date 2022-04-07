@@ -1,6 +1,8 @@
-import { Col, Form } from "react-bootstrap";
+import { Col, Form, Modal } from "react-bootstrap";
 import styled, { keyframes } from "styled-components";
 import { DropList } from "../../../../Componentes/DropList";
+
+import Forest from "../../../../Multimedia/Pokemon/Agregar/Forest.jpg";
 
 interface IProps {
   ubicacion?: string;
@@ -92,4 +94,8 @@ export const SImgSuma = styled.img`
   width: 40px;
   top: 50%;
   left: 50%;
+`;
+
+export const SModal = styled.div`
+  background-color: red;
 `;

@@ -18,7 +18,7 @@ export const ContadorPokemon: FC<IPropContadorPokemon> = ({
     <SDivCantidadRegistros>
       <SImgPikachu src={Pikachu} alt='Pikachu' />
       <SDivCortina />
-      <SRegistros>{cantidadRegistros}</SRegistros>
+      <SRegistros>{cantidadRegistros ? cantidadRegistros : "0"}</SRegistros>
       <SImgPikachuManos src={ManosPikachu} alt='ManosPikachu' />
     </SDivCantidadRegistros>
   );

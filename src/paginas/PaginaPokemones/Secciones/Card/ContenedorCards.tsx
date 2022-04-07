@@ -39,6 +39,12 @@ const Sdiv = styled.div`
   padding: 5px;
 `;
 
+const SInformacionPaginacion = styled.div`
+  text-align: center;
+  font-family: Poiret One;
+  font-weight: 800;
+`;
+
 const SContenidoSinInformacion = styled.p`
   text-align: center;
 `;
@@ -95,6 +101,10 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
       {PokemonDetallado && (
         <Sdiv>
           <SDivContenedor>
+            <SInformacionPaginacion>
+              Pagina {pagina + 1}/
+              {Math.ceil(cantidadRegistros / LIMITEPORPAGINA)}
+            </SInformacionPaginacion>
             <Boton
               variant='outline-primary'
               ejecutarFuncion={retroceder}

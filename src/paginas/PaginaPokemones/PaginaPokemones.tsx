@@ -18,13 +18,14 @@ import {
   STitulo,
 } from "./StylosPaginaPokemones";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
+import { Loader } from "../../Componentes/Loader/loader";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
   const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
-
+  const [loader, setloader] = useState(false);
   const [infoPaginacion, setinfoPaginacion] = useState({
     Indice: 0,
     CantidadRegistros: 3,
@@ -39,12 +40,18 @@ function PaginaPokemones() {
   }, [infoPaginacion]);
 
   const actualizarPagina = () => {
-    ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
+    setloader(true);
+    setTimeout(function () {
+      ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
+      setloader(false);
+    }, 2000);
   };
 
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
-      .then((x) => x && Alerta("success", "Guardado", x))
+      .then((x) => {
+        x && Alerta("success", "Guardado", x);
+      })
       .then(() => actualizarPagina())
       .then(() =>
         ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
@@ -70,6 +77,7 @@ function PaginaPokemones() {
   return (
     <SPaginaPokemones>
       <SGenenarlPaginaPokemon>
+        {loader && <Loader />}
         <STitulo>Pokémones </STitulo>
         <ContadorPokemon
           cantidadRegistros={cantidadRegistros}></ContadorPokemon>
