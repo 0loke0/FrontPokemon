@@ -1,4 +1,8 @@
 import { Alerta } from "../../Componentes/Alerta";
+import { Loader } from "../../Componentes/Loader/loader";
+
+import React from "react";
+import ReactDOM from "react-dom";
 
 export const ConsumirApi = async (
   url: string,

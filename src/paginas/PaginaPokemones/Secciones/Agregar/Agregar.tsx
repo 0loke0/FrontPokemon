@@ -19,11 +19,10 @@ import {
   SImgBoton,
   SButton,
   SImgSuma,
-  SModal,
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
-import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/PokeBola.png";
+import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 
 interface IPropAgregar {
@@ -93,7 +92,6 @@ export const Agregar: FC<IPropAgregar> = ({
 
   const actualizarNombrePokemon = (e: any) => {
     setnombrePokemon(e.target.value);
-    // setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
 
   const recogerEventoTipo1 = (x: ITipos) => {

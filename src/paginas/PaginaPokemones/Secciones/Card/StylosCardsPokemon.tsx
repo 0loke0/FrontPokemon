@@ -50,7 +50,7 @@ let coloresTipos = (idTipo: number) => {
 export const SDivTitulo = styled.div`
   text-align: left;
   margin: 2% 0% 0% 10%;
-  font-family: monospace;
+  font-family: Press Start 2P;
   font-size: x-large;
 `;
 export const SDivIdentificador = styled.div`
@@ -154,7 +154,6 @@ export const SImg = styled.img`
   width: 100%;
   height: 195px;
   border-radius: 5%;
-
   object-fit: contain;
 `;
 
@@ -181,6 +180,7 @@ export const SPCarateristicas = styled.p`
   width: 100%;
   transform: translate(-50%, 0%);
   text-align: center;
+  font-family: Righteous;
 `;
 
 export const SDivTipos = styled.div`

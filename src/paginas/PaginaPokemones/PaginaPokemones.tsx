@@ -30,10 +30,14 @@ function PaginaPokemones() {
     Indice: 0,
     CantidadRegistros: 3,
   });
+
   useEffect(() => {
-    ObtenerPokemones(infoPaginacion).then((x) => {
-      setPokemonDetallado(x);
-    });
+    setloader(true);
+    ObtenerPokemones(infoPaginacion)
+      .then((x) => {
+        setPokemonDetallado(x);
+      })
+      .then(() => setloader(false));
     ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
       setcantidadRegistros(cantidadRegistros)
     );
@@ -41,10 +45,14 @@ function PaginaPokemones() {
 
   const actualizarPagina = () => {
     setloader(true);
-    setTimeout(function () {
-      ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
-      setloader(false);
-    }, 2000);
+    ObtenerPokemones(infoPaginacion)
+      .then((x) => setPokemonDetallado(x))
+      .then(() => setloader(false))
+      .catch(() => setloader(false));
+    ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) => {
+      console.log("informacion data se actualiza registos");
+      setcantidadRegistros(cantidadRegistros);
+    });
   };
 
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
@@ -65,12 +73,12 @@ function PaginaPokemones() {
   };
 
   const eliminarPokemonRegistrado = (idPokemon: number) => {
-    console.log("se esta intentado borrar el elemento con id ", idPokemon);
-
+    setloader(true);
     EliminarPokemon(idPokemon)
       .then((data) => {
         Alerta("success", "Completado", data);
       })
+      .then(() => setloader(false))
       .then(() => actualizarPagina());
   };
 

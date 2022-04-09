@@ -1,24 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import Pokebola from "../../Multimedia/Pokemon/Agregar/Pokebola.png";
 
-const SLoader = styled.div`
+const ContenedorLoader = styled.div`
   display: inline-block;
   position: absolute;
   width: 80px;
   height: 80px;
   z-index: 15;
-  :after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 32px solid #cef;
-    border-color: #cef transparent #cef transparent;
-    animation: lds-hourglass 1.2s infinite;
-  }
+  top: 100%;
+  left: 1%;
+  transform: translate(0%, -110%);
+`;
+const SLoader = styled.img`
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  z-index: 15;
+  animation: lds-hourglass 1.2s infinite;
+
   @keyframes lds-hourglass {
     0% {
       transform: rotate(0);
@@ -35,5 +36,9 @@ const SLoader = styled.div`
 `;
 
 export const Loader = () => {
-  return <SLoader></SLoader>;
+  return (
+    <ContenedorLoader>
+      <SLoader src={Pokebola}></SLoader>
+    </ContenedorLoader>
+  );
 };

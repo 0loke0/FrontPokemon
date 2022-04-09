@@ -9,6 +9,7 @@ import {
 } from "../../../../Servicios/ServicioPokemon";
 import { SCard } from "./SCard";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
+import SinInformacion from "../../../../Multimedia/Pokemon/PaginaPokemon/SinInformacion.png";
 
 interface IPropCardPokemon {
   PokemonDetallado: IPokemonDetallado[];
@@ -16,20 +17,39 @@ interface IPropCardPokemon {
   eliminarPokemon: any;
   cantidadRegistros: number;
 }
-const SContenedorSinInformacion = styled.div`
+const SContenedorTextoSinInformacion = styled.div`
+  text-align: center;
   position: relative;
   left: 50%;
   width: 300px;
   height: 30px;
   transform: translate(-50%, 0);
+`;
+const SContenedorSinInformacion = styled.div`
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 300px;
+  height: 30px;
+  transform: translate(-50%);
   border: 2px solid #bec8e7;
   border-radius: 10px;
+`;
+
+const SImgSinInformaicon = styled.img`
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 150px;
+  height: 100px;
+  transform: translate(-50%);
+  object-fit: contain;
 `;
 
 const SDivContenedor = styled.div`
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%);
 `;
 
 const Sdiv = styled.div`
@@ -63,6 +83,9 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
     informacionPaginacion();
   }, [pagina]);
 
+  const determinarCantidadPaginas = () => {
+    return Math.ceil(cantidadRegistros / LIMITEPORPAGINA);
+  };
   const retroceder = () => {
     if (pagina > 0) {
       setpagina(pagina - 1);
@@ -93,20 +116,24 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
             <SCard pokemon={data} eliminarPokemon={eliminarPokemon} />
           ))
         ) : (
-          <SContenedorSinInformacion>
-            <SContenidoSinInformacion>Sin Informacion</SContenidoSinInformacion>
-          </SContenedorSinInformacion>
+          <>
+            <SContenedorSinInformacion>
+              <SImgSinInformaicon src={SinInformacion} alt='SinInformacion' />
+              <SContenedorTextoSinInformacion>
+                Sin Informacion
+              </SContenedorTextoSinInformacion>
+            </SContenedorSinInformacion>
+          </>
         )}
       </Row>
       {PokemonDetallado && (
         <Sdiv>
           <SDivContenedor>
             <SInformacionPaginacion>
-              Pagina {pagina + 1}/
-              {Math.ceil(cantidadRegistros / LIMITEPORPAGINA)}
+              Pagina {pagina + 1}/{determinarCantidadPaginas()}
             </SInformacionPaginacion>
             <Boton
-              variant='outline-primary'
+              variant={pagina != 0 ? "outline-primary" : "secondary"}
               ejecutarFuncion={retroceder}
               nombre='<'
             />
@@ -116,7 +143,11 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
               nombre='Inicio'
             />
             <Boton
-              variant='outline-primary'
+              variant={
+                determinarCantidadPaginas() !== pagina + 1
+                  ? "outline-primary"
+                  : "secondary"
+              }
               ejecutarFuncion={avanzar}
               nombre='>'
             />
