@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
+
 import {
   AgregarPokemon,
   EliminarPokemon,
   ObtenerCantidadRegistrosPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
+
+import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
+
+import { Loader } from "../../Componentes/Loader/loader";
+import { Alerta } from "../../Componentes/Alerta";
+
+import { Agregar } from "./Secciones/Agregar/Agregar";
+import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
+import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
 
-import { Alerta } from "../../Componentes/Alerta";
-import { Agregar } from "./Secciones/Agregar/Agregar";
-import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
 import {
-  SGenenarlPaginaPokemon,
+  SGeneralPaginaPokemon,
   SPaginaPokemones,
   STitulo,
 } from "./StylosPaginaPokemones";
-import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
-import { Loader } from "../../Componentes/Loader/loader";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
     []
   );
   const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
-  const [loader, setloader] = useState(false);
   const [infoPaginacion, setinfoPaginacion] = useState({
     Indice: 0,
     CantidadRegistros: 3,
   });
+  const [loader, setloader] = useState(false);
 
   useEffect(() => {
     setloader(true);
@@ -43,6 +46,11 @@ function PaginaPokemones() {
     );
   }, [infoPaginacion]);
 
+  const tomarInformacionPaginacion = (infoPaginacion: IPaginacion) => {
+    setinfoPaginacion(infoPaginacion);
+  };
+
+  //Read
   const actualizarPagina = () => {
     setloader(true);
     ObtenerPokemones(infoPaginacion)
@@ -54,7 +62,17 @@ function PaginaPokemones() {
       setcantidadRegistros(cantidadRegistros);
     });
   };
-
+  //Delete
+  const eliminarPokemonRegistrado = (idPokemon: number) => {
+    setloader(true);
+    EliminarPokemon(idPokemon)
+      .then((data) => {
+        Alerta("success", "Completado", data);
+      })
+      .then(() => setloader(false))
+      .then(() => actualizarPagina());
+  };
+  //Create
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
       .then((x) => {
@@ -68,25 +86,11 @@ function PaginaPokemones() {
       );
   };
 
-  const tomarInformaiconPaginacion = (infoPaginacion: IPaginacion) => {
-    setinfoPaginacion(infoPaginacion);
-  };
-
-  const eliminarPokemonRegistrado = (idPokemon: number) => {
-    setloader(true);
-    EliminarPokemon(idPokemon)
-      .then((data) => {
-        Alerta("success", "Completado", data);
-      })
-      .then(() => setloader(false))
-      .then(() => actualizarPagina());
-  };
-
   return (
     <SPaginaPokemones>
-      <SGenenarlPaginaPokemon>
+      <SGeneralPaginaPokemon>
         {loader && <Loader />}
-        <STitulo>Pokémones </STitulo>
+        <STitulo>Pokémones</STitulo>
         <ContadorPokemon
           cantidadRegistros={cantidadRegistros}></ContadorPokemon>
         <Agregar
@@ -94,12 +98,12 @@ function PaginaPokemones() {
           agregarPokemon={agregarNuevoPokemon}
         />
         <ContenedorCards
-          PokemonDetallado={pokemonDetallado}
-          TomarInformaiconPaginacion={tomarInformaiconPaginacion}
+          pokemonDetallado={pokemonDetallado}
+          tomarInformacionPaginacion={tomarInformacionPaginacion}
           eliminarPokemon={eliminarPokemonRegistrado}
           cantidadRegistros={cantidadRegistros}
         />
-      </SGenenarlPaginaPokemon>
+      </SGeneralPaginaPokemon>
     </SPaginaPokemones>
   );
 }

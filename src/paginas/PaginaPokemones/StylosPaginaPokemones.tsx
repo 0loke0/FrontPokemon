@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Background from "../../Multimedia/Pokemon/PaginaPokemon/Background.png";
 
-export const SGenenarlPaginaPokemon = styled.div`
+export const SGeneralPaginaPokemon = styled.div`
   position: relative;
   left: 50%;
   transform: translate(-50%);

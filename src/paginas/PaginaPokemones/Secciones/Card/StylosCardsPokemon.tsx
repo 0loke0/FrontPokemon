@@ -4,6 +4,52 @@ import styled, { css } from "styled-components";
 import { keyframes } from "styled-components";
 import { Row } from "react-bootstrap";
 
+import Acero from "../../../../Multimedia/Pokemon/Card/IconosTipo/Acero.png";
+
+// background-image: url(${Background});
+let fondoTipo = (idTipo: number) => {
+  switch (idTipo) {
+    case 1:
+      return `${Acero}`;
+    case 2:
+      return `${Acero}`;
+    case 3:
+      return `${Acero}`;
+    case 4:
+      return `${Acero}`;
+    case 5:
+      return `${Acero}`;
+    case 6:
+      return `${Acero}`;
+    case 7:
+      return `${Acero}`;
+    case 8:
+      return `${Acero}`;
+    case 9:
+      return `${Acero}`;
+    case 10:
+      return `${Acero}`;
+    case 11:
+      return `${Acero}`;
+    case 12:
+      return `${Acero}`;
+    case 13:
+      return `${Acero}`;
+    case 14:
+      return `${Acero}`;
+    case 15:
+      return `${Acero}`;
+    case 16:
+      return `${Acero}`;
+    case 17:
+      return `${Acero}`;
+    case 18:
+      return `${Acero}`;
+    default:
+      return `${Acero}`;
+  }
+};
+
 let coloresTipos = (idTipo: number) => {
   switch (idTipo) {
     case 1:
@@ -49,13 +95,19 @@ let coloresTipos = (idTipo: number) => {
 
 export const SDivTitulo = styled.div`
   text-align: left;
-  margin: 2% 0% 0% 10%;
-  font-family: Press Start 2P;
-  font-size: x-large;
+  align-items: center;
+  top: 50%;
+  left: 10%;
+  position: relative;
+  font-family: Indie Flower;
+  height: 40px;
+  font-weight: 800;
+  font-size: 150%;
+  transform: translate(0%, -10%);
 `;
 export const SDivIdentificador = styled.div`
-  top: 2%;
-  left: 2%;
+  top: 3%;
+  left: 3%;
   border-radius: 50%;
   position: absolute;
   display: flex;
@@ -70,16 +122,14 @@ export const SDivIdentificador = styled.div`
 export const SCol = styled(Col)`
   margin: 0% 15%;
   height: 50px;
-  border: 1px solid #29c5f1;
-  border-radius: 10% 10% 10% 10%;
-  background-color: #9dccfa;
+  border: 1px solid #0b07ff;
+  border-radius: 10px;
+  background-color: transparent;
 `;
 
 export const SRow = styled(Row)`
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   margin-top: 5px;
   margin: 1% 0% 0% 0%;
 `;
@@ -98,6 +148,11 @@ export const SContenedorImagen = styled.div<{ colorFondo: string }>`
   transform: translate(-50%, 0%);
 `;
 
+export const SContenedorImagenTipo = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 export const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
   position: relative;
   top: -102%;
@@ -106,6 +161,7 @@ export const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
   background-color: ${({ tipo }) => {
     return coloresTipos(tipo);
   }};
+
   border-radius: 50px;
   border: 1px Solid black;
   transform: ${({ posicion }) => {
@@ -124,30 +180,48 @@ export const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
 
 export const StyledCard = styled(Card)<{ rareza: string }>`
   padding: 5px;
-  border-radius: 10px;
-  border: 4px solid #9dccfa;
+  border-radius: 20px;
+  border: 2px solid #628395;
   box-shadow: 5px 5px 10px #7d7d7d;
   background-color: #ffdee9;
   background-image: ${({ rareza }) => {
     switch (rareza) {
       case "Comun":
-        return `linear-gradient(0deg, #474747 0%, #afafaf 100%);`;
+        return `linear-gradient(0deg, #AAAAAA 0%, #ffffff 100%);`;
       case "Poco comun":
-        return `linear-gradient(0deg, #2f3663 0%, #3e54c9 100%);`;
+        return `linear-gradient(0deg, #A2D2FF 0%, #D1E8E4 100%);`;
       case "Rara":
-        return `linear-gradient(0deg, #402c63 0%, #6a3cc7 100%);`;
+        return `linear-gradient(0deg, #b5a3db 0%, #e0e0e0 100%);`;
       case "Epica":
-        return `linear-gradient(0deg, #5a2562 0%, #a627b3 100%);`;
+        return `linear-gradient(0deg, #ddb2e2 0%, #ecdcec 100%);`;
       case "Epica Singular":
-        return `linear-gradient(0deg, #5d2f2e 0%, #b43e40 100%);`;
+        return `linear-gradient(0deg, #FFB4B4 0%, #FFE8E8 100%);`;
       case "Legendaria":
-        return `linear-gradient(0deg, #5f5817 0%, #c4a909 100%);`;
+        return `linear-gradient(0deg, #FAFCC2 0%, #F8EFD4 100%);`;
       default:
         return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
     }
   }};
 `;
 
+// background-image: ${({ rareza }) => {
+//   switch (rareza) {
+//     case "Comun":
+//       return `linear-gradient(0deg, #474747 0%, #afafaf 100%);`;
+//     case "Poco comun":
+//       return `linear-gradient(0deg, #2f3663 0%, #3e54c9 100%);`;
+//     case "Rara":
+//       return `linear-gradient(0deg, #402c63 0%, #6a3cc7 100%);`;
+//     case "Epica":
+//       return `linear-gradient(0deg, #5a2562 0%, #a627b3 100%);`;
+//     case "Epica Singular":
+//       return `linear-gradient(0deg, #5d2f2e 0%, #b43e40 100%);`;
+//     case "Legendaria":
+//       return `linear-gradient(0deg, #5f5817 0%, #c4a909 100%);`;
+//     default:
+//       return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
+//   }
+// }};
 export const SImg = styled.img`
   position: relative;
   z-index: -1;

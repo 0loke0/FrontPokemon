@@ -2,18 +2,14 @@ import React, { FC, useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import styled from "styled-components";
 import Boton from "../../../../Componentes/Boton";
-import { IPokemon } from "../../../../Interface/Pokemones";
-import {
-  ObtenerCantidadRegistrosPokemon,
-  ObtenerPokemones,
-} from "../../../../Servicios/ServicioPokemon";
+
 import { SCard } from "./SCard";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import SinInformacion from "../../../../Multimedia/Pokemon/PaginaPokemon/SinInformacion.png";
 
 interface IPropCardPokemon {
-  PokemonDetallado: IPokemonDetallado[];
-  TomarInformaiconPaginacion: any;
+  pokemonDetallado: IPokemonDetallado[];
+  tomarInformacionPaginacion: any;
   eliminarPokemon: any;
   cantidadRegistros: number;
 }
@@ -65,23 +61,25 @@ const SInformacionPaginacion = styled.div`
   font-weight: 800;
 `;
 
-const SContenidoSinInformacion = styled.p`
-  text-align: center;
-`;
-
 const LIMITEPORPAGINA = 3;
 
 export const ContenedorCards: FC<IPropCardPokemon> = ({
-  PokemonDetallado,
-  TomarInformaiconPaginacion,
+  pokemonDetallado,
+  tomarInformacionPaginacion,
   eliminarPokemon,
   cantidadRegistros,
 }) => {
-  const [pagina, setpagina] = useState<number>(0);
+  const [pagina, setpagina] = useState<number>(1);
 
   useEffect(() => {
     informacionPaginacion();
   }, [pagina]);
+
+  useEffect(() => {
+    if (determinarCantidadPaginas() < pagina + 1) {
+      setpagina(pagina - 1);
+    }
+  }, [cantidadRegistros]);
 
   const determinarCantidadPaginas = () => {
     return Math.ceil(cantidadRegistros / LIMITEPORPAGINA);
@@ -102,7 +100,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
   };
 
   const informacionPaginacion = () => {
-    TomarInformaiconPaginacion({
+    tomarInformacionPaginacion({
       Indice: pagina,
       CantidadRegistros: LIMITEPORPAGINA,
     });
@@ -111,8 +109,8 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
   return (
     <>
       <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
-        {PokemonDetallado ? (
-          PokemonDetallado.map((data, index) => (
+        {pokemonDetallado ? (
+          pokemonDetallado.map((data, index) => (
             <SCard pokemon={data} eliminarPokemon={eliminarPokemon} />
           ))
         ) : (
@@ -126,7 +124,7 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
           </>
         )}
       </Row>
-      {PokemonDetallado && (
+      {pokemonDetallado && (
         <Sdiv>
           <SDivContenedor>
             <SInformacionPaginacion>

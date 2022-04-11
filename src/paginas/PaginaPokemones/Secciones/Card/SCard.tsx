@@ -8,7 +8,7 @@ import Velocidad from "../../../../Multimedia/Pokemon/Card/Velocidad.png";
 import Espada from "../../../../Multimedia/Pokemon/Card/Espada.png";
 import EscudoEspadas from "../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
 import Escudo from "../../../../Multimedia/Pokemon/Card/Escudo.png";
-import DualEspadas from "../../../../Multimedia/Pokemon/Card/DualEspadas.png";
+import AtaqueEspecial from "../../../../Multimedia/Pokemon/Card/AtaqueEspecial.png";
 
 import {
   SImg,
@@ -23,6 +23,7 @@ import {
   SDivTipos,
   SPCarateristicas,
   SDiv,
+  SContenedorImagenTipo,
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import Vibrant from "node-vibrant";
@@ -64,6 +65,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             eliminarPokemon={eliminarPokemon}
             editarPokemon={() => {}}
           />
+
           <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>
               {pokemon.Tipos[0] && (
@@ -93,7 +95,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             </SCol>
             <SCol>
               <SDiv>
-                <SImgCaracteristicas src={DualEspadas} />
+                <SImgCaracteristicas src={AtaqueEspecial} />
                 <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
               </SDiv>
             </SCol>
