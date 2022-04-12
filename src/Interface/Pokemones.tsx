@@ -29,11 +29,12 @@ export interface IMovimiento {
   Valor: number;
 }
 
-export interface INuevoPokemon {
+export interface IEstructuraNuevoPokemon {
   NombrePokemon: string;
-  IdsTipo: (number | undefined)[];
-  IdsMovimiento: (number | undefined)[];
+  IdsTipo: ITipos[];
+  IdsMovimiento: IMovimiento[];
   Imagen: IImagen;
+  Detalle: string;
 }
 
 export interface IPaginacion {

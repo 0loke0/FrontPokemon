@@ -6,9 +6,8 @@ import { Col, Container, Modal, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import {
   ITipos,
-  INuevoPokemon,
+  IEstructuraNuevoPokemon,
   IMovimiento,
-  IImagen,
 } from "../../../../Interface/Pokemones";
 import {
   Sinput,
@@ -24,39 +23,49 @@ import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
+import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
+import styled from "styled-components";
 
 interface IPropAgregar {
   actualizarPagina: any;
-  agregarPokemon: (input: INuevoPokemon) => any;
+  agregarPokemon: (construirNuevoPokemon: any) => any;
 }
 
-const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
+const DEFAULTNUEVOPOKEMON: IEstructuraNuevoPokemon = {
   NombrePokemon: "",
-  IdsTipo: [],
-  IdsMovimiento: [],
-  Imagen: { Nombre: "s", ArchivoImagen: "sss" },
+  IdsTipo: [
+    { IdTipo: 0, NombreTipo: "Tipo" },
+    { IdTipo: 0, NombreTipo: "Tipo" },
+  ],
+  IdsMovimiento: [
+    { IdMovimiento: 0, NombreMovimiento: "Movimiento", Valor: 0 },
+    { IdMovimiento: 0, NombreMovimiento: "Movimiento", Valor: 0 },
+  ],
+  Imagen: { Nombre: "", ArchivoImagen: "" },
+  Detalle: "",
 };
+
+const SContenedorMovimientos = styled.div<{ index: number }>`
+  background-color: ${({ index }) => {
+    return index === 0 ? "red" : "blue";
+  }}; ;
+`;
+
+const SContenedorTipos = styled.div`
+  background-color: transparent;
+`;
 
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
   const [nuevoPokemon, setnuevoPokemon] =
-    useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
-
-  const [nombrePokemon, setnombrePokemon] = useState<string>();
+    useState<IEstructuraNuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
-  const [tipoSelectionado1, settipoSelectionado1] = useState<ITipos>();
-  const [tipoSelectionado2, settipoSelectionado2] = useState<ITipos>();
-  const [movimientoSelectionado1, setMovimientoSelectionado1] =
-    useState<IMovimiento>();
-  const [movimientoSelectionado2, setMovimientoSelectionado2] =
-    useState<IMovimiento>();
-  const [imagen, setimagen] = useState<IImagen>();
-  const [detalle, setdetalle] = useState<string>();
 
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -65,84 +74,64 @@ export const Agregar: FC<IPropAgregar> = ({
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
 
-  const construirNuevoPokemon = {
-    NombrePokemon: nombrePokemon ? nombrePokemon : "",
-    IdsTipo: [
-      tipoSelectionado1?.IdTipo ? tipoSelectionado1.IdTipo : undefined,
-      tipoSelectionado2?.IdTipo ? tipoSelectionado2.IdTipo : undefined,
-    ],
+  const construirNuevoPokemon = () => ({
+    NombrePokemon: nuevoPokemon.NombrePokemon,
+    IdsTipo: nuevoPokemon.IdsTipo,
     IdsMovimiento: [
-      movimientoSelectionado1?.IdMovimiento
-        ? movimientoSelectionado1.IdMovimiento
+      nuevoPokemon.IdsMovimiento[0]?.IdMovimiento
+        ? nuevoPokemon.IdsMovimiento[0]?.IdMovimiento
         : undefined,
-      movimientoSelectionado2?.IdMovimiento
-        ? movimientoSelectionado2.IdMovimiento
+      nuevoPokemon.IdsMovimiento[1]?.IdMovimiento
+        ? nuevoPokemon.IdsMovimiento[1]?.IdMovimiento
         : undefined,
     ],
     Imagen: {
-      Nombre: imagen?.Nombre ? imagen.Nombre : "",
-      ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
+      Nombre: nuevoPokemon.Imagen?.Nombre ? nuevoPokemon.Imagen?.Nombre : "",
+      ArchivoImagen: nuevoPokemon.Imagen?.ArchivoImagen
+        ? nuevoPokemon.Imagen?.ArchivoImagen
+        : "",
     },
-    Detalle: detalle ? detalle : "",
-  };
+    Detalle: nuevoPokemon.Detalle ? nuevoPokemon.Detalle : "",
+  });
 
   const agregarNuevoPokemon = async () => {
-    await agregarPokemon(construirNuevoPokemon);
+    await agregarPokemon(construirNuevoPokemon());
     handleClose();
     actualizarPagina();
   };
 
   const actualizarNombrePokemon = (e: any) => {
-    setnombrePokemon(e.target.value);
+    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
 
   const actualizarDetalle = (e: any) => {
-    setdetalle(e.target.value);
+    setnuevoPokemon({ ...nuevoPokemon, Detalle: e.target.value });
   };
 
-  const recogerEventoTipo1 = (x: ITipos) => {
+  const recogerEventoTipo = (x: ITipos, index: number) => {
     var temp = { ...nuevoPokemon };
-
-    console.log("longitud ", temp.IdsTipo.length);
-
-    settipoSelectionado1(x);
+    temp.IdsTipo[index] = x;
+    setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
   };
 
-  const recogerEventoTipo2 = (x: ITipos) => {
-    settipoSelectionado2(x);
-  };
-
-  const recogerEventoMovimiento1 = (x: IMovimiento) => {
-    setMovimientoSelectionado1(x);
-  };
-
-  const recogerEventoMovimiento2 = (x: IMovimiento) => {
-    setMovimientoSelectionado2(x);
-  };
-
-  const convertBase64 = (file: any) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
+  const recogerEventoMovimiento = (x: IMovimiento, index: number) => {
+    var temp = { ...nuevoPokemon };
+    temp.IdsMovimiento[index] = x;
+    setnuevoPokemon({ ...nuevoPokemon, IdsMovimiento: temp.IdsMovimiento });
   };
 
   const tomarImagen = (e: any) => {
     const file = e.target.files[0];
-    convertBase64(file).then((x) =>
-      setimagen({
+    convertirDeImagenABase64(file).then((x) => {
+      console.log("informacion de la imagen", file, x);
+
+      var temp = { ...nuevoPokemon };
+      temp.Imagen = {
         Nombre: file.name,
         ArchivoImagen: typeof x === "string" ? x : "",
-      })
-    );
+      };
+      setnuevoPokemon({ ...nuevoPokemon, Imagen: temp.Imagen });
+    });
   };
 
   return (
@@ -157,90 +146,80 @@ export const Agregar: FC<IPropAgregar> = ({
           <Modal.Title>Agregar un Pokémon</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <SDivFormLabel>
-              <Form.Label>Nombre</Form.Label>
-              <Sinput
-                type='text'
-                required
-                placeholder='Ingrese Nombre'
-                value={nombrePokemon}
-                onChange={actualizarNombrePokemon}
-              />
-            </SDivFormLabel>
+          <SDivFormLabel>
+            <Form.Label>Nombre</Form.Label>
+            <Sinput
+              type='text'
+              required
+              placeholder='Ingrese Nombre'
+              value={nuevoPokemon.NombrePokemon}
+              onChange={actualizarNombrePokemon}
+            />
+          </SDivFormLabel>
 
-            <Container>
-              <Row>
-                <Col>
-                  <SDivCentrador ubicacion={"Izquierda"}>
-                    <DropList
-                      lista={tipos}
-                      recogerSeleccion={recogerEventoTipo1}
-                      valorActual={
-                        tipoSelectionado1
-                          ? tipoSelectionado1.NombreTipo
-                          : "Tipo"
-                      }
-                      valorAListar='NombreTipo'
-                    />
-                    <DropList
-                      lista={movimientos}
-                      recogerSeleccion={recogerEventoMovimiento1}
-                      valorActual={
-                        movimientoSelectionado1
-                          ? movimientoSelectionado1.NombreMovimiento
-                          : "Movimiento"
-                      }
-                      valorAListar='NombreMovimiento'
-                    />
-                  </SDivCentrador>
-                </Col>
-                <Col>
-                  <SDivCentrador ubicacion={"Derecha"}>
-                    <DropList
-                      lista={tipos}
-                      recogerSeleccion={recogerEventoTipo2}
-                      valorActual={
-                        tipoSelectionado2
-                          ? tipoSelectionado2.NombreTipo
-                          : "Tipo"
-                      }
-                      valorAListar='NombreTipo'
-                    />
-                    <DropList
-                      lista={movimientos}
-                      recogerSeleccion={recogerEventoMovimiento2}
-                      valorActual={
-                        movimientoSelectionado2
-                          ? movimientoSelectionado2.NombreMovimiento
-                          : "Movimiento"
-                      }
-                      valorAListar='NombreMovimiento'
-                    />
-                  </SDivCentrador>
-                </Col>
-              </Row>
-              <SDivFormLabel>
-                <Form.Label>Detalle</Form.Label>
-                <Sinput
-                  type='text'
-                  required
-                  placeholder='Ingrese descripcion de pokemon'
-                  value={detalle}
-                  onChange={actualizarDetalle}
-                />
-              </SDivFormLabel>
-            </Container>
-            <SDivSolicitudImagen>
-              <Form.Label>Imagen</Form.Label>
-              <Form.Control type='file' onChange={tomarImagen} />
-              {imagen?.ArchivoImagen ? (
-                <SImg src={imagen.ArchivoImagen} height='200px' />
-              ) : (
-                <></>
-              )}
-            </SDivSolicitudImagen>
-          </Form>
+          <Container>
+            <Row>
+              {nuevoPokemon.IdsMovimiento.map((x, index) => {
+                return (
+                  <Col>
+                    <SDivCentrador
+                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+                      <SContenedorMovimientos index={index}>
+                        <DropList
+                          index={index}
+                          lista={movimientos}
+                          recogerSeleccion={recogerEventoMovimiento}
+                          valorActual={x.NombreMovimiento}
+                          valorAListar='NombreMovimiento'
+                        />
+                      </SContenedorMovimientos>
+                    </SDivCentrador>
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {nuevoPokemon.IdsTipo.map((x, index) => {
+                return (
+                  <Col>
+                    <SDivCentrador
+                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+                      <SContenedorTipos>
+                        <DropList
+                          index={index}
+                          lista={tipos}
+                          recogerSeleccion={recogerEventoTipo}
+                          valorActual={x.NombreTipo}
+                          valorAListar='NombreTipo'
+                        />
+                      </SContenedorTipos>
+                    </SDivCentrador>
+                  </Col>
+                );
+              })}
+            </Row>
+          </Container>
+
+          <SDivFormLabel>
+            <Form.Label>Detalle</Form.Label>
+            <Sinput
+              type='text'
+              required
+              placeholder='Ingrese descripcion de pokemon'
+              value={nuevoPokemon.Detalle}
+              onChange={actualizarDetalle}
+            />
+          </SDivFormLabel>
+
+          <SDivSolicitudImagen>
+            <Form.Label>Imagen</Form.Label>
+            <Form.Control type='file' onChange={tomarImagen} />
+            {nuevoPokemon.Imagen?.ArchivoImagen ? (
+              <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
+            ) : (
+              <>{nuevoPokemon.Imagen.ArchivoImagen}</>
+            )}
+          </SDivSolicitudImagen>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>

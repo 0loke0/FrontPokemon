@@ -15,7 +15,10 @@ import { Agregar } from "./Secciones/Agregar/Agregar";
 import Clasificacion from "./Secciones/Clasificacion/Clasificacion";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
-import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
+import {
+  IEstructuraNuevoPokemon,
+  IPaginacion,
+} from "../../Interface/Pokemones";
 
 import {
   SGeneralPaginaPokemon,
@@ -65,7 +68,7 @@ function PaginaPokemones() {
       .then(() => actualizarPagina());
   };
   //Create
-  const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
+  const agregarNuevoPokemon = (nuevoPokemon: IEstructuraNuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
       .then((x) => {
         x && Alerta("success", "Guardado", x);

@@ -4,8 +4,11 @@ import styled from "styled-components";
 
 const SDivComun = styled.div<{ rareza: string }>`
   width: ${100 / 6}%;
-  height: 20px;
   border-radius: 5px;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
   border: 1px solid #98a1b9;
   background-color: #ffdee9;
   background-image: ${({ rareza }) => {
@@ -35,8 +38,8 @@ const STitulo = styled.div`
 
 const SContenedorClasificacion = styled.div`
   position: absolute;
-  width: 200px;
-  height: 150px;
+  width: 800px;
+  height: 250px;
   align-items: center;
   left: 50%;
   top: 10%;
@@ -50,20 +53,25 @@ const Clasificacion = () => {
         <STitulo>Tipos</STitulo>
       </Row>
       <Row>
-        {[
-          "Comun",
-          "Poco comun",
-          "Rara",
-          "Epica",
-          "Epica Singular",
-          "Legendaria",
-        ].map((tipo) => {
+        {["Comun", "Poco comun", "Rara"].map((tipo) => {
           return (
             <OverlayTrigger
               key={tipo}
               placement={"bottom"}
               overlay={<Tooltip id={`tooltip-${tipo}`}>{tipo}</Tooltip>}>
-              <SDivComun rareza={tipo}></SDivComun>
+              <SDivComun rareza={tipo}>{tipo}</SDivComun>
+            </OverlayTrigger>
+          );
+        })}
+      </Row>
+      <Row>
+        {["Epica", "Epica Singular", "Legendaria"].map((tipo) => {
+          return (
+            <OverlayTrigger
+              key={tipo}
+              placement={"bottom"}
+              overlay={<Tooltip id={`tooltip-${tipo}`}>{tipo}</Tooltip>}>
+              <SDivComun rareza={tipo}>{tipo}</SDivComun>
             </OverlayTrigger>
           );
         })}
