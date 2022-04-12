@@ -54,6 +54,7 @@ export const Agregar: FC<IPropAgregar> = ({
   const [movimientoSelectionado2, setMovimientoSelectionado2] =
     useState<IMovimiento>();
   const [imagen, setimagen] = useState<IImagen>();
+  const [detalle, setdetalle] = useState<string>();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -82,6 +83,7 @@ export const Agregar: FC<IPropAgregar> = ({
       Nombre: imagen?.Nombre ? imagen.Nombre : "",
       ArchivoImagen: imagen?.ArchivoImagen ? imagen.ArchivoImagen : "",
     },
+    Detalle: detalle ? detalle : "",
   };
 
   const agregarNuevoPokemon = async () => {
@@ -92,6 +94,10 @@ export const Agregar: FC<IPropAgregar> = ({
 
   const actualizarNombrePokemon = (e: any) => {
     setnombrePokemon(e.target.value);
+  };
+
+  const actualizarDetalle = (e: any) => {
+    setdetalle(e.target.value);
   };
 
   const recogerEventoTipo1 = (x: ITipos) => {
@@ -214,6 +220,16 @@ export const Agregar: FC<IPropAgregar> = ({
                   </SDivCentrador>
                 </Col>
               </Row>
+              <SDivFormLabel>
+                <Form.Label>Detalle</Form.Label>
+                <Sinput
+                  type='text'
+                  required
+                  placeholder='Ingrese descripcion de pokemon'
+                  value={detalle}
+                  onChange={actualizarDetalle}
+                />
+              </SDivFormLabel>
             </Container>
             <SDivSolicitudImagen>
               <Form.Label>Imagen</Form.Label>

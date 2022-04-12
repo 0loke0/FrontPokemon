@@ -23,22 +23,15 @@ import {
   SDivTipos,
   SPCarateristicas,
   SDiv,
-  SContenedorImagenTipo,
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import Vibrant from "node-vibrant";
-import { Editar } from "./OpcionesCards/Editar/Editar";
 import { OpcionesCardPokemon } from "./OpcionesCards/OpcionesCardPokemon";
+import { Descripcion } from "./Descripcion/Descripcion";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
   eliminarPokemon: any;
-}
-interface IRelacionTipoPokemon {
-  Id: number;
-  Nombre: string;
-  IdTipo: number;
-  NombreTipo: string;
 }
 
 export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
@@ -99,6 +92,12 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
                 <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
               </SDiv>
             </SCol>
+            <SCol>
+              <SDiv>
+                <SImgCaracteristicas src={Vida} />
+                <SPCarateristicas>{pokemon.Vida}</SPCarateristicas>
+              </SDiv>
+            </SCol>
           </SRow>
           <SRow>
             <SCol>
@@ -113,14 +112,6 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
                 <SPCarateristicas>{pokemon.EspecialDefensa}</SPCarateristicas>
               </SDiv>
             </SCol>
-          </SRow>
-          <SRow>
-            <SCol>
-              <SDiv>
-                <SImgCaracteristicas src={Vida} />
-                <SPCarateristicas>{pokemon.Vida}</SPCarateristicas>
-              </SDiv>
-            </SCol>
             <SCol>
               <SDiv>
                 <SImgCaracteristicas src={Velocidad} />
@@ -128,6 +119,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
               </SDiv>
             </SCol>
           </SRow>
+          {pokemon.Detalle && <Descripcion detalle={pokemon.Detalle} />}
         </Card.Body>
       </StyledCard>
     </Col>

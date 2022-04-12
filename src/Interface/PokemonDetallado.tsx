@@ -43,6 +43,7 @@ export interface IPokemonDetallado {
   Rareza: string;
   Tipos: ITipos[];
   Movimientos: IMovimientos[];
+  Detalle: string;
 }
 
 //       public int Id { get; set; }

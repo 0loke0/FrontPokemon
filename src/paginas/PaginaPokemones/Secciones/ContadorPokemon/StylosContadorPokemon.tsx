@@ -27,8 +27,8 @@ export const SImgPikachuManos = styled.img`
 
 export const SDivCortina = styled.div`
   position: absolute;
-  width: 52px;
-  height: 32px;
+  width: 62px;
+  height: 42px;
   top: 175%;
   left: -10%;
   border-radius: 5px;
@@ -43,18 +43,18 @@ export const SDivCortina = styled.div`
 
 export const SRegistros = styled.div`
   position: absolute;
-  width: 50px;
-  height: 30px;
+  width: 60px;
+  height: 40px;
   top: 175%;
   left: -10%;
   font-family: Poiret One;
-  font-size: 22px;
+  font-size: 28px;
   text-align: center;
   border-radius: 5px;
   font-weight: 600;
   transform: translate(-50%, -50%);
 
-  background: rgb(2, 0, 36);
+  background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
     rgba(2, 0, 36, 1) 0%,

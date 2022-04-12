@@ -16,6 +16,7 @@ export const SGeneralPaginaPokemon = styled.div`
 export const STitulo = styled.p`
   font-family: Poiret One;
   font-size: 40px;
+  font-weight: 900;
 `;
 
 export const SPaginaPokemones = styled.div`

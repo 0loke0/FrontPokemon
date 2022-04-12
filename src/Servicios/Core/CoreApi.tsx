@@ -1,6 +1,5 @@
 import { Alerta } from "../../Componentes/Alerta";
-import { Loader } from "../../Componentes/Loader/loader";
-
+import { trackPromise } from "react-promise-tracker";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -16,24 +15,26 @@ export const ConsumirApi = async (
       "Content-Type": "application/json",
     },
   };
-  return await fetch(url, TipoFetch)
-    .then((response: any) => {
-      return response ? response.json() : null;
-    })
-    .then((response) => {
-      if (response.ExceptionMessage) {
-        Alerta("error", response.Message, response.ExceptionMessage);
-        throw new Error(response.ExceptionMessage);
-      }
-      if (response.Message) {
-        Alerta("error", "Error", response.Message);
-        throw new Error(response.Message);
-      }
-      return response;
-    })
-    .catch((error) => {
-      Alerta("error", "Error", error);
-      console.error("Se genero un error", error);
-      return null;
-    });
+  return await trackPromise(
+    fetch(url, TipoFetch)
+      .then((response: any) => {
+        return response ? response.json() : null;
+      })
+      .then((response) => {
+        if (response.ExceptionMessage) {
+          Alerta("error", response.Message, response.ExceptionMessage);
+          throw new Error(response.ExceptionMessage);
+        }
+        if (response.Message) {
+          Alerta("error", "Error", response.Message);
+          throw new Error(response.Message);
+        }
+        return response;
+      })
+      .catch((error) => {
+        Alerta("error", "Error", error);
+        console.error("Se genero un error", error);
+        return null;
+      })
+  );
 };

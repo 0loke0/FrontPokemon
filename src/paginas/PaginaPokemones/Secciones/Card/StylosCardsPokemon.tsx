@@ -99,12 +99,12 @@ export const SDivTitulo = styled.div`
   top: 50%;
   left: 10%;
   position: relative;
-  font-family: Indie Flower;
   height: 40px;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 150%;
-  transform: translate(0%, -10%);
+  transform: translate(0%, -25%);
 `;
+
 export const SDivIdentificador = styled.div`
   top: 3%;
   left: 3%;
@@ -115,14 +115,15 @@ export const SDivIdentificador = styled.div`
   justify-content: center;
   height: 40px;
   width: 40px;
-  background: #9dccfa;
+  font-weight: 500;
+  background: #6bacec;
   color: #ffffff;
 `;
 
 export const SCol = styled(Col)`
-  margin: 0% 15%;
   height: 50px;
-  border: 1px solid #0b07ff;
+  margin: 2px 30px;
+  border: 1px solid #0783ff;
   border-radius: 10px;
   background-color: transparent;
 `;
@@ -197,31 +198,13 @@ export const StyledCard = styled(Card)<{ rareza: string }>`
       case "Epica Singular":
         return `linear-gradient(0deg, #FFB4B4 0%, #FFE8E8 100%);`;
       case "Legendaria":
-        return `linear-gradient(0deg, #FAFCC2 0%, #F8EFD4 100%);`;
+        return `linear-gradient(0deg, #eef180 0%, #F8EFD4 100%);`;
       default:
         return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
     }
   }};
 `;
 
-// background-image: ${({ rareza }) => {
-//   switch (rareza) {
-//     case "Comun":
-//       return `linear-gradient(0deg, #474747 0%, #afafaf 100%);`;
-//     case "Poco comun":
-//       return `linear-gradient(0deg, #2f3663 0%, #3e54c9 100%);`;
-//     case "Rara":
-//       return `linear-gradient(0deg, #402c63 0%, #6a3cc7 100%);`;
-//     case "Epica":
-//       return `linear-gradient(0deg, #5a2562 0%, #a627b3 100%);`;
-//     case "Epica Singular":
-//       return `linear-gradient(0deg, #5d2f2e 0%, #b43e40 100%);`;
-//     case "Legendaria":
-//       return `linear-gradient(0deg, #5f5817 0%, #c4a909 100%);`;
-//     default:
-//       return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
-//   }
-// }};
 export const SImg = styled.img`
   position: relative;
   z-index: -1;
@@ -236,13 +219,15 @@ export const SDiv = styled.div`
   left: 50%;
   top: 80%;
   transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
 `;
 
 export const SImgCaracteristicas = styled.img`
   position: relative;
   width: 40px;
   height: 40px;
-  top: 30%;
+  top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

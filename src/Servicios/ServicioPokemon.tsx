@@ -1,6 +1,6 @@
 import { ConsumirApi } from "./Core/CoreApi";
 import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
-import { Alerta } from "../Componentes/Alerta";
+
 interface IPokemon {
   Id: number;
   Nombre: string;

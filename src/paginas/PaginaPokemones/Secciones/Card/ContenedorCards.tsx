@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import styled from "styled-components";
 import Boton from "../../../../Componentes/Boton";
 
-import { SCard } from "./SCard";
+import { SCard } from "./Card";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import SinInformacion from "../../../../Multimedia/Pokemon/PaginaPokemon/SinInformacion.png";
 
@@ -49,10 +49,12 @@ const SDivContenedor = styled.div`
 `;
 
 const Sdiv = styled.div`
-  position: relative;
-  bottom: -10%;
-  margin: 5px;
-  padding: 5px;
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%);
 `;
 
 const SInformacionPaginacion = styled.div`

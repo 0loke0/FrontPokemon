@@ -8,8 +8,8 @@ const ContenedorLoader = styled.div`
   width: 80px;
   height: 80px;
   z-index: 15;
-  top: 100%;
-  left: 1%;
+  top: 96%;
+  left: 6%;
   transform: translate(0%, -110%);
 `;
 const SLoader = styled.img`

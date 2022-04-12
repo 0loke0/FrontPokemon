@@ -93,7 +93,7 @@ export const SImgSuma = styled.img`
   height: 40px;
   width: 40px;
   top: 50%;
-  left: 50%;
+  left: 75%;
 `;
 
 export const SModal = styled.div`
