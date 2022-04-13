@@ -29,10 +29,10 @@ export interface IMovimiento {
   Valor: number;
 }
 
-export interface IEstructuraNuevoPokemon {
+export interface INuevoPokemon {
   NombrePokemon: string;
-  IdsTipo: ITipos[];
-  IdsMovimiento: IMovimiento[];
+  IdsTipo: number[];
+  IdsMovimiento: number[];
   Imagen: IImagen;
   Detalle: string;
 }

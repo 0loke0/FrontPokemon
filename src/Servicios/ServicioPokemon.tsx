@@ -1,5 +1,5 @@
 import { ConsumirApi } from "./Core/CoreApi";
-import { IEstructuraNuevoPokemon, IPaginacion } from "../Interface/Pokemones";
+import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
 
 interface IPokemon {
   Id: number;
@@ -14,7 +14,7 @@ export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
   });
 };
 
-export const AgregarPokemon = async (nuevoPokemon: IEstructuraNuevoPokemon) => {
+export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   const url = `http://localhost:63107/api/Pokemones/GuardarNuevoPokemon`;
   return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
     return data ? data : null;

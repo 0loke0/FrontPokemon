@@ -3,7 +3,7 @@ import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
 
 const SDivComun = styled.div<{ rareza: string }>`
-  width: ${100 / 6}%;
+  width: ${100 / 3}%;
   border-radius: 5px;
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",

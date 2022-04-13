@@ -6,7 +6,7 @@ import { Col, Container, Modal, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import {
   ITipos,
-  IEstructuraNuevoPokemon,
+  INuevoPokemon,
   IMovimiento,
 } from "../../../../Interface/Pokemones";
 import {
@@ -24,48 +24,30 @@ import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
-import styled from "styled-components";
 
 interface IPropAgregar {
   actualizarPagina: any;
   agregarPokemon: (construirNuevoPokemon: any) => any;
 }
 
-const DEFAULTNUEVOPOKEMON: IEstructuraNuevoPokemon = {
+const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
   NombrePokemon: "",
-  IdsTipo: [
-    { IdTipo: 0, NombreTipo: "Tipo" },
-    { IdTipo: 0, NombreTipo: "Tipo" },
-  ],
-  IdsMovimiento: [
-    { IdMovimiento: 0, NombreMovimiento: "Movimiento", Valor: 0 },
-    { IdMovimiento: 0, NombreMovimiento: "Movimiento", Valor: 0 },
-  ],
+  IdsTipo: [0, 0],
+  IdsMovimiento: [0, 0],
   Imagen: { Nombre: "", ArchivoImagen: "" },
   Detalle: "",
 };
-
-const SContenedorMovimientos = styled.div<{ index: number }>`
-  background-color: ${({ index }) => {
-    return index === 0 ? "red" : "blue";
-  }}; ;
-`;
-
-const SContenedorTipos = styled.div`
-  background-color: transparent;
-`;
 
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
   const [nuevoPokemon, setnuevoPokemon] =
-    useState<IEstructuraNuevoPokemon>(DEFAULTNUEVOPOKEMON);
+    useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -74,56 +56,38 @@ export const Agregar: FC<IPropAgregar> = ({
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
 
-  const construirNuevoPokemon = () => ({
-    NombrePokemon: nuevoPokemon.NombrePokemon,
-    IdsTipo: nuevoPokemon.IdsTipo,
-    IdsMovimiento: [
-      nuevoPokemon.IdsMovimiento[0]?.IdMovimiento
-        ? nuevoPokemon.IdsMovimiento[0]?.IdMovimiento
-        : undefined,
-      nuevoPokemon.IdsMovimiento[1]?.IdMovimiento
-        ? nuevoPokemon.IdsMovimiento[1]?.IdMovimiento
-        : undefined,
-    ],
-    Imagen: {
-      Nombre: nuevoPokemon.Imagen?.Nombre ? nuevoPokemon.Imagen?.Nombre : "",
-      ArchivoImagen: nuevoPokemon.Imagen?.ArchivoImagen
-        ? nuevoPokemon.Imagen?.ArchivoImagen
-        : "",
-    },
-    Detalle: nuevoPokemon.Detalle ? nuevoPokemon.Detalle : "",
-  });
-
   const agregarNuevoPokemon = async () => {
-    await agregarPokemon(construirNuevoPokemon());
+    await agregarPokemon(nuevoPokemon);
     handleClose();
     actualizarPagina();
   };
 
-  const actualizarNombrePokemon = (e: any) => {
+  const asignarNombrePokemon = (e: any) => {
     setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
   };
 
-  const actualizarDetalle = (e: any) => {
+  const asignarDetallePokemon = (e: any) => {
     setnuevoPokemon({ ...nuevoPokemon, Detalle: e.target.value });
   };
 
-  const recogerEventoTipo = (x: ITipos, index: number) => {
-    var temp = { ...nuevoPokemon };
-    temp.IdsTipo[index] = x;
-    setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
-  };
-
-  const recogerEventoMovimiento = (x: IMovimiento, index: number) => {
+  const asignarMovimiento = (x: number, index: number) => {
     var temp = { ...nuevoPokemon };
     temp.IdsMovimiento[index] = x;
     setnuevoPokemon({ ...nuevoPokemon, IdsMovimiento: temp.IdsMovimiento });
   };
 
-  const tomarImagen = (e: any) => {
+  const asignarTipo = (x: number, index: number) => {
+    console.log(nuevoPokemon);
+
+    var temp = { ...nuevoPokemon };
+    temp.IdsTipo[index] = x;
+    setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
+  };
+
+  const asignarImagen = (e: any) => {
     const file = e.target.files[0];
     convertirDeImagenABase64(file).then((x) => {
-      console.log("informacion de la imagen", file, x);
+      console.log("informacion de la imagen", x);
 
       var temp = { ...nuevoPokemon };
       temp.Imagen = {
@@ -153,7 +117,7 @@ export const Agregar: FC<IPropAgregar> = ({
               required
               placeholder='Ingrese Nombre'
               value={nuevoPokemon.NombrePokemon}
-              onChange={actualizarNombrePokemon}
+              onChange={asignarNombrePokemon}
             />
           </SDivFormLabel>
 
@@ -164,15 +128,14 @@ export const Agregar: FC<IPropAgregar> = ({
                   <Col>
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                      <SContenedorMovimientos index={index}>
-                        <DropList
-                          index={index}
-                          lista={movimientos}
-                          recogerSeleccion={recogerEventoMovimiento}
-                          valorActual={x.NombreMovimiento}
-                          valorAListar='NombreMovimiento'
-                        />
-                      </SContenedorMovimientos>
+                      <DropList
+                        valorAIndicar='IdMovimiento'
+                        index={index}
+                        lista={movimientos}
+                        recogerSeleccion={asignarMovimiento}
+                        valorDefecto='Movimiento'
+                        valorAListar='NombreMovimiento'
+                      />
                     </SDivCentrador>
                   </Col>
                 );
@@ -184,15 +147,14 @@ export const Agregar: FC<IPropAgregar> = ({
                   <Col>
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                      <SContenedorTipos>
-                        <DropList
-                          index={index}
-                          lista={tipos}
-                          recogerSeleccion={recogerEventoTipo}
-                          valorActual={x.NombreTipo}
-                          valorAListar='NombreTipo'
-                        />
-                      </SContenedorTipos>
+                      <DropList
+                        valorAIndicar='IdTipo'
+                        index={index}
+                        lista={tipos}
+                        recogerSeleccion={asignarTipo}
+                        valorDefecto='Tipos'
+                        valorAListar='NombreTipo'
+                      />
                     </SDivCentrador>
                   </Col>
                 );
@@ -207,13 +169,13 @@ export const Agregar: FC<IPropAgregar> = ({
               required
               placeholder='Ingrese descripcion de pokemon'
               value={nuevoPokemon.Detalle}
-              onChange={actualizarDetalle}
+              onChange={asignarDetallePokemon}
             />
           </SDivFormLabel>
 
           <SDivSolicitudImagen>
             <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={tomarImagen} />
+            <Form.Control type='file' onChange={asignarImagen} />
             {nuevoPokemon.Imagen?.ArchivoImagen ? (
               <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
             ) : (
