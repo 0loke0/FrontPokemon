@@ -1,45 +1,36 @@
 import React from "react";
-import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
+import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 
-const SDivComun = styled.div<{ rareza: string }>`
-  width: ${100 / 3}%;
+const SDivComun = styled.div<{
+  rareza: string;
+}>`
+  position: relative;
+  margin-top: 2%;
+  width: 100%;
   border-radius: 5px;
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  border: 1px solid #303030;
+  background-image: ${({ rareza }) => determinarColorSegunRareza(rareza)};
+  left: 50%;
 
-  border: 1px solid #98a1b9;
-  background-color: #ffdee9;
-  background-image: ${({ rareza }) => {
-    switch (rareza) {
-      case "Comun":
-        return `linear-gradient(0deg, #AAAAAA 0%, #ffffff 100%);`;
-      case "Poco comun":
-        return `linear-gradient(0deg, #A2D2FF 0%, #D1E8E4 100%);`;
-      case "Rara":
-        return `linear-gradient(0deg, #b5a3db 0%, #e0e0e0 100%);`;
-      case "Epica":
-        return `linear-gradient(0deg, #ddb2e2 0%, #ecdcec 100%);`;
-      case "Epica Singular":
-        return `linear-gradient(0deg, #FFB4B4 0%, #FFE8E8 100%);`;
-      case "Legendaria":
-        return `linear-gradient(0deg, #e6e99d 0%, #F8EFD4 100%);`;
-      default:
-        return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
-    }
-  }};
+  transform: translate(-50%);
 `;
 const STitulo = styled.div`
   font-family: Righteous;
   text-align: center;
+  font-size: 20px;
   width: 100%;
 `;
 
 const SContenedorClasificacion = styled.div`
   position: absolute;
-  width: 800px;
-  height: 250px;
+  width: 500px;
+  height: 90px;
   align-items: center;
   left: 50%;
   top: 10%;
@@ -55,24 +46,18 @@ const Clasificacion = () => {
       <Row>
         {["Comun", "Poco comun", "Rara"].map((tipo) => {
           return (
-            <OverlayTrigger
-              key={tipo}
-              placement={"bottom"}
-              overlay={<Tooltip id={`tooltip-${tipo}`}>{tipo}</Tooltip>}>
+            <Col key={tipo}>
               <SDivComun rareza={tipo}>{tipo}</SDivComun>
-            </OverlayTrigger>
+            </Col>
           );
         })}
       </Row>
       <Row>
         {["Epica", "Epica Singular", "Legendaria"].map((tipo) => {
           return (
-            <OverlayTrigger
-              key={tipo}
-              placement={"bottom"}
-              overlay={<Tooltip id={`tooltip-${tipo}`}>{tipo}</Tooltip>}>
+            <Col key={tipo}>
               <SDivComun rareza={tipo}>{tipo}</SDivComun>
-            </OverlayTrigger>
+            </Col>
           );
         })}
       </Row>

@@ -5,7 +5,7 @@ import { keyframes } from "styled-components";
 import { Row } from "react-bootstrap";
 
 import Acero from "../../../../Multimedia/Pokemon/Card/IconosTipo/Acero.png";
-
+import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 // background-image: url(${Background});
 let fondoTipo = (idTipo: number) => {
   switch (idTipo) {
@@ -106,7 +106,7 @@ export const SDivTitulo = styled.div`
 `;
 
 export const SDivIdentificador = styled.div`
-  top: 3%;
+  top: 10px;
   left: 3%;
   border-radius: 50%;
   position: absolute;
@@ -179,30 +179,15 @@ export const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
   color: #ffffff;
 `;
 
-export const StyledCard = styled(Card)<{ rareza: string }>`
+export const StyledCard = styled(Card)<{
+  rareza: string;
+}>`
   padding: 5px;
   border-radius: 20px;
   border: 2px solid #628395;
   box-shadow: 5px 5px 10px #7d7d7d;
   background-color: #ffdee9;
-  background-image: ${({ rareza }) => {
-    switch (rareza) {
-      case "Comun":
-        return `linear-gradient(0deg, #AAAAAA 0%, #ffffff 100%);`;
-      case "Poco comun":
-        return `linear-gradient(0deg, #A2D2FF 0%, #D1E8E4 100%);`;
-      case "Rara":
-        return `linear-gradient(0deg, #b5a3db 0%, #e0e0e0 100%);`;
-      case "Epica":
-        return `linear-gradient(0deg, #ddb2e2 0%, #ecdcec 100%);`;
-      case "Epica Singular":
-        return `linear-gradient(0deg, #FFB4B4 0%, #FFE8E8 100%);`;
-      case "Legendaria":
-        return `linear-gradient(0deg, #eef180 0%, #F8EFD4 100%);`;
-      default:
-        return `linear-gradient(0deg, #d3fcff 0%, #feffff 100%);`;
-    }
-  }};
+  background-image: ${({ rareza }) => determinarColorSegunRareza(rareza)};
 `;
 
 export const SImg = styled.img`
@@ -245,4 +230,12 @@ export const SPCarateristicas = styled.p`
 export const SDivTipos = styled.div`
   position: absolute;
   width: 100%;
+`;
+
+export const SDivDescripcion = styled.div`
+  width: 100%;
+  height: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

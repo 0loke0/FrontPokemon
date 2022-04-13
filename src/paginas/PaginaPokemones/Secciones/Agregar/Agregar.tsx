@@ -77,8 +77,6 @@ export const Agregar: FC<IPropAgregar> = ({
   };
 
   const asignarTipo = (x: number, index: number) => {
-    console.log(nuevoPokemon);
-
     var temp = { ...nuevoPokemon };
     temp.IdsTipo[index] = x;
     setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });

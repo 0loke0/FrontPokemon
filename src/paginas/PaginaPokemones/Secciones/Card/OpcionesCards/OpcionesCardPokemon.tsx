@@ -15,12 +15,12 @@ interface IPropOpcionesCardPokemon {
 const SButton = styled.button`
   background-color: transparent;
   position: absolute;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border: 1px solid transparent;
   border-radius: 0%;
-  top: 1%;
-  right: 1%;
+  top: 10px;
+  right: 2%;
 `;
 const SImg = styled.img`
   position: relative;

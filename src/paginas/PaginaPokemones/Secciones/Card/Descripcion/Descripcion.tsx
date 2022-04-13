@@ -1,18 +1,31 @@
 import React, { FC, useState } from "react";
 import { Button, Collapse } from "react-bootstrap";
 import styled from "styled-components";
-
+// import from "../src/Multimedia/Pokemon/Card/IconoDescripcion.png"
+import IconoDescripcion from "../../../../../Multimedia/Pokemon/Card/IconoDescripcion.png";
 interface IPropDescription {
   detalle: string;
 }
 
-const SButton = styled(Button)`
+const SButton = styled.button`
+  background-color: transparent;
   position: absolute;
-  width: 50px;
-  height: 40px;
-  top: 2%;
-  left: 90%;
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  right: 3%;
   transform: translate(-100%);
+  border: 1px solid transparent;
+  border-radius: 0%;
+`;
+
+const SImg = styled.img`
+  position: relative;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const SCollapse = styled.div`
@@ -25,8 +38,9 @@ const SCollapse = styled.div`
   transform: translate(-50%);
   padding: 2px;
   text-align: center;
+  font-size: 20px;
   font-family: Poiret One;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
 export const Descripcion: FC<IPropDescription> = ({ detalle }) => {
@@ -34,10 +48,9 @@ export const Descripcion: FC<IPropDescription> = ({ detalle }) => {
 
   return (
     <>
-      <SButton
-        onClick={() => setOpen(!open)}
-        aria-controls='example-collapse-text'
-        aria-expanded={open}></SButton>
+      <SButton onClick={() => setOpen(!open)}>
+        <SImg src={IconoDescripcion} alt='IconoDescripcion' />
+      </SButton>
       <Collapse in={open}>
         <SCollapse id='example-collapse-text'>{detalle}</SCollapse>
       </Collapse>

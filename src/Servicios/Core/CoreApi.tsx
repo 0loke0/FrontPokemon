@@ -1,7 +1,5 @@
 import { Alerta } from "../../Componentes/Alerta";
 import { trackPromise } from "react-promise-tracker";
-import React from "react";
-import ReactDOM from "react-dom";
 
 export const ConsumirApi = async (
   url: string,

@@ -28,13 +28,11 @@ export const DropList: FC<IProrDropList> = ({
   };
 
   return (
-    <>
-      <Form.Select onChange={obtenerValor}>
-        <option>{valorDefecto}</option>
-        {lista.map((x) => (
-          <option value={x[valorAIndicar]}>{x[valorAListar]}</option>
-        ))}
-      </Form.Select>
-    </>
+    <Form.Select onChange={obtenerValor}>
+      <option>{valorDefecto}</option>
+      {lista.map((x) => (
+        <option value={x[valorAIndicar]}>{x[valorAListar]}</option>
+      ))}
+    </Form.Select>
   );
 };

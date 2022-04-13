@@ -3,22 +3,29 @@ import styled from "styled-components";
 import Pokebola from "../../Multimedia/Pokemon/Agregar/Pokebola.png";
 
 const ContenedorLoader = styled.div`
-  display: inline-block;
+  background-color: #5c6ac7a1;
   position: absolute;
-  width: 80px;
-  height: 80px;
+  height: 897px;
+  width: 100%;
   z-index: 15;
-  top: 96%;
-  left: 6%;
-  transform: translate(0%, -110%);
+  top: 0%;
+  left: 0%;
+`;
+const ContenedorImagen = styled.div`
+  background-color: transparent;
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  top: 100%;
+  left: 20%;
+  transform: translate(-50%, -50%);
 `;
 const SLoader = styled.img`
-  display: inline-block;
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   z-index: 15;
-  animation: lds-hourglass 1.2s infinite;
+  animation: lds-hourglass 3s infinite;
 
   @keyframes lds-hourglass {
     0% {
@@ -38,7 +45,9 @@ const SLoader = styled.img`
 export const Loader = () => {
   return (
     <ContenedorLoader>
-      <SLoader src={Pokebola}></SLoader>
+      <ContenedorImagen>
+        <SLoader src={Pokebola}></SLoader>
+      </ContenedorImagen>
     </ContenedorLoader>
   );
 };

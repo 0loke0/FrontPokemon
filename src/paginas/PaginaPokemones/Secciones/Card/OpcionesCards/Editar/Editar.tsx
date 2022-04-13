@@ -23,8 +23,8 @@ const SButton = styled.button`
 
 const SImg = styled.img`
   position: relative;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

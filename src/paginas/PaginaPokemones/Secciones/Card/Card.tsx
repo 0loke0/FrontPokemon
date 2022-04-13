@@ -23,6 +23,7 @@ import {
   SDivTipos,
   SPCarateristicas,
   SDiv,
+  SDivDescripcion,
 } from "./StylosCardsPokemon";
 import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
 import Vibrant from "node-vibrant";
@@ -119,7 +120,9 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
               </SDiv>
             </SCol>
           </SRow>
-          {pokemon.Detalle && <Descripcion detalle={pokemon.Detalle} />}
+          <SDivDescripcion>
+            {pokemon.Detalle && <Descripcion detalle={pokemon.Detalle} />}
+          </SDivDescripcion>
         </Card.Body>
       </StyledCard>
     </Col>
