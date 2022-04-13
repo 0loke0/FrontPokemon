@@ -9,7 +9,7 @@ import "./App.css";
 import { Rutas } from "./Router";
 import reportWebVitals from "./reportWebVitals";
 import { usePromiseTracker } from "react-promise-tracker";
-import { Loader } from "./Componentes/Loader/loader";
+import { Loader } from "./Componentes/Loader/Loader";
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
   return promiseInProgress && <Loader />;
