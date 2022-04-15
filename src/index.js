@@ -18,7 +18,6 @@ const LoadingIndicator = (props) => {
 ReactDOM.render(
   <React.StrictMode>
     <Rutas />
-
     <LoadingIndicator />
   </React.StrictMode>,
   document.getElementById("root")
