@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Background from "../../Multimedia/Pokemon/PaginaPokemon/Background.png";
+import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 
 export const SGeneralPaginaPokemon = styled.div`
   position: relative;
@@ -7,9 +8,9 @@ export const SGeneralPaginaPokemon = styled.div`
   transform: translate(-50%);
   height: 100%;
   border: 1px solid blue;
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 8px black;
   background-color: #9dcbfaac;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 40px;
 `;
 

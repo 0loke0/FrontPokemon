@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const SDivCantidadRegistros = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 30px;
-  top: 15%;
+  position: fixed;
+  width: 3%;
+  height: 4%;
+  top: 14.5%;
   right: 0%;
   transform: translate(-100%);
   border-radius: 5px;

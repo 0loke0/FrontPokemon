@@ -11,6 +11,7 @@ const ContenedorLoader = styled.div`
   top: 0%;
   left: 0%;
   overflow-y: clip;
+  user-select: none;
 `;
 const ContenedorImagen = styled.div`
   background-color: transparent;

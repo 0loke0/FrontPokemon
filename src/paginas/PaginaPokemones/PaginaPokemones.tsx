@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
   AgregarPokemon,
   EliminarPokemon,
@@ -8,7 +7,6 @@ import {
 } from "../../Servicios/ServicioPokemon";
 
 import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
-
 import { Alerta } from "../../Componentes/Alerta";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
@@ -34,13 +32,7 @@ function PaginaPokemones() {
   });
 
   useEffect(() => {
-    ObtenerPokemones(infoPaginacion).then((x) => {
-      setPokemonDetallado(x);
-    });
-
-    ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
-      setcantidadRegistros(cantidadRegistros)
-    );
+    actualizarPagina();
   }, [infoPaginacion]);
 
   const tomarInformacionPaginacion = (infoPaginacion: IPaginacion) => {
@@ -52,10 +44,10 @@ function PaginaPokemones() {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
 
     ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) => {
-      console.log("informacion data se actualiza registos");
       setcantidadRegistros(cantidadRegistros);
     });
   };
+
   //Delete
   const eliminarPokemonRegistrado = (idPokemon: number) => {
     EliminarPokemon(idPokemon)
@@ -64,26 +56,21 @@ function PaginaPokemones() {
       })
       .then(() => actualizarPagina());
   };
+
   //Create
   const agregarNuevoPokemon = (nuevoPokemon: INuevoPokemon) => {
     AgregarPokemon(nuevoPokemon)
       .then((x) => {
         x && Alerta("success", "Guardado", x);
       })
-      .then(() => actualizarPagina())
-      .then(() =>
-        ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) =>
-          setcantidadRegistros(cantidadRegistros)
-        )
-      );
+      .then(() => actualizarPagina());
   };
 
   return (
     <SPaginaPokemones>
       <SGeneralPaginaPokemon>
-        <STitulo>Pokémones</STitulo>
-        <ContadorPokemon
-          cantidadRegistros={cantidadRegistros}></ContadorPokemon>
+        <STitulo>Pokémon</STitulo>
+        <ContadorPokemon cantidadRegistros={cantidadRegistros} />
         <Agregar
           actualizarPagina={actualizarPagina}
           agregarPokemon={agregarNuevoPokemon}

@@ -1,7 +1,10 @@
 import React from "react";
 import { Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
-import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesColores";
+import {
+  determinarColorMateSegunRareza,
+  determinarColorSegunRareza,
+} from "../../../../Utilidades/UtilidadesColores";
 
 const SDivComun = styled.div<{
   rareza: string;
@@ -15,7 +18,7 @@ const SDivComun = styled.div<{
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 15px;
   border: 1px solid #303030;
-  background-image: ${({ rareza }) => determinarColorSegunRareza(rareza)};
+  background: ${({ rareza }) => determinarColorSegunRareza(rareza)};
   left: 50%;
 
   transform: translate(-50%);
@@ -44,7 +47,7 @@ const Clasificacion = () => {
         <STitulo>Tipos</STitulo>
       </Row>
       <Row>
-        {["Comun", "Poco comun", "Rara"].map((tipo) => {
+        {["Común", "Poco Común", "Rara"].map((tipo) => {
           return (
             <Col key={tipo}>
               <SDivComun rareza={tipo}>{tipo}</SDivComun>
@@ -53,7 +56,7 @@ const Clasificacion = () => {
         })}
       </Row>
       <Row>
-        {["Epica", "Epica Singular", "Legendaria"].map((tipo) => {
+        {["Épica", "Épica Singular", "Legendaria"].map((tipo) => {
           return (
             <Col key={tipo}>
               <SDivComun rareza={tipo}>{tipo}</SDivComun>
