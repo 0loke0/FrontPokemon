@@ -5,11 +5,12 @@ import Pokebola from "../../Multimedia/Pokemon/Agregar/Pokebola.png";
 const ContenedorLoader = styled.div`
   background-color: #5c6ac7a1;
   position: absolute;
-  height: 897px;
+  height: 899px;
   width: 100%;
-  z-index: 15;
+  z-index: 1;
   top: 0%;
   left: 0%;
+  overflow-y: clip;
 `;
 const ContenedorImagen = styled.div`
   background-color: transparent;

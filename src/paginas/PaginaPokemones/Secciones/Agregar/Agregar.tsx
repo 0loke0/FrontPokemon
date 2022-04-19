@@ -85,7 +85,7 @@ export const Agregar: FC<IPropAgregar> = ({
   const asignarImagen = (e: any) => {
     const file = e.target.files[0];
     convertirDeImagenABase64(file).then((x) => {
-      console.log("informacion de la imagen", x);
+      console.log("información de la imagen", x);
 
       var temp = { ...nuevoPokemon };
       temp.Imagen = {

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Form } from "react-bootstrap";
 
-interface IProrDropList {
+interface IPropDropList {
   lista: any[];
   valorDefecto: string;
   recogerSeleccion: any;
@@ -15,7 +15,7 @@ export const SDropdownButton = styled.div`
   overflow-x: auto;
   height: 142px;
 `;
-export const DropList: FC<IProrDropList> = ({
+export const DropList: FC<IPropDropList> = ({
   lista,
   valorDefecto,
   recogerSeleccion,

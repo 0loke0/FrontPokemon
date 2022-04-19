@@ -38,7 +38,6 @@ export interface IPokemonDetallado {
   Velocidad: number;
   Vida: number;
   NombreImagen: string;
-  ArchivoImagen: string;
   RutaImagen: string;
   Rareza: string;
   Tipos: ITipos[];
