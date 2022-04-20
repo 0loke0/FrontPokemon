@@ -43,7 +43,7 @@ const SImgSinInformaicon = styled.img`
   object-fit: contain;
 `;
 
-const LIMITEPORPAGINA = 3;
+const LIMITEPORPAGINA = 5;
 
 export const ContenedorCards: FC<IPropCardPokemon> = ({
   pokemonDetallado,

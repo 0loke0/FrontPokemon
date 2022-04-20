@@ -1,10 +1,7 @@
 import React from "react";
-import { Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import {
-  determinarColorMateSegunRareza,
-  determinarColorSegunRareza,
-} from "../../../../Utilidades/UtilidadesColores";
+import { determinarColorMateSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 
 const SDivComun = styled.div<{
   rareza: string;
@@ -17,8 +14,8 @@ const SDivComun = styled.div<{
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 15px;
-  border: 1px solid #303030;
-  background: ${({ rareza }) => determinarColorSegunRareza(rareza)};
+  border: 1px solid #090707;
+  background: ${({ rareza }) => determinarColorMateSegunRareza(rareza) + `a1;`};
   left: 50%;
 
   transform: translate(-50%);

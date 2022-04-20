@@ -10,7 +10,7 @@ import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
 import { Alerta } from "../../Componentes/Alerta";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
-import Clasificacion from "./Secciones/Clasificacion/Clasificacion";
+import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
@@ -75,7 +75,7 @@ function PaginaPokemones() {
           actualizarPagina={actualizarPagina}
           agregarPokemon={agregarNuevoPokemon}
         />
-        <Clasificacion />
+        <ClasificacionRarezas />
         <ContenedorCards
           pokemonDetallado={pokemonDetallado}
           tomarInformacionPaginacion={tomarInformacionPaginacion}
