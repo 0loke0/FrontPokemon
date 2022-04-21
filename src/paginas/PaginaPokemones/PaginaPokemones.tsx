@@ -20,6 +20,7 @@ import {
   SPaginaPokemones,
   STitulo,
 } from "./StylosPaginaPokemones";
+import Player from "./Secciones/Musica/MusicaGeneral";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
@@ -75,6 +76,7 @@ function PaginaPokemones() {
           actualizarPagina={actualizarPagina}
           agregarPokemon={agregarNuevoPokemon}
         />
+        <Player url='C:\Users\Loke\Documents\GitHub\consumoapi\src\Multimedia\SongPokemon.mp3' />
         <ClasificacionRarezas />
         <ContenedorCards
           pokemonDetallado={pokemonDetallado}
