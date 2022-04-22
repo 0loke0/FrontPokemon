@@ -1,16 +1,39 @@
 import React, { useState, useEffect, FC } from "react";
 import styled from "styled-components";
-import Boton from "../../../../Componentes/Boton";
+import SongOn from "../../../../Multimedia/Pokemon/Song/SongOn.png";
+import SongOff from "../../../../Multimedia/Pokemon/Song/SongOff.png";
 
 interface IPropPlayer {
   url: string;
 }
-const SPlayer = styled.div`
-  width: 100px;
-  height: 200px;
-  background-color: red;
+
+const SButton = styled.button`
+  background-color: transparent;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border: 1px solid transparent;
+  border-radius: 0%;
 `;
-const useAudio = (url: string) => {
+
+const SImg = styled.img`
+  position: relative;
+  height: 40px;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+const SMusicaGeneral = styled.div`
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 99%;
+  top: 98%;
+  transform: translate(-100%, -100%);
+`;
+
+const MusicaGeneral: FC<IPropPlayer> = ({ url }) => {
   const [audio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
 
@@ -26,20 +49,13 @@ const useAudio = (url: string) => {
       audio.removeEventListener("ended", () => setPlaying(false));
     };
   }, []);
-
-  return [playing, toggle];
-};
-
-const Player: FC<IPropPlayer> = ({ url }) => {
-  const [playing, toggle] = useAudio(url);
-
   return (
-    <SPlayer>
-      <Boton variant='outline-primary' ejecutarFuncion={toggle} nombre='Inicio'>
-        {playing ? "Pause" : "Play"}
-      </Boton>
-    </SPlayer>
+    <SMusicaGeneral>
+      <SButton onClick={toggle}>
+        <SImg src={playing ? SongOn : SongOff} alt='Delete' />
+      </SButton>
+    </SMusicaGeneral>
   );
 };
 
-export default Player;
+export default MusicaGeneral;
