@@ -7,7 +7,7 @@ interface IPokemon {
 }
 
 export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
-  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemones";
+  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesSP";
 
   return await ConsumirApi(url, "Post", infoPaginacion).then((data) => {
     return data;

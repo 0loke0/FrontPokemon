@@ -5,6 +5,7 @@ interface IImagen {
 }
 
 interface IMovimientos {
+  IdMovimiento: number;
   NombreMovimiento: string;
   Valor: number;
 }
@@ -29,7 +30,7 @@ interface ITipos {
 }
 
 export interface IPokemonDetallado {
-  Id: string;
+  Id: number;
   Nombre: string;
   Ataque: number;
   Defensa: number;
@@ -42,5 +43,13 @@ export interface IPokemonDetallado {
   Rareza: string;
   Tipos: ITipos[];
   Movimientos: IMovimientos[];
+  Detalle: string;
+}
+
+export interface IActulizacionPokemon {
+  Id: number;
+  NombrePokemon: string;
+  IdsTipo: number[];
+  IdsMovimiento: number[];
   Detalle: string;
 }
