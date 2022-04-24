@@ -113,6 +113,7 @@ export const Editar: FC<IPropActualizar> = ({
   const obtenerListasIdMovimientos = () =>
     pokemonAActualizar.Tipos.map((x) => listaIdMovimientos.push(x.IdTipo));
 
+  const construirPokemonActualido = () => {};
   const asignarDetallePokemon = (e: any) => {
     // setpokemonActualizando({ ...pokemonActualizando, Detalle: e.target.value });
   };

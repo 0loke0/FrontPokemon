@@ -15,6 +15,10 @@ export const SDropdownButton = styled.div`
   overflow-x: auto;
   height: 142px;
 `;
+
+const SOption = styled.option`
+  text-align: center;
+`;
 export const DropList: FC<IPropDropList> = ({
   lista,
   valorDefecto,
@@ -29,9 +33,9 @@ export const DropList: FC<IPropDropList> = ({
 
   return (
     <Form.Select onChange={obtenerValor}>
-      <option>{valorDefecto}</option>
+      <SOption>{valorDefecto}</SOption>
       {lista.map((x) => (
-        <option value={x[valorAIndicar]}>{x[valorAListar]}</option>
+        <SOption value={x[valorAIndicar]}>{x[valorAListar]}</SOption>
       ))}
     </Form.Select>
   );

@@ -30,6 +30,7 @@ export const Sinput = styled.input`
   width: 100%;
   border-radius: 5px;
   border: 0.5px solid #c9e7ff;
+  text-align: center;
   &:focus {
     outline: none;
     border: none;
@@ -40,7 +41,7 @@ export const Sinput = styled.input`
 export const SDivFormLabel = styled.div`
   position: relative;
   text-align: center;
-  width: 35%;
+  width: 90%;
   left: 50%;
   transform: translate(-50%);
 `;

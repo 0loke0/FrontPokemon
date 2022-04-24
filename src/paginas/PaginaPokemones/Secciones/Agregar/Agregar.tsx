@@ -103,29 +103,29 @@ export const Agregar: FC<IPropAgregar> = ({
         <SImgSuma src={Suma} alt='suma' />
       </SButton>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size='lg'>
         <Modal.Header closeButton>
           <Modal.Title>Agregar un Pokémon</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SDivFormLabel>
-            <Form.Label>Nombre</Form.Label>
-            <Sinput
-              type='text'
-              required
-              placeholder='Ingrese Nombre'
-              value={nuevoPokemon.NombrePokemon}
-              onChange={asignarNombrePokemon}
-            />
-          </SDivFormLabel>
-
           <Container>
             <Row>
-              {nuevoPokemon.IdsMovimiento.map((x, index) => {
-                return (
-                  <Col>
-                    <SDivCentrador
-                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+              <Col>
+                <SDivFormLabel>
+                  <Form.Label>Nombre</Form.Label>
+                  <Sinput
+                    type='text'
+                    required
+                    placeholder='Ingrese Nombre'
+                    value={nuevoPokemon.NombrePokemon}
+                    onChange={asignarNombrePokemon}
+                  />
+                </SDivFormLabel>
+              </Col>
+              <Col>
+                {nuevoPokemon.IdsMovimiento.map((x, index) => {
+                  return (
+                    <Row>
                       <DropList
                         valorAIndicar='IdMovimiento'
                         index={index}
@@ -134,15 +134,16 @@ export const Agregar: FC<IPropAgregar> = ({
                         valorDefecto='Movimiento'
                         valorAListar='NombreMovimiento'
                       />
-                    </SDivCentrador>
-                  </Col>
-                );
-              })}
+                    </Row>
+                  );
+                })}
+              </Col>
             </Row>
+
             <Row>
               {nuevoPokemon.IdsTipo.map((x, index) => {
                 return (
-                  <Col>
+                  <Col md={{ span: 4, offset: 2 }}>
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
                       <DropList
@@ -165,7 +166,7 @@ export const Agregar: FC<IPropAgregar> = ({
             <Sinput
               type='text'
               required
-              placeholder='Ingrese descripcion de pokemon'
+              placeholder='Ingrese Descripcion de pokemon'
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}
             />
