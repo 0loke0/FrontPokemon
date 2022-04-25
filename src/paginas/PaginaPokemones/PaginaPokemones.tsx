@@ -14,6 +14,7 @@ import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
+import LogoPokemon from "../../Multimedia/LogoPokemon.png";
 
 import {
   SGeneralPaginaPokemon,
@@ -71,13 +72,12 @@ function PaginaPokemones() {
   return (
     <SPaginaPokemones>
       <SGeneralPaginaPokemon>
-        <STitulo>Pokémon</STitulo>
+        <STitulo src={LogoPokemon} />
         <ContadorPokemon cantidadRegistros={cantidadRegistros} />
         <Agregar
           actualizarPagina={actualizarPagina}
           agregarPokemon={agregarNuevoPokemon}
         />
-
         <MusicaGeneral url='https://web.opendrive.com/api/v1/download/file.json/NDNfMjM5ODg3Nzdf?inline=1' />
         <ClasificacionRarezas />
         <ContenedorCards

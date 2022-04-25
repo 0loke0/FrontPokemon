@@ -13,12 +13,16 @@ export const SGeneralPaginaPokemon = styled.div`
   background-color: #9dcbfaac;
   border-radius: 30px;
   padding: 40px;
+  top: 2%;
 `;
 
-export const STitulo = styled.p`
-  font-family: Poiret One;
-  font-size: 40px;
-  font-weight: 900;
+export const STitulo = styled.img`
+  position: relative;
+  white: 18%;
+  height: 18%;
+  left: 0%;
+  transform: translate(-40%, -75%);
+  top: 0%;
 `;
 
 export const SPaginaPokemones = styled.div`

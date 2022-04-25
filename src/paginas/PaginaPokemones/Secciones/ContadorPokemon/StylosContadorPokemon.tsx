@@ -4,7 +4,7 @@ export const SDivCantidadRegistros = styled.div`
   position: fixed;
   width: 3%;
   height: 4%;
-  top: 14.5%;
+  top: 13%;
   right: 0%;
   transform: translate(-100%);
   border-radius: 5px;

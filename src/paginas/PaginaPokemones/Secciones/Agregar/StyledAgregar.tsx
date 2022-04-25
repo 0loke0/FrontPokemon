@@ -76,14 +76,17 @@ export const SButton = styled.button`
   border: 1px solid transparent;
   left: -0.5%;
   margin-bottom: 1%;
+  top: -5%;
+  left: -15%; ;
 `;
 
 export const SImgBoton = styled.img`
-  position: relative;
+  position: absolute;
   height: 60px;
   width: 60px;
   top: 0%;
   left: 0%;
+
   animation: ${rotate} ${(p: IProps) => p.seleccion && ` 0.5s linear `};
   &:hover {
     animation: 10s linear infinite;
