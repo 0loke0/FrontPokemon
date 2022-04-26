@@ -6,6 +6,7 @@ import LoadingDian from "./paginas/LoadingDian/LoadingDian";
 import Cronometro from "./paginas/Cronometro/Cronometro";
 import CardGeneralizado from "./paginas/PruebasCards/CardGeneralizado";
 import { MarcaDeAgua } from "./paginas/MarcaDeAgua/MarcaDeAgua";
+import DragAndDrop from "./paginas/PruebasDragAndDrop/DragAndDrop";
 export const Rutas = () => {
   return (
     <Router>
@@ -27,6 +28,9 @@ export const Rutas = () => {
         </Route>
         <Route path='/MarcaDeAgua'>
           <MarcaDeAgua />
+        </Route>
+        <Route path='/DragAndDrop'>
+          <DragAndDrop />
         </Route>
       </Switch>
     </Router>
