@@ -70,7 +70,7 @@ const DragAndDrop = () => {
     infoGeneralContendor2Temp.push({ id: 8, contenido: "Contenidosssssssss" });
 
     // console.log(infoGeneralContendor2Temp);
-    // setinfoGeneralContendor2(infoGeneralContendor2Temp);
+    setinfoGeneralContendor2(infoGeneralContendor2Temp);
   };
 
   return (
