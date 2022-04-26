@@ -24,6 +24,7 @@ import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
+import DragDrop from "./DragDrop/DragDrop";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -108,6 +109,7 @@ export const Agregar: FC<IPropAgregar> = ({
           <Modal.Title>Agregar un Pokémon</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <DragDrop />
           <Container>
             <Row>
               <Col>
