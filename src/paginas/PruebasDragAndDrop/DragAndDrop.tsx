@@ -62,14 +62,14 @@ const DragAndDrop = () => {
   };
 
   const cambiarDeContenedor = (informacionTraspaso: any) => {
-    let infoGeneralTemp = { ...infoGeneral };
-    var infoGeneralContendor2Temp: IinformacionGeneral[] = {
+    // let infoGeneralTemp = { ...infoGeneral };
+    var infoGeneralContendor2Temp: IinformacionGeneral[] = [
       ...infoGeneralContendor2,
-    };
+    ];
     console.log("antes de ppushj", infoGeneralContendor2Temp);
     infoGeneralContendor2Temp.push({ id: 8, contenido: "Contenidosssssssss" });
 
-    console.log(infoGeneralContendor2Temp);
+    // console.log(infoGeneralContendor2Temp);
     // setinfoGeneralContendor2(infoGeneralContendor2Temp);
   };
 
