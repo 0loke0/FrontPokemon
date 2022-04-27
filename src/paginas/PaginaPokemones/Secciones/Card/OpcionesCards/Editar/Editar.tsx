@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Popover from "react-bootstrap/Popover";
 import Overlay from "react-bootstrap/Overlay";
 
@@ -11,6 +11,10 @@ import Edicion from "../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { IMovimiento, ITipos } from "../../../../../../Interface/Pokemones";
 import { DropList } from "../../../../../../Componentes/DropList";
+import { ObtenerTipos } from "../../../../../../Servicios/ServicioTipo";
+import { ObtenerMovimientos } from "../../../../../../Servicios/ServicioMovimientos";
+import { ActualizarPokemon } from "../../../../../../Servicios/ServicioPokemon";
+import { Alerta } from "../../../../../../Componentes/Alerta";
 
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
@@ -50,107 +54,119 @@ export const Sinput = styled.input`
     box-shadow: 0px 0px 5px #a0bad3;
   }
 `;
-interface IProps {
-  ubicacion?: string;
-  seleccion?: boolean;
-}
 export const SDivCentrador = styled.div`
   position: relative;
   right: 0%;
   text-align: ${(p: IProps) => (p.ubicacion == "Izquierda" ? "right" : "left")};
 `;
+export const SDivFormLabel = styled.div`
+  position: relative;
+  text-align: center;
+  width: 90%;
+  left: 50%;
+  transform: translate(-50%);
+`;
+
+interface IProps {
+  ubicacion?: string;
+  seleccion?: boolean;
+}
+
+const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
+  Id: 0,
+  NombrePokemon: "",
+  IdsTipo: [0, 0],
+  IdsMovimiento: [0, 0],
+  Detalle: "",
+};
 
 export const Editar: FC<IPropActualizar> = ({
   pokemonAActualizar,
   cerrarVenta,
 }) => {
-  const [pokemonActualizando, setpokemonActualizando] =
-    useState<IActulizacionPokemon>();
+  const [pokemonEditado, setpokemonEditado] = useState<IActulizacionPokemon>(
+    DEFAULTPOKEMONEDITADO
+  );
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const EditarPokemon = () => {};
+  const EditarPokemon = () => {
+    ActualizarPokemon(pokemonEditado).then((x) => {
+      x && Alerta("success", "Guardado", x);
+    });
+  };
+
   const cerrarVentanas = () => {
     handleClose();
     cerrarVenta();
   };
 
-  let convertirPokemonAPokemonActualizado = () => {
-    // {
-    //   Id: pokemonAActualizar.Id,
-    //   NombrePokemon: pokemonAActualizar.Nombre,
-    //   IdsTipo: number[],
-    //   IdsMovimiento: number[],
-    //   Detalle: string,
-    // }
-  };
-  var listaIdTipos: number[] = [];
-  var listaIdMovimientos: number[] = [];
-  const obtenerListasIdTipos = () =>
-    pokemonAActualizar.Tipos.map((x) => listaIdTipos.push(x.IdTipo));
-  const obtenerListasIdMovimientos = () =>
-    pokemonAActualizar.Tipos.map((x) => listaIdMovimientos.push(x.IdTipo));
+  useEffect(() => {
+    setpokemonEditado(convertirPokemonAPokemonEditado());
+    ObtenerTipos().then((x) => settipos(x));
+    ObtenerMovimientos().then((x) => setMovimientos(x));
+  }, []);
 
-  const construirPokemonActualido = () => {};
-  const asignarDetallePokemon = (e: any) => {
-    // setpokemonActualizando({ ...pokemonActualizando, Detalle: e.target.value });
+  const convertirPokemonAPokemonEditado = () => ({
+    Id: pokemonAActualizar.Id,
+    NombrePokemon: pokemonAActualizar.Nombre,
+    IdsTipo: pokemonAActualizar.Tipos.map((t) => t.IdTipo),
+    IdsMovimiento: pokemonAActualizar.Movimientos.map((m) => m.IdMovimiento),
+    Detalle: pokemonAActualizar.Detalle,
+  });
+
+  const asignarNombrePokemon = (e: any) => {
+    setpokemonEditado({ ...pokemonEditado, NombrePokemon: e.target.value });
+  };
+
+  const asignarDetalle = (e: any) => {
+    setpokemonEditado({ ...pokemonEditado, Detalle: e.target.value });
   };
 
   const asignarMovimiento = (x: number, index: number) => {
-    // var temp = { ...pokemonActualizando };
-    // temp.Movimientos[index]. = x;
-    // setpokemonActualizando({
-    //   ...pokemonActualizando,
-    //   IdsMovimiento: temp.IdsMovimiento,
-    // });
+    let temp = { ...pokemonEditado };
+    temp.IdsMovimiento[index] = x;
+    setpokemonEditado({ ...pokemonEditado, IdsMovimiento: temp.IdsMovimiento });
   };
 
-  // const asignarTipo = (x: number, index: number) => {
-  //   var temp = { ...pokemonActualizando };
-  //   temp.IdsTipo[index] = x;
-  //   setpokemonActualizando({ ...pokemonActualizando, IdsTipo: temp.IdsTipo });
-  // };
+  const asignarTipo = (x: number, index: number) => {
+    let temp = { ...pokemonEditado };
+    temp.IdsTipo[index] = x;
+    setpokemonEditado({ ...pokemonEditado, IdsTipo: temp.IdsTipo });
+  };
 
   return (
     <>
       <SButton onClick={handleShow}>
-        <SImg src={Edicion} alt='Delete' />
+        <SImg src={Edicion} alt='Edicion' />
       </SButton>
       <Modal show={show} onHide={cerrarVentanas}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar</Modal.Title>
-          {obtenerListasIdTipos()}
-          {console.log(listaIdTipos, listaIdMovimientos)}
         </Modal.Header>
         <Modal.Body>
-          <Form.Label>Nombre</Form.Label>
-          <Sinput
-            type='text'
-            required
-            placeholder='Ingrese Nombre'
-            value={pokemonActualizando?.NombrePokemon}
-            onChange={asignarNombrePokemon}
-          />
-          <Form.Label>Detalle</Form.Label>
-          <Sinput
-            type='text'
-            required
-            placeholder='Ingrese Detalle'
-            value={pokemonActualizando?.Detalle}
-            onChange={asignarDetallePokemon}
-          />
           <Container>
             <Row>
-              {pokemonActualizando.Movimientos.map((x, index) => {
-                return (
-                  <Col>
-                    <SDivCentrador
-                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+              <Col>
+                <SDivFormLabel>
+                  <Form.Label>Nombre</Form.Label>
+                  <Sinput
+                    type='text'
+                    required
+                    placeholder='Ingrese Nombre'
+                    value={pokemonEditado.NombrePokemon}
+                    onChange={asignarNombrePokemon}
+                  />
+                </SDivFormLabel>
+              </Col>
+              <Col>
+                {pokemonEditado.IdsMovimiento.map((x, index) => {
+                  return (
+                    <Row>
                       <DropList
                         valorAIndicar='IdMovimiento'
                         index={index}
@@ -159,38 +175,47 @@ export const Editar: FC<IPropActualizar> = ({
                         valorDefecto='Movimiento'
                         valorAListar='NombreMovimiento'
                       />
-                    </SDivCentrador>
-                  </Col>
-                );
-              })}
+                    </Row>
+                  );
+                })}
+              </Col>
             </Row>
+
             <Row>
-              {nuevoPokemon.Tipos.map((x, index) => {
+              {pokemonEditado.IdsTipo.map((x, index) => {
                 return (
-                  <Col>
-                    <SDivCentrador
-                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                      <DropList
-                        valorAIndicar='IdTipo'
-                        index={index}
-                        lista={tipos}
-                        recogerSeleccion={asignarTipo}
-                        valorDefecto='Tipos'
-                        valorAListar='NombreTipo'
-                      />
-                    </SDivCentrador>
-                  </Col>
+                  <SDivCentrador
+                    ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+                    <DropList
+                      valorAIndicar='IdTipo'
+                      index={index}
+                      lista={tipos}
+                      recogerSeleccion={asignarTipo}
+                      valorDefecto={"Tipo"}
+                      valorAListar='NombreTipo'
+                    />
+                  </SDivCentrador>
                 );
               })}
             </Row>
           </Container>
+          <SDivFormLabel>
+            <Form.Label>Detalle</Form.Label>
+            <Sinput
+              type='text'
+              required
+              placeholder='Ingrese Descripcion de pokemon'
+              value={pokemonEditado.Detalle}
+              onChange={asignarDetalle}
+            />
+          </SDivFormLabel>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={cerrarVentanas}>
             Cancelar
           </Button>
           <Button variant='danger' onClick={EditarPokemon}>
-            Eliminar
+            Editar
           </Button>
         </Modal.Footer>
       </Modal>

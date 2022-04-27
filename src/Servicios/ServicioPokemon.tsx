@@ -1,5 +1,6 @@
 import { ConsumirApi } from "./Core/CoreApi";
 import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
+import { IActulizacionPokemon } from "../Interface/PokemonDetallado";
 
 interface IPokemon {
   Id: number;
@@ -21,9 +22,9 @@ export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   });
 };
 
-export const ActualizarPokemon = async (pokemon: IPokemon) => {
-  const url = "http://localhost:63107/api/Pokemones/ActualizarPokemon";
-  return await ConsumirApi(url, "Get", pokemon).then((data) => {
+export const ActualizarPokemon = async (pokemon: IActulizacionPokemon) => {
+  const url = "http://localhost:63107/api/Pokemones/ModificarPokemon";
+  return await ConsumirApi(url, "Post", pokemon).then((data) => {
     return data;
   });
 };

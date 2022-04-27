@@ -145,19 +145,17 @@ export const Agregar: FC<IPropAgregar> = ({
             <Row>
               {nuevoPokemon.IdsTipo.map((x, index) => {
                 return (
-                  <Col md={{ span: 4, offset: 2 }}>
-                    <SDivCentrador
-                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                      <DropList
-                        valorAIndicar='IdTipo'
-                        index={index}
-                        lista={tipos}
-                        recogerSeleccion={asignarTipo}
-                        valorDefecto='Tipos'
-                        valorAListar='NombreTipo'
-                      />
-                    </SDivCentrador>
-                  </Col>
+                  <SDivCentrador
+                    ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
+                    <DropList
+                      valorAIndicar='IdTipo'
+                      index={index}
+                      lista={tipos}
+                      recogerSeleccion={asignarTipo}
+                      valorDefecto='Tipos'
+                      valorAListar='NombreTipo'
+                    />
+                  </SDivCentrador>
                 );
               })}
             </Row>
