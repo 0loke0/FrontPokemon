@@ -1,10 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Button, Collapse } from "react-bootstrap";
 import styled from "styled-components";
 // import from "../src/Multimedia/Pokemon/Card/IconoDescripcion.png"
 import IconoDescripcion from "../../../../../Multimedia/Pokemon/Card/IconoDescripcion.png";
 interface IPropDescription {
   detalle: string;
+  referencia: number;
 }
 
 const SButton = styled.button`
@@ -41,10 +42,14 @@ const SCollapse = styled.div`
   font-size: 20px;
   font-family: Poiret One;
   font-weight: 700;
+  transition: 0.1s;
 `;
 
-export const Descripcion: FC<IPropDescription> = ({ detalle }) => {
+export const Descripcion: FC<IPropDescription> = ({ detalle, referencia }) => {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setOpen(false);
+  }, [referencia]);
 
   return (
     <>

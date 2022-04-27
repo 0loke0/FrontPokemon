@@ -60,23 +60,6 @@ export const SDivCentrador = styled.div`
   text-align: ${(p: IProps) => (p.ubicacion == "Izquierda" ? "right" : "left")};
 `;
 
-// const DEFAULTPOKEMONACTUALIZAR: IPokemonDetallado = {
-//   Id: "",
-//   Nombre: "",
-//   Ataque: 0,
-//   Defensa: 0,
-//   EspecialAtaque: 0,
-//   EspecialDefensa: 0,
-//   Velocidad: 0,
-//   Vida: 0,
-//   NombreImagen: "",
-//   RutaImagen: "",
-//   Rareza: "",
-//   Tipos: [{ IdTipo: 0, NombreTipo: "" }],
-//   Movimientos: [{ NombreMovimiento: "", Valor: 0 }],
-//   Detalle: "",
-// };
-
 export const Editar: FC<IPropActualizar> = ({
   pokemonAActualizar,
   cerrarVenta,
@@ -145,7 +128,7 @@ export const Editar: FC<IPropActualizar> = ({
           {console.log(listaIdTipos, listaIdMovimientos)}
         </Modal.Header>
         <Modal.Body>
-          {/* <Form.Label>Nombre</Form.Label>
+          <Form.Label>Nombre</Form.Label>
           <Sinput
             type='text'
             required
@@ -160,8 +143,8 @@ export const Editar: FC<IPropActualizar> = ({
             placeholder='Ingrese Detalle'
             value={pokemonActualizando?.Detalle}
             onChange={asignarDetallePokemon}
-          /> */}
-          {/* <Container>
+          />
+          <Container>
             <Row>
               {pokemonActualizando.Movimientos.map((x, index) => {
                 return (
@@ -200,7 +183,7 @@ export const Editar: FC<IPropActualizar> = ({
                 );
               })}
             </Row>
-          </Container> */}
+          </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={cerrarVentanas}>

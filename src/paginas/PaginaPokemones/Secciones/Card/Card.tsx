@@ -28,7 +28,6 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
   const [colorFondo, setcolorFondo] = useState<string>("predeterminado");
   useEffect(() => {
     determinarColorDominante();
-    console.log("imagen ", pokemon.RutaImagen);
   }, [pokemon]);
 
   var imagen =
@@ -53,7 +52,6 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             eliminarPokemon={eliminarPokemon}
             editarPokemon={() => {}}
           />
-
           <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>
               {pokemon.Tipos.map((x, index) => (
@@ -67,9 +65,9 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
             {<SImg src={imagen} />}
           </SContenedorImagen>
           <Stats pokemon={pokemon} />
-          <SDivDescripcion>
-            {pokemon.Detalle && <Descripcion detalle={pokemon.Detalle} />}
-          </SDivDescripcion>
+          {pokemon.Detalle && (
+            <Descripcion detalle={pokemon.Detalle} referencia={pokemon.Id} />
+          )}
         </Card.Body>
       </StyledCard>
     </Col>

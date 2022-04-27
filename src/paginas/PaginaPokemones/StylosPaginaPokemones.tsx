@@ -27,9 +27,9 @@ export const STitulo = styled.img`
 
 export const SPaginaPokemones = styled.div`
   background-image: url(${Background});
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed; */
   height: 899px;
   width: 100%;
   padding: 2% 5%;

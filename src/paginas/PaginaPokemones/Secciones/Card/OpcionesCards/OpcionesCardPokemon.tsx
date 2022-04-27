@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { Button, Overlay, Popover } from "react-bootstrap";
 import styled from "styled-components";
 import { IPokemonDetallado } from "../../../../../Interface/PokemonDetallado";
@@ -45,6 +45,10 @@ export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const ref = useRef(null);
+
+  useEffect(() => {
+    setShow(false);
+  }, [pokemon]);
 
   const handleClick = (event: any) => {
     setShow(!show);
