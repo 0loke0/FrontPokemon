@@ -1,13 +1,29 @@
 import React, { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
 import styled from "styled-components";
-import App from "./drag2";
 
 interface IinformacionGeneral {
   id: number;
   contenido: string;
 }
 
+const SDivContenedores = styled.div`
+  background-color: red;
+  width: 200px;
+  height: 200px;
+  border-radius: 2px solid black;
+`;
+
+const SDroppable = styled(Droppable)`
+  background-color: red;
+  width: 200px;
+  height: 500px;
+`;
 const informacionGeneral: IinformacionGeneral[] = [
   { id: 1, contenido: "Contenido Inicial" },
   { id: 2, contenido: "Contenido Inicial no tan inicial" },
@@ -17,72 +33,82 @@ const informacionGeneral: IinformacionGeneral[] = [
 ];
 
 const informacionGeneralContenedor2: IinformacionGeneral[] = [
-  { id: 1, contenido: "S" },
-  { id: 2, contenido: "SSS" },
-  { id: 3, contenido: "SS  " },
-  { id: 4, contenido: "SSSS" },
-  { id: 5, contenido: "SSSSS" },
+  { id: 1, contenido: "ss1" },
+  { id: 2, contenido: "ss2" },
+  { id: 3, contenido: "ss3" },
+  { id: 4, contenido: "ss4" },
+  { id: 5, contenido: "ss5" },
 ];
 
-const contenedores = {
-  primaria: {
-    name: "primaria",
+const contenedores = [
+  {
+    identificador: "primaria",
     items: informacionGeneral,
   },
-  secundaria: {
-    name: "secundaria",
+  {
+    identificador: "secundaria",
     items: informacionGeneralContenedor2,
   },
-};
+];
 
 const DragAndDrop = () => {
-  const [infoGeneral, setinfoGeneral] =
+  const [origen, setorigen] =
     useState<IinformacionGeneral[]>(informacionGeneral);
-  const [infoGeneralContendor2, setinfoGeneralContendor2] = useState<
-    IinformacionGeneral[]
-  >(informacionGeneralContenedor2);
+  const [destino, setdestino] = useState<IinformacionGeneral[]>(
+    informacionGeneralContenedor2
+  );
 
-  const reorder = (list: any, startIndex: any, endIndex: any) => {
-    const result = [...list];
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    return result;
+  const buscarElementoPorIndice = (indice: number) => {
+    return origen.find((x) => x.id === indice) || { id: 1, contenido: "S" };
   };
 
-  const buscarElementoPorIndice = (
-    indice: number,
-    infoGeneral: IinformacionGeneral[]
-  ) => {
-    console.log(
-      "informacion log",
-      infoGeneral.find((x) => x.id === indice)
-    );
-    // return infoGeneral.find((x) => x.id === indice);
-    return { id: 2, contenido: "Contenidosssssssss" };
-  };
-
-  const cambiarDeContenedor = (informacionTraspaso: any) => {
-    // let infoGeneralTemp = { ...infoGeneral };
-    var infoGeneralContendor2Temp: IinformacionGeneral[] = [
-      ...infoGeneralContendor2,
-    ];
-    console.log("antes de ppushj", infoGeneralContendor2Temp);
-    infoGeneralContendor2Temp.push({ id: 8, contenido: "Contenidosssssssss" });
-
-    // console.log(infoGeneralContendor2Temp);
-    setinfoGeneralContendor2(infoGeneralContendor2Temp);
+  const cambiarDeContenedor = (informacionTraspaso: DropResult) => {
+    var destinoTemp: IinformacionGeneral[] = [...destino];
+    var informacion = buscarElementoPorIndice(informacionTraspaso.source.index);
+    destinoTemp.push(informacion);
+    setdestino(destinoTemp);
   };
 
   return (
     <>
-      <DragDropContext onDragEnd={cambiarDeContenedor}>
-        <Droppable droppableId='idPrimario'>
+      <DragDropContext onDragEnd={(x) => cambiarDeContenedor(x)}>
+        {contenedores.map((contenedor, indexMax) => {
+          return (
+            <SDroppable droppableId={contenedor.identificador}>
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {provided.placeholder}
+                  <div>
+                    {contenedor.items.map((item, index) => {
+                      return (
+                        <Draggable
+                          draggableId={indexMax.toString() + item.id.toString()}
+                          index={item.id}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}>
+                              {item.contenido}
+                            </div>
+                          )}
+                        </Draggable>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </SDroppable>
+          );
+        })}
+
+        {/* <Droppable droppableId='idPrimario'>
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {provided.placeholder}
               <div>
-                {infoGeneral.map((item, index) => (
-                  <Draggable draggableId={item.id.toString()} index={index}>
+                {origen.map((item, index) => (
+                  <Draggable draggableId={item.id.toString()} index={item.id}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
@@ -102,10 +128,10 @@ const DragAndDrop = () => {
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {provided.placeholder}
               <div>
-                {infoGeneralContendor2.map((item, index) => (
+                {destino.map((item, index) => (
                   <Draggable
                     draggableId={item.id.toString() + "2"}
-                    index={index}>
+                    index={item.id}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
@@ -119,7 +145,7 @@ const DragAndDrop = () => {
               </div>
             </div>
           )}
-        </Droppable>
+        </Droppable> */}
       </DragDropContext>
     </>
   );
