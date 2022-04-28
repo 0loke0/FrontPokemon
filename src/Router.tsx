@@ -7,6 +7,7 @@ import Cronometro from "./paginas/Cronometro/Cronometro";
 import CardGeneralizado from "./paginas/PruebasCards/CardGeneralizado";
 import { MarcaDeAgua } from "./paginas/MarcaDeAgua/MarcaDeAgua";
 import DragAndDrop from "./paginas/PruebasDragAndDrop/DragAndDrop";
+import PruebasStats from "./paginas/PruebasStats/PruebasStats";
 export const Rutas = () => {
   return (
     <Router>
@@ -31,6 +32,9 @@ export const Rutas = () => {
         </Route>
         <Route path='/DragAndDrop'>
           <DragAndDrop />
+        </Route>
+        <Route path='/PruebasStats'>
+          <PruebasStats />
         </Route>
       </Switch>
     </Router>

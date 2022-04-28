@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -6,6 +6,8 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { ObtenerMovimientos } from "../../Servicios/ServicioMovimientos";
+import { ObtenerTipos } from "../../Servicios/ServicioTipo";
 
 interface IinformacionGeneral {
   id: number;
@@ -32,24 +34,7 @@ const informacionGeneral: IinformacionGeneral[] = [
   { id: 5, contenido: "shale creo que si funciona el auto" },
 ];
 
-const informacionGeneralContenedor2: IinformacionGeneral[] = [
-  { id: 1, contenido: "ss1" },
-  { id: 2, contenido: "ss2" },
-  { id: 3, contenido: "ss3" },
-  { id: 4, contenido: "ss4" },
-  { id: 5, contenido: "ss5" },
-];
-
-const contenedores = [
-  {
-    identificador: "primaria",
-    items: informacionGeneral,
-  },
-  {
-    identificador: "secundaria",
-    items: informacionGeneralContenedor2,
-  },
-];
+const informacionGeneralContenedor2: IinformacionGeneral[] = [];
 
 const DragAndDrop = () => {
   const [origen, setorigen] =
@@ -57,6 +42,17 @@ const DragAndDrop = () => {
   const [destino, setdestino] = useState<IinformacionGeneral[]>(
     informacionGeneralContenedor2
   );
+
+  const contenedores = [
+    {
+      identificador: "primaria",
+      items: origen,
+    },
+    {
+      identificador: "secundaria",
+      items: destino,
+    },
+  ];
 
   const buscarElementoPorIndice = (indice: number) => {
     return origen.find((x) => x.id === indice) || { id: 1, contenido: "S" };
@@ -72,80 +68,32 @@ const DragAndDrop = () => {
   return (
     <>
       <DragDropContext onDragEnd={(x) => cambiarDeContenedor(x)}>
-        {contenedores.map((contenedor, indexMax) => {
-          return (
-            <SDroppable droppableId={contenedor.identificador}>
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  {provided.placeholder}
-                  <div>
-                    {contenedor.items.map((item, index) => {
-                      return (
-                        <Draggable
-                          draggableId={indexMax.toString() + item.id.toString()}
-                          index={item.id}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}>
-                              {item.contenido}
-                            </div>
-                          )}
-                        </Draggable>
-                      );
-                    })}
-                  </div>
+        {contenedores.map((contenedor, indexMax) => (
+          <SDroppable droppableId={contenedor.identificador}>
+            {(provided, snapshot) => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                {provided.placeholder}
+                <div>
+                  {contenedor.items.map((item, index) => (
+                    <Draggable
+                      draggableId={indexMax.toString() + item.id.toString()}
+                      index={item.id}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...snapshot.dropAnimation}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}>
+                          {item.contenido}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
                 </div>
-              )}
-            </SDroppable>
-          );
-        })}
-
-        {/* <Droppable droppableId='idPrimario'>
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {provided.placeholder}
-              <div>
-                {origen.map((item, index) => (
-                  <Draggable draggableId={item.id.toString()} index={item.id}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}>
-                        {item.contenido}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
               </div>
-            </div>
-          )}
-        </Droppable>
-        <Droppable droppableId='idSecundario'>
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {provided.placeholder}
-              <div>
-                {destino.map((item, index) => (
-                  <Draggable
-                    draggableId={item.id.toString() + "2"}
-                    index={item.id}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}>
-                        {item.contenido}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </div>
-            </div>
-          )}
-        </Droppable> */}
+            )}
+          </SDroppable>
+        ))}
       </DragDropContext>
     </>
   );

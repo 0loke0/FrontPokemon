@@ -2,11 +2,6 @@ import { ConsumirApi } from "./Core/CoreApi";
 import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
 import { IActulizacionPokemon } from "../Interface/PokemonDetallado";
 
-interface IPokemon {
-  Id: number;
-  Nombre: string;
-}
-
 export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesSP";
 
