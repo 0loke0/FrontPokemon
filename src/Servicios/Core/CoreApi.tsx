@@ -19,15 +19,7 @@ export const ConsumirApi = async (
         return response ? response.json() : null;
       })
       .then((response) => {
-        if (response.ExceptionMessage) {
-          Alerta("error", response.Message, response.ExceptionMessage);
-          throw new Error(response.ExceptionMessage);
-        }
-        if (response.Message) {
-          Alerta("error", "Error", response.Message);
-          throw new Error(response.Message);
-        }
-        return response;
+        return validarErrores(response);
       })
       .catch((error) => {
         Alerta("error", "Error", error);
@@ -35,4 +27,16 @@ export const ConsumirApi = async (
         return null;
       })
   );
+};
+
+const validarErrores = (response: any) => {
+  if (response.ExceptionMessage) {
+    Alerta("error", response.Message, response.ExceptionMessage);
+    throw new Error(response.ExceptionMessage);
+  }
+  if (response.Message) {
+    Alerta("error", "Error", response.Message);
+    throw new Error(response.Message);
+  }
+  return response;
 };
