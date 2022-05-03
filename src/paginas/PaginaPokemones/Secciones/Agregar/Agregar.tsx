@@ -86,8 +86,6 @@ export const Agregar: FC<IPropAgregar> = ({
   const asignarImagen = (e: any) => {
     const file = e.target.files[0];
     convertirDeImagenABase64(file).then((x) => {
-      console.log("información de la imagen", x);
-
       var temp = { ...nuevoPokemon };
       temp.Imagen = {
         Nombre: file.name,
@@ -95,6 +93,10 @@ export const Agregar: FC<IPropAgregar> = ({
       };
       setnuevoPokemon({ ...nuevoPokemon, Imagen: temp.Imagen });
     });
+  };
+
+  const tomarTipos = (tipos: ITipos[]) => {
+    console.log(tipos);
   };
 
   return (
@@ -109,7 +111,7 @@ export const Agregar: FC<IPropAgregar> = ({
           <Modal.Title>Agregar un Pokémon</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DragDrop />
+          <DragDrop tomarTipos={tomarTipos} />
           <Container>
             <Row>
               <Col>
