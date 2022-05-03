@@ -10,10 +10,12 @@ interface IPropDropList {
   valorAIndicar: string;
   index?: number;
 }
-export const SDropdownButton = styled.div`
-  overflow-y: scroll;
-  overflow-x: auto;
-  height: 142px;
+
+const SFromSelec = styled(Form.Select)`
+  width: 100%;
+  background-color: #ced2ff;
+  color: #5c5b5b;
+  margin: 2px;
 `;
 
 const SOption = styled.option`
@@ -32,11 +34,11 @@ export const DropList: FC<IPropDropList> = ({
   };
 
   return (
-    <Form.Select onChange={obtenerValor}>
+    <SFromSelec onChange={obtenerValor}>
       <SOption>{valorDefecto}</SOption>
       {lista.map((x) => (
         <SOption value={x[valorAIndicar]}>{x[valorAListar]}</SOption>
       ))}
-    </Form.Select>
+    </SFromSelec>
   );
 };

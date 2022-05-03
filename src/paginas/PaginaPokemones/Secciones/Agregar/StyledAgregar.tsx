@@ -4,9 +4,11 @@ import { DropList } from "../../../../Componentes/DropList";
 
 import Forest from "../../../../Multimedia/Pokemon/Agregar/Forest.jpg";
 
+import FondoModalAgregado from "../../../../Multimedia/Pokemon/Agregar/FondoModalAgregado.png";
 interface IProps {
   ubicacion?: string;
   seleccion?: boolean;
+  size?: number;
 }
 
 const rotate = keyframes`
@@ -22,15 +24,19 @@ const rotate = keyframes`
 `;
 
 export const Sinput = styled.input`
+  position: relative;
   font-size: 18px;
-  margin-top: 2px;
+  margin-top: 0px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 0px;
   display: block;
-  width: 100%;
+  left: 50%;
+  width: 50%;
+  height: ${(p: IProps) => (p.size ? p.size + `px` : "auto")};
   border-radius: 5px;
   border: 0.5px solid #c9e7ff;
   text-align: center;
+  transform: translate(-50%);
   &:focus {
     outline: none;
     border: none;
@@ -41,7 +47,7 @@ export const Sinput = styled.input`
 export const SDivFormLabel = styled.div`
   position: relative;
   text-align: center;
-  width: 90%;
+  width: 70%;
   left: 50%;
   transform: translate(-50%);
 `;
@@ -62,10 +68,12 @@ export const SDivSolicitudImagen = styled.div`
 `;
 
 export const SImg = styled.img`
+  position: relative;
+  left: 50%;
   margin-top: 10px;
   padding: 5px;
-  border: 2px solid #d1d1d1;
   border-radius: 4%;
+  transform: translate(-50%);
 `;
 
 export const SButton = styled.button`
@@ -74,7 +82,7 @@ export const SButton = styled.button`
   height: 60px;
   width: 60px;
   border: 1px solid transparent;
-  left: -0.5%;
+
   margin-bottom: 1%;
   top: -5%;
   left: -15%; ;
@@ -100,6 +108,21 @@ export const SImgSuma = styled.img`
   left: 75%;
 `;
 
-export const SModal = styled.div`
-  background-color: red;
+export const STitulo = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;
+
+export const SModalBody = styled(Modal.Body)`
+  background-image: url(${FondoModalAgregado});
+  background-size: cover;
+  background-color: black;
+  padding: 2%;
+`;
+
+export const SModal = styled(Modal)`
+  background-color: #6378ab91;
+`;
+export const SContenedorModal = styled.div`
+  background-color: transparent;
 `;
