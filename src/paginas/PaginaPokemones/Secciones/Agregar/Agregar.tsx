@@ -171,14 +171,6 @@ export const Agregar: FC<IPropAgregar> = ({
           </Container>
 
           <SDivFormLabel>
-            <Sinput
-              size={150}
-              type='text'
-              required
-              placeholder='Ingrese Descripcion de pokemon'
-              value={nuevoPokemon.Detalle}
-              onChange={asignarDetallePokemon}
-            />
             <textarea
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}

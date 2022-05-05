@@ -115,7 +115,6 @@ export const STitulo = styled.p`
   color: #ffffff;
   background-color: #18a05aa3;
   width: 30%;
-
   border-radius: 10px;
 `;
 

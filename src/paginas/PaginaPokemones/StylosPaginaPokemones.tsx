@@ -18,7 +18,7 @@ export const SGeneralPaginaPokemon = styled.div`
 
 export const STitulo = styled.img`
   position: relative;
-  white: 18%;
+  width: 18%;
   height: 18%;
   left: 0%;
   transform: translate(-40%, -75%);
