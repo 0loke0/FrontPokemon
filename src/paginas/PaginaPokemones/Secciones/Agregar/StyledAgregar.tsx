@@ -109,8 +109,14 @@ export const SImgSuma = styled.img`
 `;
 
 export const STitulo = styled.p`
+  position: relative;
   text-align: center;
   font-size: 20px;
+  color: #ffffff;
+  background-color: #18a05aa3;
+  width: 30%;
+
+  border-radius: 10px;
 `;
 
 export const SModalBody = styled(Modal.Body)`
@@ -121,7 +127,7 @@ export const SModalBody = styled(Modal.Body)`
 `;
 
 export const SModal = styled(Modal)`
-  background-color: #6378ab91;
+  background-color: #aac5b7a3;
 `;
 export const SContenedorModal = styled.div`
   background-color: transparent;

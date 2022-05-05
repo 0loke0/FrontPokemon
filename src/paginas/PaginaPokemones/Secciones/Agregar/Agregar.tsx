@@ -179,6 +179,14 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}
             />
+            <textarea
+              value={nuevoPokemon.Detalle}
+              onChange={asignarDetallePokemon}
+              name='textarea'
+              rows={10}
+              cols={50}>
+              Write something here
+            </textarea>
           </SDivFormLabel>
           {nuevoPokemon.Imagen?.ArchivoImagen ? (
             <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
