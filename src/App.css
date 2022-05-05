@@ -6,3 +6,7 @@ font-family: 'Poiret One', cursive; // titulo pokenes
 font-family: 'Press Start 2P', cursive;
 font-family: 'Righteous', cursive; */
 @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Flow+Block&family=Gloria+Hallelujah&family=Indie+Flower&family=Poiret+One&family=Press+Start+2P&family=Righteous&display=swap");
+.modal-content{
+    background-color: transparent !important;
+    border: none;
+}

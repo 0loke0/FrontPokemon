@@ -121,12 +121,13 @@ export const STitulo = styled.p`
 export const SModalBody = styled(Modal.Body)`
   background-image: url(${FondoModalAgregado});
   background-size: cover;
-  background-color: black;
+  background-color: black !important;
   padding: 2%;
+  border-radius: 5%;
 `;
 
 export const SModal = styled(Modal)`
-  background-color: #aac5b7a3;
+  background-color: #032e18a2;
 `;
 export const SContenedorModal = styled.div`
   background-color: transparent;

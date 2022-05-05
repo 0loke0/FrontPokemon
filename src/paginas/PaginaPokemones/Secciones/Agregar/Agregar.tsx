@@ -29,6 +29,7 @@ import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import DragDrop from "./DragDrop/DragDrop";
+import { STextarea } from "../../StylosPaginaPokemones";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -111,7 +112,7 @@ export const Agregar: FC<IPropAgregar> = ({
         onHide={handleClose}
         size='lg'
         dialogClassName={"modalInfo"}>
-        <SModalBody>
+        <SModalBody >
           <STitulo>Nuevo Pokemon</STitulo>
           {/* <DragDrop tomarTipos={tomarTipos} /> */}
           <Container>
@@ -171,14 +172,14 @@ export const Agregar: FC<IPropAgregar> = ({
           </Container>
 
           <SDivFormLabel>
-            <textarea
+            <STextarea
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}
               name='textarea'
               rows={10}
               cols={50}>
               Write something here
-            </textarea>
+            </STextarea>
           </SDivFormLabel>
           {nuevoPokemon.Imagen?.ArchivoImagen ? (
             <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
