@@ -1,4 +1,4 @@
-import { Col, Form, Modal } from "react-bootstrap";
+import { Button, Col, Form, Modal } from "react-bootstrap";
 import styled, { keyframes } from "styled-components";
 import { DropList } from "../../../../Componentes/DropList";
 
@@ -76,7 +76,7 @@ export const SImg = styled.img`
   transform: translate(-50%);
 `;
 
-export const SButton = styled.button`
+export const SButtonGeneral = styled.button`
   background-color: transparent;
   position: relative;
   height: 60px;
@@ -123,7 +123,7 @@ export const SModalBody = styled(Modal.Body)`
   background-size: cover;
   background-color: black !important;
   padding: 2%;
-  border-radius: 5%;
+  border-radius: 20px;
   margin-top: 299;
 `;
 
@@ -132,4 +132,19 @@ export const SModal = styled(Modal)`
 `;
 export const SContenedorModal = styled.div`
   background-color: transparent;
+`;
+
+export const SContenedorBotones = styled.div`
+  position: relative;
+  width: 200px;
+  top: 10px;
+  left: 100%;
+  transform: translate(-100%);
+  margin: 2%;
+`;
+
+export const SButton = styled(Button)``;
+
+export const STextarea = styled.textarea`
+  border-radius: 20px;
 `;

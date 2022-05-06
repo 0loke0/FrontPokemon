@@ -16,12 +16,15 @@ import {
   SDivSolicitudImagen,
   SImg,
   SImgBoton,
-  SButton,
   SImgSuma,
   STitulo,
   SModalBody,
   SModal,
   SContenedorModal,
+  SButtonGeneral,
+  SButton,
+  STextarea,
+  SContenedorBotones,
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
@@ -29,7 +32,6 @@ import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import DragDrop from "./DragDrop/DragDrop";
-import { STextarea } from "../../StylosPaginaPokemones";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -102,10 +104,10 @@ export const Agregar: FC<IPropAgregar> = ({
 
   return (
     <>
-      <SButton onClick={handleShow}>
+      <SButtonGeneral onClick={handleShow}>
         <SImgBoton seleccion={show} src={AgregarIcono} alt='pokebola' />
         <SImgSuma src={Suma} alt='suma' />
-      </SButton>
+      </SButtonGeneral>
 
       <SModal
         show={show}
@@ -188,12 +190,14 @@ export const Agregar: FC<IPropAgregar> = ({
             <Form.Label>Imagen</Form.Label>
             <Form.Control type='file' onChange={asignarImagen} />
           </SDivSolicitudImagen>
-          <Button variant='secondary' onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant='primary' onClick={agregarNuevoPokemon}>
-            Guardar
-          </Button>
+          <SContenedorBotones>
+            <SButton variant='secondary' onClick={handleClose}>
+              Cancelar
+            </SButton>
+            <SButton variant='primary' onClick={agregarNuevoPokemon}>
+              Guardar
+            </SButton>
+          </SContenedorBotones>
         </SModalBody>
       </SModal>
     </>
