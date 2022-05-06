@@ -112,7 +112,7 @@ export const Agregar: FC<IPropAgregar> = ({
         onHide={handleClose}
         size='lg'
         dialogClassName={"modalInfo"}>
-        <SModalBody >
+        <SModalBody>
           <STitulo>Nuevo Pokemon</STitulo>
           {/* <DragDrop tomarTipos={tomarTipos} /> */}
           <Container>
@@ -176,10 +176,8 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}
               name='textarea'
-              rows={10}
-              cols={50}>
-              Write something here
-            </STextarea>
+              rows={3}
+              cols={50}></STextarea>
           </SDivFormLabel>
           {nuevoPokemon.Imagen?.ArchivoImagen ? (
             <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
