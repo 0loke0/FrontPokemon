@@ -4,7 +4,7 @@ import { DropList } from "../../../../Componentes/DropList";
 
 import Forest from "../../../../Multimedia/Pokemon/Agregar/Forest.jpg";
 
-import FondoAgregado from "../../../../Multimedia/Pokemon/Agregar/FondoAgregado.png";
+import FondoAgregado from "../../../../Multimedia/Pokemon/Agregar/FondoAgregado.jpg";
 interface IProps {
   ubicacion?: string;
   seleccion?: boolean;
@@ -121,14 +121,15 @@ export const STitulo = styled.p`
 export const SModalBody = styled(Modal.Body)`
   background-image: url(${FondoAgregado});
   background-size: cover;
-  background-color: black !important;
   padding: 2%;
   border-radius: 20px;
   margin-top: 100px;
+  border: 3px solid black;
+  box-shadow: 0px 0px 20px #a0ff84;
 `;
 
 export const SModal = styled(Modal)`
-  background-color: #032e18a2;
+  background-color: #54faa494;
 `;
 export const SContenedorModal = styled.div`
   background-color: transparent;
