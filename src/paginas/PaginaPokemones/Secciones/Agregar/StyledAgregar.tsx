@@ -124,7 +124,7 @@ export const SModalBody = styled(Modal.Body)`
   background-color: black !important;
   padding: 2%;
   border-radius: 20px;
-  margin-top: 299;
+  margin-top: 100px;
 `;
 
 export const SModal = styled(Modal)`

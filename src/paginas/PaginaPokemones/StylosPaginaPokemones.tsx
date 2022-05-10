@@ -35,7 +35,3 @@ export const SPaginaPokemones = styled.div`
   width: 100%;
   padding: 2% 5%;
 `;
-
-export const STextarea = styled.textarea`
-  border-radius: 20px;
-`;
