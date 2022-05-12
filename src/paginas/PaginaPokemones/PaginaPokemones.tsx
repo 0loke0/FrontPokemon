@@ -22,6 +22,7 @@ import {
   STitulo,
 } from "./StylosPaginaPokemones";
 import MusicaGeneral from "./Secciones/Musica/MusicaGeneral";
+import FiltroPokemones from "./Secciones/Filtros/FiltroPokemones";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
@@ -80,6 +81,10 @@ function PaginaPokemones() {
         />
         <MusicaGeneral url='https://web.opendrive.com/api/v1/download/file.json/NDNfMjM5ODg3Nzdf?inline=1' />
         <ClasificacionRarezas />
+        <FiltroPokemones
+          actualizarPagina={actualizarPagina}
+          agregarPokemon={agregarNuevoPokemon}
+        />
         <ContenedorCards
           pokemonDetallado={pokemonDetallado}
           tomarInformacionPaginacion={tomarInformacionPaginacion}
