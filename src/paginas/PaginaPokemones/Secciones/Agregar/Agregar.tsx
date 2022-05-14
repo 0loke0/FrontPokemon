@@ -28,7 +28,7 @@ import {
 } from "./StyledAgregar";
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
-import AgregarIcono from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
+import Pokebola from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import DragDrop from "./DragDrop/DragDrop";
@@ -105,7 +105,7 @@ export const Agregar: FC<IPropAgregar> = ({
   return (
     <>
       <SButtonGeneral onClick={handleShow}>
-        <SImgBoton seleccion={show} src={AgregarIcono} alt='pokebola' />
+        <SImgBoton seleccion={show} src={Pokebola} alt='pokebola' />
         <SImgSuma src={Suma} alt='suma' />
       </SButtonGeneral>
 

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 import Button from "react-bootstrap/esm/Button";
-import { Col, Container, Modal, Row } from "react-bootstrap";
+import { Card, Col, Container, Modal, Row } from "react-bootstrap";
 
 import { Form } from "react-bootstrap";
 import {
@@ -12,25 +12,47 @@ import {
 
 import { DropList } from "../../../../Componentes/DropList";
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
-import Filtro from "../../../../Multimedia/Pokemon/Filtro/Filtro.png";
-import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
+import FondoFiltro from "../../../../Multimedia/Pokemon/Filtro/FondoFiltro.png";
+import FrenteFiltro from "../../../../Multimedia/Pokemon/Filtro/FrenteFiltro.png";
+import ImagenFotoGenerico from "../../../../Multimedia/Pokemon/Filtro/ImagenFotoGenerico.png";
+
+import Vida from "../../../../Multimedia/Pokemon/Card/Vida.png";
+import Velocidad from "../../../../Multimedia/Pokemon/Card/Velocidad.png";
+import Espada from "../../../../Multimedia/Pokemon/Card/Espada.png";
+import EscudoEspadas from "../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
+import Escudo from "../../../../Multimedia/Pokemon/Card/Escudo.png";
+import AtaqueEspecial from "../../../../Multimedia/Pokemon/Card/AtaqueEspecial.png";
+
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import {
   SButton,
   SButtonGeneral,
+  SCol,
   SContenedorBotones,
+  SContenedorImagen,
+  SContenedorTipo,
+  SDiv,
   SDivCentrador,
   SDivFormLabel,
+  SDivIdentificador,
   SDivSolicitudImagen,
+  SDivTipos,
+  SDivTitulo,
   SImg,
   SImgBoton,
-  SImgSuma,
+  SImgCaracteristicas,
+  SImgPokebolas,
   Sinput,
   SModal,
   SModalBody,
+  SPCarateristicas,
+  SRow,
   STextarea,
   STitulo,
+  StyledCard,
 } from "./StyledFiltro";
+import Stats from "../Card/Stats";
+import { Descripcion } from "../Card/Descripcion/Descripcion";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -54,6 +76,9 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
+  const [nuevaInfo, setnuevaInfo] = useState<number>(0);
+  const [nuevaInfo2, setnuevaInfo2] = useState<number>(1);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -62,6 +87,14 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
     ObtenerTipos().then((x) => settipos(x));
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
+
+  const asignarEstado = (e: any) => {
+    setnuevaInfo(e.target.value);
+  };
+
+  const asignarEstado2 = (e: any) => {
+    setnuevaInfo2(e.target.value);
+  };
 
   const agregarNuevoPokemon = async () => {
     await agregarPokemon(nuevoPokemon);
@@ -104,7 +137,8 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
   return (
     <>
       <SButtonGeneral onClick={handleShow}>
-        <SImgBoton seleccion={show} src={Filtro} alt='Filtro' />
+        <SImgPokebolas seleccion={show} src={FondoFiltro} alt='FondoFiltro' />
+        <SImgBoton src={FrenteFiltro} alt='FrenteFiltro' />
       </SButtonGeneral>
 
       <SModal
@@ -113,89 +147,100 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
         size='lg'
         dialogClassName={"modalInfo"}>
         <SModalBody>
-          <STitulo>Nuevo Pokemon</STitulo>
-          {/* <DragDrop tomarTipos={tomarTipos} /> */}
-          <Container>
-            <Row>
-              <Col>
-                <SDivFormLabel>
-                  <Sinput
-                    type='text'
-                    required
-                    placeholder='Ingrese Nombre'
-                    value={nuevoPokemon.NombrePokemon}
-                    onChange={asignarNombrePokemon}
-                  />
-                </SDivFormLabel>
-              </Col>
-            </Row>
+          <StyledCard rareza={"ss"}>
+            <Card.Body>
+              <SDivIdentificador>100</SDivIdentificador>
+              <SDivTitulo>Nombre</SDivTitulo>
 
-            <Row>
-              <Col>
-                <SDivFormLabel>
-                  {nuevoPokemon.IdsMovimiento.map((x, index) => {
-                    return (
+              <SDivTipos>
+                {/* {pokemon.Tipos.map((x, index) => (
+                    <SContenedorTipo
+                      tipo={pokemon.Tipos[index].IdTipo}
+                      posicion={index == 0 ? "Primaria" : "Secundaria"}>
+                      {pokemon.Tipos[index].NombreTipo}
+                    </SContenedorTipo>
+                  ))} */}
+              </SDivTipos>
+              <SRow>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={Espada} />
+                    <SPCarateristicas>
                       <Row>
-                        <DropList
-                          valorAIndicar='IdMovimiento'
-                          index={index}
-                          lista={movimientos}
-                          recogerSeleccion={asignarMovimiento}
-                          valorDefecto='Movimiento'
-                          valorAListar='NombreMovimiento'
-                        />
+                        <Col>
+                          <Sinput
+                            value={nuevaInfo}
+                            onChange={asignarEstado}
+                            size={18}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={nuevaInfo2}
+                            onChange={asignarEstado2}
+                            size={18}
+                          />
+                        </Col>
                       </Row>
-                    );
-                  })}
-                </SDivFormLabel>
-              </Col>
-              <Col>
-                <SDivFormLabel>
-                  {nuevoPokemon.IdsTipo.map((x, index) => {
-                    return (
-                      <SDivCentrador
-                        ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                        <DropList
-                          valorAIndicar='IdTipo'
-                          index={index}
-                          lista={tipos}
-                          recogerSeleccion={asignarTipo}
-                          valorDefecto='Tipos'
-                          valorAListar='NombreTipo'
-                        />
-                      </SDivCentrador>
-                    );
-                  })}
-                </SDivFormLabel>
-              </Col>
-            </Row>
-          </Container>
-
-          <SDivFormLabel>
-            <STextarea
-              value={nuevoPokemon.Detalle}
-              onChange={asignarDetallePokemon}
-              name='textarea'
-              rows={3}
-              cols={50}></STextarea>
-          </SDivFormLabel>
-          {nuevoPokemon.Imagen?.ArchivoImagen ? (
-            <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
-          ) : (
-            <>{nuevoPokemon.Imagen.ArchivoImagen}</>
-          )}
-          <SDivSolicitudImagen>
-            <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={asignarImagen} />
-          </SDivSolicitudImagen>
-          <SContenedorBotones>
-            <SButton variant='secondary' onClick={handleClose}>
-              Cancelar
-            </SButton>
-            <SButton variant='primary' onClick={agregarNuevoPokemon}>
-              Guardar
-            </SButton>
-          </SContenedorBotones>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={AtaqueEspecial} />
+                    <SPCarateristicas>
+                      <Row>
+                        <Col>10</Col>/<Col>22</Col>
+                      </Row>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={Vida} />
+                    <SPCarateristicas>
+                      <Row>
+                        <Col>10</Col>/<Col>22</Col>
+                      </Row>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+              </SRow>
+              <SRow>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={Escudo} />
+                    <SPCarateristicas>
+                      <Row>
+                        <Col>10</Col>/<Col>22</Col>
+                      </Row>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={EscudoEspadas} />
+                    <SPCarateristicas>
+                      <Row>
+                        <Col>10</Col>/<Col>22</Col>
+                      </Row>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+                <SCol>
+                  <SDiv>
+                    <SImgCaracteristicas src={Velocidad} />
+                    <SPCarateristicas>
+                      <Row>
+                        <Col>10</Col>/<Col>22</Col>
+                      </Row>
+                    </SPCarateristicas>
+                  </SDiv>
+                </SCol>
+              </SRow>
+            </Card.Body>
+          </StyledCard>
         </SModalBody>
       </SModal>
     </>
