@@ -41,3 +41,20 @@ export interface IPaginacion {
   Indice: number;
   CantidadRegistros: number;
 }
+
+export interface IFiltradoPaginacion {
+  Identificador: number;
+  Nombre: string;
+  VidaMinima: number;
+  VidaMaxima: number;
+  AtaqueMinimo: number;
+  AtaqueMaximo: number;
+  AtaqueEspecialMinimo: number;
+  AtaqueEspecialMaximo: number;
+  DefensaMinimo: number;
+  DefensaMaximo: number;
+  DefensaEspecialMinimo: number;
+  DefensaEspecialMaximo: number;
+  VelocidadMinimo: number;
+  VelocidadMaximo: number;
+}
