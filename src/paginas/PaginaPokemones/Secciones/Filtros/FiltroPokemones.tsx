@@ -8,6 +8,7 @@ import {
   ITipos,
   INuevoPokemon,
   IMovimiento,
+  IFiltradoPaginacion,
 } from "../../../../Interface/Pokemones";
 
 import { DropList } from "../../../../Componentes/DropList";
@@ -59,25 +60,32 @@ interface IPropAgregar {
   agregarPokemon: (construirNuevoPokemon: any) => any;
 }
 
-const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
-  NombrePokemon: "",
-  IdsTipo: [0, 0],
-  IdsMovimiento: [0, 0],
-  Imagen: { Nombre: "", ArchivoImagen: "" },
-  Detalle: "",
+const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
+  Identificador: 0,
+  Nombre: "",
+  AtaqueMinimo: 0,
+  AtaqueMaximo: 100,
+  AtaqueEspecialMinimo: 0,
+  AtaqueEspecialMaximo: 100,
+  VidaMinima: 0,
+  VidaMaxima: 100,
+  DefensaMinimo: 0,
+  DefensaMaximo: 100,
+  DefensaEspecialMinimo: 0,
+  DefensaEspecialMaximo: 100,
+  VelocidadMinimo: 0,
+  VelocidadMaximo: 100,
 };
 
 export const FiltroPokemones: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
 }) => {
-  const [nuevoPokemon, setnuevoPokemon] =
-    useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
-  const [nuevaInfo, setnuevaInfo] = useState<number>(0);
-  const [nuevaInfo2, setnuevaInfo2] = useState<number>(1);
+  const [informacionFiltrado, setinformacionFiltrado] =
+    useState<IFiltradoPaginacion>(DEFAULTINFORMACIONFILTRO);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -88,49 +96,10 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
 
-  const asignarEstado = (e: any) => {
-    setnuevaInfo(e.target.value);
-  };
-
-  const asignarEstado2 = (e: any) => {
-    setnuevaInfo2(e.target.value);
-  };
-
-  const agregarNuevoPokemon = async () => {
-    await agregarPokemon(nuevoPokemon);
-    handleClose();
-    actualizarPagina();
-  };
-
-  const asignarNombrePokemon = (e: any) => {
-    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
-  };
-
-  const asignarDetallePokemon = (e: any) => {
-    setnuevoPokemon({ ...nuevoPokemon, Detalle: e.target.value });
-  };
-
-  const asignarMovimiento = (x: number, index: number) => {
-    var temp = { ...nuevoPokemon };
-    temp.IdsMovimiento[index] = x;
-    setnuevoPokemon({ ...nuevoPokemon, IdsMovimiento: temp.IdsMovimiento });
-  };
-
-  const asignarTipo = (x: number, index: number) => {
-    var temp = { ...nuevoPokemon };
-    temp.IdsTipo[index] = x;
-    setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
-  };
-
-  const asignarImagen = (e: any) => {
-    const file = e.target.files[0];
-    convertirDeImagenABase64(file).then((x) => {
-      var temp = { ...nuevoPokemon };
-      temp.Imagen = {
-        Nombre: file.name,
-        ArchivoImagen: typeof x === "string" ? x : "",
-      };
-      setnuevoPokemon({ ...nuevoPokemon, Imagen: temp.Imagen });
+  const asignarValoresFiltro = (e: any) => {
+    setinformacionFiltrado({
+      ...informacionFiltrado,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -140,7 +109,6 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
         <SImgPokebolas seleccion={show} src={FondoFiltro} alt='FondoFiltro' />
         <SImgBoton src={FrenteFiltro} alt='FrenteFiltro' />
       </SButtonGeneral>
-
       <SModal
         show={show}
         onHide={handleClose}
@@ -149,8 +117,22 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
         <SModalBody>
           <StyledCard rareza={"ss"}>
             <Card.Body>
-              <SDivIdentificador>100</SDivIdentificador>
-              <SDivTitulo>Nombre</SDivTitulo>
+              <SDivIdentificador>
+                <Sinput
+                  value={informacionFiltrado.Identificador}
+                  onChange={asignarValoresFiltro}
+                  size={18}
+                  name={"Identificador"}
+                />
+              </SDivIdentificador>
+              <SDivTitulo>
+                <Sinput
+                  value={informacionFiltrado.Nombre}
+                  onChange={asignarValoresFiltro}
+                  size={18}
+                  name={"Nombre"}
+                />
+              </SDivTitulo>
 
               <SDivTipos>
                 {/* {pokemon.Tipos.map((x, index) => (
@@ -169,17 +151,19 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                       <Row>
                         <Col>
                           <Sinput
-                            value={nuevaInfo}
-                            onChange={asignarEstado}
+                            value={informacionFiltrado.AtaqueMinimo}
+                            onChange={asignarValoresFiltro}
                             size={18}
+                            name={"AtaqueMinimo"}
                           />
                         </Col>
                         /
                         <Col>
                           <Sinput
-                            value={nuevaInfo2}
-                            onChange={asignarEstado2}
+                            value={informacionFiltrado.AtaqueMaximo}
+                            onChange={asignarValoresFiltro}
                             size={18}
+                            name={"AtaqueMaximo"}
                           />
                         </Col>
                       </Row>
@@ -191,7 +175,23 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                     <SImgCaracteristicas src={AtaqueEspecial} />
                     <SPCarateristicas>
                       <Row>
-                        <Col>10</Col>/<Col>22</Col>
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.AtaqueEspecialMinimo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"AtaqueEspecialMinimo"}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.AtaqueEspecialMaximo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"AtaqueEspecialMaximo"}
+                          />
+                        </Col>
                       </Row>
                     </SPCarateristicas>
                   </SDiv>
@@ -201,7 +201,23 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                     <SImgCaracteristicas src={Vida} />
                     <SPCarateristicas>
                       <Row>
-                        <Col>10</Col>/<Col>22</Col>
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.VidaMinima}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"VidaMinima"}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.VidaMaxima}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"VidaMaxima"}
+                          />
+                        </Col>
                       </Row>
                     </SPCarateristicas>
                   </SDiv>
@@ -213,7 +229,23 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                     <SImgCaracteristicas src={Escudo} />
                     <SPCarateristicas>
                       <Row>
-                        <Col>10</Col>/<Col>22</Col>
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.DefensaMinimo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"DefensaMinimo"}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.DefensaMaximo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"DefensaMaximo"}
+                          />
+                        </Col>
                       </Row>
                     </SPCarateristicas>
                   </SDiv>
@@ -223,7 +255,23 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                     <SImgCaracteristicas src={EscudoEspadas} />
                     <SPCarateristicas>
                       <Row>
-                        <Col>10</Col>/<Col>22</Col>
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.DefensaEspecialMinimo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"DefensaEspecialMinimo"}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.DefensaEspecialMaximo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"DefensaEspecialMaximo"}
+                          />
+                        </Col>
                       </Row>
                     </SPCarateristicas>
                   </SDiv>
@@ -233,7 +281,23 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                     <SImgCaracteristicas src={Velocidad} />
                     <SPCarateristicas>
                       <Row>
-                        <Col>10</Col>/<Col>22</Col>
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.VelocidadMinimo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"VelocidadMinimo"}
+                          />
+                        </Col>
+                        /
+                        <Col>
+                          <Sinput
+                            value={informacionFiltrado.VelocidadMaximo}
+                            onChange={asignarValoresFiltro}
+                            size={18}
+                            name={"VelocidadMaximo"}
+                          />
+                        </Col>
                       </Row>
                     </SPCarateristicas>
                   </SDiv>
