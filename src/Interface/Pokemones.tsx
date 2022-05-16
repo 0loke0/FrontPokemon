@@ -51,10 +51,10 @@ export interface IFiltradoPaginacion {
   AtaqueMaximo: number;
   AtaqueEspecialMinimo: number;
   AtaqueEspecialMaximo: number;
-  DefensaMinimo: number;
-  DefensaMaximo: number;
-  DefensaEspecialMinimo: number;
-  DefensaEspecialMaximo: number;
-  VelocidadMinimo: number;
-  VelocidadMaximo: number;
+  DefensaMinima: number;
+  DefensaMaxima: number;
+  DefensaEspecialMinima: number;
+  DefensaEspecialMaxima: number;
+  VelocidadMinima: number;
+  VelocidadMaxima: number;
 }
