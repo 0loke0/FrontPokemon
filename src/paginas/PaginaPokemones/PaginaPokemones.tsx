@@ -45,7 +45,6 @@ function PaginaPokemones() {
   //Read
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
-    console.log(pokemonDetallado);
 
     ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) => {
       setcantidadRegistros(cantidadRegistros);
