@@ -69,12 +69,12 @@ const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
   AtaqueEspecialMaximo: 100,
   VidaMinima: 0,
   VidaMaxima: 100,
-  DefensaMinimo: 0,
-  DefensaMaximo: 100,
-  DefensaEspecialMinimo: 0,
-  DefensaEspecialMaximo: 100,
-  VelocidadMinimo: 0,
-  VelocidadMaximo: 100,
+  DefensaMinima: 0,
+  DefensaMaxima: 100,
+  DefensaEspecialMinima: 0,
+  DefensaEspecialMaxima: 100,
+  VelocidadMinima: 0,
+  VelocidadMaxima: 100,
 };
 
 export const FiltroPokemones: FC<IPropAgregar> = ({
@@ -231,19 +231,19 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                       <Row>
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.DefensaMinimo}
+                            value={informacionFiltrado.DefensaMinima}
                             onChange={asignarValoresFiltro}
                             size={18}
-                            name={"DefensaMinimo"}
+                            name={"DefensaMinima"}
                           />
                         </Col>
                         /
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.DefensaMaximo}
+                            value={informacionFiltrado.DefensaMaxima}
                             onChange={asignarValoresFiltro}
                             size={18}
-                            name={"DefensaMaximo"}
+                            name={"DefensaMaxima"}
                           />
                         </Col>
                       </Row>
@@ -257,16 +257,16 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                       <Row>
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.DefensaEspecialMinimo}
+                            value={informacionFiltrado.DefensaEspecialMinima}
                             onChange={asignarValoresFiltro}
                             size={18}
-                            name={"DefensaEspecialMinimo"}
+                            name={"DefensaEspecialMinima"}
                           />
                         </Col>
                         /
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.DefensaEspecialMaximo}
+                            value={informacionFiltrado.DefensaEspecialMaxima}
                             onChange={asignarValoresFiltro}
                             size={18}
                             name={"DefensaEspecialMaximo"}
@@ -283,19 +283,19 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                       <Row>
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.VelocidadMinimo}
+                            value={informacionFiltrado.VelocidadMinima}
                             onChange={asignarValoresFiltro}
                             size={18}
-                            name={"VelocidadMinimo"}
+                            name={"VelocidadMinima"}
                           />
                         </Col>
                         /
                         <Col>
                           <Sinput
-                            value={informacionFiltrado.VelocidadMaximo}
+                            value={informacionFiltrado.VelocidadMaxima}
                             onChange={asignarValoresFiltro}
                             size={18}
-                            name={"VelocidadMaximo"}
+                            name={"VelocidadMaxima"}
                           />
                         </Col>
                       </Row>
