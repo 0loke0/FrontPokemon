@@ -37,6 +37,11 @@ export interface INuevoPokemon {
   Detalle: string;
 }
 
+export interface IFormularioConsulta {
+  Paginacion: IPaginacion;
+  Filtros: IFiltradoPaginacion;
+}
+
 export interface IPaginacion {
   Indice: number;
   CantidadRegistros: number;
@@ -44,7 +49,7 @@ export interface IPaginacion {
 
 export interface IFiltradoPaginacion {
   Identificador: number | undefined;
-  Nombre: string;
+  Nombre: string | undefined;
   VidaMinima: number;
   VidaMaxima: number;
   AtaqueMinimo: number;

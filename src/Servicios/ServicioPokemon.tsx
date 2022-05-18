@@ -1,9 +1,13 @@
 import { ConsumirApi } from "./Core/CoreApi";
-import { INuevoPokemon, IPaginacion } from "../Interface/Pokemones";
+import {
+  IFormularioConsulta,
+  INuevoPokemon,
+  IPaginacion,
+} from "../Interface/Pokemones";
 import { IActulizacionPokemon } from "../Interface/PokemonDetallado";
 
-export const ObtenerPokemones = async (infoPaginacion: IPaginacion) => {
-  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesSP";
+export const ObtenerPokemones = async (infoPaginacion: IFormularioConsulta) => {
+  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesConFiltros";
 
   return await ConsumirApi(url, "Post", infoPaginacion).then((data) => {
     return data;

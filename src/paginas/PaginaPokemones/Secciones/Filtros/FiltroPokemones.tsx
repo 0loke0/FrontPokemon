@@ -9,6 +9,7 @@ import {
   INuevoPokemon,
   IMovimiento,
   IFiltradoPaginacion,
+  IFormularioConsulta,
 } from "../../../../Interface/Pokemones";
 
 import { DropList } from "../../../../Componentes/DropList";
@@ -55,9 +56,9 @@ import {
 import Stats from "../Card/Stats";
 import { Descripcion } from "../Card/Descripcion/Descripcion";
 
-interface IPropAgregar {
-  actualizarPagina: any;
-  agregarPokemon: (construirNuevoPokemon: any) => any;
+interface IPropFiltroPokemon {
+  setinfoPaginacion: any;
+  infoPaginacion: IFormularioConsulta;
 }
 
 const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
@@ -77,9 +78,9 @@ const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
   VelocidadMaxima: 100,
 };
 
-export const FiltroPokemones: FC<IPropAgregar> = ({
-  actualizarPagina,
-  agregarPokemon,
+export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
+  setinfoPaginacion,
+  infoPaginacion,
 }) => {
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
@@ -101,6 +102,13 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
       ...informacionFiltrado,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const aplicarFiltro = () => {
+    let infoPaginacionTemp: IFormularioConsulta = { ...infoPaginacion };
+    infoPaginacionTemp.Paginacion.Indice = 0;
+    infoPaginacionTemp.Filtros = informacionFiltrado;
+    setinfoPaginacion(infoPaginacionTemp);
   };
 
   return (
@@ -303,6 +311,9 @@ export const FiltroPokemones: FC<IPropAgregar> = ({
                   </SDiv>
                 </SCol>
               </SRow>
+              <SButton variant='primary' onClick={aplicarFiltro}>
+                Guardar
+              </SButton>
             </Card.Body>
           </StyledCard>
         </SModalBody>

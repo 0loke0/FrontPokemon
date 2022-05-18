@@ -13,7 +13,11 @@ import { Agregar } from "./Secciones/Agregar/Agregar";
 import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";
 import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
-import { INuevoPokemon, IPaginacion } from "../../Interface/Pokemones";
+import {
+  IFormularioConsulta,
+  INuevoPokemon,
+  IPaginacion,
+} from "../../Interface/Pokemones";
 import LogoPokemon from "../../Multimedia/LogoPokemon.png";
 
 import {
@@ -29,23 +33,40 @@ function PaginaPokemones() {
     []
   );
   const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
-  const [infoPaginacion, setinfoPaginacion] = useState({
-    Indice: 0,
-    CantidadRegistros: 3,
+  const [infoPaginacion, setinfoPaginacion] = useState<IFormularioConsulta>({
+    Paginacion: { Indice: 0, CantidadRegistros: 3 },
+    Filtros: {
+      Identificador: 0,
+      Nombre: "",
+      AtaqueMinimo: 0,
+      AtaqueMaximo: 100,
+      AtaqueEspecialMinimo: 0,
+      AtaqueEspecialMaximo: 100,
+      VidaMinima: 0,
+      VidaMaxima: 100,
+      DefensaMinima: 0,
+      DefensaMaxima: 100,
+      DefensaEspecialMinima: 0,
+      DefensaEspecialMaxima: 100,
+      VelocidadMinima: 0,
+      VelocidadMaxima: 100,
+    },
   });
 
   useEffect(() => {
     actualizarPagina();
   }, [infoPaginacion]);
 
-  const tomarInformacionPaginacion = (infoPaginacion: IPaginacion) => {
-    setinfoPaginacion(infoPaginacion);
+  const tomarInformacionPaginacion = (paginacion: IPaginacion) => {
+    setinfoPaginacion({
+      ...infoPaginacion,
+      Paginacion: paginacion,
+    });
   };
 
   //Read
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
-
     ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) => {
       setcantidadRegistros(cantidadRegistros);
     });
@@ -81,8 +102,8 @@ function PaginaPokemones() {
         <MusicaGeneral url='https://web.opendrive.com/api/v1/download/file.json/NDNfMjM5ODg3Nzdf?inline=1' />
         <ClasificacionRarezas />
         <FiltroPokemones
-          actualizarPagina={actualizarPagina}
-          agregarPokemon={agregarNuevoPokemon}
+          setinfoPaginacion={setinfoPaginacion}
+          infoPaginacion={infoPaginacion}
         />
         <ContenedorCards
           pokemonDetallado={pokemonDetallado}
