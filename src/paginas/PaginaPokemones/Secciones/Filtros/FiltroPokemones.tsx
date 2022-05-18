@@ -125,7 +125,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
         size='lg'
         dialogClassName={"modalInfo"}>
         <SModalBody>
-          <StyledCard rareza={"ss"}>
+          <StyledCard>
             <Card.Body>
               <SDivIdentificador>
                 <SinputIdentificador
