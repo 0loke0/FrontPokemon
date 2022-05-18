@@ -85,7 +85,7 @@ export const SButtonGeneral = styled.button`
 
   margin-bottom: 1%;
   top: -5%;
-  left: -15%; ;
+  left: -17%; ;
 `;
 
 export const SImgBoton = styled.img`

@@ -121,8 +121,9 @@ export const SButtonGeneral = styled.button`
   width: 60px;
   border: 1px solid transparent;
   margin-bottom: 1%;
-  top: -5%;
-  left: -10%; ;
+  top: 95%;
+  left: -23%;
+  transform: translate(0%, -100%);
 `;
 
 export const SImgBoton = styled.img`
@@ -174,11 +175,11 @@ export const SContenedorModal = styled.div`
 
 export const SContenedorBotones = styled.div`
   position: relative;
-  width: 200px;
+  width: 300px;
   top: 10px;
   left: 100%;
-  transform: translate(-100%);
-  margin: 2%;
+  transform: translate(-85%);
+  margin: 1% 0% 1% 0%;
 `;
 
 export const SButton = styled(Button)`

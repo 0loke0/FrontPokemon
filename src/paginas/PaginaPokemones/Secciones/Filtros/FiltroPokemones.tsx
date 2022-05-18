@@ -113,6 +113,10 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
     setinfoPaginacion(infoPaginacionTemp);
   };
 
+  const reiniciarFiltros = () => {
+    setinformacionFiltrado(DEFAULTINFORMACIONFILTRO);
+  };
+
   return (
     <>
       <SButtonGeneral onClick={handleShow}>
@@ -314,17 +318,20 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                   </SDiv>
                 </SCol>
               </SRow>
-              <SContenedorBotones>
-                <SButton variant='primary' onClick={aplicarFiltro}>
-                  Aplicar
-                </SButton>
-                <SButton variant='secondary' onClick={handleClose}>
-                  Cerrar
-                </SButton>
-              </SContenedorBotones>
             </Card.Body>
           </StyledCard>
         </SModalBody>
+        <Modal.Footer>
+          <SButton variant='secondary' onClick={handleClose}>
+            Cerrar
+          </SButton>
+          <SButton variant='primary' onClick={reiniciarFiltros}>
+            Reiniciar
+          </SButton>
+          <SButton variant='primary' onClick={aplicarFiltro}>
+            Aplicar
+          </SButton>
+        </Modal.Footer>
       </SModal>
     </>
   );

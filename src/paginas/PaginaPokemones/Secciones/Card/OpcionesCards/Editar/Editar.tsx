@@ -8,14 +8,23 @@ import {
 } from "../../../../../../Interface/PokemonDetallado";
 import styled from "styled-components";
 import Edicion from "../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Modal,
+  Row,
+} from "react-bootstrap";
 import { IMovimiento, ITipos } from "../../../../../../Interface/Pokemones";
 import { DropList } from "../../../../../../Componentes/DropList";
 import { ObtenerTipos } from "../../../../../../Servicios/ServicioTipo";
 import { ObtenerMovimientos } from "../../../../../../Servicios/ServicioMovimientos";
 import { ActualizarPokemon } from "../../../../../../Servicios/ServicioPokemon";
 import { Alerta } from "../../../../../../Componentes/Alerta";
-
+import FondoEdicion from "../../../../../../Multimedia/Pokemon/Editar/FondoEdicion.png";
+import { determinarColorSegunRareza } from "../../../../../../Utilidades/UtilidadesColores";
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
   cerrarVenta: any;
@@ -67,10 +76,34 @@ export const SDivFormLabel = styled.div`
   transform: translate(-50%);
 `;
 
+export const SModal = styled(Modal)`
+  background-color: #4ad3fd93;
+`;
+export const SModalBody = styled(Modal.Body)`
+  background-color: #3396cf;
+
+  padding: 2%;
+  border-radius: 20px;
+  margin-top: 100px;
+  border: 3px solid black;
+  box-shadow: 0px 0px 20px #4a9eff;
+`;
+
 interface IProps {
   ubicacion?: string;
   seleccion?: boolean;
 }
+
+export const StyledCard = styled(Card)<{
+  rareza: string;
+}>`
+  padding: 5px;
+  border-radius: 20px;
+  border: 2px solid #628395;
+  box-shadow: 5px 5px 10px #7d7d7d;
+  background-color: #ffdee9;
+  background-image: ${({ rareza }) => determinarColorSegunRareza(rareza)};
+`;
 
 const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
   Id: 0,
@@ -144,72 +177,71 @@ export const Editar: FC<IPropActualizar> = ({
       <SButton onClick={handleShow}>
         <SImg src={Edicion} alt='Edicion' />
       </SButton>
-      <Modal show={show} onHide={cerrarVentanas}>
-        <Modal.Header closeButton>
-          <Modal.Title>Eliminar</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Container>
-            <Row>
-              <Col>
-                <SDivFormLabel>
-                  <Form.Label>Nombre</Form.Label>
-                  <Sinput
-                    type='text'
-                    required
-                    placeholder='Ingrese Nombre'
-                    value={pokemonEditado.NombrePokemon}
-                    onChange={asignarNombrePokemon}
-                  />
-                </SDivFormLabel>
-              </Col>
-              <Col>
-                {pokemonEditado.IdsMovimiento.map((x, index) => {
+      <SModal show={show} onHide={cerrarVentanas}>
+        <SModalBody>
+          <StyledCard rareza={pokemonAActualizar.Rareza}>
+            <Container>
+              <Row>
+                <Col>
+                  <SDivFormLabel>
+                    <Form.Label>Nombre</Form.Label>
+                    <Sinput
+                      type='text'
+                      required
+                      placeholder='Ingrese Nombre'
+                      value={pokemonEditado.NombrePokemon}
+                      onChange={asignarNombrePokemon}
+                    />
+                  </SDivFormLabel>
+                </Col>
+                <Col>
+                  {pokemonEditado.IdsMovimiento.map((x, index) => {
+                    return (
+                      <Row>
+                        <DropList
+                          valorAIndicar='IdMovimiento'
+                          index={index}
+                          lista={movimientos}
+                          recogerSeleccion={asignarMovimiento}
+                          valorDefecto='Movimiento'
+                          valorAListar='NombreMovimiento'
+                        />
+                      </Row>
+                    );
+                  })}
+                </Col>
+              </Row>
+
+              <Row>
+                {pokemonEditado.IdsTipo.map((x, index) => {
                   return (
-                    <Row>
+                    <SDivCentrador
+                      ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
                       <DropList
-                        valorAIndicar='IdMovimiento'
+                        valorAIndicar='IdTipo'
                         index={index}
-                        lista={movimientos}
-                        recogerSeleccion={asignarMovimiento}
-                        valorDefecto='Movimiento'
-                        valorAListar='NombreMovimiento'
+                        lista={tipos}
+                        recogerSeleccion={asignarTipo}
+                        valorDefecto={"Tipo"}
+                        valorAListar='NombreTipo'
                       />
-                    </Row>
+                    </SDivCentrador>
                   );
                 })}
-              </Col>
-            </Row>
-
-            <Row>
-              {pokemonEditado.IdsTipo.map((x, index) => {
-                return (
-                  <SDivCentrador
-                    ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                    <DropList
-                      valorAIndicar='IdTipo'
-                      index={index}
-                      lista={tipos}
-                      recogerSeleccion={asignarTipo}
-                      valorDefecto={"Tipo"}
-                      valorAListar='NombreTipo'
-                    />
-                  </SDivCentrador>
-                );
-              })}
-            </Row>
-          </Container>
-          <SDivFormLabel>
-            <Form.Label>Detalle</Form.Label>
-            <Sinput
-              type='text'
-              required
-              placeholder='Ingrese Descripcion de pokemon'
-              value={pokemonEditado.Detalle}
-              onChange={asignarDetalle}
-            />
-          </SDivFormLabel>
-        </Modal.Body>
+              </Row>
+            </Container>
+            <SDivFormLabel>
+              <Form.Label>Detalle</Form.Label>
+              <Sinput
+                type='text'
+                required
+                placeholder='Ingrese Descripcion de pokemon'
+                value={pokemonEditado.Detalle}
+                onChange={asignarDetalle}
+              />
+            </SDivFormLabel>
+          </StyledCard>
+        </SModalBody>
         <Modal.Footer>
           <Button variant='secondary' onClick={cerrarVentanas}>
             Cancelar
@@ -218,7 +250,7 @@ export const Editar: FC<IPropActualizar> = ({
             Editar
           </Button>
         </Modal.Footer>
-      </Modal>
+      </SModal>
     </>
   );
 };

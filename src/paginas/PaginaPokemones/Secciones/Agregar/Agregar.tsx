@@ -190,15 +190,15 @@ export const Agregar: FC<IPropAgregar> = ({
             <Form.Label>Imagen</Form.Label>
             <Form.Control type='file' onChange={asignarImagen} />
           </SDivSolicitudImagen>
-          <SContenedorBotones>
-            <SButton variant='secondary' onClick={handleClose}>
-              Cancelar
-            </SButton>
-            <SButton variant='primary' onClick={agregarNuevoPokemon}>
-              Guardar
-            </SButton>
-          </SContenedorBotones>
         </SModalBody>
+        <Modal.Footer>
+          <SButton variant='secondary' onClick={handleClose}>
+            Cancelar
+          </SButton>
+          <SButton variant='primary' onClick={agregarNuevoPokemon}>
+            Guardar
+          </SButton>
+        </Modal.Footer>
       </SModal>
     </>
   );
