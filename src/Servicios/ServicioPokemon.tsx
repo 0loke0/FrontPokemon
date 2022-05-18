@@ -1,5 +1,6 @@
 import { ConsumirApi } from "./Core/CoreApi";
 import {
+  IFiltradoPaginacion,
   IFormularioConsulta,
   INuevoPokemon,
   IPaginacion,
@@ -36,9 +37,11 @@ export const EliminarPokemon = async (idPokemon: number) => {
   });
 };
 
-export const ObtenerCantidadRegistrosPokemon = async () => {
-  const url = `http://localhost:63107/api/Pokemones/ObtenerCantidadRegistrosPokemon`;
-  return await ConsumirApi(url, "Get").then((data) => {
+export const ObtenerCantidadRegistrosPokemon = async (
+  filtros: IFiltradoPaginacion
+) => {
+  const url = `http://localhost:63107/api/Pokemones/ObtenerCantidadPokemonFiltrados`;
+  return await ConsumirApi(url, "Post", filtros).then((data) => {
     return data;
   });
 };

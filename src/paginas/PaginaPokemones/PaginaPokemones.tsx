@@ -67,9 +67,11 @@ function PaginaPokemones() {
   //Read
   const actualizarPagina = () => {
     ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
-    ObtenerCantidadRegistrosPokemon().then((cantidadRegistros) => {
-      setcantidadRegistros(cantidadRegistros);
-    });
+    ObtenerCantidadRegistrosPokemon(infoPaginacion.Filtros).then(
+      (cantidadRegistros) => {
+        setcantidadRegistros(cantidadRegistros);
+      }
+    );
   };
 
   //Delete

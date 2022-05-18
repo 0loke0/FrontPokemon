@@ -34,7 +34,7 @@ const Paginacion: FC<IPropsPaginacion> = ({
   tomarInformacionPaginacion,
   limitePorPagina,
 }) => {
-  const [pagina, setpagina] = useState<number>(1);
+  const [pagina, setpagina] = useState<number>(0);
 
   useEffect(() => {
     informacionPaginacion();
@@ -44,6 +44,7 @@ const Paginacion: FC<IPropsPaginacion> = ({
     if (determinarCantidadPaginas() < pagina + 1) {
       setpagina(pagina - 1);
     }
+    regresarInicio();
   }, [cantidadRegistros]);
 
   const determinarCantidadPaginas = () => {
