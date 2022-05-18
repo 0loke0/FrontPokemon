@@ -9,7 +9,8 @@ import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesCol
 interface IProps {
   ubicacion?: string;
   seleccion?: boolean;
-  size?: number;
+  sizeW?: number;
+  sizeH?: number;
 }
 
 const simularFiltro = keyframes`
@@ -24,16 +25,52 @@ const simularFiltro = keyframes`
   }
 `;
 
+export const SinputIdentificador = styled.input`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 15px;
+  display: block;
+  width: ${(p: IProps) => (p.sizeW ? p.sizeW + `px` : "30px")};
+  height: ${(p: IProps) => (p.sizeH ? p.sizeH + `px` : "auto")};
+  border-radius: 5px;
+  border: 0.5px solid #42a9fd;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px #a0bad3;
+  }
+`;
+
+export const SinputNombre = styled.input`
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  font-size: 15px;
+  display: block;
+  width: 150px;
+  height: ${(p: IProps) => (p.sizeH ? p.sizeH + `px` : "auto")};
+  border-radius: 5px;
+  border: 0.5px solid #42a9fd;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px #a0bad3;
+  }
+`;
+
 export const Sinput = styled.input`
   position: relative;
   font-size: 15px;
-  margin-top: 0px;
   margin-bottom: 10px;
-  padding: 0px;
   display: block;
   left: 50%;
-  width: 30px;
-  height: ${(p: IProps) => (p.size ? p.size + `px` : "auto")};
+  width: ${(p: IProps) => (p.sizeW ? p.sizeW + `px` : "30px")};
+  height: ${(p: IProps) => (p.sizeH ? p.sizeH + `px` : "auto")};
   border-radius: 5px;
   border: 0.5px solid #42a9fd;
   text-align: center;
@@ -144,7 +181,9 @@ export const SContenedorBotones = styled.div`
   margin: 2%;
 `;
 
-export const SButton = styled(Button)``;
+export const SButton = styled(Button)`
+  margin: 2px;
+`;
 
 export const STextarea = styled.textarea`
   border-radius: 10px;
@@ -258,8 +297,8 @@ export const SDivIdentificador = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   font-weight: 500;
   background: #6bacec;
   color: #ffffff;

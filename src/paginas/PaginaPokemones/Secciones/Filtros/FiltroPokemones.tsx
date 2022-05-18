@@ -45,6 +45,8 @@ import {
   SImgCaracteristicas,
   SImgPokebolas,
   Sinput,
+  SinputIdentificador,
+  SinputNombre,
   SModal,
   SModalBody,
   SPCarateristicas,
@@ -126,18 +128,19 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
           <StyledCard rareza={"ss"}>
             <Card.Body>
               <SDivIdentificador>
-                <Sinput
+                <SinputIdentificador
                   value={informacionFiltrado.Identificador}
                   onChange={asignarValoresFiltro}
-                  size={18}
+                  sizeH={18}
+                  sizeW={38}
                   name={"Identificador"}
                 />
               </SDivIdentificador>
               <SDivTitulo>
-                <Sinput
+                <SinputNombre
+                  placeholder='Nombre'
                   value={informacionFiltrado.Nombre}
                   onChange={asignarValoresFiltro}
-                  size={18}
                   name={"Nombre"}
                 />
               </SDivTitulo>
@@ -161,7 +164,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.AtaqueMinimo}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"AtaqueMinimo"}
                           />
                         </Col>
@@ -170,7 +173,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.AtaqueMaximo}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"AtaqueMaximo"}
                           />
                         </Col>
@@ -187,7 +190,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.AtaqueEspecialMinimo}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"AtaqueEspecialMinimo"}
                           />
                         </Col>
@@ -196,7 +199,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.AtaqueEspecialMaximo}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"AtaqueEspecialMaximo"}
                           />
                         </Col>
@@ -213,7 +216,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.VidaMinima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"VidaMinima"}
                           />
                         </Col>
@@ -222,7 +225,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.VidaMaxima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"VidaMaxima"}
                           />
                         </Col>
@@ -241,7 +244,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.DefensaMinima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"DefensaMinima"}
                           />
                         </Col>
@@ -250,7 +253,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.DefensaMaxima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"DefensaMaxima"}
                           />
                         </Col>
@@ -267,7 +270,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.DefensaEspecialMinima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"DefensaEspecialMinima"}
                           />
                         </Col>
@@ -276,7 +279,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.DefensaEspecialMaxima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"DefensaEspecialMaximo"}
                           />
                         </Col>
@@ -293,7 +296,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.VelocidadMinima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"VelocidadMinima"}
                           />
                         </Col>
@@ -302,7 +305,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                           <Sinput
                             value={informacionFiltrado.VelocidadMaxima}
                             onChange={asignarValoresFiltro}
-                            size={18}
+                            sizeH={18}
                             name={"VelocidadMaxima"}
                           />
                         </Col>
@@ -311,9 +314,14 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                   </SDiv>
                 </SCol>
               </SRow>
-              <SButton variant='primary' onClick={aplicarFiltro}>
-                Guardar
-              </SButton>
+              <SContenedorBotones>
+                <SButton variant='primary' onClick={aplicarFiltro}>
+                  Aplicar
+                </SButton>
+                <SButton variant='secondary' onClick={handleClose}>
+                  Cerrar
+                </SButton>
+              </SContenedorBotones>
             </Card.Body>
           </StyledCard>
         </SModalBody>
