@@ -22,9 +22,14 @@ import Stats from "./Stats";
 interface IPropSCard {
   pokemon: IPokemonDetallado;
   eliminarPokemon: any;
+  actualizarPagina: any;
 }
 
-export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
+export const SCard: FC<IPropSCard> = ({
+  pokemon,
+  eliminarPokemon,
+  actualizarPagina,
+}) => {
   const [colorFondo, setcolorFondo] = useState<string>("predeterminado");
   useEffect(() => {
     determinarColorDominante();
@@ -50,7 +55,7 @@ export const SCard: FC<IPropSCard> = ({ pokemon, eliminarPokemon }) => {
           <OpcionesCardPokemon
             pokemon={pokemon}
             eliminarPokemon={eliminarPokemon}
-            editarPokemon={() => {}}
+            actualizarPagina={actualizarPagina}
           />
           <SContenedorImagen colorFondo={colorFondo}>
             <SDivTipos>

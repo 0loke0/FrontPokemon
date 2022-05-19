@@ -115,8 +115,6 @@ export const Agregar: FC<IPropAgregar> = ({
         size='lg'
         dialogClassName={"modalInfo"}>
         <SModalBody>
-          <STitulo>Nuevo Pokemon</STitulo>
-          {/* <DragDrop tomarTipos={tomarTipos} /> */}
           <Container>
             <Row>
               <Col>
@@ -178,6 +176,7 @@ export const Agregar: FC<IPropAgregar> = ({
               value={nuevoPokemon.Detalle}
               onChange={asignarDetallePokemon}
               name='textarea'
+              placeholder='Detalle del Pokemon'
               rows={3}
               cols={50}></STextarea>
           </SDivFormLabel>
@@ -187,8 +186,11 @@ export const Agregar: FC<IPropAgregar> = ({
             <>{nuevoPokemon.Imagen.ArchivoImagen}</>
           )}
           <SDivSolicitudImagen>
-            <Form.Label>Imagen</Form.Label>
-            <Form.Control type='file' onChange={asignarImagen} />
+            <Form.Control
+              type='file'
+              onChange={asignarImagen}
+              placeholder='Detalle del Pokemon'
+            />
           </SDivSolicitudImagen>
         </SModalBody>
         <Modal.Footer>

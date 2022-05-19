@@ -10,7 +10,7 @@ import { Eliminar } from "../OpcionesCards/Eliminar/Eliminar";
 interface IPropOpcionesCardPokemon {
   pokemon: IPokemonDetallado;
   eliminarPokemon: any;
-  editarPokemon: any;
+  actualizarPagina: any;
 }
 const SButton = styled.button`
   background-color: transparent;
@@ -41,6 +41,7 @@ const SPopoverBody = styled(Popover.Body)`
 export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
   pokemon,
   eliminarPokemon,
+  actualizarPagina,
 }) => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
@@ -77,7 +78,8 @@ export const OpcionesCardPokemon: FC<IPropOpcionesCardPokemon> = ({
           <SPopoverBody>
             <Editar
               pokemonAActualizar={pokemon}
-              cerrarVenta={cerrarVenta}></Editar>
+              cerrarVenta={cerrarVenta}
+              actualizarPagina={actualizarPagina}></Editar>
             <Eliminar
               eliminarPokemon={eliminarPokemon}
               pokemonAEliminar={pokemon}

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
+  ActualizarPokemon,
   AgregarPokemon,
   EliminarPokemon,
   ObtenerCantidadRegistrosPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
 
-import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
+import {
+  IActulizacionPokemon,
+  IPokemonDetallado,
+} from "../../Interface/PokemonDetallado";
 import { Alerta } from "../../Componentes/Alerta";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
@@ -108,6 +112,7 @@ function PaginaPokemones() {
           infoPaginacion={infoPaginacion}
         />
         <ContenedorCards
+          actualizarPagina={actualizarPagina}
           pokemonDetallado={pokemonDetallado}
           tomarInformacionPaginacion={tomarInformacionPaginacion}
           eliminarPokemon={eliminarPokemonRegistrado}

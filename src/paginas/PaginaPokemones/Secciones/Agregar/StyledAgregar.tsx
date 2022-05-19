@@ -5,6 +5,9 @@ import { DropList } from "../../../../Componentes/DropList";
 import Forest from "../../../../Multimedia/Pokemon/Agregar/Forest.jpg";
 
 import FondoAgregado from "../../../../Multimedia/Pokemon/Agregar/FondoAgregado.jpg";
+import FondoAgregadoModal from "../../../../Multimedia/Pokemon/Agregar/FondoAgregadoModal.png";
+import Dia from "../../../../Multimedia/Pokemon/Agregar/Dia.jpg";
+
 interface IProps {
   ubicacion?: string;
   seleccion?: boolean;
@@ -37,6 +40,7 @@ export const Sinput = styled.input`
   border: 0.5px solid #c9e7ff;
   text-align: center;
   transform: translate(-50%);
+
   &:focus {
     outline: none;
     border: none;
@@ -74,6 +78,8 @@ export const SImg = styled.img`
   padding: 5px;
   border-radius: 4%;
   transform: translate(-50%);
+  border: 2px solid #ffffff;
+  background-color: #0a8037ab;
 `;
 
 export const SButtonGeneral = styled.button`
@@ -119,7 +125,7 @@ export const STitulo = styled.p`
 `;
 
 export const SModalBody = styled(Modal.Body)`
-  background-image: url(${FondoAgregado});
+  background-image: url(${Dia});
   background-size: cover;
   padding: 2%;
   border-radius: 20px;
@@ -149,5 +155,6 @@ export const SButton = styled(Button)``;
 export const STextarea = styled.textarea`
   border-radius: 10px;
   padding: 10px;
-  margin: 5px;
+  margin-top: 25px;
+  background-color: #ffffff5e;
 `;

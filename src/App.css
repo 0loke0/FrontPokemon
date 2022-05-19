@@ -10,3 +10,7 @@ font-family: 'Righteous', cursive; */
     background-color: transparent !important;
     border: none;
 }
+.modal-footer{
+    background-color: transparent !important;
+    border: none;
+}

@@ -28,6 +28,7 @@ import { determinarColorSegunRareza } from "../../../../../../Utilidades/Utilida
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
   cerrarVenta: any;
+  actualizarPagina: any;
 }
 
 const SButton = styled.button`
@@ -116,6 +117,7 @@ const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
 export const Editar: FC<IPropActualizar> = ({
   pokemonAActualizar,
   cerrarVenta,
+  actualizarPagina,
 }) => {
   const [pokemonEditado, setpokemonEditado] = useState<IActulizacionPokemon>(
     DEFAULTPOKEMONEDITADO
@@ -126,12 +128,6 @@ export const Editar: FC<IPropActualizar> = ({
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const EditarPokemon = () => {
-    ActualizarPokemon(pokemonEditado).then((x) => {
-      x && Alerta("success", "Guardado", x);
-    });
-  };
 
   const cerrarVentanas = () => {
     handleClose();
@@ -170,6 +166,18 @@ export const Editar: FC<IPropActualizar> = ({
     let temp = { ...pokemonEditado };
     temp.IdsTipo[index] = x;
     setpokemonEditado({ ...pokemonEditado, IdsTipo: temp.IdsTipo });
+  };
+
+  const editarPokemon = () => {
+    let temp = { ...pokemonEditado };
+    if (temp.NombrePokemon == pokemonAActualizar.Nombre) {
+      temp.NombrePokemon = "";
+    }
+    ActualizarPokemon(temp)
+      .then((x) => {
+        x && Alerta("success", "Guardado", x);
+      })
+      .then(() => actualizarPagina());
   };
 
   return (
@@ -246,7 +254,7 @@ export const Editar: FC<IPropActualizar> = ({
           <Button variant='secondary' onClick={cerrarVentanas}>
             Cancelar
           </Button>
-          <Button variant='danger' onClick={EditarPokemon}>
+          <Button variant='primary' onClick={editarPokemon}>
             Editar
           </Button>
         </Modal.Footer>

@@ -13,6 +13,7 @@ interface IPropCardPokemon {
   tomarInformacionPaginacion: any;
   eliminarPokemon: any;
   cantidadRegistros: number;
+  actualizarPagina: any;
 }
 const SContenedorTextoSinInformacion = styled.div`
   text-align: center;
@@ -50,13 +51,18 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
   tomarInformacionPaginacion,
   eliminarPokemon,
   cantidadRegistros,
+  actualizarPagina,
 }) => {
   return (
     <>
       {pokemonDetallado && pokemonDetallado.length > 0 ? (
         <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
           {pokemonDetallado.map((data) => (
-            <SCard pokemon={data} eliminarPokemon={eliminarPokemon} />
+            <SCard
+              pokemon={data}
+              eliminarPokemon={eliminarPokemon}
+              actualizarPagina={actualizarPagina}
+            />
           ))}
           <Paginacion
             cantidadRegistros={cantidadRegistros}

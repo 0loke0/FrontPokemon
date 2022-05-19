@@ -13,8 +13,8 @@ interface IPropDropList {
 
 const SFromSelec = styled(Form.Select)`
   width: 100%;
-  background-color: #ced2ff;
-  color: #5c5b5b;
+  background-color: #3a85a890;
+  color: #000000;
   margin: 2px;
 `;
 
