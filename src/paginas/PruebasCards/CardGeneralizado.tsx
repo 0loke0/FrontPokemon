@@ -39,7 +39,7 @@ const SContenedorImagen = styled.div`
   top: 0%;
   left: 50%;
   width: 90%;
-  height: 200px;
+  height: 201px;
   background-color: #82d1d6;
   border-radius: 5%;
   border: 2px Solid black;
