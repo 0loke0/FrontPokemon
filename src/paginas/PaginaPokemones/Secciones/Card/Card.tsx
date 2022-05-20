@@ -1,7 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import { Eliminar } from "./OpcionesCards/Eliminar/Eliminar";
+import Vibrant from "node-vibrant";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+
+import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
+
+import { Eliminar } from "./Secciones/OpcionesCards/Eliminar/Eliminar";
+import { OpcionesCardPokemon } from "./Secciones/OpcionesCards/OpcionesCardPokemon";
+import { Descripcion } from "./Secciones/Descripcion/Descripcion";
+import Stats from "./Secciones/Stats";
 
 import {
   SImg,
@@ -13,11 +20,6 @@ import {
   SDivTipos,
   SDivDescripcion,
 } from "./StylosCardsPokemon";
-import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
-import Vibrant from "node-vibrant";
-import { OpcionesCardPokemon } from "./OpcionesCards/OpcionesCardPokemon";
-import { Descripcion } from "./Descripcion/Descripcion";
-import Stats from "./Stats";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;

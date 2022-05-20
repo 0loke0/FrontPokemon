@@ -43,7 +43,7 @@ import {
   SImg,
   SImgBoton,
   SImgCaracteristicas,
-  SImgPokebolas,
+  SImgFiltro,
   Sinput,
   SinputIdentificador,
   SinputNombre,
@@ -55,8 +55,10 @@ import {
   STitulo,
   StyledCard,
 } from "./StyledFiltro";
-import Stats from "../Card/Stats";
-import { Descripcion } from "../Card/Descripcion/Descripcion";
+import Stats from "../Card/Secciones/Stats";
+import StatsFiltro from "./Secciones/StatsFiltro";
+import IdFiltro from "./Secciones/IdFiltro";
+import NombreFiltro from "./Secciones/NombreFiltro";
 
 interface IPropFiltroPokemon {
   setinfoPaginacion: any;
@@ -84,20 +86,12 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   setinfoPaginacion,
   infoPaginacion,
 }) => {
-  const [tipos, settipos] = useState<ITipos[]>([]);
-  const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
-
   const [informacionFiltrado, setinformacionFiltrado] =
     useState<IFiltradoPaginacion>(DEFAULTINFORMACIONFILTRO);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    ObtenerTipos().then((x) => settipos(x));
-    ObtenerMovimientos().then((x) => setMovimientos(x));
-  }, []);
 
   const asignarValoresFiltro = (e: any) => {
     setinformacionFiltrado({
@@ -120,8 +114,8 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   return (
     <>
       <SButtonGeneral onClick={handleShow}>
-        <SImgPokebolas seleccion={show} src={FondoFiltro} alt='FondoFiltro' />
         <SImgBoton src={FrenteFiltro} alt='FrenteFiltro' />
+        <SImgFiltro seleccion={show} src={FondoFiltro} alt='FondoFiltro' />
       </SButtonGeneral>
       <SModal
         show={show}
@@ -131,193 +125,19 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
         <SModalBody>
           <StyledCard>
             <Card.Body>
-              <SDivIdentificador>
-                <SinputIdentificador
-                  value={informacionFiltrado.Identificador}
-                  onChange={asignarValoresFiltro}
-                  sizeH={18}
-                  sizeW={38}
-                  name={"Identificador"}
-                />
-              </SDivIdentificador>
-              <SDivTitulo>
-                <SinputNombre
-                  placeholder='Nombre'
-                  value={informacionFiltrado.Nombre}
-                  onChange={asignarValoresFiltro}
-                  name={"Nombre"}
-                />
-              </SDivTitulo>
+              <IdFiltro
+                asignarValoresFiltro={asignarValoresFiltro}
+                informacionFiltrado={informacionFiltrado}
+              />
 
-              <SDivTipos>
-                {/* {pokemon.Tipos.map((x, index) => (
-                    <SContenedorTipo
-                      tipo={pokemon.Tipos[index].IdTipo}
-                      posicion={index == 0 ? "Primaria" : "Secundaria"}>
-                      {pokemon.Tipos[index].NombreTipo}
-                    </SContenedorTipo>
-                  ))} */}
-              </SDivTipos>
-              <SRow>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={Espada} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.AtaqueMinimo}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"AtaqueMinimo"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.AtaqueMaximo}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"AtaqueMaximo"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={AtaqueEspecial} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.AtaqueEspecialMinimo}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"AtaqueEspecialMinimo"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.AtaqueEspecialMaximo}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"AtaqueEspecialMaximo"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={Vida} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.VidaMinima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"VidaMinima"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.VidaMaxima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"VidaMaxima"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-              </SRow>
-              <SRow>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={Escudo} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.DefensaMinima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"DefensaMinima"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.DefensaMaxima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"DefensaMaxima"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={EscudoEspadas} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.DefensaEspecialMinima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"DefensaEspecialMinima"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.DefensaEspecialMaxima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"DefensaEspecialMaximo"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-                <SCol>
-                  <SDiv>
-                    <SImgCaracteristicas src={Velocidad} />
-                    <SPCarateristicas>
-                      <Row>
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.VelocidadMinima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"VelocidadMinima"}
-                          />
-                        </Col>
-                        /
-                        <Col>
-                          <Sinput
-                            value={informacionFiltrado.VelocidadMaxima}
-                            onChange={asignarValoresFiltro}
-                            sizeH={18}
-                            name={"VelocidadMaxima"}
-                          />
-                        </Col>
-                      </Row>
-                    </SPCarateristicas>
-                  </SDiv>
-                </SCol>
-              </SRow>
+              <NombreFiltro
+                asignarValoresFiltro={asignarValoresFiltro}
+                informacionFiltrado={informacionFiltrado}
+              />
+              <StatsFiltro
+                asignarValoresFiltro={asignarValoresFiltro}
+                informacionFiltrado={informacionFiltrado}
+              />
             </Card.Body>
           </StyledCard>
         </SModalBody>

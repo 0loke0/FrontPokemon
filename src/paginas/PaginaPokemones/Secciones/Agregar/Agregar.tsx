@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
-import Button from "react-bootstrap/esm/Button";
+
 import { Col, Container, Modal, Row } from "react-bootstrap";
 
 import { Form } from "react-bootstrap";
@@ -31,7 +31,7 @@ import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import Pokebola from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
-import DragDrop from "./DragDrop/DragDrop";
+import InputText from "../../../../Componentes/InputText";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -70,12 +70,8 @@ export const Agregar: FC<IPropAgregar> = ({
     actualizarPagina();
   };
 
-  const asignarNombrePokemon = (e: any) => {
-    setnuevoPokemon({ ...nuevoPokemon, NombrePokemon: e.target.value });
-  };
-
-  const asignarDetallePokemon = (e: any) => {
-    setnuevoPokemon({ ...nuevoPokemon, Detalle: e.target.value });
+  const asignarValor = (e: any) => {
+    setnuevoPokemon({ ...nuevoPokemon, [e.target.name]: e.target.value });
   };
 
   const asignarMovimiento = (x: number, index: number) => {
@@ -119,12 +115,11 @@ export const Agregar: FC<IPropAgregar> = ({
             <Row>
               <Col>
                 <SDivFormLabel>
-                  <Sinput
-                    type='text'
-                    required
-                    placeholder='Ingrese Nombre'
+                  <InputText
                     value={nuevoPokemon.NombrePokemon}
-                    onChange={asignarNombrePokemon}
+                    onChange={asignarValor}
+                    placeholder='Ingrese Nombre'
+                    name='NombrePokemon'
                   />
                 </SDivFormLabel>
               </Col>
@@ -174,8 +169,8 @@ export const Agregar: FC<IPropAgregar> = ({
           <SDivFormLabel>
             <STextarea
               value={nuevoPokemon.Detalle}
-              onChange={asignarDetallePokemon}
-              name='textarea'
+              onChange={asignarValor}
+              name='Detalle'
               placeholder='Detalle del Pokemon'
               rows={3}
               cols={50}></STextarea>

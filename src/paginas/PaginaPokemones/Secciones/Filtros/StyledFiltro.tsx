@@ -4,7 +4,8 @@ import { DropList } from "../../../../Componentes/DropList";
 import Acero from "../../../../Multimedia/Pokemon/Card/IconosTipo/Acero.png";
 import Forest from "../../../../Multimedia/Pokemon/Agregar/Forest.jpg";
 
-import FondoAgregado from "../../../../Multimedia/Pokemon/Agregar/FondoAgregado.jpg";
+import Tarde from "../../../../Multimedia/Pokemon/Filtro/Tarde.jpg";
+
 import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 interface IProps {
   ubicacion?: string;
@@ -134,7 +135,7 @@ export const SImgBoton = styled.img`
   left: 0%;
 `;
 
-export const SImgPokebolas = styled.img`
+export const SImgFiltro = styled.img`
   position: absolute;
   height: 60px;
   width: 60px;
@@ -157,7 +158,7 @@ export const STitulo = styled.p`
 `;
 
 export const SModalBody = styled(Modal.Body)`
-  background-image: url(${FondoAgregado});
+  background-image: url(${Tarde});
   background-size: cover;
   padding: 2%;
   border-radius: 20px;

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Button, Collapse } from "react-bootstrap";
 import styled from "styled-components";
 // import from "../src/Multimedia/Pokemon/Card/IconoDescripcion.png"
-import IconoDescripcion from "../../../../../Multimedia/Pokemon/Card/IconoDescripcion.png";
+import IconoDescripcion from "../../../../../../Multimedia/Pokemon/Card/IconoDescripcion.png";
 interface IPropDescription {
   detalle: string;
   referencia: number;

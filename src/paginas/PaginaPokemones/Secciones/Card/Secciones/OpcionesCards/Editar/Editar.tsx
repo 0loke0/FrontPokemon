@@ -1,13 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import Popover from "react-bootstrap/Popover";
-import Overlay from "react-bootstrap/Overlay";
 
 import {
   IActulizacionPokemon,
   IPokemonDetallado,
-} from "../../../../../../Interface/PokemonDetallado";
+} from "../../../../../../../Interface/PokemonDetallado";
 import styled from "styled-components";
-import Edicion from "../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
+import Edicion from "../../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
+
 import {
   Button,
   Card,
@@ -17,94 +16,29 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import { IMovimiento, ITipos } from "../../../../../../Interface/Pokemones";
-import { DropList } from "../../../../../../Componentes/DropList";
-import { ObtenerTipos } from "../../../../../../Servicios/ServicioTipo";
-import { ObtenerMovimientos } from "../../../../../../Servicios/ServicioMovimientos";
-import { ActualizarPokemon } from "../../../../../../Servicios/ServicioPokemon";
-import { Alerta } from "../../../../../../Componentes/Alerta";
-import FondoEdicion from "../../../../../../Multimedia/Pokemon/Editar/FondoEdicion.png";
-import { determinarColorSegunRareza } from "../../../../../../Utilidades/UtilidadesColores";
+import { IMovimiento, ITipos } from "../../../../../../../Interface/Pokemones";
+import { DropList } from "../../../../../../../Componentes/DropList";
+import { ObtenerTipos } from "../../../../../../../Servicios/ServicioTipo";
+import { ObtenerMovimientos } from "../../../../../../../Servicios/ServicioMovimientos";
+import { ActualizarPokemon } from "../../../../../../../Servicios/ServicioPokemon";
+import { Alerta } from "../../../../../../../Componentes/Alerta";
+
+import { determinarColorMateSegunRareza } from "../../../../../../../Utilidades/UtilidadesColores";
+import {
+  SButton,
+  SDivCentrador,
+  SDivFormLabel,
+  SImg,
+  Sinput,
+  SModal,
+  SModalBody,
+  StyledCard,
+} from "./StyledEditar";
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
   cerrarVenta: any;
   actualizarPagina: any;
 }
-
-const SButton = styled.button`
-  background-color: transparent;
-  position: relative;
-  height: 40px;
-  width: 40px;
-  border: 1px solid transparent;
-  border-radius: 0%;
-`;
-
-const SImg = styled.img`
-  position: relative;
-  height: 30px;
-  width: 30px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-export const Sinput = styled.input`
-  font-size: 18px;
-  margin-top: 2px;
-  margin-bottom: 10px;
-  padding: 5px;
-  display: block;
-  width: 100%;
-  border-radius: 5px;
-  border: 0.5px solid #c9e7ff;
-  &:focus {
-    outline: none;
-    border: none;
-    box-shadow: 0px 0px 5px #a0bad3;
-  }
-`;
-export const SDivCentrador = styled.div`
-  position: relative;
-  right: 0%;
-  text-align: ${(p: IProps) => (p.ubicacion == "Izquierda" ? "right" : "left")};
-`;
-export const SDivFormLabel = styled.div`
-  position: relative;
-  text-align: center;
-  width: 90%;
-  left: 50%;
-  transform: translate(-50%);
-`;
-
-export const SModal = styled(Modal)`
-  background-color: #4ad3fd93;
-`;
-export const SModalBody = styled(Modal.Body)`
-  background-color: #3396cf;
-
-  padding: 2%;
-  border-radius: 20px;
-  margin-top: 100px;
-  border: 3px solid black;
-  box-shadow: 0px 0px 20px #4a9eff;
-`;
-
-interface IProps {
-  ubicacion?: string;
-  seleccion?: boolean;
-}
-
-export const StyledCard = styled(Card)<{
-  rareza: string;
-}>`
-  padding: 5px;
-  border-radius: 20px;
-  border: 2px solid #628395;
-  box-shadow: 5px 5px 10px #7d7d7d;
-  background-color: #ffdee9;
-  background-image: ${({ rareza }) => determinarColorSegunRareza(rareza)};
-`;
 
 const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
   Id: 0,
@@ -185,7 +119,10 @@ export const Editar: FC<IPropActualizar> = ({
       <SButton onClick={handleShow}>
         <SImg src={Edicion} alt='Edicion' />
       </SButton>
-      <SModal show={show} onHide={cerrarVentanas}>
+      <SModal
+        show={show}
+        onHide={cerrarVentanas}
+        rareza={pokemonAActualizar.Rareza}>
         <SModalBody>
           <StyledCard rareza={pokemonAActualizar.Rareza}>
             <Container>
