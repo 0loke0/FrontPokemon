@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from "react";
+
 import {
-  ActualizarPokemon,
   AgregarPokemon,
   EliminarPokemon,
   ObtenerCantidadRegistrosPokemon,
   ObtenerPokemones,
 } from "../../Servicios/ServicioPokemon";
 
-import {
-  IActulizacionPokemon,
-  IPokemonDetallado,
-} from "../../Interface/PokemonDetallado";
 import { Alerta } from "../../Componentes/Alerta";
 
-import { Agregar } from "./Secciones/Agregar/Agregar";
-import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";
-import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
-import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 import {
   IFormularioConsulta,
   INuevoPokemon,
   IPaginacion,
 } from "../../Interface/Pokemones";
-import LogoPokemon from "../../Multimedia/LogoPokemon.png";
+import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
+
+import { Agregar } from "./Secciones/Agregar/Agregar";
+import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";
+import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
+import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
+import MusicaGeneral from "./Secciones/Musica/MusicaGeneral";
+import FiltroPokemones from "./Secciones/Filtros/FiltroPokemones";
 
 import {
   SGeneralPaginaPokemon,
+  SImgLogo,
   SPaginaPokemones,
-  STitulo,
 } from "./StylosPaginaPokemones";
-import MusicaGeneral from "./Secciones/Musica/MusicaGeneral";
-import FiltroPokemones from "./Secciones/Filtros/FiltroPokemones";
+import LogoPokemon from "../../Multimedia/LogoPokemon.png";
 
 function PaginaPokemones() {
   const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
@@ -99,7 +97,7 @@ function PaginaPokemones() {
   return (
     <SPaginaPokemones>
       <SGeneralPaginaPokemon>
-        <STitulo src={LogoPokemon} />
+        <SImgLogo src={LogoPokemon} />
         <ContadorPokemon cantidadRegistros={cantidadRegistros} />
         <Agregar
           actualizarPagina={actualizarPagina}

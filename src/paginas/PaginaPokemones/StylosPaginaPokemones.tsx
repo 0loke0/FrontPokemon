@@ -17,7 +17,7 @@ export const SGeneralPaginaPokemon = styled.div`
   top: 2%;
 `;
 
-export const STitulo = styled.img`
+export const SImgLogo = styled.img`
   position: relative;
   width: 18%;
   height: 18%;

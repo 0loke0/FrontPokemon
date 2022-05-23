@@ -3,35 +3,29 @@ import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 
 import { Col, Container, Modal, Row } from "react-bootstrap";
 
-import { Form } from "react-bootstrap";
 import {
   ITipos,
   INuevoPokemon,
   IMovimiento,
 } from "../../../../Interface/Pokemones";
 import {
-  Sinput,
   SDivFormLabel,
-  SDivCentrador,
-  SDivSolicitudImagen,
-  SImg,
   SImgBoton,
   SImgSuma,
-  STitulo,
   SModalBody,
   SModal,
-  SContenedorModal,
   SButtonGeneral,
   SButton,
-  STextarea,
-  SContenedorBotones,
 } from "./StyledAgregar";
-import { DropList } from "../../../../Componentes/DropList";
+
 import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import Pokebola from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import InputText from "../../../../Componentes/InputText";
+import Desplegable from "./Secciones/Desplegable";
+import TextArea from "../../../../Componentes/TextArea";
+import SeleccionDeImagen from "./Secciones/SeleccionDeImagen";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -75,13 +69,13 @@ export const Agregar: FC<IPropAgregar> = ({
   };
 
   const asignarMovimiento = (x: number, index: number) => {
-    var temp = { ...nuevoPokemon };
+    let temp = { ...nuevoPokemon };
     temp.IdsMovimiento[index] = x;
     setnuevoPokemon({ ...nuevoPokemon, IdsMovimiento: temp.IdsMovimiento });
   };
 
   const asignarTipo = (x: number, index: number) => {
-    var temp = { ...nuevoPokemon };
+    let temp = { ...nuevoPokemon };
     temp.IdsTipo[index] = x;
     setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
   };
@@ -124,69 +118,49 @@ export const Agregar: FC<IPropAgregar> = ({
                 </SDivFormLabel>
               </Col>
             </Row>
-
             <Row>
               <Col>
                 <SDivFormLabel>
-                  {nuevoPokemon.IdsMovimiento.map((x, index) => {
-                    return (
-                      <Row>
-                        <DropList
-                          valorAIndicar='IdMovimiento'
-                          index={index}
-                          lista={movimientos}
-                          recogerSeleccion={asignarMovimiento}
-                          valorDefecto='Movimiento'
-                          valorAListar='NombreMovimiento'
-                        />
-                      </Row>
-                    );
-                  })}
+                  <Desplegable
+                    listaIdsALlenar={nuevoPokemon.IdsMovimiento}
+                    listaReferencias={movimientos}
+                    asignarValorSeleccionado={asignarMovimiento}
+                    valorAIndicar='IdMovimiento'
+                    valorDefecto='Movimiento'
+                    valorAListar='NombreMovimiento'
+                  />
                 </SDivFormLabel>
               </Col>
               <Col>
                 <SDivFormLabel>
-                  {nuevoPokemon.IdsTipo.map((x, index) => {
-                    return (
-                      <SDivCentrador
-                        ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
-                        <DropList
-                          valorAIndicar='IdTipo'
-                          index={index}
-                          lista={tipos}
-                          recogerSeleccion={asignarTipo}
-                          valorDefecto='Tipos'
-                          valorAListar='NombreTipo'
-                        />
-                      </SDivCentrador>
-                    );
-                  })}
+                  <Desplegable
+                    listaIdsALlenar={nuevoPokemon.IdsTipo}
+                    listaReferencias={tipos}
+                    asignarValorSeleccionado={asignarTipo}
+                    valorAIndicar='IdTipo'
+                    valorDefecto='Tipos'
+                    valorAListar='NombreTipo'
+                  />
                 </SDivFormLabel>
               </Col>
             </Row>
           </Container>
 
           <SDivFormLabel>
-            <STextarea
-              value={nuevoPokemon.Detalle}
-              onChange={asignarValor}
-              name='Detalle'
+            <TextArea
+              valor={nuevoPokemon.Detalle}
+              asignarValor={asignarValor}
+              identificador='Detalle'
               placeholder='Detalle del Pokemon'
               rows={3}
-              cols={50}></STextarea>
-          </SDivFormLabel>
-          {nuevoPokemon.Imagen?.ArchivoImagen ? (
-            <SImg src={nuevoPokemon.Imagen.ArchivoImagen} height='200px' />
-          ) : (
-            <>{nuevoPokemon.Imagen.ArchivoImagen}</>
-          )}
-          <SDivSolicitudImagen>
-            <Form.Control
-              type='file'
-              onChange={asignarImagen}
-              placeholder='Detalle del Pokemon'
+              cols={50}
             />
-          </SDivSolicitudImagen>
+          </SDivFormLabel>
+
+          <SeleccionDeImagen
+            asignarImagen={asignarImagen}
+            archivoImagen={nuevoPokemon.Imagen.ArchivoImagen}
+          />
         </SModalBody>
         <Modal.Footer>
           <SButton variant='secondary' onClick={handleClose}>

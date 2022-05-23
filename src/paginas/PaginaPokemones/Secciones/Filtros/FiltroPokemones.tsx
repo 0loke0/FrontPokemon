@@ -1,64 +1,29 @@
-import React, { FC, useState, useEffect } from "react";
-import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
-import Button from "react-bootstrap/esm/Button";
-import { Card, Col, Container, Modal, Row } from "react-bootstrap";
+import React, { FC, useState } from "react";
+import { Card, Modal } from "react-bootstrap";
 
-import { Form } from "react-bootstrap";
 import {
-  ITipos,
-  INuevoPokemon,
-  IMovimiento,
   IFiltradoPaginacion,
   IFormularioConsulta,
 } from "../../../../Interface/Pokemones";
 
-import { DropList } from "../../../../Componentes/DropList";
-import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
 import FondoFiltro from "../../../../Multimedia/Pokemon/Filtro/FondoFiltro.png";
 import FrenteFiltro from "../../../../Multimedia/Pokemon/Filtro/FrenteFiltro.png";
-import ImagenFotoGenerico from "../../../../Multimedia/Pokemon/Filtro/ImagenFotoGenerico.png";
 
-import Vida from "../../../../Multimedia/Pokemon/Card/Vida.png";
-import Velocidad from "../../../../Multimedia/Pokemon/Card/Velocidad.png";
-import Espada from "../../../../Multimedia/Pokemon/Card/Espada.png";
-import EscudoEspadas from "../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
-import Escudo from "../../../../Multimedia/Pokemon/Card/Escudo.png";
-import AtaqueEspecial from "../../../../Multimedia/Pokemon/Card/AtaqueEspecial.png";
-
-import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import {
   SButton,
   SButtonGeneral,
-  SCol,
-  SContenedorBotones,
-  SContenedorImagen,
-  SContenedorTipo,
-  SDiv,
-  SDivCentrador,
-  SDivFormLabel,
-  SDivIdentificador,
-  SDivSolicitudImagen,
-  SDivTipos,
   SDivTitulo,
-  SImg,
   SImgBoton,
-  SImgCaracteristicas,
   SImgFiltro,
-  Sinput,
-  SinputIdentificador,
-  SinputNombre,
   SModal,
   SModalBody,
-  SPCarateristicas,
-  SRow,
-  STextarea,
-  STitulo,
   StyledCard,
 } from "./StyledFiltro";
-import Stats from "../Card/Secciones/Stats";
+
 import StatsFiltro from "./Secciones/StatsFiltro";
-import IdFiltro from "./Secciones/IdFiltro";
-import NombreFiltro from "./Secciones/NombreFiltro";
+
+import InputText from "../../../../Componentes/InputText";
+import InputIdPokemon from "../../../../Componentes/InputIdPokemon";
 
 interface IPropFiltroPokemon {
   setinfoPaginacion: any;
@@ -125,15 +90,21 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
         <SModalBody>
           <StyledCard>
             <Card.Body>
-              <IdFiltro
+              <InputIdPokemon
                 asignarValoresFiltro={asignarValoresFiltro}
                 informacionFiltrado={informacionFiltrado}
+                name='Identificador'
               />
-
-              <NombreFiltro
-                asignarValoresFiltro={asignarValoresFiltro}
-                informacionFiltrado={informacionFiltrado}
-              />
+              <SDivTitulo>
+                <InputText
+                  placeholder='Nombre'
+                  onChange={asignarValoresFiltro}
+                  value={
+                    informacionFiltrado.Nombre ? informacionFiltrado.Nombre : ""
+                  }
+                  name={"Nombre"}
+                />
+              </SDivTitulo>
               <StatsFiltro
                 asignarValoresFiltro={asignarValoresFiltro}
                 informacionFiltrado={informacionFiltrado}

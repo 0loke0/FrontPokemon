@@ -5,9 +5,9 @@ import {
   SDiv,
   SImgCaracteristicas,
   Sinput,
-  SPCarateristicas,
+  SCarateristicas,
   SRow,
-} from "../StyledFiltro";
+} from "./StyledStatsFiltro";
 
 import { IFiltradoPaginacion } from "../../../../../Interface/Pokemones";
 
@@ -32,7 +32,7 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={Espada} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -52,13 +52,13 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={AtaqueEspecial} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -78,13 +78,13 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={Vida} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -104,7 +104,7 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
       </SRow>
@@ -112,7 +112,7 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={Escudo} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -132,13 +132,13 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={EscudoEspadas} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -158,13 +158,13 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
         <SCol>
           <SDiv>
             <SImgCaracteristicas src={Velocidad} />
-            <SPCarateristicas>
+            <SCarateristicas>
               <Row>
                 <Col>
                   <Sinput
@@ -184,7 +184,7 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
                   />
                 </Col>
               </Row>
-            </SPCarateristicas>
+            </SCarateristicas>
           </SDiv>
         </SCol>
       </SRow>
