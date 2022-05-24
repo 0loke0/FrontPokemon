@@ -1,7 +1,7 @@
 import { Card, Modal } from "react-bootstrap";
 import styled from "styled-components";
-import { determinarColorMateSegunRareza } from "../../../../../../../Utilidades/UtilidadesColores";
-import Tarde from "../../../../../../../Multimedia/Pokemon/Editar/Tarde.jpg";
+import { determinarColorMateSegunRareza } from "../../../../../../../../Utilidades/UtilidadesColores";
+import Tarde from "../../../../../../../../Multimedia/Pokemon/Editar/Tarde.jpg";
 
 interface IProps {
   ubicacion?: string;

@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { Button, Overlay, Popover } from "react-bootstrap";
 import styled from "styled-components";
-import { IPokemonDetallado } from "../../../../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../../../../Interface/PokemonDetallado";
 
-import Opciones from "../../../../../../Multimedia/Pokemon/OpcionesCard/TuercaPoke.png";
+import Opciones from "../../../../../../../Multimedia/Pokemon/OpcionesCard/TuercaPoke.png";
 
-import { Editar } from "../OpcionesCards/Editar/Editar";
-import { Eliminar } from "../OpcionesCards/Eliminar/Eliminar";
+import { Editar } from "./Editar/Editar";
+import { Eliminar } from "./Eliminar/Eliminar";
 
 interface IPropOpcionesCardPokemon {
   pokemon: IPokemonDetallado;

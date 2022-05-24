@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
-import Boton from "../../../../Componentes/Boton";
+import Boton from "../../../../../Componentes/Boton";
 
 const Sdiv = styled.div`
   position: absolute;
@@ -50,6 +50,7 @@ const Paginacion: FC<IPropsPaginacion> = ({
   const determinarCantidadPaginas = () => {
     return Math.ceil(cantidadRegistros / limitePorPagina);
   };
+
   const retroceder = () => {
     if (pagina > 0) {
       setpagina(pagina - 1);

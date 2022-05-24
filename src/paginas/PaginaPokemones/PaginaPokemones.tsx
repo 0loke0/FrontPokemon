@@ -18,7 +18,7 @@ import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";
-import { ContenedorCards } from "./Secciones/Card/ContenedorCards";
+import { ContenedorCards } from "./Secciones/CuerpoCentral/ContenedorCards";
 import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
 import MusicaGeneral from "./Secciones/Musica/MusicaGeneral";
 import FiltroPokemones from "./Secciones/Filtros/FiltroPokemones";

@@ -1,18 +1,18 @@
 import React, { FC } from "react";
-import { IPokemonDetallado } from "../../../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../../../Interface/PokemonDetallado";
 import {
   SImgCaracteristicas,
   SCol,
   SRow,
   SPCarateristicas,
   SDiv,
-} from "../StylosCardsPokemon";
-import Vida from "../../../../../Multimedia/Pokemon/Card/Vida.png";
-import Velocidad from "../../../../../Multimedia/Pokemon/Card/Velocidad.png";
-import Espada from "../../../../../Multimedia/Pokemon/Card/Espada.png";
-import EscudoEspadas from "../../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
-import Escudo from "../../../../../Multimedia/Pokemon/Card/Escudo.png";
-import AtaqueEspecial from "../../../../../Multimedia/Pokemon/Card/AtaqueEspecial.png";
+} from "../../StylosCardsPokemon";
+import Vida from "../../../../../../Multimedia/Pokemon/Card/Vida.png";
+import Velocidad from "../../../../../../Multimedia/Pokemon/Card/Velocidad.png";
+import Espada from "../../../../../../Multimedia/Pokemon/Card/Espada.png";
+import EscudoEspadas from "../../../../../../Multimedia/Pokemon/Card/EscudoEspadas.png";
+import Escudo from "../../../../../../Multimedia/Pokemon/Card/Escudo.png";
+import AtaqueEspecial from "../../../../../../Multimedia/Pokemon/Card/AtaqueEspecial.png";
 
 interface IPropStats {
   pokemon: IPokemonDetallado;

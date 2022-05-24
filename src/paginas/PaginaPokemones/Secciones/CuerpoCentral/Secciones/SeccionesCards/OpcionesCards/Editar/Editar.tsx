@@ -3,27 +3,21 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import {
   IActulizacionPokemon,
   IPokemonDetallado,
-} from "../../../../../../../Interface/PokemonDetallado";
-import styled from "styled-components";
-import Edicion from "../../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
+} from "../../../../../../../../Interface/PokemonDetallado";
 
+import Edicion from "../../../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
+
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Modal,
-  Row,
-} from "react-bootstrap";
-import { IMovimiento, ITipos } from "../../../../../../../Interface/Pokemones";
-import { DropList } from "../../../../../../../Componentes/DropList";
-import { ObtenerTipos } from "../../../../../../../Servicios/ServicioTipo";
-import { ObtenerMovimientos } from "../../../../../../../Servicios/ServicioMovimientos";
-import { ActualizarPokemon } from "../../../../../../../Servicios/ServicioPokemon";
-import { Alerta } from "../../../../../../../Componentes/Alerta";
+  IMovimiento,
+  ITipos,
+} from "../../../../../../../../Interface/Pokemones";
+import { DropList } from "../../../../../../../../Componentes/DropList";
+import { ObtenerTipos } from "../../../../../../../../Servicios/ServicioTipo";
+import { ObtenerMovimientos } from "../../../../../../../../Servicios/ServicioMovimientos";
+import { ActualizarPokemon } from "../../../../../../../../Servicios/ServicioPokemon";
+import { Alerta } from "../../../../../../../../Componentes/Alerta";
 
-import { determinarColorMateSegunRareza } from "../../../../../../../Utilidades/UtilidadesColores";
 import {
   SButton,
   SDivCentrador,

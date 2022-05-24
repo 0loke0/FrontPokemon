@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
-import Noche from "../../../../../../../Multimedia/Pokemon/Eliminar/Noche.jpg";
+import Noche from "../../../../../../../../Multimedia/Pokemon/Eliminar/Noche.jpg";
 
 export const STexto = styled.p`
   text-align: center;

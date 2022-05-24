@@ -3,12 +3,11 @@ import Vibrant from "node-vibrant";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
-import { IPokemonDetallado } from "../../../../Interface/PokemonDetallado";
+import { IPokemonDetallado } from "../../../../../Interface/PokemonDetallado";
 
-import { Eliminar } from "./Secciones/OpcionesCards/Eliminar/Eliminar";
-import { OpcionesCardPokemon } from "./Secciones/OpcionesCards/OpcionesCardPokemon";
-import { Descripcion } from "./Secciones/Descripcion/Descripcion";
-import Stats from "./Secciones/Stats";
+import { OpcionesCardPokemon } from "./SeccionesCards/OpcionesCards/OpcionesCardPokemon";
+import { Descripcion } from "./SeccionesCards/Descripcion";
+import Stats from "./SeccionesCards/Stats";
 
 import {
   SImg,
@@ -18,8 +17,7 @@ import {
   SDivTitulo,
   StyledCard,
   SDivTipos,
-  SDivDescripcion,
-} from "./StylosCardsPokemon";
+} from "../StylosCardsPokemon";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
@@ -27,7 +25,7 @@ interface IPropSCard {
   actualizarPagina: any;
 }
 
-export const SCard: FC<IPropSCard> = ({
+export const CardPokemon: FC<IPropSCard> = ({
   pokemon,
   eliminarPokemon,
   actualizarPagina,
@@ -38,7 +36,7 @@ export const SCard: FC<IPropSCard> = ({
   }, [pokemon]);
 
   var imagen =
-    require(`../../../../ImagenesPokemon/${pokemon.NombreImagen}`).default;
+    require(`../../../../../ImagenesPokemon/${pokemon.NombreImagen}`).default;
 
   let determinarColorDominante = () => {
     Vibrant.from(imagen)
