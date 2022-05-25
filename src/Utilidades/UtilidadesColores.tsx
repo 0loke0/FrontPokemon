@@ -43,7 +43,7 @@ export const determinarColorMateSegunRareza = (rareza: string) => {
   }
 };
 
-let coloresTipos = (idTipo: number) => {
+export const coloresTipos = (idTipo: number) => {
   switch (idTipo) {
     case 1:
       return `#9e9aa5 `;

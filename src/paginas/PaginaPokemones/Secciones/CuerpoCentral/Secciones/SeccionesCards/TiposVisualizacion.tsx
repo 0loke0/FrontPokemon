@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { ITipos } from "../../../../../../Interface/Pokemones";
-import coloresTipos from "../../../../../../Utilidades/UtilidadesColores";
+import { coloresTipos } from "../../../../../../Utilidades/UtilidadesColores";
 
 const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
   position: relative;

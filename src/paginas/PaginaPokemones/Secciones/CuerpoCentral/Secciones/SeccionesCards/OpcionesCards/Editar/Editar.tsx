@@ -98,9 +98,7 @@ export const Editar: FC<IPropActualizar> = ({
 
   const editarPokemon = () => {
     let temp = { ...pokemonEditado };
-    if (temp.NombrePokemon == pokemonAActualizar.Nombre) {
-      temp.NombrePokemon = "";
-    }
+
     ActualizarPokemon(temp)
       .then((x) => {
         x && Alerta("success", "Guardado", x);
@@ -139,7 +137,7 @@ export const Editar: FC<IPropActualizar> = ({
                       <Row>
                         <DropList
                           valorAIndicar='IdMovimiento'
-                          index={index}
+                          index={x}
                           lista={movimientos}
                           recogerSeleccion={asignarMovimiento}
                           valorDefecto='Movimiento'

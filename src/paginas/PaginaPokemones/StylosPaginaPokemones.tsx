@@ -1,8 +1,5 @@
-import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import Background from "../../Multimedia/Pokemon/PaginaPokemon/Background.png";
-import { ContadorPokemon } from "./Secciones/ContadorPokemon/ContadorPokemon";
-import MusicaGeneral from "./Secciones/Musica/MusicaGeneral";
 
 export const SGeneralPaginaPokemon = styled.div`
   position: relative;

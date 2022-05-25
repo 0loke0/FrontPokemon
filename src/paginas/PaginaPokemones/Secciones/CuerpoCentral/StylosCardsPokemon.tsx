@@ -127,6 +127,10 @@ export const SCol = styled(Col)`
   border-radius: 10px;
   background-color: transparent;
 `;
+export const SDivTipos = styled.div`
+  position: absolute;
+  width: 100%;
+`;
 
 export const SRow = styled(Row)`
   position: relative;
@@ -225,11 +229,6 @@ export const SPCarateristicas = styled.p`
   transform: translate(-50%, 0%);
   text-align: center;
   font-family: Righteous;
-`;
-
-export const SDivTipos = styled.div`
-  position: absolute;
-  width: 100%;
 `;
 
 export const SDivDescripcion = styled.div`

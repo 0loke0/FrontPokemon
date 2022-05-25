@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 
 import { IPokemonDetallado } from "../../../../../Interface/PokemonDetallado";
 
-import { OpcionesCardPokemon } from "./SeccionesCards/OpcionesCards/OpcionesCardPokemon";
+import { OpcionesCardPokemon } from "./SeccionesCards/OpcionesCardPokemon";
 import { Descripcion } from "./SeccionesCards/Descripcion";
 import Stats from "./SeccionesCards/Stats";
 

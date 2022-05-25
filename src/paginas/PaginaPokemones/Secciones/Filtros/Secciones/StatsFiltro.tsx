@@ -22,6 +22,47 @@ interface IPropStatsFiltro {
   informacionFiltrado: IFiltradoPaginacion;
   asignarValoresFiltro: (e: any) => void;
 }
+interface IEstructuraStatsFiltro {
+  imagen: string;
+  stat: {
+    minimo:
+      | "AtaqueMinimo"
+      | "AtaqueEspecialMinimo"
+      | "VidaMinima"
+      | "DefensaMinima"
+      | "DefensaEspecialMinima"
+      | "VelocidadMinima";
+    maximo:
+      | "AtaqueMaximo"
+      | "AtaqueEspecialMaximo"
+      | "VidaMaxima"
+      | "DefensaMaxima"
+      | "DefensaEspecialMaxima"
+      | "VelocidadMaxima";
+  };
+}
+
+const estructuraStatsFiltro: IEstructuraStatsFiltro[] = [
+  { imagen: Espada, stat: { minimo: "AtaqueMinimo", maximo: "AtaqueMaximo" } },
+  {
+    imagen: AtaqueEspecial,
+    stat: { minimo: "AtaqueEspecialMinimo", maximo: "AtaqueEspecialMaximo" },
+  },
+  { imagen: Vida, stat: { minimo: "VidaMinima", maximo: "VidaMaxima" } },
+  {
+    imagen: Escudo,
+    stat: { minimo: "DefensaMinima", maximo: "DefensaMaxima" },
+  },
+  {
+    imagen: EscudoEspadas,
+    stat: { minimo: "DefensaEspecialMinima", maximo: "DefensaEspecialMaxima" },
+  },
+  {
+    imagen: Velocidad,
+    stat: { minimo: "VelocidadMinima", maximo: "VelocidadMaxima" },
+  },
+];
+
 const StatsFiltro: FC<IPropStatsFiltro> = ({
   informacionFiltrado,
   asignarValoresFiltro,
@@ -29,164 +70,72 @@ const StatsFiltro: FC<IPropStatsFiltro> = ({
   return (
     <>
       <SRow>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Espada} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.AtaqueMinimo}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"AtaqueMinimo"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.AtaqueMaximo}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"AtaqueMaximo"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={AtaqueEspecial} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.AtaqueEspecialMinimo}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"AtaqueEspecialMinimo"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.AtaqueEspecialMaximo}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"AtaqueEspecialMaximo"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Vida} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.VidaMinima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"VidaMinima"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.VidaMaxima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"VidaMaxima"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
+        {estructuraStatsFiltro.map((x, index) => {
+          return (
+            index < 3 && (
+              <SCol>
+                <SDiv>
+                  <SImgCaracteristicas src={x.imagen} />
+                  <SCarateristicas>
+                    <Row>
+                      <Col>
+                        <Sinput
+                          value={informacionFiltrado[x.stat.minimo]}
+                          onChange={asignarValoresFiltro}
+                          sizeH={18}
+                          name={x.stat.minimo}
+                        />
+                      </Col>
+                      /
+                      <Col>
+                        <Sinput
+                          value={informacionFiltrado[x.stat.maximo]}
+                          onChange={asignarValoresFiltro}
+                          sizeH={18}
+                          name={x.stat.maximo}
+                        />
+                      </Col>
+                    </Row>
+                  </SCarateristicas>
+                </SDiv>
+              </SCol>
+            )
+          );
+        })}
       </SRow>
       <SRow>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Escudo} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.DefensaMinima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"DefensaMinima"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.DefensaMaxima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"DefensaMaxima"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={EscudoEspadas} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.DefensaEspecialMinima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"DefensaEspecialMinima"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.DefensaEspecialMaxima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"DefensaEspecialMaximo"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Velocidad} />
-            <SCarateristicas>
-              <Row>
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.VelocidadMinima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"VelocidadMinima"}
-                  />
-                </Col>
-                /
-                <Col>
-                  <Sinput
-                    value={informacionFiltrado.VelocidadMaxima}
-                    onChange={asignarValoresFiltro}
-                    sizeH={18}
-                    name={"VelocidadMaxima"}
-                  />
-                </Col>
-              </Row>
-            </SCarateristicas>
-          </SDiv>
-        </SCol>
+        {estructuraStatsFiltro.map((x, index) => {
+          return (
+            index >= 3 && (
+              <SCol>
+                <SDiv>
+                  <SImgCaracteristicas src={x.imagen} />
+                  <SCarateristicas>
+                    <Row>
+                      <Col>
+                        <Sinput
+                          value={informacionFiltrado[x.stat.minimo]}
+                          onChange={asignarValoresFiltro}
+                          sizeH={18}
+                          name={x.stat.minimo}
+                        />
+                      </Col>
+                      /
+                      <Col>
+                        <Sinput
+                          value={informacionFiltrado[x.stat.maximo]}
+                          onChange={asignarValoresFiltro}
+                          sizeH={18}
+                          name={x.stat.minimo}
+                        />
+                      </Col>
+                    </Row>
+                  </SCarateristicas>
+                </SDiv>
+              </SCol>
+            )
+          );
+        })}
       </SRow>
     </>
   );

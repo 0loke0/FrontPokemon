@@ -17,48 +17,56 @@ import AtaqueEspecial from "../../../../../../Multimedia/Pokemon/Card/AtaqueEspe
 interface IPropStats {
   pokemon: IPokemonDetallado;
 }
+interface IEstructuraStats {
+  imagen: string;
+  stat:
+    | "Ataque"
+    | "EspecialAtaque"
+    | "Vida"
+    | "Defensa"
+    | "EspecialDefensa"
+    | "Velocidad";
+}
+
+const estructuraStats: IEstructuraStats[] = [
+  {
+    imagen: Espada,
+    stat: "Ataque",
+  },
+  {
+    imagen: AtaqueEspecial,
+    stat: "EspecialAtaque",
+  },
+  {
+    imagen: Vida,
+    stat: "Vida",
+  },
+  {
+    imagen: Escudo,
+    stat: "Defensa",
+  },
+  {
+    imagen: EscudoEspadas,
+    stat: "EspecialDefensa",
+  },
+  {
+    imagen: Velocidad,
+    stat: "Velocidad",
+  },
+];
+
 const Stats: FC<IPropStats> = ({ pokemon }) => {
   return (
     <>
       <SRow>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Espada} />
-            <SPCarateristicas>{pokemon.Ataque}</SPCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={AtaqueEspecial} />
-            <SPCarateristicas>{pokemon.EspecialAtaque}</SPCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Vida} />
-            <SPCarateristicas>{pokemon.Vida}</SPCarateristicas>
-          </SDiv>
-        </SCol>
-      </SRow>
-      <SRow>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Escudo} />
-            <SPCarateristicas>{pokemon.Defensa}</SPCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={EscudoEspadas} />
-            <SPCarateristicas>{pokemon.EspecialDefensa}</SPCarateristicas>
-          </SDiv>
-        </SCol>
-        <SCol>
-          <SDiv>
-            <SImgCaracteristicas src={Velocidad} />
-            <SPCarateristicas>{pokemon.Velocidad}</SPCarateristicas>
-          </SDiv>
-        </SCol>
+        {estructuraStats.map((x) => (
+          <SCol>
+            <SDiv>
+              <SImgCaracteristicas src={x.imagen} />
+              <SPCarateristicas>{pokemon[x.stat]}</SPCarateristicas>
+            </SDiv>
+          </SCol>
+        ))}
       </SRow>
     </>
   );
