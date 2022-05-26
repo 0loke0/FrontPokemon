@@ -53,3 +53,11 @@ export interface IActulizacionPokemon {
   Movimientos: IMovimientos[];
   Detalle: string;
 }
+
+export interface IPokemonActualizado {
+  Id: number;
+  NombrePokemon: string;
+  IdsTipo: number[];
+  IdsMovimiento: number[];
+  Detalle: string;
+}

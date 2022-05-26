@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import {
   IActulizacionPokemon,
+  IPokemonActualizado,
   IPokemonDetallado,
 } from "../../../../../../../../Interface/PokemonDetallado";
 
@@ -34,28 +35,33 @@ interface IPropActualizar {
   actualizarPagina: any;
 }
 
-const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
-  Id: 0,
-  NombrePokemon: "",
-  Tipos: [
-    { IdTipo: 0, NombreTipo: "" },
-    { IdTipo: 0, NombreTipo: "" },
-  ],
-  Movimientos: [
-    { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
-    { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
-  ],
-  Detalle: "",
-};
+// const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
+//   Id: 0,
+//   NombrePokemon: "",
+//   Tipos: [
+//     { IdTipo: 0, NombreTipo: "" },
+//     { IdTipo: 0, NombreTipo: "" },
+//   ],
+//   Movimientos: [
+//     { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
+//     { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
+//   ],
+//   Detalle: "",
+// };
 
 export const Editar: FC<IPropActualizar> = ({
   pokemonAActualizar,
   cerrarVenta,
   actualizarPagina,
 }) => {
-  const [pokemonEditado, setpokemonEditado] = useState<IActulizacionPokemon>(
-    DEFAULTPOKEMONEDITADO
-  );
+  const [pokemonEditado, setpokemonEditado] = useState<IActulizacionPokemon>({
+    Id: pokemonAActualizar.Id,
+    NombrePokemon: pokemonAActualizar.Nombre,
+    Tipos: pokemonAActualizar.Tipos,
+    Movimientos: pokemonAActualizar.Movimientos,
+    Detalle: pokemonAActualizar.Detalle,
+  });
+
   const [tipos, settipos] = useState<ITipos[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
@@ -69,18 +75,9 @@ export const Editar: FC<IPropActualizar> = ({
   };
 
   useEffect(() => {
-    setpokemonEditado(convertirPokemonAPokemonEditado());
     ObtenerTipos().then((x) => settipos(x));
     ObtenerMovimientos().then((x) => setMovimientos(x));
   }, []);
-
-  const convertirPokemonAPokemonEditado = () => ({
-    Id: pokemonAActualizar.Id,
-    NombrePokemon: pokemonAActualizar.Nombre,
-    Tipos: pokemonAActualizar.Tipos,
-    Movimientos: pokemonAActualizar.Movimientos,
-    Detalle: pokemonAActualizar.Detalle,
-  });
 
   const asignarNombrePokemon = (e: any) => {
     setpokemonEditado({ ...pokemonEditado, NombrePokemon: e.target.value });
@@ -93,35 +90,28 @@ export const Editar: FC<IPropActualizar> = ({
   const asignarMovimiento = (x: IMovimiento, index: number) => {
     let temp = { ...pokemonEditado };
     temp.Movimientos[index] = x;
-    setpokemonEditado({ ...pokemonEditado, IdsMovimiento: temp.IdsMovimiento });
+    setpokemonEditado({ ...pokemonEditado, Movimientos: temp.Movimientos });
   };
 
-  const asignarTipo = (x: number, index: number) => {
+  const asignarTipo = (x: ITipos, index: number) => {
     let temp = { ...pokemonEditado };
-    temp.IdsTipo[index] = x;
-    setpokemonEditado({ ...pokemonEditado, IdsTipo: temp.IdsTipo });
+    temp.Tipos[index] = x;
+    setpokemonEditado({ ...pokemonEditado, Tipos: temp.Tipos });
   };
 
   const editarPokemon = () => {
-    let temp = { ...pokemonEditado };
-
+    let temp: IPokemonActualizado = {
+      Id: pokemonEditado.Id,
+      NombrePokemon: pokemonEditado.NombrePokemon,
+      IdsTipo: pokemonEditado.Tipos.map((t) => t.IdTipo),
+      IdsMovimiento: pokemonEditado.Movimientos.map((m) => m.IdMovimiento),
+      Detalle: pokemonEditado.Detalle,
+    };
     ActualizarPokemon(temp)
       .then((x) => {
         x && Alerta("success", "Guardado", x);
       })
       .then(() => actualizarPagina());
-  };
-
-  const obtenerTipo = (id: number) => {
-    let tipoEncontrado: ITipos | undefined = tipos.find((t) => t.IdTipo == id);
-    return tipoEncontrado && tipoEncontrado;
-  };
-
-  const obtenerMovimiento = (id: number) => {
-    let movimientoEncontrado: IMovimiento | undefined = movimientos.find(
-      (t) => t.IdMovimiento == id
-    );
-    return movimientoEncontrado && movimientoEncontrado;
   };
 
   return (
@@ -155,10 +145,11 @@ export const Editar: FC<IPropActualizar> = ({
                       <Row>
                         <DropList
                           valorAIndicar='IdMovimiento'
-                          index={index}
+                          index={x.IdMovimiento}
                           lista={movimientos}
                           recogerSeleccion={asignarMovimiento}
                           valorAListar='NombreMovimiento'
+                          valorDefecto={x.NombreMovimiento}
                         />
                       </Row>
                     );
@@ -167,7 +158,7 @@ export const Editar: FC<IPropActualizar> = ({
               </Row>
 
               <Row>
-                {/* {pokemonEditado.IdsTipo.map((x, index) => {
+                {pokemonEditado.Tipos.map((x, index) => {
                   return (
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
@@ -177,10 +168,11 @@ export const Editar: FC<IPropActualizar> = ({
                         lista={tipos}
                         recogerSeleccion={asignarTipo}
                         valorAListar='NombreTipo'
+                        valorDefecto={x.NombreTipo}
                       />
                     </SDivCentrador>
                   );
-                })} */}
+                })}
               </Row>
             </Container>
             <SDivFormLabel>

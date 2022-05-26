@@ -5,7 +5,10 @@ import {
   INuevoPokemon,
   IPaginacion,
 } from "../Interface/Pokemones";
-import { IActulizacionPokemon } from "../Interface/PokemonDetallado";
+import {
+  IActulizacionPokemon,
+  IPokemonActualizado,
+} from "../Interface/PokemonDetallado";
 
 export const ObtenerPokemones = async (infoPaginacion: IFormularioConsulta) => {
   const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesConFiltros";
@@ -22,7 +25,7 @@ export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
   });
 };
 
-export const ActualizarPokemon = async (pokemon: IActulizacionPokemon) => {
+export const ActualizarPokemon = async (pokemon: IPokemonActualizado) => {
   const url = "http://localhost:63107/api/Pokemones/ModificarPokemon";
   return await ConsumirApi(url, "Post", pokemon).then((data) => {
     return data;
