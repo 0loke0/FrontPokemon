@@ -37,8 +37,14 @@ interface IPropActualizar {
 const DEFAULTPOKEMONEDITADO: IActulizacionPokemon = {
   Id: 0,
   NombrePokemon: "",
-  IdsTipo: [0, 0],
-  IdsMovimiento: [0, 0],
+  Tipos: [
+    { IdTipo: 0, NombreTipo: "" },
+    { IdTipo: 0, NombreTipo: "" },
+  ],
+  Movimientos: [
+    { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
+    { IdMovimiento: 0, NombreMovimiento: "", Valor: 0 },
+  ],
   Detalle: "",
 };
 
@@ -71,8 +77,8 @@ export const Editar: FC<IPropActualizar> = ({
   const convertirPokemonAPokemonEditado = () => ({
     Id: pokemonAActualizar.Id,
     NombrePokemon: pokemonAActualizar.Nombre,
-    IdsTipo: pokemonAActualizar.Tipos.map((t) => t.IdTipo),
-    IdsMovimiento: pokemonAActualizar.Movimientos.map((m) => m.IdMovimiento),
+    Tipos: pokemonAActualizar.Tipos,
+    Movimientos: pokemonAActualizar.Movimientos,
     Detalle: pokemonAActualizar.Detalle,
   });
 
@@ -84,9 +90,9 @@ export const Editar: FC<IPropActualizar> = ({
     setpokemonEditado({ ...pokemonEditado, Detalle: e.target.value });
   };
 
-  const asignarMovimiento = (x: number, index: number) => {
+  const asignarMovimiento = (x: IMovimiento, index: number) => {
     let temp = { ...pokemonEditado };
-    temp.IdsMovimiento[index] = x;
+    temp.Movimientos[index] = x;
     setpokemonEditado({ ...pokemonEditado, IdsMovimiento: temp.IdsMovimiento });
   };
 
@@ -104,6 +110,18 @@ export const Editar: FC<IPropActualizar> = ({
         x && Alerta("success", "Guardado", x);
       })
       .then(() => actualizarPagina());
+  };
+
+  const obtenerTipo = (id: number) => {
+    let tipoEncontrado: ITipos | undefined = tipos.find((t) => t.IdTipo == id);
+    return tipoEncontrado && tipoEncontrado;
+  };
+
+  const obtenerMovimiento = (id: number) => {
+    let movimientoEncontrado: IMovimiento | undefined = movimientos.find(
+      (t) => t.IdMovimiento == id
+    );
+    return movimientoEncontrado && movimientoEncontrado;
   };
 
   return (
@@ -132,15 +150,14 @@ export const Editar: FC<IPropActualizar> = ({
                   </SDivFormLabel>
                 </Col>
                 <Col>
-                  {pokemonEditado.IdsMovimiento.map((x, index) => {
+                  {pokemonEditado.Movimientos.map((x, index) => {
                     return (
                       <Row>
                         <DropList
                           valorAIndicar='IdMovimiento'
-                          index={x}
+                          index={index}
                           lista={movimientos}
                           recogerSeleccion={asignarMovimiento}
-                          valorDefecto='Movimiento'
                           valorAListar='NombreMovimiento'
                         />
                       </Row>
@@ -150,7 +167,7 @@ export const Editar: FC<IPropActualizar> = ({
               </Row>
 
               <Row>
-                {pokemonEditado.IdsTipo.map((x, index) => {
+                {/* {pokemonEditado.IdsTipo.map((x, index) => {
                   return (
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
@@ -159,12 +176,11 @@ export const Editar: FC<IPropActualizar> = ({
                         index={index}
                         lista={tipos}
                         recogerSeleccion={asignarTipo}
-                        valorDefecto={"Tipo"}
                         valorAListar='NombreTipo'
                       />
                     </SDivCentrador>
                   );
-                })}
+                })} */}
               </Row>
             </Container>
             <SDivFormLabel>

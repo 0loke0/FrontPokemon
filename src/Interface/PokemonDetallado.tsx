@@ -49,7 +49,7 @@ export interface IPokemonDetallado {
 export interface IActulizacionPokemon {
   Id: number;
   NombrePokemon: string;
-  IdsTipo: number[];
-  IdsMovimiento: number[];
+  Tipos: ITipos[];
+  Movimientos: IMovimientos[];
   Detalle: string;
 }

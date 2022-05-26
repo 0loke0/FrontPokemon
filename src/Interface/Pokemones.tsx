@@ -48,7 +48,7 @@ export interface IPaginacion {
 }
 
 export interface IFiltradoPaginacion {
-  Identificador: number | undefined;
+  Identificador: number;
   Nombre: string | undefined;
   VidaMinima: number;
   VidaMaxima: number;

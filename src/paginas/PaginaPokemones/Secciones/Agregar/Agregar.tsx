@@ -108,14 +108,12 @@ export const Agregar: FC<IPropAgregar> = ({
           <Container>
             <Row>
               <Col>
-                <SDivFormLabel>
-                  <InputText
-                    value={nuevoPokemon.NombrePokemon}
-                    onChange={asignarValor}
-                    placeholder='Ingrese Nombre'
-                    name='NombrePokemon'
-                  />
-                </SDivFormLabel>
+                <InputText
+                  value={nuevoPokemon.NombrePokemon}
+                  onChange={asignarValor}
+                  placeholder='Ingrese Nombre'
+                  name='NombrePokemon'
+                />
               </Col>
             </Row>
             <Row>

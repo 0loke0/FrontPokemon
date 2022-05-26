@@ -63,6 +63,7 @@ export const SImgFiltro = styled.img`
 
 export const SModal = styled(Modal)`
   background-color: #54faa494;
+  user-select: none;
 `;
 
 export const SModalBody = styled(Modal.Body)`
@@ -88,11 +89,11 @@ export const StyledCard = styled(Card)<{
 
 export const SDivTitulo = styled.div`
   text-align: left;
-  left: 0%;
+
+  left: 15%;
   position: relative;
-  height: 40px;
-  width: 350px;
+  width: 150px;
   font-weight: 500;
   font-size: 150%;
-  transform: translate(-10%, -8%);
+  transform: translate(-10%, 20%);
 `;

@@ -2,37 +2,38 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 interface IPropsInputText {
-  value: string;
+  value: string | number;
   onChange: any;
   name: any;
   placeholder?: string;
-  size?: number;
+  sizeH?: number;
+  sizeW?: number;
+  position?: "absolute" | "static" | "sticky" | "relative";
 }
 
 interface IProps {
-  size?: number;
+  sizeH?: number;
+  sizeW?: number;
+  position?: string;
 }
 
 export const SInput = styled.input`
-  position: relative;
+  position: ${(p: IProps) => (p.position ? p.position : "relative")};
   font-size: 18px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding: 0px;
-  display: block;
-  left: 50%;
-  width: 50%;
-  height: ${(p: IProps) => (p.size ? p.size + `px` : "auto")};
+  width: ${(p: IProps) => (p.sizeW ? p.sizeW + `px` : "auto")};
+  height: ${(p: IProps) => (p.sizeH ? p.sizeH + `px` : "auto")};
   border-radius: 5px;
   border: 0.5px solid #c9e7ff;
   text-align: center;
-  transform: translate(-50%);
-
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   &:focus {
     outline: none;
     border: none;
     box-shadow: 0px 0px 5px #a0bad3;
   }
+  z-index: 1;
 `;
 
 const InputText: FC<IPropsInputText> = ({
@@ -40,7 +41,9 @@ const InputText: FC<IPropsInputText> = ({
   onChange,
   name,
   placeholder,
-  size,
+  sizeH,
+  sizeW,
+  position,
 }) => {
   return (
     <SInput
@@ -48,7 +51,9 @@ const InputText: FC<IPropsInputText> = ({
       value={value}
       onChange={onChange}
       name={name}
-      size={size}
+      sizeH={sizeH}
+      sizeW={sizeW}
+      position={position}
     />
   );
 };

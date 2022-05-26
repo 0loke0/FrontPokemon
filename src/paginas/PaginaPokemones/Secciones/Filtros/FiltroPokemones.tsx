@@ -23,7 +23,7 @@ import {
 import StatsFiltro from "./Secciones/StatsFiltro";
 
 import InputText from "../../../../Componentes/InputText";
-import InputIdPokemon from "../../../../Componentes/InputIdPokemon";
+import InputIdPokemon from "./Secciones/InputIdPokemon";
 
 interface IPropFiltroPokemon {
   setinfoPaginacion: any;
@@ -92,7 +92,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
             <Card.Body>
               <InputIdPokemon
                 asignarValoresFiltro={asignarValoresFiltro}
-                informacionFiltrado={informacionFiltrado}
+                valor={informacionFiltrado.Identificador}
                 name='Identificador'
               />
               <SDivTitulo>

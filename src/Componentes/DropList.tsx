@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 
 interface IPropDropList {
   lista: any[];
-  valorDefecto: string;
+  valorDefecto?: string;
   recogerSeleccion: any;
   valorAListar: string;
   valorAIndicar: string;
@@ -35,7 +35,7 @@ export const DropList: FC<IPropDropList> = ({
 
   return (
     <SFromSelec onChange={obtenerValor}>
-      <SOption>{valorDefecto}</SOption>
+      {valorDefecto && <SOption>{valorDefecto}</SOption>}
       {lista.map((x) => (
         <SOption value={x[valorAIndicar]}>{x[valorAListar]}</SOption>
       ))}
