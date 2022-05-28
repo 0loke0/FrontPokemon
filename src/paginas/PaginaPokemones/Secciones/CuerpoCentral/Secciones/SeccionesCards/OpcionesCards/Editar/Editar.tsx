@@ -87,15 +87,16 @@ export const Editar: FC<IPropActualizar> = ({
     setpokemonEditado({ ...pokemonEditado, Detalle: e.target.value });
   };
 
-  const asignarMovimiento = (x: IMovimiento, index: number) => {
+  const asignarMovimiento = (x: number, index: number) => {
+    console.log("infromacion dentro del movimiento asingar ", x);
     let temp = { ...pokemonEditado };
-    temp.Movimientos[index] = x;
+    temp.Movimientos[index].IdMovimiento = x;
     setpokemonEditado({ ...pokemonEditado, Movimientos: temp.Movimientos });
   };
 
-  const asignarTipo = (x: ITipos, index: number) => {
+  const asignarTipo = (x: number, index: number) => {
     let temp = { ...pokemonEditado };
-    temp.Tipos[index] = x;
+    temp.Tipos[index].IdTipo = x;
     setpokemonEditado({ ...pokemonEditado, Tipos: temp.Tipos });
   };
 
@@ -144,11 +145,11 @@ export const Editar: FC<IPropActualizar> = ({
                     return (
                       <Row>
                         <DropList
-                          valorAIndicar='IdMovimiento'
-                          index={x.IdMovimiento}
                           lista={movimientos}
+                          propiedadIdLista='IdMovimiento'
+                          propiedadNombreLista='NombreMovimiento'
+                          index={index}
                           recogerSeleccion={asignarMovimiento}
-                          valorAListar='NombreMovimiento'
                           valorDefecto={x.NombreMovimiento}
                         />
                       </Row>
@@ -163,11 +164,11 @@ export const Editar: FC<IPropActualizar> = ({
                     <SDivCentrador
                       ubicacion={index == 0 ? "Izquierda" : "Derecha"}>
                       <DropList
-                        valorAIndicar='IdTipo'
-                        index={index}
                         lista={tipos}
+                        propiedadIdLista='IdTipo'
+                        propiedadNombreLista='NombreTipo'
+                        index={index}
                         recogerSeleccion={asignarTipo}
-                        valorAListar='NombreTipo'
                         valorDefecto={x.NombreTipo}
                       />
                     </SDivCentrador>

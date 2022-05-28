@@ -9,17 +9,19 @@ interface IPropsInputText {
   sizeH?: number;
   sizeW?: number;
   position?: "absolute" | "static" | "sticky" | "relative";
+  fontSize?: number;
 }
 
 interface IProps {
   sizeH?: number;
   sizeW?: number;
   position?: string;
+  fontSize?: number;
 }
 
 export const SInput = styled.input`
   position: ${(p: IProps) => (p.position ? p.position : "relative")};
-  font-size: 18px;
+  font-size: ${(p: IProps) => (p.fontSize ? p.fontSize + `px` : "18px")};
   width: ${(p: IProps) => (p.sizeW ? p.sizeW + `px` : "auto")};
   height: ${(p: IProps) => (p.sizeH ? p.sizeH + `px` : "auto")};
   border-radius: 5px;
@@ -44,6 +46,7 @@ const InputText: FC<IPropsInputText> = ({
   sizeH,
   sizeW,
   position,
+  fontSize,
 }) => {
   return (
     <SInput
@@ -54,6 +57,7 @@ const InputText: FC<IPropsInputText> = ({
       sizeH={sizeH}
       sizeW={sizeW}
       position={position}
+      fontSize={fontSize}
     />
   );
 };

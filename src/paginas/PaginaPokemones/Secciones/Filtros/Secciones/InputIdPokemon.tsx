@@ -12,22 +12,21 @@ interface IProps {
 export const SDivIdentificador = styled.div`
   border-radius: 50%;
   position: absolute;
-  height: 45px;
-  width: 45px;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
   background: #6bacec;
   color: #ffffff;
 `;
 
 export const SContenedorinputIdentificador = styled.div`
-  top: 10px;
   position: absolute;
-  height: 45px;
-  width: 45px;
-  font-weight: 500;
+  top: 10px;
+  left: 25px;
+  height: 50px;
+  width: 50px;
 `;
 
 interface IPropIdFiltro {
@@ -54,6 +53,7 @@ const IdFiltro: FC<IPropIdFiltro> = ({
         sizeW={sizeW ? sizeW : 38}
         name={name}
         position={"absolute"}
+        fontSize={15}
       />
       <SDivIdentificador></SDivIdentificador>
     </SContenedorinputIdentificador>

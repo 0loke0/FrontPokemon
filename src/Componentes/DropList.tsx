@@ -6,8 +6,8 @@ interface IPropDropList {
   lista: any[];
   valorDefecto?: string;
   recogerSeleccion: any;
-  valorAListar: string;
-  valorAIndicar: string;
+  propiedadNombreLista: string;
+  propiedadIdLista: string;
   index?: number;
 }
 
@@ -25,9 +25,9 @@ export const DropList: FC<IPropDropList> = ({
   lista,
   valorDefecto,
   recogerSeleccion,
-  valorAListar,
+  propiedadNombreLista,
   index,
-  valorAIndicar,
+  propiedadIdLista,
 }) => {
   let obtenerValor = (event: any) => {
     recogerSeleccion(event.target.value, index);
@@ -37,7 +37,7 @@ export const DropList: FC<IPropDropList> = ({
     <SFromSelec onChange={obtenerValor}>
       {valorDefecto && <SOption>{valorDefecto}</SOption>}
       {lista.map((x) => (
-        <SOption value={x[valorAIndicar]}>{x[valorAListar]}</SOption>
+        <SOption value={x[propiedadIdLista]}>{x[propiedadNombreLista]}</SOption>
       ))}
     </SFromSelec>
   );

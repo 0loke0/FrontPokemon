@@ -23,9 +23,10 @@ import Pokebola from "../../../../Multimedia/Pokemon/Agregar/Pokebola.png";
 import Suma from "../../../../Multimedia/Pokemon/Agregar/Suma.png";
 import { convertirDeImagenABase64 } from "../../../../Utilidades/UtilidadesImagen";
 import InputText from "../../../../Componentes/InputText";
-import Desplegable from "./Secciones/Desplegable";
+
 import TextArea from "../../../../Componentes/TextArea";
 import SeleccionDeImagen from "./Secciones/SeleccionDeImagen";
+import { DropList } from "../../../../Componentes/DropList";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -68,15 +69,15 @@ export const Agregar: FC<IPropAgregar> = ({
     setnuevoPokemon({ ...nuevoPokemon, [e.target.name]: e.target.value });
   };
 
-  const asignarMovimiento = (x: number, index: number) => {
+  const asignarMovimiento = (seleccion: number, index: number) => {
     let temp = { ...nuevoPokemon };
-    temp.IdsMovimiento[index] = x;
+    temp["IdsMovimiento"][index] = seleccion;
     setnuevoPokemon({ ...nuevoPokemon, IdsMovimiento: temp.IdsMovimiento });
   };
 
-  const asignarTipo = (x: number, index: number) => {
+  const asignarTipo = (seleccion: number, index: number) => {
     let temp = { ...nuevoPokemon };
-    temp.IdsTipo[index] = x;
+    temp["IdsTipo"][index] = seleccion;
     setnuevoPokemon({ ...nuevoPokemon, IdsTipo: temp.IdsTipo });
   };
 
@@ -119,26 +120,30 @@ export const Agregar: FC<IPropAgregar> = ({
             <Row>
               <Col>
                 <SDivFormLabel>
-                  <Desplegable
-                    listaIdsALlenar={nuevoPokemon.IdsMovimiento}
-                    listaReferencias={movimientos}
-                    asignarValorSeleccionado={asignarMovimiento}
-                    valorAIndicar='IdMovimiento'
-                    valorDefecto='Movimiento'
-                    valorAListar='NombreMovimiento'
-                  />
+                  {nuevoPokemon.IdsMovimiento.map((x, index) => (
+                    <DropList
+                      lista={movimientos}
+                      propiedadIdLista='IdMovimiento'
+                      propiedadNombreLista='NombreMovimiento'
+                      index={index}
+                      recogerSeleccion={asignarMovimiento}
+                      valorDefecto={"Movimiento"}
+                    />
+                  ))}
                 </SDivFormLabel>
               </Col>
               <Col>
                 <SDivFormLabel>
-                  <Desplegable
-                    listaIdsALlenar={nuevoPokemon.IdsTipo}
-                    listaReferencias={tipos}
-                    asignarValorSeleccionado={asignarTipo}
-                    valorAIndicar='IdTipo'
-                    valorDefecto='Tipos'
-                    valorAListar='NombreTipo'
-                  />
+                  {nuevoPokemon.IdsTipo.map((x, index) => (
+                    <DropList
+                      lista={tipos}
+                      propiedadIdLista='IdTipo'
+                      propiedadNombreLista='NombreTipo'
+                      index={index}
+                      recogerSeleccion={asignarTipo}
+                      valorDefecto={"Tipos"}
+                    />
+                  ))}
                 </SDivFormLabel>
               </Col>
             </Row>
