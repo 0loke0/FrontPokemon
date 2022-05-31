@@ -1,8 +1,11 @@
-import { ConsumirApi } from "./Core/CoreApi";
+import { controladorTipos, leerTipos, urlBase } from "./ConstantesServicios";
+import { coreApi } from "./Core/CoreApi";
+
+const apiBase: string = urlBase + controladorTipos;
 
 export const ObtenerTipos = async () => {
-  var url = "http://localhost:63107/api/Tipos/ListaTipos";
-  return await ConsumirApi(url, "Get").then((data) => {
+  var url = apiBase + leerTipos;
+  return await coreApi(url, "Get").then((data) => {
     return data;
   });
 };

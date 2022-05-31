@@ -9,10 +9,7 @@ import {
 import Edicion from "../../../../../../../../Multimedia/Pokemon/Editar/Edicion.png";
 
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import {
-  IMovimiento,
-  ITipos,
-} from "../../../../../../../../Interface/Pokemones";
+
 import { DropList } from "../../../../../../../../Componentes/DropList";
 import { ObtenerTipos } from "../../../../../../../../Servicios/ServicioTipo";
 import { ObtenerMovimientos } from "../../../../../../../../Servicios/ServicioMovimientos";
@@ -29,6 +26,8 @@ import {
   SModalBody,
   StyledCard,
 } from "./StyledEditar";
+import { IMovimiento } from "../../../../../../../../Interface/Movimientos";
+import { ITipo } from "../../../../../../../../Interface/Tipos";
 interface IPropActualizar {
   pokemonAActualizar: IPokemonDetallado;
   cerrarVenta: any;
@@ -62,7 +61,7 @@ export const Editar: FC<IPropActualizar> = ({
     Detalle: pokemonAActualizar.Detalle,
   });
 
-  const [tipos, settipos] = useState<ITipos[]>([]);
+  const [tipos, settipos] = useState<ITipo[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
   const [show, setShow] = useState(false);

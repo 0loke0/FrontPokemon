@@ -67,6 +67,7 @@ export const CardPokemon: FC<IPropSCard> = ({
                 </SContenedorTipo>
               ))}
             </SDivTipos>
+            <div>{pokemon.Movimientos.map(() => ())}</div>
             {<SImg src={imagen} />}
           </SContenedorImagen>
           <Stats pokemon={pokemon} />

@@ -1,33 +1,6 @@
-interface IImagen {
-  ArchivoImagen: string;
-  Nombre: string;
-  RutaImagen: string;
-}
-
-interface IMovimientos {
-  IdMovimiento: number;
-  NombreMovimiento: string;
-  Valor: number;
-}
-
-interface IPokemon {
-  Id: number;
-  Nombre: string;
-}
-
-interface IStats {
-  Ataque: number;
-  Defensa: number;
-  EspecialAtaque: number;
-  EspecialDefensa: number;
-  Velocidad: number;
-  Vida: number;
-}
-
-interface ITipos {
-  IdTipo: number;
-  NombreTipo: string;
-}
+import { ITipo } from "./Tipos";
+import { IMovimiento } from "./Movimientos";
+import { IImagen } from "./Imagen";
 
 export interface IPokemonDetallado {
   Id: number;
@@ -41,16 +14,16 @@ export interface IPokemonDetallado {
   NombreImagen: string;
   RutaImagen: string;
   Rareza: string;
-  Tipos: ITipos[];
-  Movimientos: IMovimientos[];
+  Tipos: ITipo[];
+  Movimientos: IMovimiento[];
   Detalle: string;
 }
 
 export interface IActulizacionPokemon {
   Id: number;
   NombrePokemon: string;
-  Tipos: ITipos[];
-  Movimientos: IMovimientos[];
+  Tipos: ITipo[];
+  Movimientos: IMovimiento[];
   Detalle: string;
 }
 
@@ -59,5 +32,13 @@ export interface IPokemonActualizado {
   NombrePokemon: string;
   IdsTipo: number[];
   IdsMovimiento: number[];
+  Detalle: string;
+}
+
+export interface INuevoPokemon {
+  NombrePokemon: string;
+  IdsTipo: number[];
+  IdsMovimiento: number[];
+  Imagen: IImagen;
   Detalle: string;
 }

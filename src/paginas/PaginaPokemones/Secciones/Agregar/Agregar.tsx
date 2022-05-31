@@ -4,11 +4,6 @@ import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
 import { Col, Container, Modal, Row } from "react-bootstrap";
 
 import {
-  ITipos,
-  INuevoPokemon,
-  IMovimiento,
-} from "../../../../Interface/Pokemones";
-import {
   SDivFormLabel,
   SImgBoton,
   SImgSuma,
@@ -27,6 +22,9 @@ import InputText from "../../../../Componentes/InputText";
 import TextArea from "../../../../Componentes/TextArea";
 import SeleccionDeImagen from "./Secciones/SeleccionDeImagen";
 import { DropList } from "../../../../Componentes/DropList";
+import { INuevoPokemon } from "../../../../Interface/PokemonDetallado";
+import { IMovimiento } from "../../../../Interface/Movimientos";
+import { ITipo } from "../../../../Interface/Tipos";
 
 interface IPropAgregar {
   actualizarPagina: any;
@@ -47,7 +45,7 @@ export const Agregar: FC<IPropAgregar> = ({
 }) => {
   const [nuevoPokemon, setnuevoPokemon] =
     useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
-  const [tipos, settipos] = useState<ITipos[]>([]);
+  const [tipos, settipos] = useState<ITipo[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
   const [show, setShow] = useState(false);

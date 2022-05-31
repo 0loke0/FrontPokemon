@@ -11,10 +11,12 @@ import { Alerta } from "../../Componentes/Alerta";
 
 import {
   IFormularioConsulta,
-  INuevoPokemon,
   IPaginacion,
-} from "../../Interface/Pokemones";
-import { IPokemonDetallado } from "../../Interface/PokemonDetallado";
+} from "../../Interface/PaginaPokemones";
+import {
+  INuevoPokemon,
+  IPokemonDetallado,
+} from "../../Interface/PokemonDetallado";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
 import ClasificacionRarezas from "./Secciones/Clasificacion/ClasificacionRarezas";

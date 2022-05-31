@@ -9,7 +9,7 @@ import {
   SRow,
 } from "./StyledStatsFiltro";
 
-import { IFiltradoPaginacion } from "../../../../../Interface/Pokemones";
+import { IFiltradoPaginacion } from "../../../../../Interface/PaginaPokemones";
 
 import Vida from "../../../../../Multimedia/Pokemon/Card/Vida.png";
 import Velocidad from "../../../../../Multimedia/Pokemon/Card/Velocidad.png";

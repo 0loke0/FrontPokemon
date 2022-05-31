@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IFiltradoPaginacion } from "../../../../../Interface/Pokemones";
+import { IFiltradoPaginacion } from "../../../../../Interface/PaginaPokemones";
 
 import styled from "styled-components";
 import InputText from "../../../../../Componentes/InputText";

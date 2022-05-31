@@ -1,8 +1,14 @@
-import { ConsumirApi } from "./Core/CoreApi";
+import {
+  controladorMovimientos,
+  leerMovimientos as leer,
+  urlBase,
+} from "./ConstantesServicios";
+import { coreApi } from "./Core/CoreApi";
 
+const apiBase: string = urlBase + controladorMovimientos;
 export const ObtenerMovimientos = async () => {
-  const url = "http://localhost:63107/api/Movimiento/ListaMovimientos";
-  return await ConsumirApi(url, "Get").then((data) => {
+  const url = apiBase + leer;
+  return await coreApi(url, "Get").then((data) => {
     return data;
   });
 };

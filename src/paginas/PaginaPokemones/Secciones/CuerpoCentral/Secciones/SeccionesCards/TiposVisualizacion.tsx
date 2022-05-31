@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { ITipos } from "../../../../../../Interface/Pokemones";
+import { ITipo } from "../../../../../../Interface/Tipos";
+
 import { coloresTipos } from "../../../../../../Utilidades/UtilidadesColores";
 
 const SContenedorTipo = styled.div<{ tipo: number; posicion: string }>`
@@ -34,7 +35,7 @@ const SDivTipos = styled.div`
 `;
 
 interface IPropsTipos {
-  lista: ITipos[];
+  lista: ITipo[];
 }
 
 const Tipos: FC<IPropsTipos> = ({ lista }) => {

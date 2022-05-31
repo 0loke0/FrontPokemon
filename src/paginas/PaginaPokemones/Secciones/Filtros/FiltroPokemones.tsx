@@ -4,7 +4,7 @@ import { Card, Modal } from "react-bootstrap";
 import {
   IFiltradoPaginacion,
   IFormularioConsulta,
-} from "../../../../Interface/Pokemones";
+} from "../../../../Interface/PaginaPokemones";
 
 import FondoFiltro from "../../../../Multimedia/Pokemon/Filtro/FondoFiltro.png";
 import FrenteFiltro from "../../../../Multimedia/Pokemon/Filtro/FrenteFiltro.png";

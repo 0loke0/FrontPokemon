@@ -1,41 +1,49 @@
-import { ConsumirApi } from "./Core/CoreApi";
+import { coreApi } from "./Core/CoreApi";
 import {
   IFiltradoPaginacion,
   IFormularioConsulta,
-  INuevoPokemon,
-  IPaginacion,
-} from "../Interface/Pokemones";
+} from "../Interface/PaginaPokemones";
 import {
-  IActulizacionPokemon,
+  INuevoPokemon,
   IPokemonActualizado,
 } from "../Interface/PokemonDetallado";
+import {
+  controladorPokemon as controlador,
+  crearPokemones as crear,
+  leerPokemones as leer,
+  actualizarPokemones as actualizar,
+  borrarPokemones as borrar,
+  getCantidadRegistros as CantidadRegistros,
+  urlBase,
+} from "./ConstantesServicios";
 
-export const ObtenerPokemones = async (infoPaginacion: IFormularioConsulta) => {
-  const url = "http://localhost:63107/api/Pokemones/ObtenerPokemonesConFiltros";
+const apiBase: string = urlBase + controlador;
 
-  return await ConsumirApi(url, "Post", infoPaginacion).then((data) => {
+export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
+  const url = apiBase + crear;
+  return await coreApi(url, "Post", nuevoPokemon).then((data) => {
     return data;
   });
 };
 
-export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
-  const url = `http://localhost:63107/api/Pokemones/GuardarNuevoPokemon`;
-  return await ConsumirApi(url, "Post", nuevoPokemon).then((data) => {
-    return data ? data : null;
+export const ObtenerPokemones = async (infoPaginacion: IFormularioConsulta) => {
+  const url = apiBase + leer;
+  console.log(url);
+  return await coreApi(url, "Post", infoPaginacion).then((data) => {
+    return data;
   });
 };
 
 export const ActualizarPokemon = async (pokemon: IPokemonActualizado) => {
-  const url = "http://localhost:63107/api/Pokemones/ModificarPokemon";
-  return await ConsumirApi(url, "Post", pokemon).then((data) => {
+  const url = apiBase + actualizar;
+  return await coreApi(url, "Post", pokemon).then((data) => {
     return data;
   });
 };
 
 export const EliminarPokemon = async (idPokemon: number) => {
-  const url = `http://localhost:63107/api/Pokemones/EliminarPokemon?idPokemon=${idPokemon}`;
-
-  return await ConsumirApi(url, "Delete").then((data) => {
+  const url = apiBase + borrar + `?idPokemon=${idPokemon}`;
+  return await coreApi(url, "Delete").then((data) => {
     return data;
   });
 };
@@ -43,8 +51,8 @@ export const EliminarPokemon = async (idPokemon: number) => {
 export const ObtenerCantidadRegistrosPokemon = async (
   filtros: IFiltradoPaginacion
 ) => {
-  const url = `http://localhost:63107/api/Pokemones/ObtenerCantidadPokemonFiltrados`;
-  return await ConsumirApi(url, "Post", filtros).then((data) => {
+  const url = apiBase + CantidadRegistros;
+  return await coreApi(url, "Post", filtros).then((data) => {
     return data;
   });
 };

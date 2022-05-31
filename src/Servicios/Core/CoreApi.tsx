@@ -1,7 +1,7 @@
 import { Alerta } from "../../Componentes/Alerta";
 import { trackPromise } from "react-promise-tracker";
 
-export const ConsumirApi = async (
+export const coreApi = async (
   url: string,
   tipo: "Get" | "Put" | "Delete" | "Post",
   data?: any
