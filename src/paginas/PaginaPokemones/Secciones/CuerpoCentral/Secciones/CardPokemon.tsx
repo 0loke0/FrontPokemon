@@ -17,7 +17,10 @@ import {
   SDivTitulo,
   StyledCard,
   SDivTipos,
+  SDivMovimientos,
 } from "../StylosCardsPokemon";
+import MovimientosVisualizacion from "./SeccionesCards/MovimientosVisualizacion";
+import { Row } from "react-bootstrap";
 
 interface IPropSCard {
   pokemon: IPokemonDetallado;
@@ -67,7 +70,7 @@ export const CardPokemon: FC<IPropSCard> = ({
                 </SContenedorTipo>
               ))}
             </SDivTipos>
-            <div>{pokemon.Movimientos.map(() => ())}</div>
+
             {<SImg src={imagen} />}
           </SContenedorImagen>
           <Stats pokemon={pokemon} />
@@ -75,6 +78,17 @@ export const CardPokemon: FC<IPropSCard> = ({
             <Descripcion detalle={pokemon.Detalle} referencia={pokemon.Id} />
           )}
         </Card.Body>
+        <SDivMovimientos>
+          <Row>
+            {pokemon.Movimientos.map((x) => (
+              <Col>
+                <MovimientosVisualizacion
+                  rareza={pokemon.Rareza}
+                  movimiento={x}></MovimientosVisualizacion>
+              </Col>
+            ))}
+          </Row>
+        </SDivMovimientos>
       </StyledCard>
     </Col>
   );
