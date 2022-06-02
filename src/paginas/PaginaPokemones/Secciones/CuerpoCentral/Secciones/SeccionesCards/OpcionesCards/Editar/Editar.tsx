@@ -87,7 +87,6 @@ export const Editar: FC<IPropActualizar> = ({
   };
 
   const asignarMovimiento = (x: number, index: number) => {
-    console.log("infromacion dentro del movimiento asingar ", x);
     let temp = { ...pokemonEditado };
     temp.Movimientos[index].IdMovimiento = x;
     setpokemonEditado({ ...pokemonEditado, Movimientos: temp.Movimientos });

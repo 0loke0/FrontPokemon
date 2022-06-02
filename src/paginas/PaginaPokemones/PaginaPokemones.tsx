@@ -54,6 +54,7 @@ function PaginaPokemones() {
       DefensaEspecialMaxima: 100,
       VelocidadMinima: 0,
       VelocidadMaxima: 100,
+      Rareza: "",
     },
   });
 
@@ -106,7 +107,10 @@ function PaginaPokemones() {
           agregarPokemon={agregarNuevoPokemon}
         />
         <MusicaGeneral url='https://web.opendrive.com/api/v1/download/file.json/NDNfMjM5ODg3Nzdf?inline=1' />
-        <ClasificacionRarezas />
+        <ClasificacionRarezas
+          setinfoPaginacion={setinfoPaginacion}
+          infoPaginacion={infoPaginacion}
+        />
         <FiltroPokemones
           setinfoPaginacion={setinfoPaginacion}
           infoPaginacion={infoPaginacion}

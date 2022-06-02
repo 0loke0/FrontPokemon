@@ -33,4 +33,5 @@ export interface IFiltradoPaginacion {
   DefensaEspecialMaxima: number;
   VelocidadMinima: number;
   VelocidadMaxima: number;
+  Rareza: string;
 }

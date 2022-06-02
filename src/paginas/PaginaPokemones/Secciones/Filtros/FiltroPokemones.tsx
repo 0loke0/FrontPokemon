@@ -45,6 +45,7 @@ const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
   DefensaEspecialMaxima: 100,
   VelocidadMinima: 0,
   VelocidadMaxima: 100,
+  Rareza: "",
 };
 
 export const FiltroPokemones: FC<IPropFiltroPokemon> = ({

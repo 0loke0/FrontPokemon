@@ -22,8 +22,8 @@ export const coreApi = async (
         return validarErrores(response);
       })
       .catch((error) => {
-        Alerta("error", "Error", error);
         console.error("Se genero un error", error);
+        Alerta("error", "Error", error);
         return null;
       })
   );

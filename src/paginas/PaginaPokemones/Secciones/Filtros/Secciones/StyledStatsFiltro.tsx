@@ -8,28 +8,34 @@ interface IProps {
 
 export const SCol = styled(Col)`
   height: 50px;
-  margin: 2px 30px;
-  border: 1px solid #0783ff;
-  border-radius: 10px;
-  background-color: transparent;
+  padding: 2px;
+`;
+export const SRow = styled(Row)`
+  position: relative;
+  margin-top: 5px;
+  margin: 1% 0% 0% 0%;
+  padding: 2px;
+  height: 120px;
 `;
 
 export const SDiv = styled.div`
   position: relative;
   left: 50%;
-  top: 80%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  transform: translate(-50%);
+  width: 150px;
+  height: 45px;
+
+  border: 1px solid #0783ff;
+  border-radius: 10px;
+  background-color: transparent;
 `;
 
 export const SImgCaracteristicas = styled.img`
   position: relative;
   width: 40px;
   height: 40px;
-  top: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -20%);
 `;
 
 export const Sinput = styled.input`
@@ -54,15 +60,9 @@ export const Sinput = styled.input`
 export const SCarateristicas = styled.div`
   position: absolute;
   left: 50%;
-  top: 23%;
-  width: 300%;
+  top: 50%;
+  width: 100%;
   transform: translate(-50%, 0%);
   text-align: center;
   font-family: Righteous;
-`;
-
-export const SRow = styled(Row)`
-  position: relative;
-  margin-top: 5px;
-  margin: 1% 0% 0% 0%;
 `;

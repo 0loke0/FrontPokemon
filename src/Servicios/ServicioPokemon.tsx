@@ -28,7 +28,6 @@ export const AgregarPokemon = async (nuevoPokemon: INuevoPokemon) => {
 
 export const ObtenerPokemones = async (infoPaginacion: IFormularioConsulta) => {
   const url = apiBase + leer;
-  console.log(url);
   return await coreApi(url, "Post", infoPaginacion).then((data) => {
     return data;
   });

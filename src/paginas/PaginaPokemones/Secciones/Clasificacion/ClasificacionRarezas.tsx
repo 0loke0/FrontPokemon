@@ -1,9 +1,14 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
+import { IFormularioConsulta } from "../../../../Interface/PaginaPokemones";
 import { determinarColorMateSegunRareza } from "../../../../Utilidades/UtilidadesColores";
+interface IPropsClasificacion {
+  setinfoPaginacion: any;
+  infoPaginacion: IFormularioConsulta;
+}
 
-const SDivComun = styled.div<{
+const SDivComun = styled.button<{
   rareza: string;
 }>`
   position: relative;
@@ -37,26 +42,37 @@ const SContenedorClasificacion = styled.div`
   transform: translate(-50%, 0%);
 `;
 
-const Clasificacion = () => {
+const Clasificacion: FC<IPropsClasificacion> = ({
+  setinfoPaginacion,
+  infoPaginacion,
+}) => {
+  const asignarTipoAFiltro = (e: any) => {
+    let tempPaginacion = { ...infoPaginacion };
+    tempPaginacion.Filtros.Rareza = e.target.value;
+    setinfoPaginacion(tempPaginacion);
+  };
   return (
     <SContenedorClasificacion>
       <Row>
         <STitulo>Tipos</STitulo>
       </Row>
-      <Row>
-        {["Común", "Poco Común", "Rara"].map((tipo) => {
+      <Row md={3}>
+        {[
+          "Común",
+          "Poco Común",
+          "Rara",
+          "Épica",
+          "Épica Singular",
+          "Legendaria",
+        ].map((tipo) => {
           return (
             <Col key={tipo}>
-              <SDivComun rareza={tipo}>{tipo}</SDivComun>
-            </Col>
-          );
-        })}
-      </Row>
-      <Row>
-        {["Épica", "Épica Singular", "Legendaria"].map((tipo) => {
-          return (
-            <Col key={tipo}>
-              <SDivComun rareza={tipo}>{tipo}</SDivComun>
+              <SDivComun
+                rareza={tipo}
+                onClick={asignarTipoAFiltro}
+                value={tipo}>
+                {tipo}
+              </SDivComun>
             </Col>
           );
         })}
