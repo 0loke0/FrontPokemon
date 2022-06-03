@@ -97,3 +97,5 @@ export const SDivTitulo = styled.div`
   font-size: 150%;
   transform: translate(-10%, 20%);
 `;
+
+export const SDivSeleccionTipos = styled.div``;

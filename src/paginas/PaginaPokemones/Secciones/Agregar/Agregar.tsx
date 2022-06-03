@@ -29,6 +29,8 @@ import { ITipo } from "../../../../Interface/Tipos";
 interface IPropAgregar {
   actualizarPagina: any;
   agregarPokemon: (construirNuevoPokemon: any) => any;
+  movimientos: IMovimiento[];
+  tipos: ITipo[];
 }
 
 const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
@@ -42,20 +44,15 @@ const DEFAULTNUEVOPOKEMON: INuevoPokemon = {
 export const Agregar: FC<IPropAgregar> = ({
   actualizarPagina,
   agregarPokemon,
+  movimientos,
+  tipos,
 }) => {
   const [nuevoPokemon, setnuevoPokemon] =
     useState<INuevoPokemon>(DEFAULTNUEVOPOKEMON);
-  const [tipos, settipos] = useState<ITipo[]>([]);
-  const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    ObtenerTipos().then((x) => settipos(x));
-    ObtenerMovimientos().then((x) => setMovimientos(x));
-  }, []);
 
   const agregarNuevoPokemon = async () => {
     await agregarPokemon(nuevoPokemon);

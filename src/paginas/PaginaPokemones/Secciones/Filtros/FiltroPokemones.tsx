@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Card, Modal } from "react-bootstrap";
 
 import {
@@ -12,6 +12,7 @@ import FrenteFiltro from "../../../../Multimedia/Pokemon/Filtro/FrenteFiltro.png
 import {
   SButton,
   SButtonGeneral,
+  SDivSeleccionTipos,
   SDivTitulo,
   SImgBoton,
   SImgFiltro,
@@ -24,10 +25,16 @@ import StatsFiltro from "./Secciones/StatsFiltro";
 
 import InputText from "../../../../Componentes/InputText";
 import InputIdPokemon from "./Secciones/InputIdPokemon";
+import { DropList } from "../../../../Componentes/DropList";
+import { ITipo } from "../../../../Interface/Tipos";
+import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
+import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
+import { IMovimiento } from "../../../../Interface/Movimientos";
 
 interface IPropFiltroPokemon {
   setinfoPaginacion: any;
   infoPaginacion: IFormularioConsulta;
+  tipos: ITipo[];
 }
 
 const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
@@ -46,11 +53,13 @@ const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
   VelocidadMinima: 0,
   VelocidadMaxima: 100,
   Rareza: "",
+  Tipo: 0,
 };
 
 export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   setinfoPaginacion,
   infoPaginacion,
+  tipos,
 }) => {
   const [informacionFiltrado, setinformacionFiltrado] =
     useState<IFiltradoPaginacion>(DEFAULTINFORMACIONFILTRO);
@@ -75,6 +84,13 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
 
   const reiniciarFiltros = () => {
     setinformacionFiltrado(DEFAULTINFORMACIONFILTRO);
+  };
+
+  const asignarTipo = (seleccion: number) => {
+    console.log("infromacion dentro de asignar tipo", infoPaginacion);
+    let temp = { ...infoPaginacion };
+    temp.Filtros.Tipo = seleccion;
+    setinfoPaginacion(temp);
   };
 
   return (
@@ -106,6 +122,15 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                   name={"Nombre"}
                 />
               </SDivTitulo>
+              <SDivSeleccionTipos>
+                <DropList
+                  lista={tipos}
+                  propiedadIdLista='IdTipo'
+                  propiedadNombreLista='NombreTipo'
+                  recogerSeleccion={asignarTipo}
+                  valorDefecto={"Tipos"}
+                />
+              </SDivSeleccionTipos>
               <StatsFiltro
                 asignarValoresFiltro={asignarValoresFiltro}
                 informacionFiltrado={informacionFiltrado}

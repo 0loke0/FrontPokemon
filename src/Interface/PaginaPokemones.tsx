@@ -34,4 +34,5 @@ export interface IFiltradoPaginacion {
   VelocidadMinima: number;
   VelocidadMaxima: number;
   Rareza: string;
+  Tipo: number;
 }

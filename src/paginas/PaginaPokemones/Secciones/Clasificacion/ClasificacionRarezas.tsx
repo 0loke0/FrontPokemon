@@ -25,11 +25,13 @@ const SDivComun = styled.button<{
 
   transform: translate(-50%);
 `;
-const STitulo = styled.div`
+const STitulo = styled.button`
   font-family: Righteous;
   text-align: center;
   font-size: 20px;
   width: 100%;
+  background-color: transparent;
+  border: 0px solid transparent;
 `;
 
 const SContenedorClasificacion = styled.div`
@@ -38,7 +40,7 @@ const SContenedorClasificacion = styled.div`
   height: 90px;
   align-items: center;
   left: 50%;
-  top: 10%;
+  top: 5%;
   transform: translate(-50%, 0%);
 `;
 
@@ -51,10 +53,18 @@ const Clasificacion: FC<IPropsClasificacion> = ({
     tempPaginacion.Filtros.Rareza = e.target.value;
     setinfoPaginacion(tempPaginacion);
   };
+  const restablecerFiltroRareza = (e: any) => {
+    let tempPaginacion = { ...infoPaginacion };
+    tempPaginacion.Filtros.Rareza = e.target.value;
+    setinfoPaginacion(tempPaginacion);
+  };
+
   return (
     <SContenedorClasificacion>
       <Row>
-        <STitulo>Tipos</STitulo>
+        <STitulo onClick={restablecerFiltroRareza} value={""}>
+          Rarezas
+        </STitulo>
       </Row>
       <Row md={3}>
         {[
