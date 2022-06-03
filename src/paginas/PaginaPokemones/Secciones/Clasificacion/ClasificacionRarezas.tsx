@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { IFormularioConsulta } from "../../../../Interface/PaginaPokemones";
 import { determinarColorMateSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 interface IPropsClasificacion {
-  setinfoPaginacion: any;
-  infoPaginacion: IFormularioConsulta;
+  setseccionAConsultar: any;
+  seccionAConsultar: IFormularioConsulta;
 }
 
 const SDivComun = styled.button<{
@@ -45,26 +45,24 @@ const SContenedorClasificacion = styled.div`
 `;
 
 const Clasificacion: FC<IPropsClasificacion> = ({
-  setinfoPaginacion,
-  infoPaginacion,
+  setseccionAConsultar: setinfoPaginacion,
+  seccionAConsultar: infoPaginacion,
 }) => {
   const asignarTipoAFiltro = (e: any) => {
     let tempPaginacion = { ...infoPaginacion };
     tempPaginacion.Filtros.Rareza = e.target.value;
     setinfoPaginacion(tempPaginacion);
   };
-  const restablecerFiltroRareza = (e: any) => {
+  const restablecerFiltroRareza = () => {
     let tempPaginacion = { ...infoPaginacion };
-    tempPaginacion.Filtros.Rareza = e.target.value;
+    tempPaginacion.Filtros.Rareza = "";
     setinfoPaginacion(tempPaginacion);
   };
 
   return (
     <SContenedorClasificacion>
       <Row>
-        <STitulo onClick={restablecerFiltroRareza} value={""}>
-          Rarezas
-        </STitulo>
+        <STitulo onClick={restablecerFiltroRareza}>Rarezas</STitulo>
       </Row>
       <Row md={3}>
         {[

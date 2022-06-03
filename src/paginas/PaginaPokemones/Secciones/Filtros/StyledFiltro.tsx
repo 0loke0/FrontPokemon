@@ -98,4 +98,11 @@ export const SDivTitulo = styled.div`
   transform: translate(-10%, 20%);
 `;
 
-export const SDivSeleccionTipos = styled.div``;
+export const SDivSeleccionTipos = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  top: 0%;
+  left: 80%;
+  transform: translate(-50%, 30%);
+`;

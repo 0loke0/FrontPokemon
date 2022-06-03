@@ -23,8 +23,7 @@ export const SDiv = styled.div`
   left: 50%;
   transform: translate(-50%);
   width: 150px;
-  height: 45px;
-
+  height: 50px;
   border: 1px solid #0783ff;
   border-radius: 10px;
   background-color: transparent;
@@ -35,7 +34,7 @@ export const SImgCaracteristicas = styled.img`
   width: 40px;
   height: 40px;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -10%);
 `;
 
 export const Sinput = styled.input`

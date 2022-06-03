@@ -77,20 +77,17 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
 
   const aplicarFiltro = () => {
     let infoPaginacionTemp: IFormularioConsulta = { ...infoPaginacion };
-    infoPaginacionTemp.Paginacion.Indice = 0;
     infoPaginacionTemp.Filtros = informacionFiltrado;
     setinfoPaginacion(infoPaginacionTemp);
+    handleClose();
   };
 
   const reiniciarFiltros = () => {
     setinformacionFiltrado(DEFAULTINFORMACIONFILTRO);
   };
 
-  const asignarTipo = (seleccion: number) => {
-    console.log("infromacion dentro de asignar tipo", infoPaginacion);
-    let temp = { ...infoPaginacion };
-    temp.Filtros.Tipo = seleccion;
-    setinfoPaginacion(temp);
+  const asignarTipoAlFiltro = (valorSelecionado: number) => {
+    setinformacionFiltrado({ ...informacionFiltrado, Tipo: valorSelecionado });
   };
 
   return (
@@ -127,7 +124,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
                   lista={tipos}
                   propiedadIdLista='IdTipo'
                   propiedadNombreLista='NombreTipo'
-                  recogerSeleccion={asignarTipo}
+                  recogerSeleccion={asignarTipoAlFiltro}
                   valorDefecto={"Tipos"}
                 />
               </SDivSeleccionTipos>

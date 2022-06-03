@@ -36,7 +36,7 @@ import { IMovimiento } from "../../Interface/Movimientos";
 import { ObtenerTipos } from "../../Servicios/ServicioTipo";
 import { ObtenerMovimientos } from "../../Servicios/ServicioMovimientos";
 
-const DEFAULTINFOPAGINACION: IFormularioConsulta = {
+const DEFAULTSECCIONACONSULTAR: IFormularioConsulta = {
   Paginacion: { Indice: 0, CantidadRegistros: 3 },
   Filtros: {
     Identificador: 0,
@@ -63,9 +63,8 @@ function PaginaPokemones() {
     []
   );
   const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
-  const [infoPaginacion, setinfoPaginacion] = useState<IFormularioConsulta>(
-    DEFAULTINFOPAGINACION
-  );
+  const [seccionAConsultar, setseccionAConsultar] =
+    useState<IFormularioConsulta>(DEFAULTSECCIONACONSULTAR);
 
   const [tipos, settipos] = useState<ITipo[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
@@ -76,18 +75,18 @@ function PaginaPokemones() {
 
   useEffect(() => {
     actualizarPagina();
-  }, [infoPaginacion]);
+  }, [seccionAConsultar]);
 
   const tomarInformacionPaginacion = (paginacion: IPaginacion) => {
-    setinfoPaginacion({
-      ...infoPaginacion,
+    setseccionAConsultar({
+      ...seccionAConsultar,
       Paginacion: paginacion,
     });
   };
 
   //Read
   const actualizarPagina = () => {
-    ObtenerCantidadRegistrosPokemon(infoPaginacion.Filtros).then(
+    ObtenerCantidadRegistrosPokemon(seccionAConsultar.Filtros).then(
       (cantidadRegistros) => {
         setcantidadRegistros(cantidadRegistros);
       }
@@ -95,9 +94,9 @@ function PaginaPokemones() {
     console.log(
       "=========informacion de lo que se envia en para obtener cantidad de registros ========="
     );
-    console.log(infoPaginacion.Filtros);
+    console.log(seccionAConsultar.Filtros);
     console.log("====================================");
-    ObtenerPokemones(infoPaginacion).then((x) => setPokemonDetallado(x));
+    ObtenerPokemones(seccionAConsultar).then((x) => setPokemonDetallado(x));
   };
 
   //Delete
@@ -131,12 +130,12 @@ function PaginaPokemones() {
         />
         <MusicaGeneral url='https://web.opendrive.com/api/v1/download/file.json/NDNfMjM5ODg3Nzdf?inline=1' />
         <ClasificacionRarezas
-          setinfoPaginacion={setinfoPaginacion}
-          infoPaginacion={infoPaginacion}
+          setseccionAConsultar={setseccionAConsultar}
+          seccionAConsultar={seccionAConsultar}
         />
         <FiltroPokemones
-          setinfoPaginacion={setinfoPaginacion}
-          infoPaginacion={infoPaginacion}
+          setinfoPaginacion={setseccionAConsultar}
+          infoPaginacion={seccionAConsultar}
           tipos={tipos}
         />
         <ContenedorCards

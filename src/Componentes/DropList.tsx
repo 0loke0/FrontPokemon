@@ -30,11 +30,12 @@ export const DropList: FC<IPropDropList> = ({
   propiedadIdLista,
 }) => {
   let obtenerValor = (event: any) => {
+    console.log("valor detro del select ", event.target.value);
     recogerSeleccion(event.target.value, index);
   };
 
   return (
-    <SFromSelec onChange={index ? obtenerValor : recogerSeleccion}>
+    <SFromSelec onChange={obtenerValor}>
       {valorDefecto && <SOption>{valorDefecto}</SOption>}
       {lista.map((x) => (
         <SOption value={x[propiedadIdLista]}>{x[propiedadNombreLista]}</SOption>
