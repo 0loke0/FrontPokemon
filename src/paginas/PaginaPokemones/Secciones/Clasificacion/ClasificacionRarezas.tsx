@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
+import { DEFAULTSECCIONACONSULTAR } from "../../../../Constantes/Pokemones";
 import { IFormularioConsulta } from "../../../../Interface/PaginaPokemones";
 import { determinarColorMateSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 interface IPropsClasificacion {
@@ -10,6 +11,7 @@ interface IPropsClasificacion {
 
 const SDivComun = styled.button<{
   rareza: string;
+  seleccion: boolean;
 }>`
   position: relative;
   margin-top: 2%;
@@ -22,7 +24,9 @@ const SDivComun = styled.button<{
   border: 1px solid #090707;
   background: ${({ rareza }) => determinarColorMateSegunRareza(rareza) + `a1;`};
   left: 50%;
-
+  box-shadow: ${({ seleccion, rareza }) =>
+    seleccion && `0px 0px 5px ${determinarColorMateSegunRareza(rareza)}`};
+  border: ${({ seleccion }) => seleccion && `2px solid #090707`};
   transform: translate(-50%);
 `;
 const STitulo = styled.button`
@@ -50,13 +54,16 @@ const Clasificacion: FC<IPropsClasificacion> = ({
 }) => {
   const asignarTipoAFiltro = (e: any) => {
     let tempPaginacion = { ...infoPaginacion };
-    tempPaginacion.Filtros.Rareza = e.target.value;
+    if (tempPaginacion.Filtros.Rareza == e.target.value) {
+      tempPaginacion.Filtros.Rareza = "";
+    } else {
+      tempPaginacion.Filtros.Rareza = e.target.value;
+    }
     setinfoPaginacion(tempPaginacion);
   };
+
   const restablecerFiltroRareza = () => {
-    let tempPaginacion = { ...infoPaginacion };
-    tempPaginacion.Filtros.Rareza = "";
-    setinfoPaginacion(tempPaginacion);
+    setinfoPaginacion(DEFAULTSECCIONACONSULTAR);
   };
 
   return (
@@ -76,6 +83,7 @@ const Clasificacion: FC<IPropsClasificacion> = ({
           return (
             <Col key={tipo}>
               <SDivComun
+                seleccion={infoPaginacion.Filtros.Rareza == tipo}
                 rareza={tipo}
                 onClick={asignarTipoAFiltro}
                 value={tipo}>

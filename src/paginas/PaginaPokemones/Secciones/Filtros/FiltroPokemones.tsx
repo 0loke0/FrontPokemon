@@ -27,9 +27,8 @@ import InputText from "../../../../Componentes/InputText";
 import InputIdPokemon from "./Secciones/InputIdPokemon";
 import { DropList } from "../../../../Componentes/DropList";
 import { ITipo } from "../../../../Interface/Tipos";
-import { ObtenerTipos } from "../../../../Servicios/ServicioTipo";
-import { ObtenerMovimientos } from "../../../../Servicios/ServicioMovimientos";
-import { IMovimiento } from "../../../../Interface/Movimientos";
+
+import { DEFAULTSECCIONACONSULTAR } from "../../../../Constantes/Pokemones";
 
 interface IPropFiltroPokemon {
   setinfoPaginacion: any;
@@ -37,32 +36,13 @@ interface IPropFiltroPokemon {
   tipos: ITipo[];
 }
 
-const DEFAULTINFORMACIONFILTRO: IFiltradoPaginacion = {
-  Identificador: 0,
-  Nombre: "",
-  AtaqueMinimo: 0,
-  AtaqueMaximo: 100,
-  AtaqueEspecialMinimo: 0,
-  AtaqueEspecialMaximo: 100,
-  VidaMinima: 0,
-  VidaMaxima: 100,
-  DefensaMinima: 0,
-  DefensaMaxima: 100,
-  DefensaEspecialMinima: 0,
-  DefensaEspecialMaxima: 100,
-  VelocidadMinima: 0,
-  VelocidadMaxima: 100,
-  Rareza: "",
-  Tipo: 0,
-};
-
 export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   setinfoPaginacion,
   infoPaginacion,
   tipos,
 }) => {
   const [informacionFiltrado, setinformacionFiltrado] =
-    useState<IFiltradoPaginacion>(DEFAULTINFORMACIONFILTRO);
+    useState<IFiltradoPaginacion>(DEFAULTSECCIONACONSULTAR.Filtros);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -83,7 +63,7 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   };
 
   const reiniciarFiltros = () => {
-    setinformacionFiltrado(DEFAULTINFORMACIONFILTRO);
+    setinformacionFiltrado(DEFAULTSECCIONACONSULTAR.Filtros);
   };
 
   const asignarTipoAlFiltro = (valorSelecionado: number) => {

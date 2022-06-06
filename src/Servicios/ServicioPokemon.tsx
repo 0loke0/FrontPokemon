@@ -46,12 +46,3 @@ export const EliminarPokemon = async (idPokemon: number) => {
     return data;
   });
 };
-
-export const ObtenerCantidadRegistrosPokemon = async (
-  filtros: IFiltradoPaginacion
-) => {
-  const url = apiBase + CantidadRegistros;
-  return await coreApi(url, "Post", filtros).then((data) => {
-    return data;
-  });
-};

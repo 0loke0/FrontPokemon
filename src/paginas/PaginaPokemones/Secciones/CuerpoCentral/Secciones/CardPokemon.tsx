@@ -70,25 +70,24 @@ export const CardPokemon: FC<IPropSCard> = ({
                 </SContenedorTipo>
               ))}
             </SDivTipos>
-
-            {<SImg src={imagen} />}
+            <SImg src={imagen && imagen} />
           </SContenedorImagen>
+          <SDivMovimientos>
+            <Row>
+              {pokemon.Movimientos.map((x) => (
+                <Col>
+                  <MovimientosVisualizacion
+                    rareza={pokemon.Rareza}
+                    movimiento={x}></MovimientosVisualizacion>
+                </Col>
+              ))}
+            </Row>
+          </SDivMovimientos>
           <Stats pokemon={pokemon} />
           {pokemon.Detalle && (
             <Descripcion detalle={pokemon.Detalle} referencia={pokemon.Id} />
           )}
         </Card.Body>
-        <SDivMovimientos>
-          <Row>
-            {pokemon.Movimientos.map((x) => (
-              <Col>
-                <MovimientosVisualizacion
-                  rareza={pokemon.Rareza}
-                  movimiento={x}></MovimientosVisualizacion>
-              </Col>
-            ))}
-          </Row>
-        </SDivMovimientos>
       </StyledCard>
     </Col>
   );

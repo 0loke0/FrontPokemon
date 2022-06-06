@@ -240,12 +240,11 @@ export const SDivDescripcion = styled.div`
 `;
 
 export const SDivMovimientos = styled.div`
-  position: absolute;
+  position: relative;
   top: 99.5%;
   left: 75%;
   align-items: center;
   text-align: center;
   width: 250px;
   transform: translate(-50%);
-  z-index: -1;
 `;
