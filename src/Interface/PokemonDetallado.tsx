@@ -2,6 +2,11 @@ import { ITipo } from "./Tipos";
 import { IMovimiento } from "./Movimientos";
 import { IImagen } from "./Imagen";
 
+export interface ISeccionConsultado {
+  ConteoPokemones: number;
+  DetallePokemon: IPokemonDetallado[];
+}
+
 export interface IPokemonDetallado {
   Id: number;
   Nombre: string;

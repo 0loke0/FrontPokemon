@@ -15,7 +15,7 @@ import {
 } from "../../Interface/PaginaPokemones";
 import {
   INuevoPokemon,
-  IPokemonDetallado,
+  ISeccionConsultado,
 } from "../../Interface/PokemonDetallado";
 
 import { Agregar } from "./Secciones/Agregar/Agregar";
@@ -59,15 +59,15 @@ const DEFAULTSECCIONACONSULTAR: IFormularioConsulta = {
 };
 
 function PaginaPokemones() {
-  const [pokemonDetallado, setPokemonDetallado] = useState<IPokemonDetallado[]>(
-    []
-  );
+  const [pokemonDetallado, setPokemonDetallado] =
+    useState<ISeccionConsultado>();
   const [cantidadRegistros, setcantidadRegistros] = useState<number>(0);
   const [seccionAConsultar, setseccionAConsultar] =
     useState<IFormularioConsulta>(DEFAULTSECCIONACONSULTAR);
 
   const [tipos, settipos] = useState<ITipo[]>([]);
   const [movimientos, setMovimientos] = useState<IMovimiento[]>([]);
+
   useEffect(() => {
     ObtenerTipos().then((x) => settipos(x));
     ObtenerMovimientos().then((x) => setMovimientos(x));
@@ -91,11 +91,7 @@ function PaginaPokemones() {
         setcantidadRegistros(cantidadRegistros);
       }
     );
-    console.log(
-      "=========informacion de lo que se envia en para obtener cantidad de registros ========="
-    );
-    console.log(seccionAConsultar.Filtros);
-    console.log("====================================");
+
     ObtenerPokemones(seccionAConsultar).then((x) => setPokemonDetallado(x));
   };
 
@@ -121,7 +117,9 @@ function PaginaPokemones() {
     <SPaginaPokemones>
       <SGeneralPaginaPokemon>
         <SImgLogo src={LogoPokemon} />
-        <ContadorPokemon cantidadRegistros={cantidadRegistros} />
+        <ContadorPokemon
+          cantidadRegistros={pokemonDetallado?.ConteoPokemones}
+        />
         <Agregar
           actualizarPagina={actualizarPagina}
           agregarPokemon={agregarNuevoPokemon}
@@ -140,10 +138,10 @@ function PaginaPokemones() {
         />
         <ContenedorCards
           actualizarPagina={actualizarPagina}
-          pokemonDetallado={pokemonDetallado}
+          pokemonDetallado={pokemonDetallado?.DetallePokemon}
           tomarInformacionPaginacion={tomarInformacionPaginacion}
           eliminarPokemon={eliminarPokemonRegistrado}
-          cantidadRegistros={cantidadRegistros}
+          cantidadRegistros={pokemonDetallado?.ConteoPokemones}
         />
       </SGeneralPaginaPokemon>
     </SPaginaPokemones>

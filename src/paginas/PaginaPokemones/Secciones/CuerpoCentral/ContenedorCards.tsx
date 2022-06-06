@@ -8,10 +8,10 @@ import Paginacion from "./Secciones/Paginacion";
 import SinInformacion from "./Secciones/SinInformacion";
 
 interface IPropCardPokemon {
-  pokemonDetallado: IPokemonDetallado[];
+  pokemonDetallado: IPokemonDetallado[] | undefined;
   tomarInformacionPaginacion: any;
   eliminarPokemon: any;
-  cantidadRegistros: number;
+  cantidadRegistros: number | undefined;
   actualizarPagina: any;
 }
 

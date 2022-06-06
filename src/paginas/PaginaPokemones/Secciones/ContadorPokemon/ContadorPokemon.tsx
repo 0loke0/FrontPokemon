@@ -9,7 +9,7 @@ import {
 import Pikachu from "../../../../Multimedia/Pokemon/ContadorPokemon/Pikachu.png";
 import ManosPikachu from "../../../../Multimedia/Pokemon/ContadorPokemon/ManosPikachu.png";
 interface IPropContadorPokemon {
-  cantidadRegistros: number;
+  cantidadRegistros: number | undefined;
 }
 export const ContadorPokemon: FC<IPropContadorPokemon> = ({
   cantidadRegistros,
