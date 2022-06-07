@@ -1,8 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { DEFAULTSECCIONACONSULTAR } from "../../../../Constantes/Pokemones";
-import { IFormularioConsulta } from "../../../../Interface/PaginaPokemones";
+import {
+  DEFAULTSECCIONACONSULTAR,
+  DEFAULTSECCIONACONSULTARASIGNACION,
+} from "../../../../Constantes/Pokemones";
+import {
+  IFiltradoPaginacion,
+  IFormularioConsulta,
+} from "../../../../Interface/PaginaPokemones";
 import { determinarColorMateSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 interface IPropsClasificacion {
   setseccionAConsultar: any;
@@ -52,18 +58,28 @@ const Clasificacion: FC<IPropsClasificacion> = ({
   setseccionAConsultar: setinfoPaginacion,
   seccionAConsultar: infoPaginacion,
 }) => {
+  const [informacionFiltradoRarezas, setinformacionFiltradoRarezas] =
+    useState<IFiltradoPaginacion>(DEFAULTSECCIONACONSULTAR.Filtros);
+
+  useEffect(() => {
+    let infoPaginacionTemp: IFormularioConsulta = { ...infoPaginacion };
+    infoPaginacionTemp.Filtros = informacionFiltradoRarezas;
+    setinfoPaginacion(infoPaginacionTemp);
+  }, [informacionFiltradoRarezas]);
+
   const asignarTipoAFiltro = (e: any) => {
-    let tempPaginacion = { ...infoPaginacion };
-    if (tempPaginacion.Filtros.Rareza == e.target.value) {
-      tempPaginacion.Filtros.Rareza = "";
-    } else {
-      tempPaginacion.Filtros.Rareza = e.target.value;
+    var rareza = e.target.value;
+    if (informacionFiltradoRarezas.Rareza == rareza) {
+      rareza = "";
     }
-    setinfoPaginacion(tempPaginacion);
+    setinformacionFiltradoRarezas({
+      ...informacionFiltradoRarezas,
+      Rareza: rareza,
+    });
   };
 
   const restablecerFiltroRareza = () => {
-    setinfoPaginacion(DEFAULTSECCIONACONSULTAR);
+    setinformacionFiltradoRarezas(DEFAULTSECCIONACONSULTAR.Filtros);
   };
 
   return (
@@ -83,7 +99,7 @@ const Clasificacion: FC<IPropsClasificacion> = ({
           return (
             <Col key={tipo}>
               <SDivComun
-                seleccion={infoPaginacion.Filtros.Rareza == tipo}
+                seleccion={informacionFiltradoRarezas.Rareza == tipo}
                 rareza={tipo}
                 onClick={asignarTipoAFiltro}
                 value={tipo}>

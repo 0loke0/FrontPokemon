@@ -52,6 +52,7 @@ function PaginaPokemones() {
 
   useEffect(() => {
     actualizarPagina();
+    console.log("se actuliza la wea", seccionAConsultar);
   }, [seccionAConsultar]);
 
   const tomarInformacionPaginacion = (paginacion: IPaginacion) => {
