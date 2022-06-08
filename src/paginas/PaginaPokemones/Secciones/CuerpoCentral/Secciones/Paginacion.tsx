@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import Boton from "../../../../../Componentes/Boton";
+import { IFormularioConsulta } from "../../../../../Interface/PaginaPokemones";
 
 const Sdiv = styled.div`
   position: absolute;
@@ -25,20 +26,27 @@ const SInformacionPaginacion = styled.div`
 
 interface IPropsPaginacion {
   cantidadRegistros: any;
-  tomarInformacionPaginacion: any;
   limitePorPagina: number;
+  setseccionAConsultar: any;
+  seccionAConsultar: IFormularioConsulta;
 }
 
 const Paginacion: FC<IPropsPaginacion> = ({
   cantidadRegistros,
-  tomarInformacionPaginacion,
+
   limitePorPagina,
+  setseccionAConsultar,
+  seccionAConsultar,
 }) => {
   const [pagina, setpagina] = useState<number>(0);
 
   useEffect(() => {
     informacionPaginacion();
   }, [pagina]);
+
+  useEffect(() => {
+    regresarInicio();
+  }, [seccionAConsultar.Filtros.Rareza, seccionAConsultar.Filtros]);
 
   useEffect(() => {
     if (determinarCantidadPaginas() < pagina + 1) {
@@ -67,9 +75,13 @@ const Paginacion: FC<IPropsPaginacion> = ({
   };
 
   const informacionPaginacion = () => {
-    tomarInformacionPaginacion({
+    let paginacion = {
       Indice: pagina,
       CantidadRegistros: limitePorPagina,
+    };
+    setseccionAConsultar({
+      ...seccionAConsultar,
+      Paginacion: paginacion,
     });
   };
   return (

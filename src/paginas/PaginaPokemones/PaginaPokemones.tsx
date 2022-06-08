@@ -8,10 +8,7 @@ import {
 
 import { Alerta } from "../../Componentes/Alerta";
 
-import {
-  IFormularioConsulta,
-  IPaginacion,
-} from "../../Interface/PaginaPokemones";
+import { IFormularioConsulta } from "../../Interface/PaginaPokemones";
 import {
   INuevoPokemon,
   ISeccionConsultado,
@@ -52,15 +49,7 @@ function PaginaPokemones() {
 
   useEffect(() => {
     actualizarPagina();
-    console.log("se actuliza la wea", seccionAConsultar);
   }, [seccionAConsultar]);
-
-  const tomarInformacionPaginacion = (paginacion: IPaginacion) => {
-    setseccionAConsultar({
-      ...seccionAConsultar,
-      Paginacion: paginacion,
-    });
-  };
 
   //Read
   const actualizarPagina = () => {
@@ -104,14 +93,15 @@ function PaginaPokemones() {
           seccionAConsultar={seccionAConsultar}
         />
         <FiltroPokemones
-          setinfoPaginacion={setseccionAConsultar}
-          infoPaginacion={seccionAConsultar}
+          setseccionAConsultar={setseccionAConsultar}
+          seccionAConsultar={seccionAConsultar}
           tipos={tipos}
         />
         <ContenedorCards
+          setseccionAConsultar={setseccionAConsultar}
+          seccionAConsultar={seccionAConsultar}
           actualizarPagina={actualizarPagina}
           pokemonDetallado={pokemonDetallado?.DetallePokemon}
-          tomarInformacionPaginacion={tomarInformacionPaginacion}
           eliminarPokemon={eliminarPokemonRegistrado}
           cantidadRegistros={pokemonDetallado?.ConteoPokemones}
         />

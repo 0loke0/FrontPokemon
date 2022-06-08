@@ -31,18 +31,18 @@ import { ITipo } from "../../../../Interface/Tipos";
 import { DEFAULTSECCIONACONSULTAR } from "../../../../Constantes/Pokemones";
 
 interface IPropFiltroPokemon {
-  setinfoPaginacion: any;
-  infoPaginacion: IFormularioConsulta;
+  setseccionAConsultar: any;
+  seccionAConsultar: IFormularioConsulta;
   tipos: ITipo[];
 }
 
 export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
-  setinfoPaginacion,
-  infoPaginacion,
+  setseccionAConsultar,
+  seccionAConsultar,
   tipos,
 }) => {
   const [informacionFiltrado, setinformacionFiltrado] =
-    useState<IFiltradoPaginacion>(DEFAULTSECCIONACONSULTAR.Filtros);
+    useState<IFiltradoPaginacion>(seccionAConsultar.Filtros);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -56,9 +56,9 @@ export const FiltroPokemones: FC<IPropFiltroPokemon> = ({
   };
 
   const aplicarFiltro = () => {
-    let infoPaginacionTemp: IFormularioConsulta = { ...infoPaginacion };
+    let infoPaginacionTemp: IFormularioConsulta = { ...seccionAConsultar };
     infoPaginacionTemp.Filtros = informacionFiltrado;
-    setinfoPaginacion(infoPaginacionTemp);
+    setseccionAConsultar(infoPaginacionTemp);
     handleClose();
   };
 

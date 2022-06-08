@@ -1,10 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import {
-  DEFAULTSECCIONACONSULTAR,
-  DEFAULTSECCIONACONSULTARASIGNACION,
-} from "../../../../Constantes/Pokemones";
+import { DEFAULTSECCIONACONSULTAR } from "../../../../Constantes/Pokemones";
 import {
   IFiltradoPaginacion,
   IFormularioConsulta,
@@ -55,16 +52,16 @@ const SContenedorClasificacion = styled.div`
 `;
 
 const Clasificacion: FC<IPropsClasificacion> = ({
-  setseccionAConsultar: setinfoPaginacion,
-  seccionAConsultar: infoPaginacion,
+  setseccionAConsultar,
+  seccionAConsultar,
 }) => {
   const [informacionFiltradoRarezas, setinformacionFiltradoRarezas] =
-    useState<IFiltradoPaginacion>(DEFAULTSECCIONACONSULTAR.Filtros);
+    useState<IFiltradoPaginacion>(seccionAConsultar.Filtros);
 
   useEffect(() => {
-    let infoPaginacionTemp: IFormularioConsulta = { ...infoPaginacion };
-    infoPaginacionTemp.Filtros = informacionFiltradoRarezas;
-    setinfoPaginacion(infoPaginacionTemp);
+    let infoPaginacionTemp: IFormularioConsulta = { ...seccionAConsultar };
+    infoPaginacionTemp.Filtros.Rareza = informacionFiltradoRarezas.Rareza;
+    setseccionAConsultar(infoPaginacionTemp);
   }, [informacionFiltradoRarezas]);
 
   const asignarTipoAFiltro = (e: any) => {

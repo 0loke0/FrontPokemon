@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 
 import { CardPokemon } from "./Secciones/CardPokemon";
@@ -9,25 +9,27 @@ import SinInformacion from "./Secciones/SinInformacion";
 
 interface IPropCardPokemon {
   pokemonDetallado: IPokemonDetallado[] | undefined;
-  tomarInformacionPaginacion: any;
   eliminarPokemon: any;
   cantidadRegistros: number | undefined;
   actualizarPagina: any;
+  setseccionAConsultar: any;
+  seccionAConsultar: any;
 }
 
 const LIMITEPORPAGINA = 3;
 
 export const ContenedorCards: FC<IPropCardPokemon> = ({
   pokemonDetallado,
-  tomarInformacionPaginacion,
   eliminarPokemon,
   cantidadRegistros,
   actualizarPagina,
+  setseccionAConsultar,
+  seccionAConsultar,
 }) => {
   return (
     <>
       {pokemonDetallado && pokemonDetallado.length > 0 ? (
-        <Row xs={1} md={LIMITEPORPAGINA} className='g-4'>
+        <Row xs={1} md={LIMITEPORPAGINA} className='g-5'>
           {pokemonDetallado.map((data) => (
             <CardPokemon
               pokemon={data}
@@ -37,8 +39,9 @@ export const ContenedorCards: FC<IPropCardPokemon> = ({
           ))}
           <Paginacion
             cantidadRegistros={cantidadRegistros}
-            tomarInformacionPaginacion={tomarInformacionPaginacion}
             limitePorPagina={LIMITEPORPAGINA}
+            setseccionAConsultar={setseccionAConsultar}
+            seccionAConsultar={seccionAConsultar}
           />
         </Row>
       ) : (

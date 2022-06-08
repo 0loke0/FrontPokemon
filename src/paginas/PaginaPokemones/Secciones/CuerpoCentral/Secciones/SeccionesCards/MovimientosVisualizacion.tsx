@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { IMovimiento } from "../../../../../../Interface/Movimientos";
 import { determinarColorMateSegunRareza } from "../../../../../../Utilidades/UtilidadesColores";
@@ -7,7 +8,6 @@ const SMovimiento = styled.div<{
   rareza: string;
 }>`
   width: 100px;
-  height: 55px;
   background-color: ${({ rareza }) =>
     determinarColorMateSegunRareza(rareza) + `;`};
   border: 2px solid #628395;
@@ -33,8 +33,10 @@ const MovimientosVisualizacion: FC<IProposMovimientosVisualizacion> = ({
 }) => {
   return (
     <SMovimiento rareza={rareza}>
-      <div>{movimiento.NombreMovimiento}</div>
-      <div>{movimiento.IdMovimiento}</div>
+      <Row>
+        <Col>{movimiento.NombreMovimiento}</Col>
+        <Col>{movimiento.IdMovimiento}</Col>
+      </Row>
     </SMovimiento>
   );
 };
