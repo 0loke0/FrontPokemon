@@ -7,48 +7,6 @@ import { Row } from "react-bootstrap";
 import Acero from "../../../../Multimedia/Pokemon/Card/IconosTipo/Acero.png";
 import { determinarColorSegunRareza } from "../../../../Utilidades/UtilidadesColores";
 // background-image: url(${Background});
-let fondoTipo = (idTipo: number) => {
-  switch (idTipo) {
-    case 1:
-      return `${Acero}`;
-    case 2:
-      return `${Acero}`;
-    case 3:
-      return `${Acero}`;
-    case 4:
-      return `${Acero}`;
-    case 5:
-      return `${Acero}`;
-    case 6:
-      return `${Acero}`;
-    case 7:
-      return `${Acero}`;
-    case 8:
-      return `${Acero}`;
-    case 9:
-      return `${Acero}`;
-    case 10:
-      return `${Acero}`;
-    case 11:
-      return `${Acero}`;
-    case 12:
-      return `${Acero}`;
-    case 13:
-      return `${Acero}`;
-    case 14:
-      return `${Acero}`;
-    case 15:
-      return `${Acero}`;
-    case 16:
-      return `${Acero}`;
-    case 17:
-      return `${Acero}`;
-    case 18:
-      return `${Acero}`;
-    default:
-      return `${Acero}`;
-  }
-};
 
 let coloresTipos = (idTipo: number) => {
   switch (idTipo) {
@@ -134,9 +92,9 @@ export const SDivTipos = styled.div`
 
 export const SRow = styled(Row)`
   position: relative;
-
-  margin-top: 5px;
-  margin: 1% 0% 0% 0%;
+  margin: 2% 0% 0% 0%;
+  transform: translate(0%, -10%);
+  transition: 0.5s;
 `;
 export const SContenedorImagen = styled.div<{ colorFondo: string }>`
   margin-top: 5%;
@@ -241,8 +199,15 @@ export const SDivDescripcion = styled.div`
 
 export const SDivMovimientos = styled.div`
   position: relative;
-  top: 99.5%;
   left: 0%;
   text-align: center;
-  width: 250px;
+  width: 100%;
+  transform: translate(0%, -50%);
+  z-index: 1;
+`;
+
+export const SStats = styled.div`
+  position: relative;
+  top: -50%;
+  height: 80%;
 `;

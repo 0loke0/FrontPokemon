@@ -29,7 +29,7 @@ const SDivComun = styled.button<{
   left: 50%;
   box-shadow: ${({ seleccion, rareza }) =>
     seleccion && `0px 0px 5px ${determinarColorMateSegunRareza(rareza)}`};
-  border: ${({ seleccion }) => seleccion && `2px solid #090707`};
+  border: ${({ seleccion }) => seleccion && `3px solid #0077ff`};
   transform: translate(-50%);
 `;
 const STitulo = styled.button`

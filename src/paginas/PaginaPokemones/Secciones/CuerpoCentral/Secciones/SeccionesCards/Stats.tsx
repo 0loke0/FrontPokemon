@@ -6,6 +6,7 @@ import {
   SRow,
   SPCarateristicas,
   SDiv,
+  SStats,
 } from "../../StylosCardsPokemon";
 import Vida from "../../../../../../Multimedia/Pokemon/Card/Vida.png";
 import Velocidad from "../../../../../../Multimedia/Pokemon/Card/Velocidad.png";
@@ -57,7 +58,7 @@ const estructuraStats: IEstructuraStats[] = [
 
 const Stats: FC<IPropStats> = ({ pokemon }) => {
   return (
-    <>
+    <SStats>
       <SRow>
         {estructuraStats.map((x) => (
           <SCol>
@@ -68,7 +69,7 @@ const Stats: FC<IPropStats> = ({ pokemon }) => {
           </SCol>
         ))}
       </SRow>
-    </>
+    </SStats>
   );
 };
 

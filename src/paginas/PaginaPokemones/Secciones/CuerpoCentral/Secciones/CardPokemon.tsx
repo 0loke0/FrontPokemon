@@ -78,7 +78,8 @@ export const CardPokemon: FC<IPropSCard> = ({
                 <Col>
                   <MovimientosVisualizacion
                     rareza={pokemon.Rareza}
-                    movimiento={x}></MovimientosVisualizacion>
+                    movimiento={x}
+                  />
                 </Col>
               ))}
             </Row>

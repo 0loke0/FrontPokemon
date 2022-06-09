@@ -7,19 +7,37 @@ import { determinarColorMateSegunRareza } from "../../../../../../Utilidades/Uti
 const SMovimiento = styled.div<{
   rareza: string;
 }>`
-  width: 100px;
+  width: 70%;
   background-color: ${({ rareza }) =>
     determinarColorMateSegunRareza(rareza) + `;`};
-  border: 2px solid #628395;
+  border: 2px solid #0059ff;
   border-radius: 10px;
-  margin: 2px;
-  transition: 2s;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px;
+  height: 20px;
   clip-path: inset(0 0 0 0);
+  transition: 0.5s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: ${({ rareza }) => determinarColorMateSegunRareza(rareza) + `;`};
   &:hover {
-    height: 100%;
-    transition: 1s;
+    height: 70px;
+    transition: 0.2s;
+    align-items: center;
+    color: black;
   }
-  padding: 2px;
+`;
+
+const SDiv = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translate(0%, -50%);
+  font-family: "Poiret One", cursive;
+  font-weight: 900;
 `;
 
 interface IProposMovimientosVisualizacion {
@@ -34,8 +52,12 @@ const MovimientosVisualizacion: FC<IProposMovimientosVisualizacion> = ({
   return (
     <SMovimiento rareza={rareza}>
       <Row>
-        <Col>{movimiento.NombreMovimiento}</Col>
-        <Col>{movimiento.IdMovimiento}</Col>
+        <Col>
+          <SDiv>{movimiento.NombreMovimiento}</SDiv>
+        </Col>
+        <Col>
+          <SDiv>{movimiento.IdMovimiento}</SDiv>
+        </Col>
       </Row>
     </SMovimiento>
   );
