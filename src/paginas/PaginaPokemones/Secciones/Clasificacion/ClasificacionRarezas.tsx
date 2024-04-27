@@ -18,22 +18,25 @@ const SDivComun = styled.button<{
 }>`
   position: relative;
   margin-top: 2%;
-  width: 100%;
-  border-radius: 5px;
+  width: 105%;
+  height: 45px;
+  border-radius: 5px;  
   text-align: center;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: 15px;
-  border: 1px solid #090707;
+  font-family: "Press Start 2P",  "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  border: 3px #000000;
+  border-style: double dashed ;
   background: ${({ rareza }) => determinarColorMateSegunRareza(rareza) + `a1;`};
   left: 50%;
   box-shadow: ${({ seleccion, rareza }) =>
     seleccion && `0px 0px 5px ${determinarColorMateSegunRareza(rareza)}`};
-  border: ${({ seleccion }) => seleccion && `3px solid #0077ff`};
+  border: ${({ seleccion }) => seleccion && `none`};
+  border-style: ${({ seleccion }) => seleccion && `none`};
   transform: translate(-50%);
 `;
+
 const STitulo = styled.button`
-  font-family: Righteous;
+  font-family: "Press Start 2P";
   text-align: center;
   font-size: 20px;
   width: 100%;
@@ -105,6 +108,7 @@ const Clasificacion: FC<IPropsClasificacion> = ({
             </Col>
           );
         })}
+        
       </Row>
     </SContenedorClasificacion>
   );

@@ -12,3 +12,4 @@ export const ObtenerMovimientos = async () => {
     return data;
   });
 };
+

@@ -16,7 +16,7 @@ export const SGeneralPaginaPokemon = styled.div`
 
 export const SImgLogo = styled.img`
   position: relative;
-  width: 18%;
+  width: 16%;
   height: 18%;
   left: 0%;
   transform: translate(-40%, -75%);
@@ -24,10 +24,7 @@ export const SImgLogo = styled.img`
 `;
 
 export const SPaginaPokemones = styled.div`
-  background-image: url(${Background});
-  /* background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; */
+  background-image: url(${Background});  
   height: 899px;
   width: 100%;
   padding: 2% 5%;

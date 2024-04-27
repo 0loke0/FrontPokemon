@@ -10,7 +10,15 @@ font-family: 'Righteous', cursive; */
     background-color: transparent !important;
     border: none;
 }
+
 .modal-footer{
     background-color: transparent !important;
     border: none;
 }
+
+* {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 200;
+    font-style: normal;
+}
+
